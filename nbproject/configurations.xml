@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="f3" displayName="Entity Classes" projectFiles="true">
+        <itemPath>Coordinates.cpp</itemPath>
+        <itemPath>Coordinates.h</itemPath>
+        <itemPath>Entity.cpp</itemPath>
+        <itemPath>Entity.h</itemPath>
+        <itemPath>Image.cpp</itemPath>
+        <itemPath>Image.h</itemPath>
+        <itemPath>Monster.cpp</itemPath>
+        <itemPath>Monster.h</itemPath>
+        <itemPath>Player.cpp</itemPath>
+        <itemPath>Player.h</itemPath>
+        <itemPath>Projectile.cpp</itemPath>
+        <itemPath>Projectile.h</itemPath>
+        <itemPath>Weapon.cpp</itemPath>
+        <itemPath>Weapon.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Map Classes" projectFiles="true">
+        <itemPath>Door.cpp</itemPath>
+        <itemPath>Door.h</itemPath>
+        <itemPath>Floor.cpp</itemPath>
+        <itemPath>Floor.h</itemPath>
+        <itemPath>Map.cpp</itemPath>
+        <itemPath>Map.h</itemPath>
+        <itemPath>Module.cpp</itemPath>
+        <itemPath>Module.h</itemPath>
+        <itemPath>ModuleFactory.cpp</itemPath>
+        <itemPath>ModuleFactory.h</itemPath>
+        <itemPath>ModuleTile.cpp</itemPath>
+        <itemPath>ModuleTile.h</itemPath>
+        <itemPath>Room.cpp</itemPath>
+        <itemPath>Room.h</itemPath>
+        <itemPath>Wall.cpp</itemPath>
+        <itemPath>Wall.h</itemPath>
+        <itemPath>WallFactory.cpp</itemPath>
+        <itemPath>WallFactory.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Overseer Classes" projectFiles="true">
+        <itemPath>AllEntities.cpp</itemPath>
+        <itemPath>AllEntities.h</itemPath>
+        <itemPath>KeyboardControl.cpp</itemPath>
+        <itemPath>KeyboardControl.h</itemPath>
+        <itemPath>MouseControl.cpp</itemPath>
+        <itemPath>MouseControl.h</itemPath>
+        <itemPath>Session.cpp</itemPath>
+        <itemPath>Session.h</itemPath>
+        <itemPath>configurator.cpp</itemPath>
+        <itemPath>configurator.h</itemPath>
+        <itemPath>globalVariables.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="UI classes" projectFiles="true">
+        <itemPath>Button.cpp</itemPath>
+        <itemPath>Button.h</itemPath>
+        <itemPath>Menu.cpp</itemPath>
+        <itemPath>Menu.h</itemPath>
+      </logicalFolder>
+      <itemPath>templateList.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rmcv02.exe</output>
+          <linkerLibItems>
+            <linkerLibLibItem>allegro-5.0.10-monolith-mt</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="AllEntities.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllEntities.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Button.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Button.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Coordinates.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Coordinates.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Door.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Door.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Floor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Floor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Image.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KeyboardControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KeyboardControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Map.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Map.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Menu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Module.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Module.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModuleFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleTile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModuleTile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Monster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Monster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MouseControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MouseControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Projectile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Projectile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Room.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Room.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Session.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Session.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Wall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WallFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WallFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Weapon.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Weapon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="configurator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="configurator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="globalVariables.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="templateList.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rmcv02.exe</output>
+        </linkerTool>
+      </compileType>
+      <item path="AllEntities.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllEntities.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Button.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Button.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Coordinates.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Coordinates.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Door.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Door.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Entity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Entity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Floor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Floor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Image.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KeyboardControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KeyboardControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Map.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Map.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Menu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Module.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Module.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModuleFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleTile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModuleTile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Monster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Monster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MouseControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MouseControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Projectile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Projectile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Room.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Room.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Session.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Session.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Wall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WallFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WallFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Weapon.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Weapon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="configurator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="configurator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="globalVariables.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="templateList.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
