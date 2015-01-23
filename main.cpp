@@ -16,7 +16,7 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include "globalVariables.h"
-
+#include "Session.h"
 using namespace std;
 
 
@@ -40,6 +40,10 @@ Session *Variables::session;
 ALLEGRO_EVENT_QUEUE *Variables::event_queue;
 ALLEGRO_TIMER *Variables::timer;
 ALLEGRO_DISPLAY *Variables::display;
+
+MainGameState Session::gameState = MAP;
+
+int const Variables::damageTypeCount = 6;
 
 int const Variables::tilesPerRoom = 20;
 

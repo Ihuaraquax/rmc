@@ -13,11 +13,11 @@ Weapon::Weapon() {
     ammoMax = 100;
     ammoCurrent = 100;
     reloadSpeed = 120;
-    damage = 1;
-    damageType = 0;
+    damage = 10;
     cooldown = 20;
     timeToShoot = 0;
     reloading = false;
+    damageType = normal;
 }
 
 void Weapon::update()

@@ -5,6 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Entity Classes" projectFiles="true">
+        <itemPath>CollisionDetector.cpp</itemPath>
+        <itemPath>CollisionDetector.h</itemPath>
         <itemPath>Coordinates.cpp</itemPath>
         <itemPath>Coordinates.h</itemPath>
         <itemPath>Entity.cpp</itemPath>
@@ -19,6 +21,9 @@
         <itemPath>Projectile.h</itemPath>
         <itemPath>Weapon.cpp</itemPath>
         <itemPath>Weapon.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="enums" projectFiles="true">
+        <itemPath>DamageTypeEnum.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Map Classes" projectFiles="true">
         <itemPath>Door.cpp</itemPath>
@@ -35,6 +40,10 @@
         <itemPath>ModuleTile.h</itemPath>
         <itemPath>Room.cpp</itemPath>
         <itemPath>Room.h</itemPath>
+        <itemPath>RoomFactory.cpp</itemPath>
+        <itemPath>RoomFactory.h</itemPath>
+        <itemPath>TileFactory.cpp</itemPath>
+        <itemPath>TileFactory.h</itemPath>
         <itemPath>Wall.cpp</itemPath>
         <itemPath>Wall.h</itemPath>
         <itemPath>WallFactory.cpp</itemPath>
@@ -106,9 +115,15 @@
       </item>
       <item path="Button.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="CollisionDetector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CollisionDetector.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Coordinates.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Coordinates.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DamageTypeEnum.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Door.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -170,9 +185,17 @@
       </item>
       <item path="Room.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="RoomFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoomFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Session.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Session.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TileFactory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -228,9 +251,15 @@
       </item>
       <item path="Button.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="CollisionDetector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CollisionDetector.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Coordinates.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Coordinates.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DamageTypeEnum.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Door.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -292,9 +321,17 @@
       </item>
       <item path="Room.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="RoomFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoomFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Session.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Session.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TileFactory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>

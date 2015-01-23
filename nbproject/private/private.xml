@@ -6,22 +6,6 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Player.h</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Player.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Session.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/ModuleTile.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Weapon.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/AllEntities.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Image.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/KeyboardControl.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Weapon.h</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Entity.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/AllEntities.h</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/MouseControl.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/Monster.cpp</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/ModuleTile.h</file>
-            <file>file:/D:/lothar/rpgi/ogólne/RMCv0.2/globalVariables.h</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

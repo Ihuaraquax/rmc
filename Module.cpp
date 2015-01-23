@@ -58,7 +58,7 @@ void Module::displayModuleTileAI()
     for(int i = 0; i < Variables::tilesPerRoom; i++)
         for(int j = 0; j < Variables::tilesPerRoom; j++)
         {
-            int col = moduleTiles[i*Variables::tilesPerRoom + j]->getCurrentAIValue() * 2.5;
+            int col = moduleTiles[getModuleIndex(i,j)]->getCurrentAIValue() * 2.5;
             int X = i * 50 + 25 - Variables::offsetX;
             int Y = j * 50 + 25 - Variables::offsetY;
             al_draw_circle(X, Y, 10, al_map_rgb(col, col, col),25);
@@ -84,11 +84,11 @@ void Module::update()
     }
 }
 
-void Module::updateTileAiValue(int X, int Y)
+void Module::updateTileAiValue(int X, int Y, int value)
 {
-    int coorX = X / 50;
-    int coorY = Y / 50;
-    moduleTiles[coorX*Variables::tilesPerRoom + coorY]->resetAIValue();
+    int index = getModuleIndex(X / 50, Y / 50);
+    moduleTiles[index]->resetAIValue();
+    moduleTiles[index]->setCurrentAIValue(value);
 }
 
 bool Module::isObstructed(int X, int Y)
@@ -106,12 +106,12 @@ bool Module::isObstructed(int X, int Y)
     return value;
 }
 
-ModuleTile *Module::getModuleTileAt(int X, int Y)
+ModuleTile *Module::getModuleTileAt(int coorX, int coorY)
 {
     ModuleTile *result;
-    int tileNo = (X/50)*Variables::tilesPerRoom + (Y/50)%Variables::tilesPerRoom;
-    if(tileNo >= 0 && tileNo < Variables::tilesPerRoom * Variables::tilesPerRoom)
-        result = this->moduleTiles[tileNo];
+    int tileIndex = getModuleIndex(coorX / 50, coorY / 50);
+    if(tileIndex >= 0 && tileIndex < Variables::tilesPerRoom * Variables::tilesPerRoom)
+        result = this->moduleTiles[tileIndex];
     else result = NULL;
     return result;
 }
@@ -162,4 +162,9 @@ void Module::addDoorsToTiles()
         tile = getModuleTileAt(X,Y);
         if(tile != NULL)tile->addToDoorList(temp);
     }
+}
+
+int Module::getModuleIndex(int X, int Y)
+{
+    return X*Variables::tilesPerRoom + Y;
 }

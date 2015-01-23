@@ -12,7 +12,6 @@
 class Door {
 public:
     Door(Coordinates *coords);
-    Door(const Door& orig);
     ~Door();
     void display();
     void update();

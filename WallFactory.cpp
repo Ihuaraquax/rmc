@@ -14,6 +14,27 @@
 WallFactory::WallFactory() {
 }
 
+void WallFactory::setTileBarriers(Module* module, int roomCount, Room **rooms, int **tiles)
+{
+    setModuleBasicWalls(module);
+    
+    for(int i = 1; i < roomCount; i++)
+    {
+        std::list<Wall*> wallList = getRoomWall(rooms[i], tiles);
+        for(std::list<Wall*>::iterator i = wallList.begin(); i != wallList.end(); ++i)
+        {
+            Wall *temp = *i;
+            module->walls.push_back(temp);
+        }
+        std::list<Door*> doorList = getDoors();
+        for(std::list<Door*>::iterator i = doorList.begin(); i != doorList.end(); ++i)
+        {
+            Door *temp = *i;
+            module->doors.push_back(temp);
+        }
+    }
+}
+
 std::list<Wall*> WallFactory::getRoomWall(Room* room, int **fieldTable)
 {
     std::list<Wall*> wallList;
@@ -179,4 +200,43 @@ bool WallFactory::isTaken(Coordinates* coords)
         if(result)break;
     }
     return result;
+}
+
+void WallFactory::setModuleBasicWalls(Module* module)
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+    {
+        Coordinates *coords1 = new Coordinates();
+        coords1->X = 0;
+        coords1->Y = 50 * i;
+        coords1->height = 50;
+        coords1->width = 2;
+        Coordinates *coords2 = new Coordinates();
+        coords2->X = 50 * i;
+        coords2->Y = 0;
+        coords2->height = 2;
+        coords2->width = 50;
+        Coordinates *coords3 = new Coordinates();
+        coords3->X = 1000;
+        coords3->Y = 50 * i;
+        coords3->height = 50;
+        coords3->width = 2;
+        Coordinates *coords4 = new Coordinates();
+        coords4->X = 50 * i;
+        coords4->Y = 1000;
+        coords4->height = 2;
+        coords4->width = 50;
+        Wall *wall1 = new Wall();
+        wall1->setCoords(coords1);
+        Wall *wall2 = new Wall();
+        wall2->setCoords(coords2);
+        Wall *wall3 = new Wall();
+        wall3->setCoords(coords3);
+        Wall *wall4 = new Wall();
+        wall4->setCoords(coords4);
+        module->walls.push_back(wall1);
+        module->walls.push_back(wall2);
+        module->walls.push_back(wall3);
+        module->walls.push_back(wall4);
+    }
 }

@@ -49,6 +49,8 @@ struct Variables
     static Session *session;
     static GAME_STATE status;
     
+    static const int damageTypeCount;
+    
     static const int tilesPerRoom;
     
     void static giveFactors(double angle, double &x_factor, double &y_factor)

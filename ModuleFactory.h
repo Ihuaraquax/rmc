@@ -16,15 +16,8 @@ public:
     void setModuleBasics(Module *module);
 private:
     void setModuleBasicFloor(Module * module);
-    void setModuleBasicWalls(Module * module);
     void setModuleRooms(Module *module);
-    void getRoomSeedCoords(int &X, int &Y, int **tileTable, int roomBaseTile);
-    bool roomsAreMaxed(Room **rooms, int roomCount);
-    void addZeroToRooms(int **tileTable, Room **rooms);
-    int zerosCount(int **tileTable);
-    void  addNeighboursToTile(int tileNo, ModuleTile** moduleTiles);
-    bool isCorrect(int X, int Y);
-    ModuleTile *getTile(int X, int Y, ModuleTile** moduleTiles);
+    int **createTiles();
 };
 
 #endif	/* MODULEFACTORY_H */

@@ -13,11 +13,9 @@ Door::Door(Coordinates *coords) {
     open = true;
 }
 
-Door::Door(const Door& orig) {
-}
 
 Door::~Door() {
-//    delete coords;
+    delete coords;
 }
 
 void Door::display()

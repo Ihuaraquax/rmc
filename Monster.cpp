@@ -10,7 +10,6 @@
 #include "ModuleTile.h"
 
 Monster::Monster() {
-    this->projectile = false;
     this->coords = new Coordinates();
     this->coords->X = rand()%800 + 15;
     this->coords->Y = rand()%800 + 15;
@@ -21,16 +20,12 @@ Monster::Monster() {
     this->coords->speedY = 1;
     std::string paths[] = {"images/monster.png"};
     this->image = new Image(1, paths, true);
-    health = 2;
+    health = 20;
     teamId = 0;
 }
 
-Monster::Monster(const Monster& orig) {
-}
 
 Monster::~Monster() {
-//    delete coords;
-//    delete image;
 }
 
 void Monster::update()

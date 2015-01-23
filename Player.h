@@ -12,7 +12,6 @@
 class Player : public Entity{
 public:
     Player();
-    Player(const Player& orig);
     virtual ~Player();
     void playerMove(double X, double Y);
     void update();

@@ -1,7 +1,7 @@
 build/Debug/MinGW-Windows/WallFactory.o: WallFactory.cpp WallFactory.h \
- Room.h Wall.h Coordinates.h Door.h globalVariables.h Session.h Menu.h \
- AllEntities.h Entity.h Image.h Weapon.h MouseControl.h KeyboardControl.h \
- Map.h Module.h Floor.h ModuleTile.h
+ Room.h Wall.h Coordinates.h Door.h Module.h Floor.h Image.h ModuleTile.h \
+ Entity.h Weapon.h DamageTypeEnum.h templateList.h globalVariables.h \
+ Session.h Menu.h AllEntities.h MouseControl.h KeyboardControl.h Map.h
 
 WallFactory.h:
 
@@ -13,6 +13,22 @@ Coordinates.h:
 
 Door.h:
 
+Module.h:
+
+Floor.h:
+
+Image.h:
+
+ModuleTile.h:
+
+Entity.h:
+
+Weapon.h:
+
+DamageTypeEnum.h:
+
+templateList.h:
+
 globalVariables.h:
 
 Session.h:
@@ -21,20 +37,8 @@ Menu.h:
 
 AllEntities.h:
 
-Entity.h:
-
-Image.h:
-
-Weapon.h:
-
 MouseControl.h:
 
 KeyboardControl.h:
 
 Map.h:
-
-Module.h:
-
-Floor.h:
-
-ModuleTile.h:

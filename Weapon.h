@@ -8,6 +8,7 @@
 #ifndef WEAPON_H
 #define	WEAPON_H
 #include "Coordinates.h"
+#include "DamageTypeEnum.h"
 
 class Weapon {
 public:
@@ -20,7 +21,7 @@ private:
     int ammoCurrent;
     int reloadSpeed;
     int damage;
-    int damageType;
+    DAMAGE_TYPE damageType;
     int cooldown;
     int timeToShoot;
     bool reloading;

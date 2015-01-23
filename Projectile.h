@@ -12,11 +12,11 @@
 class Projectile : public Entity {
 public:
     Projectile();
-    Projectile(const Projectile& orig);
     virtual ~Projectile();
     void update();
-    void setValues(Coordinates *coords, int damage, int damageType, int angle, int teamId);
+    void setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamId);
     void hit (Entity *target);
+    bool isProjectile();
 private:
     int damage;
     int damageType;

@@ -13,12 +13,8 @@ Player::Player() {
     setTestValues();
 }
 
-Player::Player(const Player& orig) {
-}
 
 Player::~Player() {
-//    delete coords;
-//    delete image;
 }
 
 void Player::setTestValues()
@@ -33,7 +29,6 @@ void Player::setTestValues()
     this->coords->speedY = 1;
     std::string paths[] = {"images/player.png"};
     this->image = new Image(1, paths, true);
-    this->projectile = false;
     health = 20;
     weapons = new Weapon*[2];
     weapons[0] = new Weapon();
@@ -45,8 +40,8 @@ void Player::setTestValues()
 void Player::playerMove(double X, double Y)
 {
     move(X,Y);
-    Variables::session->getMap()->getCurrentModule()->updateTileAiValue(coords->X, coords->Y);
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->setCurrentAIValue(100);
+    Variables::session->getMap()->getCurrentModule()->updateTileAiValue
+        (coords->X + coords->width/2, coords->Y + coords->height/2, 100);
 }
 
 void Player::update()

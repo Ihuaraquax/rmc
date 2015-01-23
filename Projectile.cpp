@@ -7,6 +7,7 @@
 
 #include "Projectile.h"
 #include "globalVariables.h"
+#include "CollisionDetector.h"
 
 Projectile::Projectile() {
     this->coords = new Coordinates();
@@ -14,12 +15,8 @@ Projectile::Projectile() {
     this->coords->width = 16;
     std::string paths[] = {"images/bullet.png"};
     this->image = new Image(1, paths, true);
-    this->projectile = true;
     health = 1;
     image->state = NORMAL;
-}
-
-Projectile::Projectile(const Projectile& orig) {
 }
 
 Projectile::~Projectile() {
@@ -31,18 +28,21 @@ void Projectile::update()
     this->coords->Y += this->coords->speedY;
     ModuleTile *currentTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
-    if(this->checkCollisions(currentTile->getWallList()) ||
-       this->checkCollisions(currentTile->getDoorList()))health--;
-    
-    Entity *target = this->checkCollisions(currentTile->getEntitiesFromsLists());
-    if(target != NULL && target->getTeamId() != this->teamId)
+    if(currentTile != NULL)
     {
-        health--;
-        target->getHit(damage, damageType);
+        if(CollisionDetector::isNonEntityCollision(currentTile, this))health--;
+
+        Entity *target = CollisionDetector::isEntityCollisions(currentTile, this);
+        if(target != NULL && target->getTeamId() != this->teamId)
+        {
+            health--;
+            target->getHit(damage, damageType);
+        }
     }
+    else health = 0;
 }
 
-void Projectile::setValues(Coordinates *coords, int damage, int damageType, int angle, int teamID)
+void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamID)
 {
     this->coords->X = coords->X + coords->width/2;
     this->coords->Y = coords->Y + coords->height/2;
@@ -58,4 +58,9 @@ void Projectile::setValues(Coordinates *coords, int damage, int damageType, int 
 void Projectile::hit(Entity* target)
 {
     target->getHit(damage, damageType);
+}
+
+bool Projectile::isProjectile()
+{
+    return true;
 }

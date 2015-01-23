@@ -12,7 +12,6 @@
 class Monster : public Entity {
 public:
     Monster();
-    Monster(const Monster& orig);
     virtual ~Monster();
     void update();
 private:

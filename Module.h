@@ -15,12 +15,14 @@
 
 class Module {
 friend class ModuleFactory;
+friend class TileFactory;
+friend class WallFactory;
 public:
     Module();
     ~Module();
     void display();
     void update();
-    void updateTileAiValue(int X, int Y);
+    void updateTileAiValue(int X, int Y, int value);
     bool isObstructed(int X, int Y);
     ModuleTile *getModuleTileAt(int X, int Y);
     void addWallsToTiles();
@@ -32,6 +34,8 @@ private:
     std::list<Door*> doors;
     std::list<Floor*> floorTiles;
     ModuleTile **moduleTiles;
+    
+    int getModuleIndex(int X, int Y);
 };
 
 #endif	/* MODULE_H */

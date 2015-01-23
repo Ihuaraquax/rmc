@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/AllEntities.o \
 	${OBJECTDIR}/Button.o \
+	${OBJECTDIR}/CollisionDetector.o \
 	${OBJECTDIR}/Coordinates.o \
 	${OBJECTDIR}/Door.o \
 	${OBJECTDIR}/Entity.o \
@@ -53,7 +54,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
 	${OBJECTDIR}/Room.o \
+	${OBJECTDIR}/RoomFactory.o \
 	${OBJECTDIR}/Session.o \
+	${OBJECTDIR}/TileFactory.o \
 	${OBJECTDIR}/Wall.o \
 	${OBJECTDIR}/WallFactory.o \
 	${OBJECTDIR}/Weapon.o \
@@ -94,6 +97,11 @@ ${OBJECTDIR}/Button.o: Button.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Button.o Button.cpp
+
+${OBJECTDIR}/CollisionDetector.o: CollisionDetector.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/CollisionDetector.o CollisionDetector.cpp
 
 ${OBJECTDIR}/Coordinates.o: Coordinates.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -175,10 +183,20 @@ ${OBJECTDIR}/Room.o: Room.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Room.o Room.cpp
 
+${OBJECTDIR}/RoomFactory.o: RoomFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/RoomFactory.o RoomFactory.cpp
+
 ${OBJECTDIR}/Session.o: Session.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Session.o Session.cpp
+
+${OBJECTDIR}/TileFactory.o: TileFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/TileFactory.o TileFactory.cpp
 
 ${OBJECTDIR}/Wall.o: Wall.cpp 
 	${MKDIR} -p ${OBJECTDIR}

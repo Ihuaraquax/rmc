@@ -37,7 +37,7 @@ public:
     AllEntities* getAllEntities() const;
     Menu* getMainMenu() const;
     
-    MainGameState gameState = MAP;
+    static MainGameState gameState;
 private:
     Menu *mainMenu;
     AllEntities *allEntities;

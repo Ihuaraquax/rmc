@@ -13,6 +13,7 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->roomId = roomId;
     this->baseAIValue = base;
     if(obstructed)this->baseAIValue -= 50;
+    this->entityList = NULL;
 }
 
 std::list<Door*> ModuleTile::getDoorList() const {
@@ -103,30 +104,38 @@ void ModuleTile::addToDoorList(Door *doors)
 
 void ModuleTile::addToEntityList(Entity* toAdd)
 {
-    entityList.push_back(toAdd);
+    templateList<Entity> *temp = entityList;
+    while(temp != NULL)
+    {
+        if(temp->data == toAdd)return;
+        temp = temp->next;
+    }
+    templateList<Entity> *newEntity = new templateList<Entity>();
+    newEntity->data = toAdd;
+    newEntity->next = entityList;
+    entityList = newEntity;
 }
 
 void ModuleTile::deleteFromEntityList(Entity* toDelete)
 {
-    entityList.remove(toDelete);
+    if(entityList != NULL && entityList->find(toDelete) != NULL)
+    {
+        if(entityList->data == toDelete)
+        {
+            templateList<Entity> *temp = entityList;
+            entityList = entityList -> next;
+            delete temp;
+        }
+        else
+        {
+            templateList<Entity> *temp = entityList->findPrevious(toDelete);
+            templateList<Entity> *listToDelete = temp->next;
+            temp->next = listToDelete->next;
+            delete listToDelete;
+        }
+    }
 }
 
-std::list<Entity*> ModuleTile::getEntitiesFromsLists()
-{
-    std::list<Entity*> result;
-    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
-    {
-        Entity *temp = *i;
-        result.push_back(temp);
-    }
-    for(int i = 0; i < 8; i++)
-    {
-        if(adjacentTiles[i] != NULL)
-            for(std::list<Entity*>::iterator j = adjacentTiles[i]->entityList.begin(); j != adjacentTiles[i]->entityList.end(); ++j)
-            {
-                Entity *temp = *j;
-                result.push_back(temp);
-            }
-    }
-    return result;
+templateList<Entity>* ModuleTile::getEntityList() const {
+    return entityList;
 }

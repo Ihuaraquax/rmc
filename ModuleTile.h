@@ -11,6 +11,7 @@
 #include "Entity.h"
 #include "Wall.h"
 #include "Door.h"
+#include "templateList.h"
 
 class ModuleTile {
 public:
@@ -35,7 +36,7 @@ public:
     ModuleTile** getAdjacentTiles() const;
     void addToEntityList(Entity *toAdd);
     void deleteFromEntityList(Entity *toDelete);
-    std::list<Entity*>getEntitiesFromsLists();
+    templateList<Entity>* getEntityList() const;
 private:
     int roomId;
     bool obstructed;
@@ -44,7 +45,7 @@ private:
     ModuleTile **adjacentTiles;
     int adjacentTilesCount;
     double angle;
-    std::list<Entity*>entityList;
+    templateList<Entity> *entityList;
     std::list<Wall*>wallList;
     std::list<Door*>doorList;
 };

@@ -10,11 +10,12 @@
 #include "Image.h"
 #include "globalVariables.h"
 #include "ModuleTile.h"
+#include "CollisionDetector.h"
 
 Entity::Entity() {
-}
-
-Entity::Entity(const Entity& orig) {
+    armor = 0;
+    elementalResists = new double[Variables::damageTypeCount];
+    for(int i = 0; i < Variables::damageTypeCount; i++)this->elementalResists[i] = 0.5;
 }
 
 Entity::~Entity() {
@@ -33,9 +34,7 @@ void Entity::move(double X, double Y){
     this->coords->X += X * this->coords->speedX;
     ModuleTile *newTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
-    if(checkCollisions(newTile->getWallList()) ||
-       checkCollisions(newTile->getDoorList()) ||
-       checkCollisions(newTile->getEntitiesFromsLists()) != NULL)
+    if(CollisionDetector::isAnyCollision(newTile, this))
     {
         this->coords->X -= X * this->coords->speedX;;
     }
@@ -44,13 +43,13 @@ void Entity::move(double X, double Y){
     this->coords->Y += Y * this->coords->speedY;
     newTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
-    if(checkCollisions(newTile->getWallList()) ||
-       checkCollisions(newTile->getDoorList()) ||
-       checkCollisions(newTile->getEntitiesFromsLists()) != NULL)
+    if(CollisionDetector::isAnyCollision(newTile, this))
     {
         this->coords->Y -= Y * this->coords->speedY;;
     }
     
+    newTile = Variables::session->getMap()
+            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     if(currentTile != newTile)
     {
         currentTile->deleteFromEntityList(this);
@@ -62,18 +61,6 @@ void Entity::update(){
     
 }
 
-bool Entity::isCollision(Coordinates* oCoords)
-{
-    bool value = true;
-    if(oCoords->X + oCoords->width < coords->X || oCoords->X > coords->X  + coords->width ||
-       oCoords->Y + oCoords->height < coords->Y || oCoords->Y  > coords->Y + coords->height)value = false;
-    return value;
-}
-
-void Entity::loadFile()
-{
-    
-}
 
 Coordinates* Entity::getCoords() const {
     return coords;
@@ -83,48 +70,11 @@ int Entity::getHealth() const {
     return health;
 }
 
-Entity* Entity::checkCollisions(std::list<Entity*> otherEntities)
-{
-    Entity* value = NULL;
-    for(std::list<Entity*>::iterator i = otherEntities.begin(); i != otherEntities.end(); ++i)
-    {
-        Entity *temp = *i;
-        Coordinates *oCoords = temp->getCoords();
-        if(temp != this)if(isCollision(oCoords))value = temp;
-        if(value != NULL)break;
-    }
-    return value;
-}
-
-bool Entity::checkCollisions(std::list<Wall*> walls)
-{
-    bool value = false;
-    for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
-    {
-        Wall *temp = *i;
-        Coordinates *oCoords = temp->getCoords();
-        value = isCollision(oCoords);
-        if(value)break;
-    }
-    return value;
-}
-
-bool Entity::checkCollisions(std::list<Door*> doors)
-{
-    bool value = false;
-    for(std::list<Door*>::iterator i = doors.begin(); i != doors.end(); ++i)
-    {
-        Door *temp = *i;
-        Coordinates *oCoords = temp->getCoords();
-        if(temp->isOpen() == false)value = isCollision(oCoords);
-        if(value)break;
-    }
-    return value;
-}
-
 void Entity::getHit(int damage, int damageType)
 {
-    health -= damage;
+    int damageInflicted = (damage - armor) * (1-elementalResists[damageType]);
+    if(damageInflicted < 0)damageInflicted = 0;
+    health -= damageInflicted;
 }
 
 void Entity::attack(bool leftWeapon)
@@ -142,4 +92,10 @@ void Entity::setStartingTile()
     ModuleTile *currentTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     currentTile->addToEntityList(this);
+}
+
+
+bool Entity::isProjectile()
+{
+    return false;
 }

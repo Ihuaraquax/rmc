@@ -85,12 +85,12 @@ void AllEntities::deleteDead()
     std::list<Entity*>::iterator i = entityList.begin();
     while (i != entityList.end())
     {
-        if ((*i)->getHealth()==0)
+        Entity *toDelete = *i;
+        if (toDelete->getHealth()==0)
         {
-            Entity *toDelete = *i;
-            Variables::session->getMap()->getCurrentModule()
-                ->getModuleTileAt((*i)->getCoords()->X,(*i)->getCoords()->Y)
-                ->deleteFromEntityList(*i);
+            if(toDelete->isProjectile() == false)Variables::session->getMap()->getCurrentModule()
+                ->getModuleTileAt(toDelete->getCoords()->X,toDelete->getCoords()->Y)
+                ->deleteFromEntityList(toDelete);
             entityList.erase(i++);
             delete toDelete;
         }
@@ -103,6 +103,6 @@ void AllEntities::setStartingTile()
     for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
     {
         Entity *temp = *i;
-        temp->setStartingTile();
+//        temp->setStartingTile();
     }
 }
