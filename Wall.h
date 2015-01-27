@@ -21,9 +21,17 @@ public:
     void update();
     bool isOnCoords(int X, int Y);
     Coordinates* getCoords() const;
-    int wallSize;
+    void getHit(int damage, int damageType);
+    int getWallSize() const;
+    void setWallSize(int wallSize);
+    int getHealth() const;
+    void setAsModuleBorderWall();
 private:
     Coordinates *coords;
+    int health;
+    int armor;
+    double *elementalResists;
+    int wallSize;
 };
 
 #endif	/* WALL_H */

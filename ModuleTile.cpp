@@ -14,13 +14,14 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->baseAIValue = base;
     if(obstructed)this->baseAIValue -= 50;
     this->entityList = NULL;
+    this->wallList = NULL;
 }
 
 std::list<Door*> ModuleTile::getDoorList() const {
     return doorList;
 }
 
-std::list<Wall*> ModuleTile::getWallList() const {
+templateList<Wall> *ModuleTile::getWallList() const {
     return wallList;
 }
 
@@ -92,9 +93,12 @@ void ModuleTile::setAdjacentTiles(ModuleTile **tiles)
     adjacentTiles = tiles;
 }
 
-void ModuleTile::addToWallList(Wall *walls)
+void ModuleTile::addToWallList(Wall *wall)
 {
-    wallList.push_back(walls);
+    templateList<Wall> *newWall = new templateList<Wall>();
+    newWall->data = wall;
+    newWall->next = wallList;
+    wallList = newWall;
 }
 
 void ModuleTile::addToDoorList(Door *doors)
@@ -138,4 +142,44 @@ void ModuleTile::deleteFromEntityList(Entity* toDelete)
 
 templateList<Entity>* ModuleTile::getEntityList() const {
     return entityList;
+}
+
+void ModuleTile::deleteWall(Wall* toDelete)
+{
+    if(wallList != NULL && wallList->find(toDelete) != NULL)
+    {
+        if(wallList->data == toDelete)
+        {
+            templateList<Wall> *temp = wallList;
+            wallList = wallList -> next;
+            delete temp;
+        }
+        else
+        {
+            templateList<Wall> *temp = wallList->findPrevious(toDelete);
+            templateList<Wall> *listToDelete = temp->next;
+            temp->next = listToDelete->next;
+            delete listToDelete;
+        }
+    }
+    for(int i = 0; i < adjacentTilesCount; i++)
+    {
+        ModuleTile *tile = adjacentTiles[i];
+        if(tile != NULL)if(tile->wallList != NULL && tile->wallList->find(toDelete) != NULL)
+        {
+            if(tile->wallList->data == toDelete)
+            {
+                templateList<Wall> *temp = tile->wallList;
+                tile->wallList = tile->wallList -> next;
+                delete temp;
+            }
+            else
+            {
+                templateList<Wall> *temp = tile->wallList->findPrevious(toDelete);
+                templateList<Wall> *listToDelete = temp->next;
+                temp->next = listToDelete->next;
+                delete listToDelete;
+            }
+        }
+    }
 }

@@ -30,13 +30,27 @@ void Projectile::update()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     if(currentTile != NULL)
     {
-        if(CollisionDetector::isNonEntityCollision(currentTile, this))health--;
-
-        Entity *target = CollisionDetector::isEntityCollisions(currentTile, this);
-        if(target != NULL && target->getTeamId() != this->teamId)
+        Wall *targetWall = CollisionDetector::isWallCollisions(currentTile, this);
+        if(targetWall != NULL)
         {
+            targetWall->getHit(damage, damageType);
+            if(targetWall->getHealth() <= 0)
+            {
+                currentTile->deleteWall(targetWall);
+                Variables::session->getMap()->getCurrentModule()->deleteWall(targetWall);
+            }
             health--;
-            target->getHit(damage, damageType);
+        }
+        else
+        {
+            if(CollisionDetector::isNonEntityCollision(currentTile, this))health--;
+
+            Entity *target = CollisionDetector::isEntityCollisions(currentTile, this);
+            if(target != NULL && target->getTeamId() != this->teamId)
+            {
+                health--;
+                target->getHit(damage, damageType);
+            }
         }
     }
     else health = 0;

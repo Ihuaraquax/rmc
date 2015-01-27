@@ -19,10 +19,10 @@ public:
     static bool isAnyCollision(ModuleTile *tile, Entity* target);
     static bool isNonEntityCollision(ModuleTile *tile, Entity* target);
     static Entity *isEntityCollisions(ModuleTile *tile, Entity* target);
+    static Wall* isWallCollisions(ModuleTile *tile, Entity *target);
 private:
     static bool isCollision(Coordinates *otherCoords, Coordinates *targetCoords);
     static Entity *checkCollisions(templateList<Entity> *otherEntities, Entity *target);
-    static bool checkCollisions(std::list<Wall*> walls, Entity *target);
     static bool checkCollisions(std::list<Door*> doors, Entity *target);
 };
 

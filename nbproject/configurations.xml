@@ -22,7 +22,7 @@
         <itemPath>Weapon.cpp</itemPath>
         <itemPath>Weapon.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f4" displayName="enums" projectFiles="true">
+      <logicalFolder name="f4" displayName="Enums" projectFiles="true">
         <itemPath>DamageTypeEnum.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Map Classes" projectFiles="true">

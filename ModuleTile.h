@@ -32,11 +32,12 @@ public:
     void addToWallList(Wall *walls);
     void addToDoorList(Door *doors);
     std::list<Door*> getDoorList() const;
-    std::list<Wall*> getWallList() const;
+    templateList<Wall> *getWallList() const;
     ModuleTile** getAdjacentTiles() const;
     void addToEntityList(Entity *toAdd);
     void deleteFromEntityList(Entity *toDelete);
     templateList<Entity>* getEntityList() const;
+    void deleteWall(Wall *toDelete);
 private:
     int roomId;
     bool obstructed;
@@ -46,7 +47,7 @@ private:
     int adjacentTilesCount;
     double angle;
     templateList<Entity> *entityList;
-    std::list<Wall*>wallList;
+    templateList<Wall> *wallList;
     std::list<Door*>doorList;
 };
 

@@ -6,6 +6,7 @@
  */
 
 #include "CollisionDetector.h"
+#include "templateList.h"
 
 CollisionDetector::CollisionDetector() {
 }
@@ -20,10 +21,8 @@ bool CollisionDetector::isAnyCollision(ModuleTile* tile, Entity* target)
 
 bool CollisionDetector::isNonEntityCollision(ModuleTile *tile, Entity* target)
 {
-    bool result = false;
-    result = checkCollisions(tile->getWallList(), target);
-    if(result == false)result = checkCollisions(tile->getDoorList(), target);
-    return result;
+    if(isWallCollisions(tile, target) != NULL)return true;
+    return checkCollisions(tile->getDoorList(), target);
 }
 
 Entity *CollisionDetector::isEntityCollisions(ModuleTile *tile, Entity* target)
@@ -58,19 +57,20 @@ Entity* CollisionDetector::checkCollisions(templateList<Entity> *otherEntities, 
     return value;
 }
 
-bool CollisionDetector::checkCollisions(std::list<Wall*> walls, Entity *target)
+Wall *CollisionDetector::isWallCollisions(ModuleTile* tile, Entity* target)
 {
-    bool value = false;
-    for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
+    Wall* value = NULL;
+    templateList<Wall> *walls = tile->getWallList();
+    while(walls != NULL)
     {
-        Wall *temp = *i;
+        Wall *temp = walls->data;
         Coordinates *oCoords = temp->getCoords();
-        value = isCollision(oCoords, target->getCoords());
-        if(value)break;
+        if(isCollision(oCoords, target->getCoords()))value = temp;
+        if(value != NULL)break;
+        walls = walls->next;
     }
     return value;
 }
-
 bool CollisionDetector::checkCollisions(std::list<Door*> doors, Entity *target)
 {
     bool value = false;

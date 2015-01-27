@@ -70,7 +70,7 @@ std::list<Wall*> WallFactory::getRoomWall(Room* room, int **fieldTable)
                 else 
                 {
                     leftWall->setCoords(coords);
-                    leftWall->wallSize = wallSize;
+                    leftWall->setWallSize(wallSize);
                     wallList.push_back(leftWall);
                     walls.push_back(leftWall);
                 }
@@ -96,7 +96,7 @@ std::list<Wall*> WallFactory::getRoomWall(Room* room, int **fieldTable)
                 else 
                 {
                     rightWall->setCoords(coords);
-                    rightWall->wallSize = wallSize;
+                    rightWall->setWallSize(wallSize);
                     wallList.push_back(rightWall);
                     walls.push_back(rightWall);
                 }
@@ -122,7 +122,7 @@ std::list<Wall*> WallFactory::getRoomWall(Room* room, int **fieldTable)
                 else 
                 {
                     upperWall->setCoords(coords);
-                    upperWall->wallSize = wallSize;
+                    upperWall->setWallSize(wallSize);
                     wallList.push_back(upperWall);
                     walls.push_back(upperWall);
                 }
@@ -148,7 +148,7 @@ std::list<Wall*> WallFactory::getRoomWall(Room* room, int **fieldTable)
                 else 
                 {
                     lowerWall->setCoords(coords);
-                    lowerWall->wallSize = wallSize;
+                    lowerWall->setWallSize(wallSize);
                     wallList.push_back(lowerWall);
                     walls.push_back(lowerWall);
                 }
@@ -234,6 +234,10 @@ void WallFactory::setModuleBasicWalls(Module* module)
         wall3->setCoords(coords3);
         Wall *wall4 = new Wall();
         wall4->setCoords(coords4);
+        wall1->setAsModuleBorderWall();
+        wall2->setAsModuleBorderWall();
+        wall3->setAsModuleBorderWall();
+        wall4->setAsModuleBorderWall();
         module->walls.push_back(wall1);
         module->walls.push_back(wall2);
         module->walls.push_back(wall3);

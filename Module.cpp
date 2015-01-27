@@ -168,3 +168,8 @@ int Module::getModuleIndex(int X, int Y)
 {
     return X*Variables::tilesPerRoom + Y;
 }
+
+void Module::deleteWall(Wall* toDelete)
+{
+    walls.remove(toDelete);
+}

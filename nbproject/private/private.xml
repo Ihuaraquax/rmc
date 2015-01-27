@@ -6,6 +6,19 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/CollisionDetector.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/WallFactory.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Module.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Coordinates.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Projectile.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Wall.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/CollisionDetector.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Entity.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/ModuleTile.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/ModuleTile.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Wall.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Module.cpp</file>
+        </group>
     </open-files>
 </project-private>
