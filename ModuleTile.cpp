@@ -9,10 +9,7 @@
 #include "globalVariables.h"
 
 ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
-    this->obstructed = rand()%50 == 0;
-    this->roomId = roomId;
-    this->baseAIValue = base;
-    if(obstructed)this->baseAIValue -= 50;
+    this->aiTile = new AiTile(obstructed, roomId, base);
     this->entityList = NULL;
     this->wallList = NULL;
 }
@@ -29,68 +26,14 @@ ModuleTile** ModuleTile::getAdjacentTiles() const {
     return adjacentTiles;
 }
 
-ModuleTile::ModuleTile(const ModuleTile& orig) {
-}
-
-void ModuleTile::setRoomId(int roomId) {
-    this->roomId = roomId;
-}
-
-int ModuleTile::getRoomId() const {
-    return roomId;
-}
-
-ModuleTile::~ModuleTile() {
-}
-
-bool ModuleTile::isObstructed()
-{
-    return obstructed;
-}
-double ModuleTile::getAngle()
-{
-    return angle;
-}
-
-void ModuleTile::resetAIValue()
-{
-    currentAIValue = baseAIValue;
-    for(int i = 0; i < adjacentTilesCount; i++)
-    {
-        if(adjacentTiles[i] != NULL)
-        if(adjacentTiles[i]->roomId == roomId &&
-           adjacentTiles[i]->currentAIValue != adjacentTiles[i]->baseAIValue)
-                adjacentTiles[i]->resetAIValue();
-    }
-}
-
-void ModuleTile::setAdjacentTilesCount(int adjacentTilesCount) {
-    this->adjacentTilesCount = adjacentTilesCount;
-}
-
-int ModuleTile::getAdjacentTilesCount() const {
-    return adjacentTilesCount;
-}
-
-void ModuleTile::setCurrentAIValue(int currentAIValue) {
-    this->currentAIValue = currentAIValue;
-    for(int i = 0; i < adjacentTilesCount; i++)
-    {
-        if(adjacentTiles[i] != NULL)
-        if(adjacentTiles[i]->obstructed == false &&
-           adjacentTiles[i]->roomId == roomId &&
-           adjacentTiles[i]->currentAIValue < currentAIValue-5)
-                adjacentTiles[i]->setCurrentAIValue(currentAIValue-5);
-    }
-}
-
-int ModuleTile::getCurrentAIValue() const {
-    return currentAIValue;
-}
-
 void ModuleTile::setAdjacentTiles(ModuleTile **tiles)
 {
     adjacentTiles = tiles;
+    for(int i = 0; i < 8; i++)
+    {
+        if(adjacentTiles[i] == NULL)aiTile->setAdjacentTile(i, NULL);
+        else aiTile->setAdjacentTile(i, adjacentTiles[i]->getAiTile());
+    }
 }
 
 void ModuleTile::addToWallList(Wall *wall)
@@ -162,7 +105,7 @@ void ModuleTile::deleteWall(Wall* toDelete)
             delete listToDelete;
         }
     }
-    for(int i = 0; i < adjacentTilesCount; i++)
+    for(int i = 0; i < 8; i++)
     {
         ModuleTile *tile = adjacentTiles[i];
         if(tile != NULL)if(tile->wallList != NULL && tile->wallList->find(toDelete) != NULL)
@@ -182,4 +125,8 @@ void ModuleTile::deleteWall(Wall* toDelete)
             }
         }
     }
+}
+
+AiTile* ModuleTile::getAiTile() const {
+    return aiTile;
 }

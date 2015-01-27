@@ -12,43 +12,32 @@
 #include "Wall.h"
 #include "Door.h"
 #include "templateList.h"
+#include "AiTile.h"
 
 class ModuleTile {
 public:
     ModuleTile(bool obstructed, int roomId, int base);
-    ModuleTile(const ModuleTile& orig);
-    virtual ~ModuleTile();
-    double getAngle();
-    void updateDistances();
-    bool isObstructed();
-    void setRoomId(int roomId);
-    int getRoomId() const;
-    void resetAIValue();
-    void setCurrentAIValue(int currentAIValue);
-    int getCurrentAIValue() const;
     void setAdjacentTiles(ModuleTile **tiles);
-    void setAdjacentTilesCount(int adjacentTilesCount);
-    int getAdjacentTilesCount() const;
+    
     void addToWallList(Wall *walls);
     void addToDoorList(Door *doors);
+    void addToEntityList(Entity *toAdd);
+    
     std::list<Door*> getDoorList() const;
     templateList<Wall> *getWallList() const;
     ModuleTile** getAdjacentTiles() const;
-    void addToEntityList(Entity *toAdd);
+    
     void deleteFromEntityList(Entity *toDelete);
     templateList<Entity>* getEntityList() const;
     void deleteWall(Wall *toDelete);
+    
+    AiTile* getAiTile() const;
 private:
-    int roomId;
-    bool obstructed;
-    int baseAIValue;
-    int currentAIValue;
     ModuleTile **adjacentTiles;
-    int adjacentTilesCount;
-    double angle;
     templateList<Entity> *entityList;
     templateList<Wall> *wallList;
     std::list<Door*>doorList;
+    AiTile *aiTile;
 };
 
 #endif	/* MODULETILE_H */

@@ -30,7 +30,7 @@ Entity *CollisionDetector::isEntityCollisions(ModuleTile *tile, Entity* target)
     Entity *result = NULL;
     
     result = checkCollisions(tile->getEntityList(), target);
-    if(result == NULL)for(int i = 0; i < tile->getAdjacentTilesCount(); i++)
+    if(result == NULL)for(int i = 0; i < 8; i++)
     {
         if(tile->getAdjacentTiles()[i] != NULL)
             result =checkCollisions(tile->getAdjacentTiles()[i]->getEntityList(), target);

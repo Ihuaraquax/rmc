@@ -33,15 +33,14 @@ void Monster::update()
     ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->
             getModuleTileAt(coords->X + 25 - coords->width/2,
             coords->Y + 25 - coords->height/2);
-    int biggestAIValue = tile->getCurrentAIValue();
+    int biggestAIValue = tile->getAiTile()->getCurrentAIValue();
     int direction = -1;
-    for(int i = 0; i < tile->getAdjacentTilesCount(); i++)
+    for(int i = 0; i < 8; i++)
     {
         if(tile->getAdjacentTiles()[i] != NULL)
-        if(tile->getRoomId() == tile->getAdjacentTiles()[i]->getRoomId())
-        if(tile->getAdjacentTiles()[i]->getCurrentAIValue() > biggestAIValue)
+        if(tile->getAdjacentTiles()[i]->getAiTile()->getCurrentAIValue() > biggestAIValue)
         {
-            biggestAIValue = tile->getAdjacentTiles()[i]->getCurrentAIValue();
+            biggestAIValue = tile->getAiTile()->getAdjacentTiles()[i]->getCurrentAIValue();
             direction = i;
         }
     }

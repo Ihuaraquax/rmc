@@ -33,7 +33,6 @@ void TileFactory::addNeighboursToTile(int tileNo, ModuleTile** moduleTiles)
     else tileList[size++] = NULL;
     if(isCorrect(X-1,Y))tileList[size++] = getTile(X-1,Y,moduleTiles);
     else tileList[size++] = NULL;
-    moduleTiles[tileNo]->setAdjacentTilesCount(size);
     moduleTiles[tileNo]->setAdjacentTiles(tileList);
 }
 
