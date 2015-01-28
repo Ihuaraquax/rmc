@@ -23,7 +23,7 @@ public:
 private:
     static bool isCollision(Coordinates *otherCoords, Coordinates *targetCoords);
     static Entity *checkCollisions(templateList<Entity> *otherEntities, Entity *target);
-    static bool checkCollisions(std::list<Door*> doors, Entity *target);
+    static bool checkCollisions(Door **doors, Entity *target);
 };
 
 #endif	/* COLLISIONDETECTOR_H */

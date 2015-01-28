@@ -14,6 +14,7 @@ AiTile::AiTile(bool obstructed, int roomId, int base) {
     this->roomId = roomId;
     this->baseAIValue = base;
     if(obstructed)this->baseAIValue -= 50;
+    for(int i = 0; i < 8; i++)openDoors[i] = false;
 }
 
 
@@ -37,7 +38,7 @@ void AiTile::resetAIValue()
     for(int i = 0; i < 8; i++)
     {
         if(adjacentTiles[i] != NULL)
-        if(adjacentTiles[i]->roomId == roomId &&
+        if((adjacentTiles[i]->roomId == roomId || openDoors[i])&&
            adjacentTiles[i]->currentAIValue != adjacentTiles[i]->baseAIValue)
                 adjacentTiles[i]->resetAIValue();
     }
@@ -49,7 +50,7 @@ void AiTile::setCurrentAIValue(int currentAIValue) {
     {
         if(adjacentTiles[i] != NULL)
         if(adjacentTiles[i]->obstructed == false &&
-           adjacentTiles[i]->roomId == roomId &&
+           (adjacentTiles[i]->roomId == roomId || openDoors[i]) &&
            adjacentTiles[i]->currentAIValue < currentAIValue-5)
                 adjacentTiles[i]->setCurrentAIValue(currentAIValue-5);
     }
@@ -66,4 +67,9 @@ void AiTile::setAdjacentTile(int index, AiTile* tile)
 
 AiTile** AiTile::getAdjacentTiles() const {
     return adjacentTiles;
+}
+
+void AiTile::setOpenDoorValue(int index, bool value)
+{
+    openDoors[index] = value;
 }

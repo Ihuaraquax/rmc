@@ -15,7 +15,7 @@ public:
     virtual ~Monster();
     void update();
 private:
-
+    int getDirection();
 };
 
 #endif	/* MONSTER_H */

@@ -12,9 +12,11 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->aiTile = new AiTile(obstructed, roomId, base);
     this->entityList = NULL;
     this->wallList = NULL;
+    doorList = new Door*[4];
+    for(int i = 0; i < 4; i++)doorList[i] = NULL;
 }
 
-std::list<Door*> ModuleTile::getDoorList() const {
+Door **ModuleTile::getDoorList() const {
     return doorList;
 }
 
@@ -44,9 +46,10 @@ void ModuleTile::addToWallList(Wall *wall)
     wallList = newWall;
 }
 
-void ModuleTile::addToDoorList(Door *doors)
+void ModuleTile::addToDoorList(Door *doors, int direction)
 {
-    doorList.push_back(doors);
+    doorList[direction] = doors;
+    aiTile->setOpenDoorValue(((direction+1) * 2) - 1, true);
 }
 
 void ModuleTile::addToEntityList(Entity* toAdd)
@@ -129,4 +132,15 @@ void ModuleTile::deleteWall(Wall* toDelete)
 
 AiTile* ModuleTile::getAiTile() const {
     return aiTile;
+}
+
+
+bool ModuleTile::hasOpenDoor(int direction)
+{
+    bool result = false;
+    if(direction % 2 != 0)
+    {
+        if(doorList[direction/2] != NULL)if(doorList[direction/2]->isOpen())result = true;
+    }
+    return result;
 }

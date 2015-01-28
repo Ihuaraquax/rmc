@@ -146,21 +146,22 @@ void Module::addDoorsToTiles()
     {
         Door *temp = *i;
         int X = temp->getCoords()->X-1;
-        int Y = temp->getCoords()->Y-1;
+        int Y = temp->getCoords()->Y+1;
         ModuleTile *tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToDoorList(temp);
-        X = temp->getCoords()->X-1;
-        Y = temp->getCoords()->Y+1;
-        tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToDoorList(temp);
+        if(tile != NULL)tile->addToDoorList(temp, 1);
         X = temp->getCoords()->X+1;
         Y = temp->getCoords()->Y-1;
         tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToDoorList(temp);
+        if(tile != NULL)tile->addToDoorList(temp, 2);
         X = temp->getCoords()->X+1;
         Y = temp->getCoords()->Y+1;
         tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToDoorList(temp);
+        if(tile != NULL)
+        {
+            if(temp->getCoords()->width > temp->getCoords()->height)
+                tile->addToDoorList(temp, 0);
+            else tile->addToDoorList(temp, 3);
+        }
     }
 }
 

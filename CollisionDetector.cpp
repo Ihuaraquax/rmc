@@ -71,15 +71,18 @@ Wall *CollisionDetector::isWallCollisions(ModuleTile* tile, Entity* target)
     }
     return value;
 }
-bool CollisionDetector::checkCollisions(std::list<Door*> doors, Entity *target)
+bool CollisionDetector::checkCollisions(Door **doors, Entity *target)
 {
     bool value = false;
-    for(std::list<Door*>::iterator i = doors.begin(); i != doors.end(); ++i)
+    for(int i = 0; i < 4; i++)
     {
-        Door *temp = *i;
-        Coordinates *oCoords = temp->getCoords();
-        if(temp->isOpen() == false)value = isCollision(oCoords, target->getCoords());
-        if(value)break;
+        Door *temp = doors[i];
+        if(temp != NULL)
+        {
+            Coordinates *oCoords = temp->getCoords();
+            if(temp->isOpen() == false)value = isCollision(oCoords, target->getCoords());
+            if(value)break;
+        }
     }
     return value;
 }

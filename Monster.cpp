@@ -30,20 +30,7 @@ Monster::~Monster() {
 
 void Monster::update()
 {
-    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->
-            getModuleTileAt(coords->X + 25 - coords->width/2,
-            coords->Y + 25 - coords->height/2);
-    int biggestAIValue = tile->getAiTile()->getCurrentAIValue();
-    int direction = -1;
-    for(int i = 0; i < 8; i++)
-    {
-        if(tile->getAdjacentTiles()[i] != NULL)
-        if(tile->getAdjacentTiles()[i]->getAiTile()->getCurrentAIValue() > biggestAIValue)
-        {
-            biggestAIValue = tile->getAiTile()->getAdjacentTiles()[i]->getCurrentAIValue();
-            direction = i;
-        }
-    }
+    int direction = getDirection();
     if(direction >= 0)
     {
         coords->angle = direction * 45;
@@ -51,4 +38,25 @@ void Monster::update()
         Variables::giveFactors(coords->angle, x,y);
         this->move(x,y);
     }
+}
+
+int Monster::getDirection()
+{
+    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->
+            getModuleTileAt(coords->X + 25 - coords->width/2,
+            coords->Y + 25 - coords->height/2);
+    int biggestAIValue = tile->getAiTile()->getCurrentAIValue();
+    
+    int direction = -1;
+    for(int i = 0; i < 8; i++)
+    {
+        if(tile->getAdjacentTiles()[i] != NULL)
+        if(tile->getAdjacentTiles()[i]->getAiTile()->getRoomId() == tile->getAiTile()->getRoomId() || tile->hasOpenDoor(i))
+        if(tile->getAdjacentTiles()[i]->getAiTile()->getCurrentAIValue() > biggestAIValue)
+        {
+            biggestAIValue = tile->getAiTile()->getAdjacentTiles()[i]->getCurrentAIValue();
+            direction = i;
+        }
+    }
+    return direction;
 }

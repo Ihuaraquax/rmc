@@ -20,10 +20,10 @@ public:
     void setAdjacentTiles(ModuleTile **tiles);
     
     void addToWallList(Wall *walls);
-    void addToDoorList(Door *doors);
+    void addToDoorList(Door *doors, int direction);
     void addToEntityList(Entity *toAdd);
     
-    std::list<Door*> getDoorList() const;
+    Door **getDoorList() const;
     templateList<Wall> *getWallList() const;
     ModuleTile** getAdjacentTiles() const;
     
@@ -32,11 +32,12 @@ public:
     void deleteWall(Wall *toDelete);
     
     AiTile* getAiTile() const;
+    bool hasOpenDoor(int direction);
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
     templateList<Wall> *wallList;
-    std::list<Door*>doorList;
+    Door **doorList;
     AiTile *aiTile;
 };
 
