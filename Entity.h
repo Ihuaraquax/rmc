@@ -22,7 +22,7 @@ public:
     virtual ~Entity();
     
     void virtual update();
-    void display();
+    void virtual display();
     void attack(bool leftWeapon);
     
     void setStartingTile();
@@ -41,7 +41,7 @@ protected:
     Weapon **weapons;
     int possessedWeapons;
     int health;
-    double shootingAngle;
+    Coordinates *targetCoords;
     int teamId;
     double *elementalResists;
     int armor;

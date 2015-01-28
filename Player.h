@@ -15,6 +15,7 @@ public:
     virtual ~Player();
     void playerMove(double X, double Y);
     void update();
+    void display();
 private:
     void setTestValues();
 };

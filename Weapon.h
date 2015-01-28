@@ -14,8 +14,10 @@ class Weapon {
 public:
     Weapon();
     void update();
-    void shoot(Coordinates *coords, int angle, int team);
+    void shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team);
     void reload();
+    double getAngle(Coordinates *shooterCoords, Coordinates *targetCoords);
+    int getCurrentTargetSize() const;
 private:
     int ammoMax;
     int ammoCurrent;
@@ -25,6 +27,11 @@ private:
     int cooldown;
     int timeToShoot;
     bool reloading;
+    int defaultTargetSize;
+    int currentTargetSize;
+    int targetSizeIncrement;
+    int targetSizeDecrement;
+    int targetSizeIncrementSlowDownPoint;
 };
 
 #endif	/* WEAPON_H */

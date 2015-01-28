@@ -11,6 +11,7 @@
 
 Player::Player() {
     setTestValues();
+    targetCoords = new Coordinates();
 }
 
 
@@ -46,10 +47,13 @@ void Player::playerMove(double X, double Y)
 
 void Player::update()
 {
-    double dX, dY;
-    dX = (Variables::mouse_x - 8) - (coords->X - Variables::offsetX);
-    dY = (coords->Y - Variables::offsetY) - (Variables::mouse_y - 8);
-    shootingAngle = 180 + (atan(dX/dY) * 180 / M_PI);
-    if(Variables::mouse_y <= (coords->Y - Variables::offsetY))shootingAngle += 180;
+    targetCoords->X = Variables::mouse_x;
+    targetCoords->Y = Variables::mouse_y;
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
+}
+
+void Player::display()
+{
+    image->display(coords);
+    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[0]->getCurrentTargetSize(), al_map_rgb(255,0,0), 5);
 }

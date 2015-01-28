@@ -46,6 +46,7 @@ MainGameState Session::gameState = MAP;
 int const Variables::damageTypeCount = 6;
 
 int const Variables::tilesPerRoom = 20;
+int Variables::currentFrame = 0;
 
 int main(int argc, char** argv) {
     Variables::session = new Session();

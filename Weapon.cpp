@@ -18,6 +18,11 @@ Weapon::Weapon() {
     timeToShoot = 0;
     reloading = false;
     damageType = normal;
+    defaultTargetSize = 10;
+    currentTargetSize = 10;
+    targetSizeIncrement = 15;
+    targetSizeDecrement = 2;
+    targetSizeIncrementSlowDownPoint = 30;
 }
 
 void Weapon::update()
@@ -29,17 +34,24 @@ void Weapon::update()
         ammoCurrent = ammoMax;
         reloading = false;
     }
+    if(Variables::currentFrame % 3 == 0)if(currentTargetSize > defaultTargetSize)
+    {
+        currentTargetSize -= targetSizeDecrement;
+        if(currentTargetSize < defaultTargetSize)currentTargetSize = defaultTargetSize;
+    }
 }
 
-void Weapon::shoot(Coordinates *coords, int angle, int team)
+void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team)
 {
     if(!reloading && timeToShoot == 0)
     {
         ammoCurrent--;
         timeToShoot = cooldown;
-        Entity *bullet = new Projectile();;
-        dynamic_cast<Projectile*>(bullet)->setValues(coords, damage, damageType, angle, team);
+        Entity *bullet = new Projectile();
+        int angle = getAngle(shooterCoords, targetCoords);
+        dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team);
         Variables::session->getAllEntities()->addEntity(bullet);
+        currentTargetSize += targetSizeIncrement - (currentTargetSize / targetSizeIncrementSlowDownPoint);
     }
 }
 
@@ -47,4 +59,23 @@ void Weapon::reload()
 {
     timeToShoot = reloadSpeed;
     reloading = true;
+}
+
+double Weapon::getAngle(Coordinates* shooterCoords, Coordinates* targetCoords)
+{
+    double tX = targetCoords->X, tY = targetCoords->Y, dX, dY;
+    int distance = rand()%this->currentTargetSize;
+    double factorX, factorY;
+    Variables::giveFactors(rand()%360, factorX, factorY);
+    tX += distance * factorX;
+    tY += distance * factorY;
+    dX = (tX - 8) - (shooterCoords->X - Variables::offsetX);
+    dY = (shooterCoords->Y - Variables::offsetY) - (tY - 8);
+    double angle = 180 + (atan(dX/dY) * 180 / M_PI);
+    if(tY <= (shooterCoords->Y - Variables::offsetY))angle += 180;
+    return angle;
+}
+
+int Weapon::getCurrentTargetSize() const {
+    return currentTargetSize;
 }

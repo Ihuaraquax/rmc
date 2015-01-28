@@ -48,6 +48,7 @@ struct Variables
     static ALLEGRO_TIMER *timer;
     static Session *session;
     static GAME_STATE status;
+    static int currentFrame;
     
     static const int damageTypeCount;
     

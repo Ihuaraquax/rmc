@@ -79,8 +79,8 @@ void Entity::getHit(int damage, int damageType)
 
 void Entity::attack(bool leftWeapon)
 {
-    if(leftWeapon)weapons[0]->shoot(coords, shootingAngle, teamId);
-    else weapons[1]->shoot(coords, shootingAngle, teamId);
+    if(leftWeapon)weapons[0]->shoot(coords, targetCoords, teamId);
+    else weapons[1]->shoot(coords, targetCoords, teamId);
 }
 
 int Entity::getTeamId() const {
