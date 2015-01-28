@@ -174,3 +174,12 @@ void Module::deleteWall(Wall* toDelete)
 {
     walls.remove(toDelete);
 }
+
+int Module::getIndexOfModule(ModuleTile* tile)
+{
+    for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
+    {
+        if(moduleTiles[i] == tile)return i;
+    }
+    return -1;
+}

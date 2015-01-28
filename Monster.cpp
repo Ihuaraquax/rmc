@@ -33,7 +33,16 @@ void Monster::update()
     int direction = getDirection();
     if(direction >= 0)
     {
-        coords->angle = direction * 45;
+        int targetX = (direction / Variables::tilesPerRoom) * 50 + 24;
+        int targetY = (direction % Variables::tilesPerRoom) * 50 + 24;
+        
+        
+        double dX, dY;
+        dX = targetX - (coords->X - Variables::offsetX);
+        dY = (coords->Y - Variables::offsetY) - targetY;
+        coords->angle = 180 + (atan(dX/dY) * 180 / M_PI);
+        if(targetY <= (coords->Y - Variables::offsetY))coords->angle += 180;    
+    
         double x,y;
         Variables::giveFactors(coords->angle, x,y);
         this->move(x,y);
@@ -42,6 +51,7 @@ void Monster::update()
 
 int Monster::getDirection()
 {
+    int result = -1;
     ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->
             getModuleTileAt(coords->X + 25 - coords->width/2,
             coords->Y + 25 - coords->height/2);
@@ -58,5 +68,11 @@ int Monster::getDirection()
             direction = i;
         }
     }
-    return direction;
+    if(direction >= 0)
+    {
+        result = Variables::session->getMap()->getCurrentModule()
+                ->getIndexOfModule(tile->getAdjacentTiles()[direction]);
+        
+    }        
+    return result;
 }
