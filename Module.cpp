@@ -89,6 +89,8 @@ void Module::updateTileAiValue(int X, int Y, int value)
     int index = getModuleIndex(X / 50, Y / 50);
     moduleTiles[index]->getAiTile()->resetAIValue();
     moduleTiles[index]->getAiTile()->setCurrentAIValue(value);
+    moduleTiles[index]->getAiTile()->getTarget()->X = X;
+    moduleTiles[index]->getAiTile()->getTarget()->Y = Y;
 }
 
 bool Module::isObstructed(int X, int Y)

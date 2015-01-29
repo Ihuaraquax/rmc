@@ -7,6 +7,7 @@
 
 #ifndef AITILE_H
 #define	AITILE_H
+#include "Coordinates.h"
 
 class AiTile {
 public:
@@ -20,6 +21,7 @@ public:
     void setAdjacentTile(int index, AiTile *tile);
     AiTile** getAdjacentTiles() const;
     void setOpenDoorValue(int index, bool value);
+    Coordinates* getTarget() const;
 private:
     AiTile **adjacentTiles;
     int roomId;
@@ -27,6 +29,7 @@ private:
     int baseAIValue;
     int currentAIValue;
     bool openDoors[8];
+    Coordinates *target;
 };
 
 #endif	/* AITILE_H */

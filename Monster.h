@@ -16,6 +16,7 @@ public:
     void update();
 private:
     int getDirection();
+    void checkForAttack();
 };
 
 #endif	/* MONSTER_H */

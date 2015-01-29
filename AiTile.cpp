@@ -6,6 +6,7 @@
  */
 
 #include "AiTile.h"
+#include "Coordinates.h"
 #include <stdlib.h>
 
 AiTile::AiTile(bool obstructed, int roomId, int base) {
@@ -15,6 +16,9 @@ AiTile::AiTile(bool obstructed, int roomId, int base) {
     this->baseAIValue = base;
     if(obstructed)this->baseAIValue -= 50;
     for(int i = 0; i < 8; i++)openDoors[i] = false;
+    target = new Coordinates();
+    target->X = -1;
+    target->Y = -1;
 }
 
 
@@ -34,6 +38,8 @@ bool AiTile::isObstructed()
 
 void AiTile::resetAIValue()
 {
+    target->X = -1;
+    target->Y = -1;
     currentAIValue = baseAIValue;
     for(int i = 0; i < 8; i++)
     {
@@ -72,4 +78,8 @@ AiTile** AiTile::getAdjacentTiles() const {
 void AiTile::setOpenDoorValue(int index, bool value)
 {
     openDoors[index] = value;
+}
+
+Coordinates* AiTile::getTarget() const {
+    return target;
 }
