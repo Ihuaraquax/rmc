@@ -14,12 +14,13 @@ public:
     Projectile();
     virtual ~Projectile();
     void update();
-    void setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamId);
+    void setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamId, int range);
     void hit (Entity *target);
     bool isProjectile();
 private:
     int damage;
     int damageType;
+    int range;
 };
 
 #endif	/* PROJECTILE_H */

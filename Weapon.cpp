@@ -23,6 +23,7 @@ Weapon::Weapon() {
     targetSizeIncrement = 15;
     targetSizeDecrement = 2;
     targetSizeIncrementSlowDownPoint = 30;
+    range = -1;
 }
 
 void Weapon::update()
@@ -49,7 +50,7 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
         timeToShoot = cooldown;
         Entity *bullet = new Projectile();
         int angle = getAngle(shooterCoords, targetCoords);
-        dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team);
+        dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
         Variables::session->getAllEntities()->addEntity(bullet);
         currentTargetSize += targetSizeIncrement - (currentTargetSize / targetSizeIncrementSlowDownPoint);
     }

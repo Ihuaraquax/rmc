@@ -54,9 +54,14 @@ void Projectile::update()
         }
     }
     else health = 0;
+    if(range > 0)
+    {
+        range--;
+        if(range == 0)health = 0;
+    }
 }
 
-void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamID)
+void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamID, int range)
 {
     this->coords->X = coords->X + coords->width/2;
     this->coords->Y = coords->Y + coords->height/2;
@@ -67,6 +72,7 @@ void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageTy
     Variables::giveFactors(angle, this->coords->speedX, this->coords->speedY);
     this->coords->speedX *= 5;
     this->coords->speedY *= 5;
+    this->range = range;
 }
 
 void Projectile::hit(Entity* target)

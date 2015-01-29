@@ -32,6 +32,7 @@ private:
     int targetSizeIncrement;
     int targetSizeDecrement;
     int targetSizeIncrementSlowDownPoint;
+    int range;
 };
 
 #endif	/* WEAPON_H */
