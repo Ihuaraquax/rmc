@@ -8,6 +8,7 @@
 #include "AllEntities.h"
 #include "Player.h"
 #include "Monster.h"
+#include "Turret.h"
 #include "globalVariables.h"
 #include <iostream>
   
@@ -19,6 +20,8 @@ AllEntities::AllEntities() {
         Entity *monster = new Monster();
         entityList.push_back(monster);
     }
+    Entity *turret = new Turret();
+    entityList.push_back(turret);
 }
 
 AllEntities::~AllEntities()

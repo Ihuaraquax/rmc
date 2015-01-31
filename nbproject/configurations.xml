@@ -19,6 +19,8 @@
         <itemPath>Player.h</itemPath>
         <itemPath>Projectile.cpp</itemPath>
         <itemPath>Projectile.h</itemPath>
+        <itemPath>Turret.cpp</itemPath>
+        <itemPath>Turret.h</itemPath>
         <itemPath>Weapon.cpp</itemPath>
         <itemPath>Weapon.h</itemPath>
       </logicalFolder>
@@ -203,6 +205,10 @@
       </item>
       <item path="TileFactory.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Turret.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Turret.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Wall.h" ex="false" tool="3" flavor2="0">
@@ -342,6 +348,10 @@
       <item path="TileFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TileFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Turret.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Turret.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>

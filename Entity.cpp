@@ -22,7 +22,7 @@ Entity::~Entity() {
     Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(-threatLevel);
     delete coords;
-    delete image;
+    if(image != NULL)delete image;
 }
 
 void Entity::display(){
