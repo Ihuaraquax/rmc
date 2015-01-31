@@ -45,6 +45,7 @@ protected:
     int teamId;
     double *elementalResists;
     int armor;
+    int threatLevel;
 };
 
 #endif	/* ENTITY_H */

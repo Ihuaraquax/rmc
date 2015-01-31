@@ -25,6 +25,7 @@ Monster::Monster() {
     this->weapons = new Weapon*[2];
     this->weapons[0] = new Weapon();
     this->weapons[1] = new Weapon();
+    this->threatLevel = 10;
 }
 
 
@@ -50,7 +51,7 @@ void Monster::update()
         Variables::giveFactors(coords->angle, x,y);
         this->move(x,y);
     }
-    checkForAttack();
+//    checkForAttack();
     this->weapons[0]->update();
     this->weapons[1]->update();
 }

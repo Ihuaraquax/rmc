@@ -19,6 +19,8 @@ Entity::Entity() {
 }
 
 Entity::~Entity() {
+    Variables::session->getMap()
+            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(-threatLevel);
     delete coords;
     delete image;
 }
@@ -53,7 +55,9 @@ void Entity::move(double X, double Y){
     if(currentTile != newTile)
     {
         currentTile->deleteFromEntityList(this);
+        currentTile->addToThreatLevel(-threatLevel);
         newTile->addToEntityList(this);
+        newTile->addToThreatLevel(threatLevel);
     }
 }
 

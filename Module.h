@@ -32,6 +32,7 @@ public:
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();
+    void displayModuleThreatLevel();
     std::list<Wall*> walls;
     std::list<Door*> doors;
     std::list<Floor*> floorTiles;

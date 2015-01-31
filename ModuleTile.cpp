@@ -14,6 +14,7 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->wallList = NULL;
     doorList = new Door*[4];
     for(int i = 0; i < 4; i++)doorList[i] = NULL;
+    threatLevel = 0;
 }
 
 Door **ModuleTile::getDoorList() const {
@@ -143,4 +144,13 @@ bool ModuleTile::hasOpenDoor(int direction)
         if(doorList[direction/2] != NULL)if(doorList[direction/2]->isOpen())result = true;
     }
     return result;
+}
+
+void ModuleTile::addToThreatLevel(int threatLevel) {
+    this->threatLevel += threatLevel;
+    if(this->threatLevel < 0)this->threatLevel = 0;
+}
+
+int ModuleTile::getThreatLevel() const {
+    return threatLevel;
 }

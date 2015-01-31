@@ -12,6 +12,7 @@
 Player::Player() {
     setTestValues();
     targetCoords = new Coordinates();
+    this->threatLevel = 0;
 }
 
 

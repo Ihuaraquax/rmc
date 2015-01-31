@@ -50,7 +50,7 @@ void Module::display()
         Door *temp = *i;
         temp->display();
     }
-    this->displayModuleTileAI();
+    this->displayModuleThreatLevel();
 }
 
 void Module::displayModuleTileAI()
@@ -59,6 +59,18 @@ void Module::displayModuleTileAI()
         for(int j = 0; j < Variables::tilesPerRoom; j++)
         {
             int col = moduleTiles[getModuleIndex(i,j)]->getAiTile()->getCurrentAIValue() * 2.5;
+            int X = i * 50 + 25 - Variables::offsetX;
+            int Y = j * 50 + 25 - Variables::offsetY;
+            al_draw_circle(X, Y, 10, al_map_rgb(col, col, col),25);
+        }
+}
+
+void Module::displayModuleThreatLevel()
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            int col = moduleTiles[getModuleIndex(i,j)]->getThreatLevel() * 10;
             int X = i * 50 + 25 - Variables::offsetX;
             int Y = j * 50 + 25 - Variables::offsetY;
             al_draw_circle(X, Y, 10, al_map_rgb(col, col, col),25);

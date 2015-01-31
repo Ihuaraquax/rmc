@@ -33,12 +33,16 @@ public:
     
     AiTile* getAiTile() const;
     bool hasOpenDoor(int direction);
+    
+    void addToThreatLevel(int threatLevel);
+    int getThreatLevel() const;
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
     templateList<Wall> *wallList;
     Door **doorList;
     AiTile *aiTile;
+    int threatLevel;
 };
 
 #endif	/* MODULETILE_H */
