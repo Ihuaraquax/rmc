@@ -13,16 +13,20 @@
 
 Session::Session() {
     configurator::config();
-    allEntities = new AllEntities();
+}
+
+Map* Session::getMap() const {
+    return map;
+}
+
+void Session::create()
+{
     mainMenu = new Menu();
     keyboard = new KeyboardControl();
     mouse = new MouseControl();
     map = new Map();
     map->createLevels();
-}
-
-Map* Session::getMap() const {
-    return map;
+    allEntities = new AllEntities();
 }
 
 AllEntities* Session::getAllEntities() const {

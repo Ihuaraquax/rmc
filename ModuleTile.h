@@ -16,6 +16,8 @@
 
 class ModuleTile {
 public:
+    void update();
+    
     ModuleTile(bool obstructed, int roomId, int base);
     void setAdjacentTiles(ModuleTile **tiles);
     
@@ -36,13 +38,19 @@ public:
     
     void addToThreatLevel(int threatLevel);
     int getThreatLevel() const;
+    
+    void propagateTurret(Entity *turret);
+    
+    void setCenter(int X, int Y);
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
     templateList<Wall> *wallList;
+    templateList<Entity> *turretList;
     Door **doorList;
     AiTile *aiTile;
     int threatLevel;
+    int centerX, centerY;
 };
 
 #endif	/* MODULETILE_H */

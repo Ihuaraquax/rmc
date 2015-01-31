@@ -23,7 +23,7 @@ public:
     
     void virtual update();
     void virtual display();
-    void attack(bool leftWeapon);
+    void attack(int weapon);
     
     void setStartingTile();
     void getHit(int damage, int damageType);

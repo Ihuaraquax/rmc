@@ -18,8 +18,8 @@ void MouseControl::mouseActions()
      Variables::mouse_y = al_get_mouse_state_axis(&Variables::mouse_state, 1);
      
      if(Variables::mouse_state.buttons & 1)
-         Variables::session->getAllEntities()->getPlayer()->attack(true);
+         Variables::session->getAllEntities()->getPlayer()->attack(0);
      
      if(Variables::mouse_state.buttons & 2)
-         Variables::session->getAllEntities()->getPlayer()->attack(false);
+         Variables::session->getAllEntities()->getPlayer()->attack(1);
 }

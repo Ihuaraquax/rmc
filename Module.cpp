@@ -50,7 +50,7 @@ void Module::display()
         Door *temp = *i;
         temp->display();
     }
-//    this->displayModuleThreatLevel();
+    this->displayModuleThreatLevel();
 }
 
 void Module::displayModuleTileAI()
@@ -93,6 +93,10 @@ void Module::update()
     {
         Door *temp = *i;
         temp->update();
+    }
+    for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
+    {
+        moduleTiles[i]->update();
     }
 }
 

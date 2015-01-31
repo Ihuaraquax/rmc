@@ -19,8 +19,9 @@ Entity::Entity() {
 }
 
 Entity::~Entity() {
-    Variables::session->getMap()
-            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(-threatLevel);
+    ModuleTile *tile = Variables::session->getMap()
+            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
+    if(tile != NULL)tile->addToThreatLevel(-threatLevel);
     delete coords;
     if(image != NULL)delete image;
 }
@@ -81,10 +82,9 @@ void Entity::getHit(int damage, int damageType)
     health -= damageInflicted;
 }
 
-void Entity::attack(bool leftWeapon)
+void Entity::attack(int weapon)
 {
-    if(leftWeapon)weapons[0]->shoot(coords, targetCoords, teamId);
-    else weapons[1]->shoot(coords, targetCoords, teamId);
+    weapons[weapon]->shoot(coords, targetCoords, teamId);
 }
 
 int Entity::getTeamId() const {

@@ -50,6 +50,7 @@ int Variables::currentFrame = 0;
 
 int main(int argc, char** argv) {
     Variables::session = new Session();
+    Variables::session->create();
     
     srand(time(NULL));
     

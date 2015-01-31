@@ -27,6 +27,7 @@ public:
     Session(const Session& orig);
     virtual ~Session();
     void display();
+    void create();
     void update();
     void config();
     void loadSave();

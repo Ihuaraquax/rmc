@@ -13,6 +13,8 @@ Player::Player() {
     setTestValues();
     targetCoords = new Coordinates();
     this->threatLevel = 0;
+    Variables::session->getMap()->getCurrentModule()->updateTileAiValue
+        (coords->X + coords->width/2, coords->Y + coords->height/2, 100);
 }
 
 

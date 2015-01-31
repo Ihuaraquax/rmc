@@ -26,6 +26,8 @@ Monster::Monster() {
     this->weapons[0] = new Weapon();
     this->weapons[1] = new Weapon();
     this->threatLevel = 10;
+    Variables::session->getMap()
+            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
 }
 
 
@@ -101,7 +103,7 @@ void Monster::checkForAttack()
             if(tile->getAdjacentTiles()[i]->getAiTile()->getTarget()->X >= 0)
             {
                 this->targetCoords = tile->getAdjacentTiles()[i]->getAiTile()->getTarget();
-                this->attack(true);
+                this->attack(0);
                 break;
             }
     }

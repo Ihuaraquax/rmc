@@ -69,6 +69,17 @@ struct Variables
     {
         return pow(x1 - x2, 2) + pow(y1 - y2, 2);
     }
+    
+    double static getAngle(double x1, double y1, double x2, double y2)
+    {
+        double angle;
+        double dX, dY;
+        dX = x2 - x1;
+        dY = y1 - y2;
+        angle = 180 + (atan(dX/dY) * 180 / M_PI);
+        if(y2 <= y1)angle += 180;
+        return angle;
+    }
 };
 #endif	/* GLOBALVARIABLES_H */
 

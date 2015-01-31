@@ -17,6 +17,7 @@ Projectile::Projectile() {
     this->image = new Image(1, paths, true);
     health = 1;
     image->state = NORMAL;
+    threatLevel = 0;
 }
 
 Projectile::~Projectile() {

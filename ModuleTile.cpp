@@ -7,14 +7,31 @@
 
 #include "ModuleTile.h"
 #include "globalVariables.h"
+#include "Turret.h"
 
 ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->aiTile = new AiTile(obstructed, roomId, base);
     this->entityList = NULL;
     this->wallList = NULL;
+    this->turretList = NULL;
     doorList = new Door*[4];
     for(int i = 0; i < 4; i++)doorList[i] = NULL;
     threatLevel = 0;
+}
+
+void ModuleTile::update()
+{
+    templateList<Entity> *turrets = turretList;
+    while(turrets != NULL)
+    {
+        Turret *cT = dynamic_cast<Turret*>(turrets->data);
+        if(cT->getCurrentThreatLevel() < threatLevel)
+        {
+            cT->setCurrentThreatLevel(threatLevel);
+            cT->setTargetAngle(Variables::getAngle(centerX, centerY, cT->getCoords()->X, cT->getCoords()->Y), centerX, centerY);
+        }
+        turrets = turrets->next;
+    }
 }
 
 Door **ModuleTile::getDoorList() const {
@@ -153,4 +170,32 @@ void ModuleTile::addToThreatLevel(int threatLevel) {
 
 int ModuleTile::getThreatLevel() const {
     return threatLevel;
+}
+
+void ModuleTile::propagateTurret(Entity* turret)
+{
+    if(Variables::proximity(centerX, centerY, turret->getCoords()->X, 
+            turret->getCoords()->Y) <= dynamic_cast<Turret*>(turret)->getRange())
+    {
+        if(turretList->find(turret) == NULL)
+        {
+            templateList<Entity> *newTurret = new templateList<Entity>();
+            newTurret->data = turret;
+            newTurret->next = turretList;
+            turretList = newTurret;
+            
+            for(int i = 0; i < 8; i++)
+            {
+                if(adjacentTiles[i] != NULL)
+                    if(adjacentTiles[i]->aiTile->getRoomId() == aiTile->getRoomId() || hasOpenDoor(i))
+                        adjacentTiles[i]->propagateTurret(turret);
+            }
+        }
+    }
+}
+
+void ModuleTile::setCenter(int X, int Y)
+{
+    centerX = X;
+    centerY = Y;
 }
