@@ -61,13 +61,6 @@ void Session::display()
 
 void Session::update()
 {
-    
-    if(Variables::status == GAME_START)
-        {
-        allEntities->setStartingTile();
-        Variables::status = GAME;
-        }
-    allEntities->setStartingTile();
     keyboard->keyboardActions();
     mouse->mouseActions();
     if(Variables::status == GAME)

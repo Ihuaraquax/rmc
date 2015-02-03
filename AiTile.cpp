@@ -8,6 +8,7 @@
 #include "AiTile.h"
 #include "Coordinates.h"
 #include <stdlib.h>
+#include <iostream>
 
 AiTile::AiTile(bool obstructed, int roomId, int base) {
     adjacentTiles = new AiTile*[8];
@@ -82,4 +83,8 @@ void AiTile::setOpenDoorValue(int index, bool value)
 
 Coordinates* AiTile::getTarget() const {
     return target;
+}
+
+void AiTile::setObstructed(bool obstructed) {
+    this->obstructed = obstructed;
 }

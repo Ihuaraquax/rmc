@@ -23,7 +23,7 @@ public:
     void deleteEntity(Entity *toDelete);
     Entity* getPlayer() const;
     void deleteDead();
-    void setStartingTile();
+    void createObstacles();
 private:
     std::list<Entity*> entityList;
     Entity *player;

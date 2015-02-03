@@ -8,11 +8,15 @@
 #include "Monster.h"
 #include "globalVariables.h"
 #include "ModuleTile.h"
+#include "CollisionDetector.h"
 
 Monster::Monster() {
     this->coords = new Coordinates();
-    this->coords->X = rand()%800 + 15;
-    this->coords->Y = rand()%800 + 15;
+    do
+    {
+        this->coords->X = rand()%800 + 15;
+        this->coords->Y = rand()%800 + 15;
+    }while(isBadSpawningPoint());
     this->coords->angle = 0;
     this->coords->height = 25;
     this->coords->width = 25;
@@ -107,4 +111,12 @@ void Monster::checkForAttack()
                 break;
             }
     }
+}
+
+bool Monster::isBadSpawningPoint()
+{
+    bool result = false;
+    if(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->getAiTile()->isObstructed())result = true;
+    else if(CollisionDetector::isAnyCollision(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y), this))result = true;
+    return result;
 }

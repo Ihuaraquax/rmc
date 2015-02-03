@@ -7,6 +7,7 @@
 
 #include "TileFactory.h"
 #include "globalVariables.h"
+#include "Obstacle.h"
 
 TileFactory::TileFactory() {
 }

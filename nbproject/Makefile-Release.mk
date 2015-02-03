@@ -52,6 +52,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ModuleTile.o \
 	${OBJECTDIR}/Monster.o \
 	${OBJECTDIR}/MouseControl.o \
+	${OBJECTDIR}/Obstacle.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
 	${OBJECTDIR}/Room.o \
@@ -174,6 +175,11 @@ ${OBJECTDIR}/MouseControl.o: MouseControl.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/MouseControl.o MouseControl.cpp
+
+${OBJECTDIR}/Obstacle.o: Obstacle.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Obstacle.o Obstacle.cpp
 
 ${OBJECTDIR}/Player.o: Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}

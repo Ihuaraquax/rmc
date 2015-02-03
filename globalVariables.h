@@ -80,6 +80,15 @@ struct Variables
         if(y2 <= y1)angle += 180;
         return angle;
     }
+    
+    void static debugObstacles()
+    {
+        for(int i = 0; i < Variables::tilesPerRoom; i++)
+            for(int j = 0; j < Variables::tilesPerRoom; j++)
+            {
+                if(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i, j)->getAiTile()->isObstructed())std::cout << i << ' ' << j << std::endl;
+            }
+    }
 };
 #endif	/* GLOBALVARIABLES_H */
 

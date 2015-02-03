@@ -19,6 +19,7 @@ public:
     void update();
     
     ModuleTile(bool obstructed, int roomId, int base);
+    ~ModuleTile();
     void setAdjacentTiles(ModuleTile **tiles);
     
     void addToWallList(Wall *walls);
@@ -42,11 +43,14 @@ public:
     void propagateTurret(Entity *turret);
     
     void setCenter(int X, int Y);
+    Entity* getObstacle() const;
+    void setObstacle(Entity* obstacle);
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
     templateList<Wall> *wallList;
     templateList<Entity> *turretList;
+    Entity *obstacle;
     Door **doorList;
     AiTile *aiTile;
     int threatLevel;

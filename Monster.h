@@ -17,6 +17,7 @@ public:
 private:
     int getDirection();
     void checkForAttack();
+    bool isBadSpawningPoint();
 };
 
 #endif	/* MONSTER_H */

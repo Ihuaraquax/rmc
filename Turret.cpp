@@ -10,8 +10,8 @@
 
 Turret::Turret() {
     this->coords = new Coordinates();
-    this->coords->X = 215;
-    this->coords->Y = 215;
+    this->coords->X = 225;
+    this->coords->Y = 225;
     this->coords->angle = -1;
     this->coords->height = 50;
     this->coords->width = 50;

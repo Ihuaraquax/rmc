@@ -34,7 +34,7 @@ ALLEGRO_MOUSE_STATE  Variables::mouse_state;
 double  Variables::mouse_x;
 double  Variables::mouse_y;
 
-GAME_STATE  Variables::status = GAME_START;
+GAME_STATE  Variables::status = GAME;
 Session *Variables::session;
 
 ALLEGRO_EVENT_QUEUE *Variables::event_queue;

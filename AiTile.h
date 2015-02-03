@@ -22,6 +22,7 @@ public:
     AiTile** getAdjacentTiles() const;
     void setOpenDoorValue(int index, bool value);
     Coordinates* getTarget() const;
+    void setObstructed(bool obstructed);
 private:
     AiTile **adjacentTiles;
     int roomId;

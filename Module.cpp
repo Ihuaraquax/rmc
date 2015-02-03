@@ -50,7 +50,8 @@ void Module::display()
         Door *temp = *i;
         temp->display();
     }
-    this->displayModuleThreatLevel();
+//    this->displayModuleThreatLevel();
+//    this->displayObstacles();
 }
 
 void Module::displayModuleTileAI()
@@ -76,7 +77,19 @@ void Module::displayModuleThreatLevel()
             al_draw_circle(X, Y, 10, al_map_rgb(col, col, col),25);
         }
 }
-
+void Module::displayObstacles()
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            if(moduleTiles[getModuleIndex(i,j)]->getObstacle() != NULL)
+            {
+                int X = i * 50 + 25 - Variables::offsetX;
+                int Y = j * 50 + 25 - Variables::offsetY;
+                al_draw_circle(X, Y, 10, al_map_rgb(0, 0, 0),25);
+            }
+        }
+}
 void Module::update()
 {
     for(std::list<Floor*>::iterator i = floorTiles.begin(); i != floorTiles.end(); ++i)

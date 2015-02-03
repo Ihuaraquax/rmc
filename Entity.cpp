@@ -103,3 +103,8 @@ bool Entity::isProjectile()
 {
     return false;
 }
+
+bool Entity::isBarricade()
+{
+    return false;
+}

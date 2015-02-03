@@ -10,11 +10,13 @@
 #include "Monster.h"
 #include "Turret.h"
 #include "globalVariables.h"
+#include "Obstacle.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
     player = new Player();
     entityList.push_back(player);
+    createObstacles();
     for(int i = 0; i < 10; i++)
     {
         Entity *monster = new Monster();
@@ -26,12 +28,11 @@ AllEntities::AllEntities() {
 
 AllEntities::~AllEntities()
 {
-    
     for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
     {
         Entity *temp = *i;
         delete temp;
-    } 
+    }
 }
 
 
@@ -102,11 +103,17 @@ void AllEntities::deleteDead()
     }
 }
 
-void AllEntities::setStartingTile()
+void AllEntities::createObstacles()
 {
-    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
-    {
-        Entity *temp = *i;
-//        temp->setStartingTile();
-    }
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            bool isObstacle = (rand()%50 == 0);
+            if(isObstacle)
+            {
+                Entity *obstacle = new Obstacle(i * 50, j * 50);
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * 50, j * 50)->setObstacle(obstacle);
+                this->addEntity(obstacle);
+            }
+        }
 }

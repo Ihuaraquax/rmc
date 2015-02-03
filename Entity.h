@@ -31,7 +31,9 @@ public:
     Coordinates* getCoords() const;
     int getHealth() const;
     int getTeamId() const;
+    
     bool virtual isProjectile();
+    bool virtual isBarricade();
 protected:
     void move(double X, double Y);
     Entity *isCollision();

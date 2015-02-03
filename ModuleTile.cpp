@@ -12,11 +12,18 @@
 ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->aiTile = new AiTile(obstructed, roomId, base);
     this->entityList = NULL;
+    this->obstacle = NULL;
     this->wallList = NULL;
-    this->turretList = NULL;
+    this->turretList = NULL;    
     doorList = new Door*[4];
     for(int i = 0; i < 4; i++)doorList[i] = NULL;
     threatLevel = 0;
+}
+
+ModuleTile::~ModuleTile()
+{
+    obstacle = NULL;
+    delete aiTile;
 }
 
 void ModuleTile::update()
@@ -198,4 +205,14 @@ void ModuleTile::setCenter(int X, int Y)
 {
     centerX = X;
     centerY = Y;
+}
+
+Entity* ModuleTile::getObstacle() const {
+    return obstacle;
+}
+
+void ModuleTile::setObstacle(Entity* obstacle) {
+    this->obstacle = obstacle;
+    this->addToEntityList(obstacle);
+    aiTile->setObstructed(true);
 }
