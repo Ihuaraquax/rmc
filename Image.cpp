@@ -125,7 +125,7 @@ void Image::displayNormal(Coordinates* coords)
     double angle = (coords->angle *M_PI)/ 180;
     al_draw_scaled_rotated_bitmap(images[currentImage], 
             imageCenterX[currentImage], imageCenterY[currentImage], 
-            coords->X - Variables::offsetX, coords->Y - Variables::offsetY, 
+            coords->X + (coords->width/2) - Variables::offsetX, coords->Y + (coords->height/2) - Variables::offsetY, 
             Variables::ScaleX, Variables::ScaleY, angle, 0);
 }
 

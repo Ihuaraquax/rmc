@@ -24,6 +24,7 @@ Monster::Monster() {
     this->coords->speedY = 1;
     std::string paths[] = {"images/monster.png"};
     this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
     health = 20;
     teamId = 0;
     this->weapons = new Weapon*[2];

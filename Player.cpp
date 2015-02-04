@@ -33,6 +33,7 @@ void Player::setTestValues()
     this->coords->speedY = 1;
     std::string paths[] = {"images/player.png"};
     this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
     health = 20;
     weapons = new Weapon*[2];
     weapons[0] = new Weapon();

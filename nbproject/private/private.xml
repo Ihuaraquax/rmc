@@ -8,19 +8,28 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/lothar/c++/gitRepo/rmc/AiTile.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Projectile.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/AllEntities.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Session.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Image.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Floor.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Obstacle.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/TileFactory.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Obstacle.h</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Session.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Player.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Entity.h</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/AllEntities.h</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/AiTile.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/globalVariables.h</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Monster.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Turret.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Monster.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Entity.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Weapon.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/ModuleTile.h</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/ModuleTile.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Module.cpp</file>
         </group>
     </open-files>
 </project-private>

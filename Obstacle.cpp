@@ -17,6 +17,7 @@ Obstacle::Obstacle(double X, double Y) {
     this->coords->Y = Y;
     std::string paths[] = {"images/table.png"};
     this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
 }
 
 
