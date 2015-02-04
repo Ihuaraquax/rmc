@@ -10,7 +10,11 @@
 
 Door::Door(Coordinates *coords) {
     this->coords = coords;
-    open = true;
+    open = false;
+    elementalResists = new double[Variables::damageTypeCount];
+    health = 100;
+    armor = 5;
+    for(int i = 0; i < Variables::damageTypeCount; i++)this->elementalResists[i] = 0.5;
 }
 
 
@@ -43,4 +47,14 @@ void Door::setOpen(bool open) {
 
 bool Door::isOpen() const {
     return open;
+}
+void Door::getHit(int damage, int damageType)
+{
+    int damageInflicted = (damage - armor) * (1-elementalResists[damageType]);
+    if(damageInflicted < 0)damageInflicted = 0;
+    health -= damageInflicted;
+}
+
+int Door::getHealth() const {
+    return health;
 }

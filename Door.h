@@ -18,9 +18,14 @@ public:
     Coordinates* getCoords() const;
     void setOpen(bool open);
     bool isOpen() const;
+    void getHit(int damage, int damageType);
+    int getHealth() const;
 private:
     Coordinates *coords;
     bool open;
+    int health;
+    int armor;
+    double *elementalResists;
 };
 
 #endif	/* DOOR_H */

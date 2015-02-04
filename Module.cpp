@@ -215,3 +215,8 @@ int Module::getIndexOfModule(ModuleTile* tile)
     }
     return -1;
 }
+
+void Module::deleteDoor(Door* toDelete)
+{
+    doors.remove(toDelete);
+}

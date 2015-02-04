@@ -44,13 +44,25 @@ void Projectile::update()
         }
         else
         {
-            if(CollisionDetector::isNonEntityCollision(currentTile, this))health--;
-
-            Entity *target = CollisionDetector::isEntityCollisions(currentTile, this);
-            if(target != NULL && target->getTeamId() != this->teamId)
+            Entity *targetEntity = CollisionDetector::isEntityCollisions(currentTile, this);
+            if(targetEntity != NULL && targetEntity->getTeamId() != this->teamId)
             {
                 health--;
-                target->getHit(damage, damageType);
+                targetEntity->getHit(damage, damageType);
+            }
+            else
+            {
+                Door *targetDoor = CollisionDetector::isDoorCollision(currentTile, this);
+                if(targetDoor != NULL)
+                {
+                    health--;
+                    targetDoor->getHit(damage, damageType);
+                    if(targetDoor->getHealth() <= 0)
+                    {
+                        currentTile->deleteDoor(targetDoor);
+                        Variables::session->getMap()->getCurrentModule()->deleteDoor(targetDoor);
+                    }
+                }
             }
         }
     }

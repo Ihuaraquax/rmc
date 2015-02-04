@@ -33,6 +33,7 @@ public:
     void deleteFromEntityList(Entity *toDelete);
     templateList<Entity>* getEntityList() const;
     void deleteWall(Wall *toDelete);
+    void deleteDoor(Door *toDelete);
     
     AiTile* getAiTile() const;
     bool hasOpenDoor(int direction);

@@ -74,7 +74,7 @@ void ModuleTile::addToWallList(Wall *wall)
 void ModuleTile::addToDoorList(Door *doors, int direction)
 {
     doorList[direction] = doors;
-    aiTile->setOpenDoorValue(((direction+1) * 2) - 1, true);
+    aiTile->setOpenDoorValue(((direction+1) * 2) - 1, doors->isOpen());
 }
 
 void ModuleTile::addToEntityList(Entity* toAdd)
@@ -221,4 +221,15 @@ void ModuleTile::setObstacle(Entity* obstacle) {
     this->obstacle = obstacle;
     this->addToEntityList(obstacle);
     aiTile->setObstructed(true);
+}
+
+void ModuleTile::deleteDoor(Door* toDelete)
+{
+    for(int i = 0; i < 4; i++)
+    {
+        if(doorList[i] == toDelete)
+        {
+            doorList[i] = NULL;
+        }
+    }
 }

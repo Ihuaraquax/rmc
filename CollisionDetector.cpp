@@ -71,6 +71,25 @@ Wall *CollisionDetector::isWallCollisions(ModuleTile* tile, Entity* target)
     }
     return value;
 }
+
+Door *CollisionDetector::isDoorCollision(ModuleTile* tile, Entity* target)
+{
+    Door *value = NULL;
+    
+    Door **doors = tile->getDoorList();
+    for(int i = 0; i < 4; i++)
+    {
+        if(doors[i] != NULL)if(doors[i]->isOpen() == false)
+            if(isCollision(doors[i]->getCoords(), target->getCoords()))
+        {
+            value = doors[i];
+            break;
+        }
+    }
+    
+    return value;
+}
+
 bool CollisionDetector::checkCollisions(Door **doors, Entity *target)
 {
     bool value = false;

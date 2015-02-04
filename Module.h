@@ -28,6 +28,7 @@ public:
     void addWallsToTiles();
     void addDoorsToTiles();
     void deleteWall(Wall *toDelete);
+    void deleteDoor(Door *toDelete);
     int getIndexOfModule(ModuleTile *tile);
 private:
     void resetTileAiValues(int X, int Y);
