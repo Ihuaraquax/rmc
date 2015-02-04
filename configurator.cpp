@@ -33,4 +33,8 @@ void configurator::config()
     Variables::ScaleY = y;
     srand(time(NULL));
     al_start_timer(Variables::timer);
+    Variables::MouseCoursor = al_load_bitmap("images/coursor.png");
+    al_convert_mask_to_alpha(Variables::MouseCoursor, al_map_rgb(255,0,255));
+    ALLEGRO_MOUSE_CURSOR *temp = al_create_mouse_cursor(Variables::MouseCoursor, 16, 16);
+    al_set_mouse_cursor(Variables::display, temp);
 }

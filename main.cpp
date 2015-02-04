@@ -41,6 +41,8 @@ ALLEGRO_EVENT_QUEUE *Variables::event_queue;
 ALLEGRO_TIMER *Variables::timer;
 ALLEGRO_DISPLAY *Variables::display;
 
+ALLEGRO_BITMAP *Variables::MouseCoursor;
+
 MainGameState Session::gameState = MAP;
 
 int const Variables::damageTypeCount = 6;
