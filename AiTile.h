@@ -23,6 +23,7 @@ public:
     void setOpenDoorValue(int index, bool value);
     Coordinates* getTarget() const;
     void setObstructed(bool obstructed);
+    void setBaseAIValue(int baseAIValue);
 private:
     AiTile **adjacentTiles;
     int roomId;

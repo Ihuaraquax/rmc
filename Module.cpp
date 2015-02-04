@@ -50,6 +50,7 @@ void Module::display()
         Door *temp = *i;
         temp->display();
     }
+    this->displayModuleTileAI();
 //    this->displayModuleThreatLevel();
 //    this->displayObstacles();
 }

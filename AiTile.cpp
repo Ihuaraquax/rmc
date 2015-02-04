@@ -88,3 +88,7 @@ Coordinates* AiTile::getTarget() const {
 void AiTile::setObstructed(bool obstructed) {
     this->obstructed = obstructed;
 }
+
+void AiTile::setBaseAIValue(int baseAIValue) {
+    this->baseAIValue = baseAIValue;
+}

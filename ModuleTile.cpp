@@ -93,6 +93,12 @@ void ModuleTile::addToEntityList(Entity* toAdd)
 
 void ModuleTile::deleteFromEntityList(Entity* toDelete)
 {
+    if(toDelete->isBarricade())
+    {
+        this->obstacle = NULL;
+        this->aiTile->setObstructed(false);
+        this->aiTile->setBaseAIValue(0);
+    }
     if(entityList != NULL && entityList->find(toDelete) != NULL)
     {
         if(entityList->data == toDelete)
