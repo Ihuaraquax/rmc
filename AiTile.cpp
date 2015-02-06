@@ -92,3 +92,8 @@ void AiTile::setObstructed(bool obstructed) {
 void AiTile::setBaseAIValue(int baseAIValue) {
     this->baseAIValue = baseAIValue;
 }
+
+bool AiTile::isOpenDoor(int direction)
+{
+    return this->openDoors[direction];
+}

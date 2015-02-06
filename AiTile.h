@@ -24,6 +24,7 @@ public:
     Coordinates* getTarget() const;
     void setObstructed(bool obstructed);
     void setBaseAIValue(int baseAIValue);
+    bool isOpenDoor(int direction);
 private:
     AiTile **adjacentTiles;
     int roomId;

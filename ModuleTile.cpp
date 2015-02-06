@@ -13,10 +13,14 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->aiTile = new AiTile(obstructed, roomId, base);
     this->entityList = NULL;
     this->obstacle = NULL;
-    this->wallList = NULL;
+    this->wallList = new Wall*[4];
     this->turretList = NULL;    
     doorList = new Door*[4];
-    for(int i = 0; i < 4; i++)doorList[i] = NULL;
+    for(int i = 0; i < 4; i++)
+    {
+        wallList[i] = NULL;
+        doorList[i] = NULL;
+    }
     threatLevel = 0;
 }
 
@@ -45,7 +49,7 @@ Door **ModuleTile::getDoorList() const {
     return doorList;
 }
 
-templateList<Wall> *ModuleTile::getWallList() const {
+Wall **ModuleTile::getWallList() const {
     return wallList;
 }
 
@@ -63,12 +67,10 @@ void ModuleTile::setAdjacentTiles(ModuleTile **tiles)
     }
 }
 
-void ModuleTile::addToWallList(Wall *wall)
+void ModuleTile::addToWallList(Wall *wall, int direction)
 {
-    templateList<Wall> *newWall = new templateList<Wall>();
-    newWall->data = wall;
-    newWall->next = wallList;
-    wallList = newWall;
+    wallList[direction] = wall;
+    aiTile->setOpenDoorValue(direction*2 + 1, false);
 }
 
 void ModuleTile::addToDoorList(Door *doors, int direction)
@@ -123,40 +125,17 @@ templateList<Entity>* ModuleTile::getEntityList() const {
 
 void ModuleTile::deleteWall(Wall* toDelete)
 {
-    if(wallList != NULL && wallList->find(toDelete) != NULL)
+    for(int i = 0; i < 4; i++)if(wallList[i] == toDelete)
     {
-        if(wallList->data == toDelete)
-        {
-            templateList<Wall> *temp = wallList;
-            wallList = wallList -> next;
-            delete temp;
-        }
-        else
-        {
-            templateList<Wall> *temp = wallList->findPrevious(toDelete);
-            templateList<Wall> *listToDelete = temp->next;
-            temp->next = listToDelete->next;
-            delete listToDelete;
-        }
+        wallList[i] = NULL;
+        aiTile->setOpenDoorValue(i*2 + 1, true);
     }
-    for(int i = 0; i < 8; i++)
+    for(int j = 0; j < 8; j++)
     {
-        ModuleTile *tile = adjacentTiles[i];
-        if(tile != NULL)if(tile->wallList != NULL && tile->wallList->find(toDelete) != NULL)
+        for(int i = 0; i < 4; i++)if(adjacentTiles[j]->wallList[i] == toDelete)
         {
-            if(tile->wallList->data == toDelete)
-            {
-                templateList<Wall> *temp = tile->wallList;
-                tile->wallList = tile->wallList -> next;
-                delete temp;
-            }
-            else
-            {
-                templateList<Wall> *temp = tile->wallList->findPrevious(toDelete);
-                templateList<Wall> *listToDelete = temp->next;
-                temp->next = listToDelete->next;
-                delete listToDelete;
-            }
+            adjacentTiles[j]->wallList[i] = NULL;
+            adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
         }
     }
 }
@@ -225,11 +204,18 @@ void ModuleTile::setObstacle(Entity* obstacle) {
 
 void ModuleTile::deleteDoor(Door* toDelete)
 {
-    for(int i = 0; i < 4; i++)
+    
+    for(int i = 0; i < 4; i++)if(doorList[i] == toDelete)
     {
-        if(doorList[i] == toDelete)
+        doorList[i] = NULL;
+        aiTile->setOpenDoorValue(i*2 + 1, true);
+    }
+    for(int j = 0; j < 8; j++)
+    {
+        for(int i = 0; i < 4; i++)if(adjacentTiles[j]->doorList[i] == toDelete)
         {
-            doorList[i] = NULL;
+            adjacentTiles[j]->doorList[i] = NULL;
+            adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
         }
     }
 }

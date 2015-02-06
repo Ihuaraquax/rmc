@@ -60,14 +60,16 @@ Entity* CollisionDetector::checkCollisions(templateList<Entity> *otherEntities, 
 Wall *CollisionDetector::isWallCollisions(ModuleTile* tile, Entity* target)
 {
     Wall* value = NULL;
-    templateList<Wall> *walls = tile->getWallList();
-    while(walls != NULL)
+    Wall **walls = tile->getWallList();
+    for(int i = 0; i < 4; i++)
     {
-        Wall *temp = walls->data;
-        Coordinates *oCoords = temp->getCoords();
-        if(isCollision(oCoords, target->getCoords()))value = temp;
-        if(value != NULL)break;
-        walls = walls->next;
+        Wall *temp = walls[i];
+        if(temp != NULL)
+        {
+            Coordinates *oCoords = temp->getCoords();
+            if(isCollision(oCoords, target->getCoords()))value = temp;
+            if(value != NULL)break;
+        }
     }
     return value;
 }

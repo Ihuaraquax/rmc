@@ -22,12 +22,12 @@ public:
     ~ModuleTile();
     void setAdjacentTiles(ModuleTile **tiles);
     
-    void addToWallList(Wall *walls);
+    void addToWallList(Wall *walls, int direction);
     void addToDoorList(Door *doors, int direction);
     void addToEntityList(Entity *toAdd);
     
     Door **getDoorList() const;
-    templateList<Wall> *getWallList() const;
+    Wall **getWallList() const;
     ModuleTile** getAdjacentTiles() const;
     
     void deleteFromEntityList(Entity *toDelete);
@@ -49,7 +49,7 @@ public:
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
-    templateList<Wall> *wallList;
+    Wall **wallList;
     templateList<Entity> *turretList;
     Entity *obstacle;
     Door **doorList;

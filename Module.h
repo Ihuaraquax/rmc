@@ -35,6 +35,7 @@ private:
     void displayModuleTileAI();
     void displayModuleThreatLevel();
     void displayObstacles();
+    void displayRoomBorders();
     std::list<Wall*> walls;
     std::list<Door*> doors;
     std::list<Floor*> floorTiles;

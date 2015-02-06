@@ -53,6 +53,31 @@ void Module::display()
     this->displayModuleTileAI();
 //    this->displayModuleThreatLevel();
 //    this->displayObstacles();
+    this->displayRoomBorders();
+}
+
+void Module::displayRoomBorders()
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            ModuleTile *tile= moduleTiles[getModuleIndex(i,j)];
+            int X = i * 50 + 25 - Variables::offsetX;
+            int Y = j * 50 + 25 - Variables::offsetY;
+            for(int k = 0; k < 4; k++)
+            {
+                if(tile->getAiTile()->getAdjacentTiles()[((k*2)+1)] != NULL)if(tile->getAiTile()->getRoomId() != tile->getAiTile()->getAdjacentTiles()[((k*2)+1)]->getRoomId())
+                {
+                    int deltaX = 0, deltaY = 0;
+                    if(k == 0)deltaY = 15;
+                    if(k == 1)deltaX = -15;
+                    if(k == 2)deltaY = -15;
+                    if(k == 3)deltaX = 15;
+                    if(tile->getAiTile()->isOpenDoor((k*2)+1))al_draw_circle(X - deltaX, Y - deltaY, 3, al_map_rgb(255, 0, 0),5);
+                    else al_draw_circle(X - deltaX, Y - deltaY, 3, al_map_rgb(255, 255, 0),5);
+                }
+            }
+        }
 }
 
 void Module::displayModuleTileAI()
@@ -154,21 +179,22 @@ void Module::addWallsToTiles()
     {
         Wall *temp = *i;
         int X = temp->getCoords()->X-1;
-        int Y = temp->getCoords()->Y-1;
+        int Y = temp->getCoords()->Y+1;
         ModuleTile *tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToWallList(temp);
-        X = temp->getCoords()->X-1;
-        Y = temp->getCoords()->Y+1;
-        tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToWallList(temp);
+        if(tile != NULL)tile->addToWallList(temp, 1);
         X = temp->getCoords()->X+1;
         Y = temp->getCoords()->Y-1;
         tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToWallList(temp);
+        if(tile != NULL)tile->addToWallList(temp, 2);
         X = temp->getCoords()->X+1;
         Y = temp->getCoords()->Y+1;
         tile = getModuleTileAt(X,Y);
-        if(tile != NULL)tile->addToWallList(temp);
+        if(tile != NULL)
+        {
+            if(temp->getCoords()->width > temp->getCoords()->height)
+                tile->addToWallList(temp, 0);
+            else tile->addToWallList(temp, 3);
+        }
     }
 }
 
