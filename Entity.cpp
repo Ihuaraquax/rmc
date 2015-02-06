@@ -93,9 +93,7 @@ int Entity::getTeamId() const {
 
 void Entity::setStartingTile()
 {
-    ModuleTile *currentTile = Variables::session->getMap()
-            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
-    currentTile->addToEntityList(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToEntityList(this);
 }
 
 

@@ -21,6 +21,7 @@ AllEntities::AllEntities() {
     {
         Entity *monster = new Monster();
         entityList.push_back(monster);
+        monster->setStartingTile();
     }
     Entity *turret = new Turret();
     entityList.push_back(turret);

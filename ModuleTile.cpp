@@ -147,11 +147,7 @@ AiTile* ModuleTile::getAiTile() const {
 
 bool ModuleTile::hasOpenDoor(int direction)
 {
-    bool result = false;
-    if(direction % 2 != 0)
-    {
-        if(doorList[direction/2] != NULL)if(doorList[direction/2]->isOpen())result = true;
-    }
+    bool result = aiTile->isOpenDoor(direction);
     return result;
 }
 

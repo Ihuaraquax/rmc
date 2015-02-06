@@ -10,8 +10,8 @@
 
 Turret::Turret() {
     this->coords = new Coordinates();
-    this->coords->X = 225;
-    this->coords->Y = 225;
+    this->coords->X = 200;
+    this->coords->Y = 200;
     this->coords->angle = -1;
     this->coords->height = 50;
     this->coords->width = 50;
@@ -25,12 +25,15 @@ Turret::Turret() {
     lowerPart->state = NORMAL;
     upperPart->state = NORMAL;
     health = 20;
+    armor = 0;
     weapons = new Weapon*[2];
     weapons[0] = new Weapon();
     teamId = 1;
     possessedWeapons = 2;
     range = 500;
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->propagateTurret(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToEntityList(this);
     currentThreatLevel = 0;
     targetAngle = -1;
     targetCoords = new Coordinates();
