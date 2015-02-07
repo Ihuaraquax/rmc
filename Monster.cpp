@@ -33,6 +33,7 @@ Monster::Monster() {
     this->threatLevel = 10;
     Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
+    this->setStartingTile();    
 }
 
 
