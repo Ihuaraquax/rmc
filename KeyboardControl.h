@@ -14,7 +14,7 @@ public:
     void keyboardActions();
     void gameKeyboardActions();
 private:
-
+    bool Fpressed;
 };
 
 #endif	/* KEYBOARDCONTROL_H */

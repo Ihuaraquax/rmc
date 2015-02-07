@@ -218,3 +218,28 @@ void ModuleTile::deleteDoor(Door* toDelete)
         }
     }
 }
+
+void ModuleTile::useDoor(int direction)
+{
+    if(doorList[direction] != NULL)
+    {
+        bool newValue = !doorList[direction]->isOpen();
+        doorList[direction]->setOpen(newValue);
+        aiTile->setOpenDoorValue(direction * 2 + 1, newValue);
+        switch(direction)
+        {
+            case 0:
+                adjacentTiles[1]->aiTile->setOpenDoorValue(5, newValue);
+                break;
+            case 1:
+                adjacentTiles[3]->aiTile->setOpenDoorValue(7, newValue);
+                break;
+            case 2:
+                adjacentTiles[5]->aiTile->setOpenDoorValue(3, newValue);
+                break;
+            case 3:
+                adjacentTiles[7]->aiTile->setOpenDoorValue(1, newValue);
+                break;
+        }
+    }
+}

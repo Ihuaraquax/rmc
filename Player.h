@@ -16,6 +16,7 @@ public:
     void playerMove(double X, double Y);
     void update();
     void display();
+    void interact();
 private:
     void setTestValues();
 };

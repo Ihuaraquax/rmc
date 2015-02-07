@@ -11,6 +11,7 @@
 #include "Player.h"
 
 KeyboardControl::KeyboardControl() {
+    Fpressed = false;
 }
 
 void KeyboardControl::keyboardActions()
@@ -33,4 +34,14 @@ void KeyboardControl::gameKeyboardActions()
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_S))dynamic_cast<Player*>(player)->playerMove(0,1);
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_A))dynamic_cast<Player*>(player)->playerMove(-1,0);
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_D))dynamic_cast<Player*>(player)->playerMove(1,0);
+     
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_F) && !Fpressed)
+     {
+         dynamic_cast<Player*>(player)->interact();
+         Fpressed = true;
+     }
+     if(Fpressed && !al_key_down(&Variables::key_state, ALLEGRO_KEY_F))
+     {
+         Fpressed = false;
+     }
 }

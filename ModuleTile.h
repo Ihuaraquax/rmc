@@ -46,6 +46,7 @@ public:
     void setCenter(int X, int Y);
     Entity* getObstacle() const;
     void setObstacle(Entity* obstacle);
+    void useDoor(int direction);
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
