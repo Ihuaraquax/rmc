@@ -43,6 +43,7 @@ void ModuleTile::update()
         }
         turrets = turrets->next;
     }
+    aiTile->resetAIValue();
 }
 
 Door **ModuleTile::getDoorList() const {
@@ -91,6 +92,7 @@ void ModuleTile::addToEntityList(Entity* toAdd)
     newEntity->data = toAdd;
     newEntity->next = entityList;
     entityList = newEntity;
+    this->aiTile->changeEntitiesAiValue(toAdd->getAiValue());
 }
 
 void ModuleTile::deleteFromEntityList(Entity* toDelete)
@@ -117,6 +119,7 @@ void ModuleTile::deleteFromEntityList(Entity* toDelete)
             delete listToDelete;
         }
     }
+    this->aiTile->changeEntitiesAiValue(-toDelete->getAiValue());
 }
 
 templateList<Entity>* ModuleTile::getEntityList() const {

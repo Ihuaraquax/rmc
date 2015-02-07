@@ -16,6 +16,7 @@ AiTile::AiTile(bool obstructed, int roomId, int base) {
     this->roomId = roomId;
     this->baseAIValue = base;
     if(obstructed)this->baseAIValue -= 50;
+    this->entitiesAiValue = 0;
     for(int i = 0; i < 8; i++)openDoors[i] = false;
     target = new Coordinates();
     target->X = -1;
@@ -41,25 +42,25 @@ void AiTile::resetAIValue()
 {
     target->X = -1;
     target->Y = -1;
-    currentAIValue = baseAIValue;
-    for(int i = 0; i < 8; i++)
-    {
-        if(adjacentTiles[i] != NULL)
-        if((adjacentTiles[i]->roomId == roomId || openDoors[i])&&
-           adjacentTiles[i]->currentAIValue != adjacentTiles[i]->baseAIValue)
-                adjacentTiles[i]->resetAIValue();
-    }
+    currentAIValue = baseAIValue + entitiesAiValue;
 }
 
-void AiTile::setCurrentAIValue(int currentAIValue) {
-    this->currentAIValue = currentAIValue;
-    for(int i = 0; i < 8; i++)
+void AiTile::updateCurrenTAIValue() {
+    if(currentAIValue >= 5)
     {
-        if(adjacentTiles[i] != NULL)
-        if(adjacentTiles[i]->obstructed == false &&
-           (adjacentTiles[i]->roomId == roomId || openDoors[i]) &&
-           adjacentTiles[i]->currentAIValue < currentAIValue-5)
-                adjacentTiles[i]->setCurrentAIValue(currentAIValue-5);
+        for(int i = 0; i < 8; i++)
+        {
+            if(adjacentTiles[i] != NULL)
+            if(adjacentTiles[i]->obstructed == false &&
+               (adjacentTiles[i]->roomId == roomId || openDoors[i]))
+            {
+                if(adjacentTiles[i]->currentAIValue < currentAIValue-5)
+                {
+                    adjacentTiles[i]->currentAIValue = currentAIValue - 5;
+                    adjacentTiles[i]->updateCurrenTAIValue();
+                }
+            }
+        }
     }
 }
 
@@ -96,4 +97,9 @@ void AiTile::setBaseAIValue(int baseAIValue) {
 bool AiTile::isOpenDoor(int direction)
 {
     return this->openDoors[direction];
+}
+
+void AiTile::changeEntitiesAiValue(int delta) {
+    this->entitiesAiValue += delta;    
+    if(baseAIValue + entitiesAiValue > currentAIValue)currentAIValue = baseAIValue + entitiesAiValue;
 }

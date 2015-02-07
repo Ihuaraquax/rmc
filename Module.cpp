@@ -85,7 +85,7 @@ void Module::displayModuleTileAI()
     for(int i = 0; i < Variables::tilesPerRoom; i++)
         for(int j = 0; j < Variables::tilesPerRoom; j++)
         {
-            int col = moduleTiles[getModuleIndex(i,j)]->getAiTile()->getCurrentAIValue() * 2.5;
+            int col = moduleTiles[getModuleIndex(i,j)]->getAiTile()->getCurrentAIValue() * 1.5;
             int X = i * 50 + 25 - Variables::offsetX;
             int Y = j * 50 + 25 - Variables::offsetY;
             al_draw_circle(X, Y, 10, al_map_rgb(col, col, col),25);
@@ -137,13 +137,15 @@ void Module::update()
     {
         moduleTiles[i]->update();
     }
+    for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
+    {
+        moduleTiles[i]->getAiTile()->updateCurrenTAIValue();
+    }
 }
 
-void Module::updateTileAiValue(int X, int Y, int value)
+void Module::updateTileAiTarget(int X, int Y)
 {
     int index = getModuleIndex(X / 50, Y / 50);
-    moduleTiles[index]->getAiTile()->resetAIValue();
-    moduleTiles[index]->getAiTile()->setCurrentAIValue(value);
     moduleTiles[index]->getAiTile()->getTarget()->X = X;
     moduleTiles[index]->getAiTile()->getTarget()->Y = Y;
 }

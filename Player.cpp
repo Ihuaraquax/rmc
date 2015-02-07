@@ -13,8 +13,8 @@ Player::Player() {
     setTestValues();
     targetCoords = new Coordinates();
     this->threatLevel = 0;
-    Variables::session->getMap()->getCurrentModule()->updateTileAiValue
-        (coords->X + coords->width/2, coords->Y + coords->height/2, 100);
+    Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
+        (coords->X + coords->width/2, coords->Y + coords->height/2);
 }
 
 
@@ -40,13 +40,14 @@ void Player::setTestValues()
     weapons[1] = new Weapon();
     teamId = 1;
     possessedWeapons = 2;
+    aiValue = 100;
 }
 
 void Player::playerMove(double X, double Y)
 {
     move(X,Y);
-    Variables::session->getMap()->getCurrentModule()->updateTileAiValue
-        (coords->X + coords->width/2, coords->Y + coords->height/2, 100);
+    Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
+        (coords->X + coords->width/2, coords->Y + coords->height/2);
 }
 
 void Player::update()

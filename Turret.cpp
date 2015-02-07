@@ -31,6 +31,7 @@ Turret::Turret() {
     teamId = 1;
     possessedWeapons = 2;
     range = 500;
+    aiValue = 100;
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->propagateTurret(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToEntityList(this);
@@ -57,7 +58,7 @@ void Turret::update()
             if(!turnRight())coords->angle++;
             else coords->angle--;
         }
-        this->attack(0);
+//        this->attack(0);
         targetAngle = -1;
     }
     currentThreatLevel = 0;

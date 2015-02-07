@@ -16,7 +16,7 @@ public:
     void setRoomId(int roomId);
     int getRoomId() const;
     void resetAIValue();
-    void setCurrentAIValue(int currentAIValue);
+    void updateCurrenTAIValue();
     int getCurrentAIValue() const;
     void setAdjacentTile(int index, AiTile *tile);
     AiTile** getAdjacentTiles() const;
@@ -25,12 +25,14 @@ public:
     void setObstructed(bool obstructed);
     void setBaseAIValue(int baseAIValue);
     bool isOpenDoor(int direction);
+    void changeEntitiesAiValue(int delta);
 private:
     AiTile **adjacentTiles;
     int roomId;
     bool obstructed;
     int baseAIValue;
     int currentAIValue;
+    int entitiesAiValue;
     bool openDoors[8];
     Coordinates *target;
 };

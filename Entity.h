@@ -34,6 +34,8 @@ public:
     
     bool virtual isProjectile();
     bool virtual isBarricade();
+    
+    int getAiValue() const;
 protected:
     void move(double X, double Y);
     Entity *isCollision();
@@ -48,6 +50,7 @@ protected:
     double *elementalResists;
     int armor;
     int threatLevel;
+    int aiValue;
 };
 
 #endif	/* ENTITY_H */

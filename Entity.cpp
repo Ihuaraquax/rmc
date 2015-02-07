@@ -16,6 +16,7 @@ Entity::Entity() {
     armor = 0;
     elementalResists = new double[Variables::damageTypeCount];
     for(int i = 0; i < Variables::damageTypeCount; i++)this->elementalResists[i] = 0.5;
+    aiValue = 0;
 }
 
 Entity::~Entity() {
@@ -105,4 +106,8 @@ bool Entity::isProjectile()
 bool Entity::isBarricade()
 {
     return false;
+}
+
+int Entity::getAiValue() const {
+    return aiValue;
 }

@@ -22,7 +22,7 @@ public:
     ~Module();
     void display();
     void update();
-    void updateTileAiValue(int X, int Y, int value);
+    void updateTileAiTarget(int X, int Y);
     bool isObstructed(int X, int Y);
     ModuleTile *getModuleTileAt(int X, int Y);
     void addWallsToTiles();
