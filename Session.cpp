@@ -27,6 +27,7 @@ void Session::create()
     map = new Map();
     map->createLevels();
     allEntities = new AllEntities();
+    hud = new HUD();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -55,6 +56,7 @@ void Session::display()
         al_clear_to_color(al_map_rgb(0,0,0));
         map->display();
         allEntities->display();
+        hud->display();
         al_flip_display();
         }
 }
@@ -67,6 +69,7 @@ void Session::update()
         {
         map->update();
         allEntities->update();
+        hud->update();
         }
 }
 

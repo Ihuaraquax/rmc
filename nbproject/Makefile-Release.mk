@@ -43,6 +43,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Door.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Floor.o \
+	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Image.o \
 	${OBJECTDIR}/KeyboardControl.o \
 	${OBJECTDIR}/Map.o \
@@ -130,6 +131,11 @@ ${OBJECTDIR}/Floor.o: Floor.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Floor.o Floor.cpp
+
+${OBJECTDIR}/HUD.o: HUD.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/HUD.o HUD.cpp
 
 ${OBJECTDIR}/Image.o: Image.cpp 
 	${MKDIR} -p ${OBJECTDIR}

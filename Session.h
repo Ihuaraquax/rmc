@@ -11,6 +11,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include "Menu.h"
+#include "HUD.h"
 #include "AllEntities.h"
 #include "MouseControl.h"
 #include "KeyboardControl.h"
@@ -45,6 +46,7 @@ private:
     MouseControl *mouse;
     KeyboardControl *keyboard;
     Map *map;
+    HUD *hud;
 };
 
 #endif	/* SESSION_H */
