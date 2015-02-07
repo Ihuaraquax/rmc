@@ -16,6 +16,7 @@ bool CollisionDetector::isAnyCollision(ModuleTile* tile, Entity* target)
     bool result = false;
     result = isNonEntityCollision(tile,target);
     if(result == false)result = isEntityCollisions(tile, target) != NULL;
+    if(target->getCoords()->X > 974)result = true;
     return result;
 }
 
@@ -70,6 +71,24 @@ Wall *CollisionDetector::isWallCollisions(ModuleTile* tile, Entity* target)
             if(isCollision(oCoords, target->getCoords()))value = temp;
             if(value != NULL)break;
         }
+    }
+    for(int j = 0; j < 8; j++)
+    {
+        if(tile->getAdjacentTiles()[j] != NULL)
+        {
+            walls = tile->getAdjacentTiles()[j]->getWallList();            
+            for(int i = 0; i < 4; i++)
+            {
+                Wall *temp = walls[i];
+                if(temp != NULL)
+                {
+                    Coordinates *oCoords = temp->getCoords();
+                    if(isCollision(oCoords, target->getCoords()))value = temp;
+                    if(value != NULL)break;
+                }
+            }
+        }
+        if(value != NULL)break;
     }
     return value;
 }
