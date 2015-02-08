@@ -235,10 +235,10 @@ void ModuleTile::useDoor(int direction)
                 adjacentTiles[3]->aiTile->setOpenDoorValue(7, newValue);
                 break;
             case 2:
-                adjacentTiles[5]->aiTile->setOpenDoorValue(3, newValue);
+                adjacentTiles[5]->aiTile->setOpenDoorValue(1, newValue);
                 break;
             case 3:
-                adjacentTiles[7]->aiTile->setOpenDoorValue(1, newValue);
+                adjacentTiles[7]->aiTile->setOpenDoorValue(3, newValue);
                 break;
         }
     }
