@@ -50,10 +50,10 @@ void Monster::update()
         
         
         double dX, dY;
-        dX = targetX - (coords->X - Variables::offsetX);
-        dY = (coords->Y - Variables::offsetY) - targetY;
+        dX = targetX - (coords->X);
+        dY = (coords->Y) - targetY;
         coords->angle = 180 + (atan(dX/dY) * 180 / M_PI);
-        if(targetY <= (coords->Y - Variables::offsetY))coords->angle += 180;    
+        if(targetY <= (coords->Y))coords->angle += 180;    
     
         double x,y;
         Variables::giveFactors(coords->angle, x,y);
