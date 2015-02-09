@@ -36,6 +36,7 @@ private:
     int targetSizeIncrement;
     int targetSizeDecrement;
     int targetSizeIncrementSlowDownPoint;
+    int projectileCount;
     int range;
     std::string displayPaths;
 };
