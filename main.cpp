@@ -40,6 +40,7 @@ Session *Variables::session;
 ALLEGRO_EVENT_QUEUE *Variables::event_queue;
 ALLEGRO_TIMER *Variables::timer;
 ALLEGRO_DISPLAY *Variables::display;
+ALLEGRO_FONT *Variables::basicFont;
 
 ALLEGRO_BITMAP *Variables::MouseCoursor;
 

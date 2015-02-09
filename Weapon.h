@@ -9,6 +9,7 @@
 #define	WEAPON_H
 #include "Coordinates.h"
 #include "DamageTypeEnum.h"
+#include <iostream>
 
 class Weapon {
 public:
@@ -18,6 +19,9 @@ public:
     void reload();
     double getAngle(Coordinates *shooterCoords, Coordinates *targetCoords);
     int getCurrentTargetSize() const;
+    int getAmmoCurrent() const;
+    int getAmmoMax() const;
+    std::string getDisplayPaths() const;
 private:
     int ammoMax;
     int ammoCurrent;
@@ -33,6 +37,7 @@ private:
     int targetSizeDecrement;
     int targetSizeIncrementSlowDownPoint;
     int range;
+    std::string displayPaths;
 };
 
 #endif	/* WEAPON_H */

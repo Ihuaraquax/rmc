@@ -1,8 +1,8 @@
 build/Debug/MinGW-Windows/RoomFactory.o: RoomFactory.cpp RoomFactory.h \
  Room.h globalVariables.h Session.h Menu.h HUD.h Image.h Coordinates.h \
- AllEntities.h Entity.h Wall.h Door.h Weapon.h DamageTypeEnum.h \
- templateList.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
- ModuleTile.h AiTile.h
+ WeaponUI.h Weapon.h DamageTypeEnum.h AllEntities.h Entity.h Wall.h \
+ Door.h templateList.h MouseControl.h KeyboardControl.h Map.h Module.h \
+ Floor.h ModuleTile.h AiTile.h
 
 RoomFactory.h:
 
@@ -20,6 +20,12 @@ Image.h:
 
 Coordinates.h:
 
+WeaponUI.h:
+
+Weapon.h:
+
+DamageTypeEnum.h:
+
 AllEntities.h:
 
 Entity.h:
@@ -27,10 +33,6 @@ Entity.h:
 Wall.h:
 
 Door.h:
-
-Weapon.h:
-
-DamageTypeEnum.h:
 
 templateList.h:
 

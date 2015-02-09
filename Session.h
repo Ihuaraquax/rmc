@@ -38,6 +38,7 @@ public:
     Map* getMap() const;
     AllEntities* getAllEntities() const;
     Menu* getMainMenu() const;
+    HUD* getHud() const;
     
     static MainGameState gameState;
 private:

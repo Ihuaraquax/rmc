@@ -37,4 +37,5 @@ void configurator::config()
     al_convert_mask_to_alpha(Variables::MouseCoursor, al_map_rgb(255,0,255));
     ALLEGRO_MOUSE_CURSOR *temp = al_create_mouse_cursor(Variables::MouseCoursor, 16, 16);
     al_set_mouse_cursor(Variables::display, temp);
+    Variables::basicFont = al_load_ttf_font("pirulen.ttf",14,0 );
 }

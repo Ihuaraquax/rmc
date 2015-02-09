@@ -64,6 +64,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Wall.o \
 	${OBJECTDIR}/WallFactory.o \
 	${OBJECTDIR}/Weapon.o \
+	${OBJECTDIR}/WeaponUI.o \
 	${OBJECTDIR}/configurator.o \
 	${OBJECTDIR}/main.o
 
@@ -236,6 +237,11 @@ ${OBJECTDIR}/Weapon.o: Weapon.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Weapon.o Weapon.cpp
+
+${OBJECTDIR}/WeaponUI.o: WeaponUI.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/WeaponUI.o WeaponUI.cpp
 
 ${OBJECTDIR}/configurator.o: configurator.cpp 
 	${MKDIR} -p ${OBJECTDIR}

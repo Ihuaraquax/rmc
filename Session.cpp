@@ -24,10 +24,10 @@ void Session::create()
     mainMenu = new Menu();
     keyboard = new KeyboardControl();
     mouse = new MouseControl();
+    hud = new HUD();
     map = new Map();
     map->createLevels();
     allEntities = new AllEntities();
-    hud = new HUD();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -36,6 +36,10 @@ AllEntities* Session::getAllEntities() const {
 
 Menu* Session::getMainMenu() const {
     return mainMenu;
+}
+
+HUD* Session::getHud() const {
+    return hud;
 }
 
 Session::Session(const Session& orig) {

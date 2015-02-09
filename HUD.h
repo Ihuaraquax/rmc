@@ -9,6 +9,7 @@
 #define	HUD_H
 #include "Image.h"
 #include "Coordinates.h"
+#include "WeaponUI.h"
 
 class HUD {
 public:
@@ -16,9 +17,13 @@ public:
     virtual ~HUD();
     void update();
     void display();
+    WeaponUI* getMainWeaponUI() const;
+    WeaponUI* getSecondaryWeaponUI() const;
 private:
     Image *background;
     Coordinates *coords;
+    WeaponUI *mainWeaponUI;
+    WeaponUI *secondaryWeaponUI;
 };
 
 #endif	/* HUD_H */

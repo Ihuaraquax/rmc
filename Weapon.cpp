@@ -24,6 +24,7 @@ Weapon::Weapon() {
     targetSizeDecrement = 2;
     targetSizeIncrementSlowDownPoint = 30;
     range = -1;
+    displayPaths = "images/weaponImage.png";
 }
 
 void Weapon::update()
@@ -81,4 +82,16 @@ double Weapon::getAngle(Coordinates* shooterCoords, Coordinates* targetCoords)
 
 int Weapon::getCurrentTargetSize() const {
     return currentTargetSize;
+}
+
+int Weapon::getAmmoCurrent() const {
+    return ammoCurrent;
+}
+
+int Weapon::getAmmoMax() const {
+    return ammoMax;
+}
+
+std::string Weapon::getDisplayPaths() const {
+    return displayPaths;
 }

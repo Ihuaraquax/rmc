@@ -41,6 +41,8 @@ void Player::setTestValues()
     teamId = 1;
     possessedWeapons = 2;
     aiValue = 100;
+    Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[0]);
+    Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
 }
 
 void Player::playerMove(double X, double Y)
