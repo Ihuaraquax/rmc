@@ -135,10 +135,13 @@ void ModuleTile::deleteWall(Wall* toDelete)
     }
     for(int j = 0; j < 8; j++)
     {
-        for(int i = 0; i < 4; i++)if(adjacentTiles[j]->wallList[i] == toDelete)
+        if(adjacentTiles[j] != NULL)
         {
-            adjacentTiles[j]->wallList[i] = NULL;
-            adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
+            for(int i = 0; i < 4; i++)if(adjacentTiles[j]->wallList[i] == toDelete)
+            {
+                adjacentTiles[j]->wallList[i] = NULL;
+                adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
+            }
         }
     }
 }
@@ -203,7 +206,6 @@ void ModuleTile::setObstacle(Entity* obstacle) {
 
 void ModuleTile::deleteDoor(Door* toDelete)
 {
-    
     for(int i = 0; i < 4; i++)if(doorList[i] == toDelete)
     {
         doorList[i] = NULL;
@@ -211,10 +213,13 @@ void ModuleTile::deleteDoor(Door* toDelete)
     }
     for(int j = 0; j < 8; j++)
     {
-        for(int i = 0; i < 4; i++)if(adjacentTiles[j]->doorList[i] == toDelete)
+        if(adjacentTiles[j] != NULL)
         {
-            adjacentTiles[j]->doorList[i] = NULL;
-            adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
+            for(int i = 0; i < 4; i++)if(adjacentTiles[j]->doorList[i] == toDelete)
+            {
+                adjacentTiles[j]->doorList[i] = NULL;
+                adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
+            }
         }
     }
 }
