@@ -90,7 +90,7 @@ void AllEntities::deleteDead()
     while (i != entityList.end())
     {
         Entity *toDelete = *i;
-        if (toDelete->getHealth()<=0)
+        if (toDelete->getHealth() <= 0)
         {
             if(toDelete == player)Variables::status = END;
             if(toDelete->isProjectile() == false)Variables::session->getMap()->getCurrentModule()

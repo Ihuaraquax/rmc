@@ -83,8 +83,9 @@ void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageTy
     this->damageType = damageType;
     this->teamId = teamID;
     Variables::giveFactors(angle, this->coords->speedX, this->coords->speedY);
-    this->coords->speedX *= 5;
-    this->coords->speedY *= 5;
+    double speed = 4 + (rand()% 20 / 10);
+    this->coords->speedX *= speed;
+    this->coords->speedY *= speed;
     this->range = range;
 }
 
