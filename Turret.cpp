@@ -106,3 +106,8 @@ void Turret::setTargetAngle(double targetAngle, double X, double Y) {
 double Turret::getTargetAngle() const {
     return targetAngle;
 }
+
+void Turret::executeAgony()
+{
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->deleteTurret(this);
+}

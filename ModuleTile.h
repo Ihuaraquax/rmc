@@ -42,6 +42,7 @@ public:
     int getThreatLevel() const;
     
     void propagateTurret(Entity *turret);
+    void deleteTurret(Entity *turret);
     
     void setCenter(int X, int Y);
     Entity* getObstacle() const;
@@ -56,7 +57,9 @@ private:
     Door **doorList;
     AiTile *aiTile;
     int threatLevel;
-    int centerX, centerY;
+    int centerX, centerY;    
+    
+    void deleteFromTurretList(Entity *toDelete);
 };
 
 #endif	/* MODULETILE_H */

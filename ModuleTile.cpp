@@ -248,3 +248,35 @@ void ModuleTile::useDoor(int direction)
         }
     }
 }
+
+void ModuleTile::deleteTurret(Entity* turret)
+{
+    if(this->turretList->find(turret) != NULL)
+    {
+        this->deleteFromTurretList(turret);
+        
+            for(int i = 0; i < 8; i++)
+            {
+                if(adjacentTiles[i] != NULL)
+                    if(adjacentTiles[i]->aiTile->getRoomId() == aiTile->getRoomId() || hasOpenDoor(i))
+                        adjacentTiles[i]->deleteTurret(turret);
+            }
+    }
+}
+
+void ModuleTile::deleteFromTurretList(Entity* toDelete)
+{
+    if(turretList->data == toDelete)
+    {
+        templateList<Entity> *temp = turretList;
+        turretList = turretList -> next;
+        delete temp;
+    }
+    else
+    {
+        templateList<Entity> *temp = turretList->findPrevious(toDelete);
+        templateList<Entity> *listToDelete = temp->next;
+        temp->next = listToDelete->next;
+        delete listToDelete;
+    }
+}

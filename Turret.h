@@ -21,6 +21,7 @@ public:
     void moveUpperPart();
     void setCurrentThreatLevel(int currentThreatLevel);
     int getCurrentThreatLevel() const;
+    void executeAgony();
 private:
     Image *upperPart;
     Image *lowerPart;
