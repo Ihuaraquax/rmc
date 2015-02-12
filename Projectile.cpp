@@ -8,6 +8,7 @@
 #include "Projectile.h"
 #include "globalVariables.h"
 #include "CollisionDetector.h"
+#include "Explosion.h"
 
 Projectile::Projectile() {
     this->coords = new Coordinates();
@@ -97,4 +98,12 @@ void Projectile::hit(Entity* target)
 bool Projectile::isProjectile()
 {
     return true;
+}
+
+void Projectile::executeAgony()
+{
+    Entity *explosion = new Explosion();
+    dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
+    dynamic_cast<Explosion*>(explosion)->dealDamage();
+    Variables::session->getAllEntities()->addEntity(explosion);
 }

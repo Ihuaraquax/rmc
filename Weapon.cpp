@@ -25,7 +25,7 @@ Weapon::Weapon() {
     targetSizeIncrementSlowDownPoint = 30;
     range = -1;
     displayPaths = "images/weaponImage.png";
-    projectileCount = 10;
+    projectileCount = 1;
 }
 
 void Weapon::update()

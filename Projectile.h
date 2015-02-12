@@ -17,6 +17,7 @@ public:
     void setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamId, int range);
     void hit (Entity *target);
     bool isProjectile();
+    void virtual executeAgony();
 private:
     int damage;
     int damageType;
