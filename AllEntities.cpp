@@ -92,6 +92,7 @@ void AllEntities::deleteDead()
         Entity *toDelete = *i;
         if (toDelete->getHealth() <= 0)
         {
+            toDelete->executeAgony();
             if(toDelete == player)Variables::status = END;
             if(toDelete->isProjectile() == false)Variables::session->getMap()->getCurrentModule()
                 ->getModuleTileAt(toDelete->getCoords()->X,toDelete->getCoords()->Y)

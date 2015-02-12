@@ -111,3 +111,8 @@ bool Entity::isBarricade()
 int Entity::getAiValue() const {
     return aiValue;
 }
+
+void Entity::executeAgony()
+{
+    
+}

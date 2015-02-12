@@ -36,6 +36,7 @@ public:
     bool virtual isBarricade();
     
     int getAiValue() const;
+    void virtual executeAgony();
 protected:
     void move(double X, double Y);
     Entity *isCollision();
