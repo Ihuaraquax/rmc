@@ -28,11 +28,11 @@ void WeaponLoader::loadWeapon(Weapon* weapon, int newWeaponId)
          >> weapon->reloadSpeed >> weapon->cooldown >> id
          >> weapon->weight >> weapon->targetSizeIncrement
          >> weapon->targetSizeDecrement >> weapon->defaultTargetSize
-         >> weapon->projectileCount;
+         >> weapon->projectileCount >> weapon->displayPaths;
     weapon->ammoCurrent = weapon->ammoMax;
     std::cout << "name: " <<  weapon->name << "\n damage: " << weapon->damage << "\n ammoMax: " << weapon->ammoMax << "\n ammoType: " << weapon->ammoType
          << "\n reload speed: " << weapon->reloadSpeed << "\n cooldown: " << weapon->cooldown << "\n damageType: " << id
          << "\n weight: " << weapon->weight << "\n target size increment: " << weapon->targetSizeIncrement
          << "\n target size decrement: " << weapon->targetSizeDecrement << "\n default target size: " << weapon->defaultTargetSize
-         << "\n projectile count: " << weapon->projectileCount << std::endl;
+         << "\n projectile count: " << weapon->projectileCount << std::endl << "\n display paths: " << weapon->displayPaths;
 }

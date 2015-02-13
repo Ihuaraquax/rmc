@@ -39,7 +39,7 @@ void Player::setTestValues()
     weapons = new Weapon*[2];
     weapons[0] = new Weapon();
     weapons[1] = new Weapon();
-    WeaponLoader::loadWeapon(weapons[0], 20);
+    WeaponLoader::loadWeapon(weapons[0], 6);
     WeaponLoader::loadWeapon(weapons[1], 31);
     teamId = 1;
     possessedWeapons = 2;

@@ -23,7 +23,7 @@ Weapon::Weapon() {
     currentTargetSize = 10;
     targetSizeIncrement = 15;
     targetSizeDecrement = 2;
-    targetSizeIncrementSlowDownPoint = 30;
+    targetSizeIncrementSlowDownPoint = 10;
     range = -1;
     displayPaths = "images/weaponImage.png";
     projectileCount = 1;
