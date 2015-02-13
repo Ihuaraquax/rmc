@@ -12,6 +12,7 @@
 #include <iostream>
 
 class Weapon {
+    friend class WeaponLoader;
 public:
     Weapon();
     void update();
@@ -38,6 +39,10 @@ private:
     int targetSizeIncrementSlowDownPoint;
     int projectileCount;
     int range;
+    int ammoType;
+    int special;
+    int weight;
+    std::string name;
     std::string displayPaths;
 };
 

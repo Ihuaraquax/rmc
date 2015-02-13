@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Coordinates.o \
 	${OBJECTDIR}/Door.o \
 	${OBJECTDIR}/Entity.o \
+	${OBJECTDIR}/Explosion.o \
 	${OBJECTDIR}/Floor.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Image.o \
@@ -64,6 +65,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Wall.o \
 	${OBJECTDIR}/WallFactory.o \
 	${OBJECTDIR}/Weapon.o \
+	${OBJECTDIR}/WeaponLoader.o \
 	${OBJECTDIR}/WeaponUI.o \
 	${OBJECTDIR}/configurator.o \
 	${OBJECTDIR}/main.o
@@ -127,6 +129,11 @@ ${OBJECTDIR}/Entity.o: Entity.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Entity.o Entity.cpp
+
+${OBJECTDIR}/Explosion.o: Explosion.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Explosion.o Explosion.cpp
 
 ${OBJECTDIR}/Floor.o: Floor.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -237,6 +244,11 @@ ${OBJECTDIR}/Weapon.o: Weapon.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Weapon.o Weapon.cpp
+
+${OBJECTDIR}/WeaponLoader.o: WeaponLoader.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/WeaponLoader.o WeaponLoader.cpp
 
 ${OBJECTDIR}/WeaponUI.o: WeaponUI.cpp 
 	${MKDIR} -p ${OBJECTDIR}

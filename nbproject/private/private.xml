@@ -7,26 +7,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Player.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Session.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Session.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Weapon.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/WeaponLoader.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Projectile.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/WeaponLoader.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Player.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/KeyboardControl.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/WeaponUI.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/globalVariables.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Image.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Door.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/HUD.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Monster.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/KeyboardControl.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/configurator.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/main.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/WeaponUI.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Weapon.h</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Weapon.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/ModuleTile.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/HUD.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/ModuleTile.cpp</file>
         </group>
     </open-files>
 </project-private>

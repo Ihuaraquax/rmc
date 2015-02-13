@@ -8,6 +8,7 @@
 #include "Weapon.h"
 #include "globalVariables.h"
 #include "Projectile.h"
+#include "WeaponLoader.h"
 
 Weapon::Weapon() {
     ammoMax = 100;
@@ -26,6 +27,7 @@ Weapon::Weapon() {
     range = -1;
     displayPaths = "images/weaponImage.png";
     projectileCount = 1;
+    name = "test";
 }
 
 void Weapon::update()

@@ -11,6 +11,8 @@
         <itemPath>Coordinates.h</itemPath>
         <itemPath>Entity.cpp</itemPath>
         <itemPath>Entity.h</itemPath>
+        <itemPath>Explosion.cpp</itemPath>
+        <itemPath>Explosion.h</itemPath>
         <itemPath>Image.cpp</itemPath>
         <itemPath>Image.h</itemPath>
         <itemPath>Monster.cpp</itemPath>
@@ -23,6 +25,8 @@
         <itemPath>Turret.h</itemPath>
         <itemPath>Weapon.cpp</itemPath>
         <itemPath>Weapon.h</itemPath>
+        <itemPath>WeaponLoader.cpp</itemPath>
+        <itemPath>WeaponLoader.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="Enums" projectFiles="true">
         <itemPath>DamageTypeEnum.h</itemPath>
@@ -147,6 +151,10 @@
       </item>
       <item path="Entity.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Explosion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Explosion.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Floor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Floor.h" ex="false" tool="3" flavor2="0">
@@ -234,6 +242,10 @@
       <item path="Weapon.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Weapon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WeaponLoader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WeaponLoader.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WeaponUI.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -303,6 +315,10 @@
       </item>
       <item path="Entity.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Explosion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Explosion.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Floor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Floor.h" ex="false" tool="3" flavor2="0">
@@ -390,6 +406,10 @@
       <item path="Weapon.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Weapon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WeaponLoader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WeaponLoader.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WeaponUI.cpp" ex="false" tool="1" flavor2="0">
       </item>
