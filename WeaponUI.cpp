@@ -54,10 +54,22 @@ void WeaponUI::display()
         al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 25, Y, ALLEGRO_ALIGN_CENTER, ammoMax);
         al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, " / ");
         al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X - 25, Y, ALLEGRO_ALIGN_CENTER, ammoLeft);
+        
+        displayReloadIndicator(X, Y);
     }
     else
     {
         noWeapon->display(coords);
+    }
+}
+
+void WeaponUI::displayReloadIndicator(double X, double Y)
+{
+    if(selectedWeapon->reloading)
+    {
+        double ratio = 0.0 +selectedWeapon->timeToShoot;
+        ratio /= selectedWeapon->reloadSpeed;            
+        al_draw_arc(X+75, Y, 10, 0 - 90, (ratio * M_PI * 2), al_map_rgb(255,255,255), 2);
     }
 }
 

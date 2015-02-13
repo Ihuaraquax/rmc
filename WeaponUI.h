@@ -17,6 +17,7 @@ public:
     virtual ~WeaponUI();
     void selectWeapon(Weapon *newWeapon);
     void display();
+    void displayReloadIndicator(double X, double Y);
     void update();
 private:
     bool leftDisplay;

@@ -13,6 +13,7 @@
 
 class Weapon {
     friend class WeaponLoader;
+    friend class WeaponUI;
 public:
     Weapon();
     void update();
