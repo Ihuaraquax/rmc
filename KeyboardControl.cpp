@@ -28,12 +28,15 @@ void KeyboardControl::gameKeyboardActions()
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_LEFT))Variables::offsetX-=5;
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_RIGHT))Variables::offsetX+=5;
      
-     Entity *player = Variables::session->getAllEntities()->getPlayer();
+     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
      
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_W))dynamic_cast<Player*>(player)->playerMove(0,-1);
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_S))dynamic_cast<Player*>(player)->playerMove(0,1);
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_A))dynamic_cast<Player*>(player)->playerMove(-1,0);
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_D))dynamic_cast<Player*>(player)->playerMove(1,0);
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_W))player->playerMove(0,-1);
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_S))player->playerMove(0,1);
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_A))player->playerMove(-1,0);
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_D))player->playerMove(1,0);
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_1))player->selectWeaponSet(0);
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_2))player->selectWeaponSet(1);
+     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_3))player->selectWeaponSet(2);
      
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_F) && !Fpressed)
      {

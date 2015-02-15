@@ -17,8 +17,11 @@ public:
     void update();
     void display();
     void interact();
+    void selectWeaponSet(int set);
+    int getSelecetedWeaponSet() const;
 private:
     void setTestValues();
+    int selecetedWeaponSet;
 };
 
 #endif	/* PLAYER_H */

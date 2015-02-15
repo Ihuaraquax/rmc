@@ -78,8 +78,8 @@ void WeaponUI::update()
     coords->X = Variables::RES_WIDTH - 205 + Variables::offsetX;
     coords->Y = Variables::RES_HEIGHT - 95 + Variables::offsetY;
     if(leftDisplay)coords->X -= 200;
-    damageTypeCoords->X = Variables::RES_WIDTH - 50 + Variables::offsetX;
-    damageTypeCoords->Y = Variables::RES_HEIGHT - 80 + Variables::offsetY;
+    damageTypeCoords->X = Variables::RES_WIDTH - 40 + Variables::offsetX;
+    damageTypeCoords->Y = Variables::RES_HEIGHT - 90 + Variables::offsetY;
     if(leftDisplay)damageTypeCoords->X -= 200;
 }
 

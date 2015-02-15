@@ -36,16 +36,20 @@ void Player::setTestValues()
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
     health = 20;
-    weapons = new Weapon*[2];
-    weapons[0] = new Weapon();
-    weapons[1] = new Weapon();
+    weapons = new Weapon*[6];
+    for(int i = 0; i < 6; i++)weapons[i] = new Weapon();
     WeaponLoader::loadWeapon(weapons[0], 6);
     WeaponLoader::loadWeapon(weapons[1], 31);
+    WeaponLoader::loadWeapon(weapons[2], 12);
+    WeaponLoader::loadWeapon(weapons[3], 1);
+    WeaponLoader::loadWeapon(weapons[4], 27);
+    WeaponLoader::loadWeapon(weapons[5], 23);
     teamId = 1;
-    possessedWeapons = 2;
+    possessedWeapons = 6;
     aiValue = 100;
     Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[0]);
     Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
+    selecetedWeaponSet = 0;
 }
 
 void Player::playerMove(double X, double Y)
@@ -59,14 +63,15 @@ void Player::update()
 {
     targetCoords->X = Variables::mouse_x;
     targetCoords->Y = Variables::mouse_y;
+    coords->angle = Variables::getAngle(coords->X, coords->Y, targetCoords->X, targetCoords->Y);
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
 }
 
 void Player::display()
 {
     image->display(coords);
-    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[0]->getCurrentTargetSize(), al_map_rgb(255,0,0), 5);
-    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[1]->getCurrentTargetSize(), al_map_rgb(0,0,255), 3);
+    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize(), al_map_rgb(255,0,0), 5);
+    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize(), al_map_rgb(0,0,255), 3);
 }
 
 void Player::interact()
@@ -75,4 +80,15 @@ void Player::interact()
     {
         Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->useDoor(i);
     }
+}
+
+void Player::selectWeaponSet(int set)
+{
+    this->selecetedWeaponSet = set;
+    Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[set *2]);
+    Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[set * 2 + 1]);
+}
+
+int Player::getSelecetedWeaponSet() const {
+    return selecetedWeaponSet;
 }

@@ -20,6 +20,8 @@ public:
     WeaponUI* getMainWeaponUI() const;
     WeaponUI* getSecondaryWeaponUI() const;
 private:
+    void displaySelectedSet();
+    
     Image *background;
     Coordinates *coords;
     WeaponUI *mainWeaponUI;
