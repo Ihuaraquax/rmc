@@ -14,6 +14,7 @@ class WeaponLoader {
 public:
     WeaponLoader();
     void static loadWeapon(Weapon *weapon, int newWeaponId);
+    DAMAGE_TYPE getDamageType(int type);
 private:
 };
 
