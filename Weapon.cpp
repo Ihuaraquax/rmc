@@ -11,23 +11,23 @@
 #include "WeaponLoader.h"
 
 Weapon::Weapon() {
-    ammoMax = 100;
-    ammoCurrent = 100;
-    reloadSpeed = 120;
-    damage = 10;
-    cooldown = 20;
+    ammoMax = 1;
+    ammoCurrent = 1;
+    reloadSpeed = 0;
+    damage = 0;
+    cooldown = 0;
     timeToShoot = 0;
     reloading = false;
     damageType = normal;
-    defaultTargetSize = 10;
-    currentTargetSize = 10;
-    targetSizeIncrement = 15;
-    targetSizeDecrement = 2;
+    defaultTargetSize = 1;
+    currentTargetSize = 1;
+    targetSizeIncrement = 1;
+    targetSizeDecrement = 1;
     targetSizeIncrementSlowDownPoint = 10;
-    range = -1;
-    displayPaths = "images/weaponImage.png";
-    projectileCount = 1;
-    name = "test";
+    range = 0;
+    displayPaths = "images/noWeapon.png";
+    projectileCount = 0;
+    name = "noWeapon";
 }
 
 void Weapon::update()
