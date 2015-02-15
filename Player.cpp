@@ -66,6 +66,7 @@ void Player::display()
 {
     image->display(coords);
     al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[0]->getCurrentTargetSize(), al_map_rgb(255,0,0), 5);
+    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[1]->getCurrentTargetSize(), al_map_rgb(0,0,255), 3);
 }
 
 void Player::interact()
