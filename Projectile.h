@@ -22,6 +22,7 @@ private:
     int damage;
     int damageType;
     int range;
+    bool explode;
 };
 
 #endif	/* PROJECTILE_H */
