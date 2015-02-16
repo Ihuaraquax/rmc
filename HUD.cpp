@@ -55,17 +55,18 @@ void HUD::update()
 
 void HUD::displaySelectedSet()
 {
+    int X = Variables::RES_WIDTH-403, Y = Variables::RES_HEIGHT - 115;
     int set = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSelecetedWeaponSet();
     if(set == 0)
     {
-        al_draw_filled_rectangle(coords->X + 1024-403, coords->Y + 5, coords->X + 1024 + 133 - 403, coords->Y + 5 + 20, al_map_rgb(0,0,255));
+        al_draw_filled_rectangle(X, Y, X + 133, Y + 20, al_map_rgb(0,0,255));
     }
     else if(set == 1)
     {
-        al_draw_filled_rectangle(coords->X + 1024-403 + 133, coords->Y + 5, coords->X + 1024 + 267 - 403, coords->Y + 5 + 20, al_map_rgb(0,255,0));
+        al_draw_filled_rectangle(X + 133, Y, X + 267, Y + 20, al_map_rgb(0,255,0));
     }
     else
     {
-        al_draw_filled_rectangle(coords->X + 1024-403 + 267, coords->Y + 5, coords->X + 1024 + 399 - 403, coords->Y + 5 + 20, al_map_rgb(255,0,0));
+        al_draw_filled_rectangle(X + 267, Y, X + 400, Y + 20, al_map_rgb(255,0,0));
     }
 }
