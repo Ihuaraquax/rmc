@@ -249,6 +249,14 @@ void ModuleTile::useDoor(int direction)
     }
 }
 
+int ModuleTile::getCenterY() const {
+    return centerY;
+}
+
+int ModuleTile::getCenterX() const {
+    return centerX;
+}
+
 void ModuleTile::deleteTurret(Entity* turret)
 {
     if(this->turretList->find(turret) != NULL)

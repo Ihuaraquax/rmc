@@ -244,6 +244,10 @@ int Module::getIndexOfModule(ModuleTile* tile)
     return -1;
 }
 
+ModuleTile** Module::getModuleTiles() const {
+    return moduleTiles;
+}
+
 void Module::deleteDoor(Door* toDelete)
 {
     doors.remove(toDelete);

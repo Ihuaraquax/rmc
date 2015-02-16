@@ -30,6 +30,7 @@ public:
     void deleteWall(Wall *toDelete);
     void deleteDoor(Door *toDelete);
     int getIndexOfModule(ModuleTile *tile);
+    ModuleTile** getModuleTiles() const;
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();

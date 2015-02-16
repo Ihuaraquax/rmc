@@ -104,4 +104,8 @@ bool Projectile::isProjectile()
 
 void Projectile::executeAgony()
 {
+    Entity *explosion = new Explosion();
+    dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
+    dynamic_cast<Explosion*>(explosion)->dealDamage();
+    Variables::session->getAllEntities()->addEntity(explosion);
 }

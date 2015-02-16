@@ -8,6 +8,7 @@
 #ifndef EXPLOSION_H
 #define	EXPLOSION_H
 #include "Entity.h"
+#include "templateList.h"
 
 class Explosion : public Entity{
 public:
@@ -15,7 +16,10 @@ public:
     virtual ~Explosion();
     void update();
     void display();
+    void dealDamageInSmallArea();
+    void dealDamageInLargeArea();
     void dealDamage();
+    void dealDamageInTile(templateList<Entity> *entityList, Wall **walls, Door **doors);
     
     void setCoords(double X, double Y);
     void setRadius(int radius);

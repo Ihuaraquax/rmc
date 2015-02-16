@@ -48,6 +48,9 @@ public:
     Entity* getObstacle() const;
     void setObstacle(Entity* obstacle);
     void useDoor(int direction);
+    
+    int getCenterY() const;
+    int getCenterX() const;
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
