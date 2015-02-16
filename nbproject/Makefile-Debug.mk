@@ -38,13 +38,18 @@ OBJECTFILES= \
 	${OBJECTDIR}/AiTile.o \
 	${OBJECTDIR}/AllEntities.o \
 	${OBJECTDIR}/Button.o \
+	${OBJECTDIR}/Chestplate.o \
 	${OBJECTDIR}/CollisionDetector.o \
 	${OBJECTDIR}/Coordinates.o \
 	${OBJECTDIR}/Door.o \
 	${OBJECTDIR}/Entity.o \
+	${OBJECTDIR}/Equipment.o \
+	${OBJECTDIR}/EquipmentUI.o \
 	${OBJECTDIR}/Explosion.o \
 	${OBJECTDIR}/Floor.o \
+	${OBJECTDIR}/Greaves.o \
 	${OBJECTDIR}/HUD.o \
+	${OBJECTDIR}/Helmet.o \
 	${OBJECTDIR}/Image.o \
 	${OBJECTDIR}/KeyboardControl.o \
 	${OBJECTDIR}/Map.o \
@@ -110,6 +115,11 @@ ${OBJECTDIR}/Button.o: Button.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Button.o Button.cpp
 
+${OBJECTDIR}/Chestplate.o: Chestplate.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Chestplate.o Chestplate.cpp
+
 ${OBJECTDIR}/CollisionDetector.o: CollisionDetector.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -130,6 +140,16 @@ ${OBJECTDIR}/Entity.o: Entity.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Entity.o Entity.cpp
 
+${OBJECTDIR}/Equipment.o: Equipment.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Equipment.o Equipment.cpp
+
+${OBJECTDIR}/EquipmentUI.o: EquipmentUI.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/EquipmentUI.o EquipmentUI.cpp
+
 ${OBJECTDIR}/Explosion.o: Explosion.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -140,10 +160,20 @@ ${OBJECTDIR}/Floor.o: Floor.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Floor.o Floor.cpp
 
+${OBJECTDIR}/Greaves.o: Greaves.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Greaves.o Greaves.cpp
+
 ${OBJECTDIR}/HUD.o: HUD.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/HUD.o HUD.cpp
+
+${OBJECTDIR}/Helmet.o: Helmet.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Helmet.o Helmet.cpp
 
 ${OBJECTDIR}/Image.o: Image.cpp 
 	${MKDIR} -p ${OBJECTDIR}

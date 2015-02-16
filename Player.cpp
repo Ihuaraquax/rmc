@@ -9,6 +9,10 @@
 #include "globalVariables.h"
 #include "ModuleTile.h"
 #include "WeaponLoader.h"
+#include "EquipmentUI.h"
+#include "Helmet.h"
+#include "Chestplate.h"
+#include "Greaves.h"
 
 Player::Player() {
     setTestValues();
@@ -20,6 +24,9 @@ Player::Player() {
 
 
 Player::~Player() {
+    delete helmet;
+    delete chestplate;
+    delete greaves;
 }
 
 void Player::setTestValues()
@@ -43,12 +50,16 @@ void Player::setTestValues()
     WeaponLoader::loadWeapon(weapons[2], 12);
     WeaponLoader::loadWeapon(weapons[3], 1);
     WeaponLoader::loadWeapon(weapons[4], 27);
-    WeaponLoader::loadWeapon(weapons[5], 23);
+    WeaponLoader::loadWeapon(weapons[5], 23);    
+    helmet = new Helmet();
+    chestplate = new Chestplate();
+    greaves = new Greaves();
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;
     Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[0]);
     Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
+    Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves);
     selecetedWeaponSet = 0;
 }
 
@@ -91,4 +102,16 @@ void Player::selectWeaponSet(int set)
 
 int Player::getSelecetedWeaponSet() const {
     return selecetedWeaponSet;
+}
+
+Equipment* Player::getGreaves() const {
+    return greaves;
+}
+
+Equipment* Player::getHelmet() const {
+    return helmet;
+}
+
+Equipment* Player::getChestplate() const {
+    return chestplate;
 }

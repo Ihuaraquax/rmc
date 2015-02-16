@@ -8,6 +8,7 @@
 #ifndef PLAYER_H
 #define	PLAYER_H
 #include "Entity.h"
+#include "Equipment.h"
 
 class Player : public Entity{
 public:
@@ -19,9 +20,16 @@ public:
     void interact();
     void selectWeaponSet(int set);
     int getSelecetedWeaponSet() const;
+    
+    Equipment* getGreaves() const;
+    Equipment* getHelmet() const;
+    Equipment* getChestplate() const;
 private:
     void setTestValues();
     int selecetedWeaponSet;
+    Equipment *chestplate;
+    Equipment *helmet;
+    Equipment *greaves;
 };
 
 #endif	/* PLAYER_H */

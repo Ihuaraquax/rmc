@@ -5,35 +5,62 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Entity Classes" projectFiles="true">
-        <itemPath>CollisionDetector.cpp</itemPath>
-        <itemPath>CollisionDetector.h</itemPath>
-        <itemPath>Coordinates.cpp</itemPath>
-        <itemPath>Coordinates.h</itemPath>
+        <logicalFolder name="f1" displayName="Equipment" projectFiles="true">
+          <itemPath>Chestplate.cpp</itemPath>
+          <itemPath>Chestplate.h</itemPath>
+          <itemPath>Equipment.cpp</itemPath>
+          <itemPath>Equipment.h</itemPath>
+          <itemPath>Greaves.cpp</itemPath>
+          <itemPath>Greaves.h</itemPath>
+          <itemPath>Helmet.cpp</itemPath>
+          <itemPath>Helmet.h</itemPath>
+          <itemPath>Weapon.cpp</itemPath>
+          <itemPath>Weapon.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="Utils" projectFiles="true">
+          <itemPath>CollisionDetector.cpp</itemPath>
+          <itemPath>CollisionDetector.h</itemPath>
+          <itemPath>WeaponLoader.cpp</itemPath>
+          <itemPath>WeaponLoader.h</itemPath>
+        </logicalFolder>
         <itemPath>Entity.cpp</itemPath>
         <itemPath>Entity.h</itemPath>
         <itemPath>Explosion.cpp</itemPath>
         <itemPath>Explosion.h</itemPath>
-        <itemPath>Image.cpp</itemPath>
-        <itemPath>Image.h</itemPath>
         <itemPath>Monster.cpp</itemPath>
         <itemPath>Monster.h</itemPath>
+        <itemPath>Obstacle.cpp</itemPath>
+        <itemPath>Obstacle.h</itemPath>
         <itemPath>Player.cpp</itemPath>
         <itemPath>Player.h</itemPath>
         <itemPath>Projectile.cpp</itemPath>
         <itemPath>Projectile.h</itemPath>
         <itemPath>Turret.cpp</itemPath>
         <itemPath>Turret.h</itemPath>
-        <itemPath>Weapon.cpp</itemPath>
-        <itemPath>Weapon.h</itemPath>
-        <itemPath>WeaponLoader.cpp</itemPath>
-        <itemPath>WeaponLoader.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f4" displayName="Enums" projectFiles="true">
-        <itemPath>DamageTypeEnum.h</itemPath>
+      <logicalFolder name="f5" displayName="GeneralClasses" projectFiles="true">
+        <logicalFolder name="f4" displayName="Enums" projectFiles="true">
+          <itemPath>DamageTypeEnum.h</itemPath>
+        </logicalFolder>
+        <itemPath>Coordinates.cpp</itemPath>
+        <itemPath>Coordinates.h</itemPath>
+        <itemPath>Image.cpp</itemPath>
+        <itemPath>Image.h</itemPath>
+        <itemPath>KeyboardControl.cpp</itemPath>
+        <itemPath>KeyboardControl.h</itemPath>
+        <itemPath>MouseControl.cpp</itemPath>
+        <itemPath>MouseControl.h</itemPath>
+        <itemPath>globalVariables.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Map Classes" projectFiles="true">
-        <itemPath>AiTile.cpp</itemPath>
-        <itemPath>AiTile.h</itemPath>
+        <logicalFolder name="f1" displayName="Tile" projectFiles="true">
+          <itemPath>AiTile.cpp</itemPath>
+          <itemPath>AiTile.h</itemPath>
+          <itemPath>ModuleTile.cpp</itemPath>
+          <itemPath>ModuleTile.h</itemPath>
+          <itemPath>TileFactory.cpp</itemPath>
+          <itemPath>TileFactory.h</itemPath>
+        </logicalFolder>
         <itemPath>Door.cpp</itemPath>
         <itemPath>Door.h</itemPath>
         <itemPath>Floor.cpp</itemPath>
@@ -44,16 +71,10 @@
         <itemPath>Module.h</itemPath>
         <itemPath>ModuleFactory.cpp</itemPath>
         <itemPath>ModuleFactory.h</itemPath>
-        <itemPath>ModuleTile.cpp</itemPath>
-        <itemPath>ModuleTile.h</itemPath>
-        <itemPath>Obstacle.cpp</itemPath>
-        <itemPath>Obstacle.h</itemPath>
         <itemPath>Room.cpp</itemPath>
         <itemPath>Room.h</itemPath>
         <itemPath>RoomFactory.cpp</itemPath>
         <itemPath>RoomFactory.h</itemPath>
-        <itemPath>TileFactory.cpp</itemPath>
-        <itemPath>TileFactory.h</itemPath>
         <itemPath>Wall.cpp</itemPath>
         <itemPath>Wall.h</itemPath>
         <itemPath>WallFactory.cpp</itemPath>
@@ -62,19 +83,16 @@
       <logicalFolder name="f1" displayName="Overseer Classes" projectFiles="true">
         <itemPath>AllEntities.cpp</itemPath>
         <itemPath>AllEntities.h</itemPath>
-        <itemPath>KeyboardControl.cpp</itemPath>
-        <itemPath>KeyboardControl.h</itemPath>
-        <itemPath>MouseControl.cpp</itemPath>
-        <itemPath>MouseControl.h</itemPath>
         <itemPath>Session.cpp</itemPath>
         <itemPath>Session.h</itemPath>
         <itemPath>configurator.cpp</itemPath>
         <itemPath>configurator.h</itemPath>
-        <itemPath>globalVariables.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="UI classes" projectFiles="true">
         <itemPath>Button.cpp</itemPath>
         <itemPath>Button.h</itemPath>
+        <itemPath>EquipmentUI.cpp</itemPath>
+        <itemPath>EquipmentUI.h</itemPath>
         <itemPath>HUD.cpp</itemPath>
         <itemPath>HUD.h</itemPath>
         <itemPath>Menu.cpp</itemPath>
@@ -133,6 +151,10 @@
       </item>
       <item path="Button.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Chestplate.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Chestplate.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CollisionDetector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CollisionDetector.h" ex="false" tool="3" flavor2="0">
@@ -151,6 +173,14 @@
       </item>
       <item path="Entity.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Equipment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Equipment.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EquipmentUI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EquipmentUI.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Explosion.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Explosion.h" ex="false" tool="3" flavor2="0">
@@ -159,9 +189,17 @@
       </item>
       <item path="Floor.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Greaves.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Greaves.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HUD.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Helmet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Helmet.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Image.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -297,6 +335,10 @@
       </item>
       <item path="Button.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Chestplate.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Chestplate.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CollisionDetector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CollisionDetector.h" ex="false" tool="3" flavor2="0">
@@ -315,6 +357,14 @@
       </item>
       <item path="Entity.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Equipment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Equipment.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EquipmentUI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EquipmentUI.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Explosion.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Explosion.h" ex="false" tool="3" flavor2="0">
@@ -323,9 +373,17 @@
       </item>
       <item path="Floor.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Greaves.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Greaves.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HUD.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Helmet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Helmet.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Image.cpp" ex="false" tool="1" flavor2="0">
       </item>

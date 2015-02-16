@@ -10,6 +10,7 @@
 #include "Image.h"
 #include "Coordinates.h"
 #include "WeaponUI.h"
+#include "EquipmentUI.h"
 
 class HUD {
 public:
@@ -19,6 +20,7 @@ public:
     void display();
     WeaponUI* getMainWeaponUI() const;
     WeaponUI* getSecondaryWeaponUI() const;
+    EquipmentUI* getEquipmentUI() const;
 private:
     void displaySelectedSet();
     
@@ -26,6 +28,7 @@ private:
     Coordinates *coords;
     WeaponUI *mainWeaponUI;
     WeaponUI *secondaryWeaponUI;
+    EquipmentUI *equipmentUI;
 };
 
 #endif	/* HUD_H */

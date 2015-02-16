@@ -9,6 +9,7 @@
 #include "globalVariables.h"
 #include "WeaponUI.h"
 #include "Player.h"
+#include "EquipmentUI.h"
 
 HUD::HUD() {
     this->coords = new Coordinates();
@@ -18,12 +19,16 @@ HUD::HUD() {
     background = new Image(1, path, false);
     mainWeaponUI = new WeaponUI(true);
     secondaryWeaponUI = new WeaponUI(false);
+    equipmentUI = new EquipmentUI();
 }
 
 
 HUD::~HUD() {
     delete coords;
     delete background;
+    delete equipmentUI;
+    delete mainWeaponUI;
+    delete secondaryWeaponUI;
 }
 
 void HUD::display()
@@ -34,6 +39,7 @@ void HUD::display()
     mainWeaponUI->display();
     secondaryWeaponUI->display();
     displaySelectedSet();
+    equipmentUI->display();
 }
 
 WeaponUI* HUD::getMainWeaponUI() const {
@@ -44,12 +50,17 @@ WeaponUI* HUD::getSecondaryWeaponUI() const {
     return secondaryWeaponUI;
 }
 
+EquipmentUI* HUD::getEquipmentUI() const {
+    return equipmentUI;
+}
+
 void HUD::update()
 {
     coords->X = 0 + Variables::offsetX;
     coords->Y = Variables::RES_HEIGHT - 120 + Variables::offsetY;
     mainWeaponUI->update();
     secondaryWeaponUI->update();
+    equipmentUI->update();
 }
 
 
