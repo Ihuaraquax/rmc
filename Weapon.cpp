@@ -101,3 +101,7 @@ int Weapon::getAmmoMax() const {
 std::string Weapon::getDisplayPaths() const {
     return displayPaths;
 }
+
+std::string Weapon::getName() const {
+    return name;
+}

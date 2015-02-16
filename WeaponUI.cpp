@@ -50,10 +50,14 @@ void WeaponUI::display()
         itoa(selectedWeapon->getAmmoCurrent(), ammoLeft, 10);
         double X = Variables::RES_WIDTH - 140;
         if(leftDisplay)X -= 200;
-        double Y = Variables::RES_HEIGHT - 25;
+        double Y = Variables::RES_HEIGHT - 90;
         al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 25, Y, ALLEGRO_ALIGN_CENTER, ammoMax);
         al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, " / ");
         al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X - 25, Y, ALLEGRO_ALIGN_CENTER, ammoLeft);
+        
+        char *name = new char[selectedWeapon->getName().length()+1];
+        strcpy(name, selectedWeapon->getName().c_str());
+        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 40, Y+65, ALLEGRO_ALIGN_CENTER, name);
         
         displayReloadIndicator(X, Y);
     }
@@ -69,7 +73,7 @@ void WeaponUI::displayReloadIndicator(double X, double Y)
     {
         double ratio = 0.0 +selectedWeapon->timeToShoot;
         ratio /= selectedWeapon->reloadSpeed;            
-        al_draw_arc(X+75, Y, 10, 0 - 90, (ratio * M_PI * 2), al_map_rgb(255,255,255), 2);
+        al_draw_arc(X+75, Y+10, 10, 0 - 90, (ratio * M_PI * 2), al_map_rgb(255,255,255), 2);
     }
 }
 

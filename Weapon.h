@@ -24,6 +24,7 @@ public:
     int getAmmoCurrent() const;
     int getAmmoMax() const;
     std::string getDisplayPaths() const;
+    std::string getName() const;
 private:
     int ammoMax;
     int ammoCurrent;
