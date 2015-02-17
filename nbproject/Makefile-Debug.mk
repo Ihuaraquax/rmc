@@ -44,6 +44,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Door.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Equipment.o \
+	${OBJECTDIR}/EquipmentLoader.o \
 	${OBJECTDIR}/EquipmentUI.o \
 	${OBJECTDIR}/Explosion.o \
 	${OBJECTDIR}/Floor.o \
@@ -144,6 +145,11 @@ ${OBJECTDIR}/Equipment.o: Equipment.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Equipment.o Equipment.cpp
+
+${OBJECTDIR}/EquipmentLoader.o: EquipmentLoader.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/EquipmentLoader.o EquipmentLoader.cpp
 
 ${OBJECTDIR}/EquipmentUI.o: EquipmentUI.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -10,6 +10,7 @@
 #include "Equipment.h"
 
 class Helmet : public Equipment {
+    friend class EquipmentLoader;
 public:
     Helmet();
     virtual ~Helmet();

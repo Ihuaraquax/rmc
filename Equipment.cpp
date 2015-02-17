@@ -10,7 +10,7 @@
 
 Equipment::Equipment() {
     this->action = -1;
-    this->active = true;
+    this->active = false;
     this->armor = 0;
     this->currentEnergy = 100;
     this->energyConsumption = 0;

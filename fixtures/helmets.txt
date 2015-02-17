@@ -1,0 +1,8 @@
+1 Dzialko 20 10 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+2 Celownik 25 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+3 Gazmaska 25 2 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+4 Pancerz 50 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+5 Hakowanie 20 5 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+6 Infrawizja 25 4 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+7 Sandevistan 20 10 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+8 Elemental 20 10 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png

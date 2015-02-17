@@ -10,6 +10,7 @@
 #include "Equipment.h"
 
 class Chestplate : public Equipment {
+    friend class EquipmentLoader;
 public:
     Chestplate();
     virtual ~Chestplate();

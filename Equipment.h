@@ -10,6 +10,7 @@
 #include <iostream>
 
 class Equipment {
+    friend class EquipmentLoader;
 public:
     Equipment();
     virtual ~Equipment();
@@ -30,6 +31,7 @@ protected:
     int armor;
     double *resistance;
     std::string imagePath;
+    std::string name;
 };
 
 #endif	/* EQUIPMENT_H */

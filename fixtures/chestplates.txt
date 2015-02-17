@@ -1,0 +1,8 @@
+1 Armor 100 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png
+2 Egzoskeleton 75 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png
+3 SuperArmor 50 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png
+4 HealthKit 30 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png
+5 ThermalSuit 50 5 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png
+6 Medkits 60 10 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png
+7 BombDisposal 70 2 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png
+8 TurretEngie 40 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorChestplate.png

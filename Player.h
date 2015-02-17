@@ -24,12 +24,19 @@ public:
     Equipment* getGreaves() const;
     Equipment* getHelmet() const;
     Equipment* getChestplate() const;
+    
+    void recalculateEquipmentBenefits();
+    void changeHelmet(int newHelmetIndex);
+    void changeChestplate(int newChestplateIndex);
+    void changeGreaves(int newGreavesIndex);
 private:
     void setTestValues();
     int selecetedWeaponSet;
     Equipment *chestplate;
     Equipment *helmet;
     Equipment *greaves;
+    
+    Weapon *shoulderGun;
 };
 
 #endif	/* PLAYER_H */

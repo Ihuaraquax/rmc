@@ -13,6 +13,7 @@
 #include "Helmet.h"
 #include "Chestplate.h"
 #include "Greaves.h"
+#include "EquipmentLoader.h"
 
 Player::Player() {
     setTestValues();
@@ -51,9 +52,12 @@ void Player::setTestValues()
     WeaponLoader::loadWeapon(weapons[3], 1);
     WeaponLoader::loadWeapon(weapons[4], 27);
     WeaponLoader::loadWeapon(weapons[5], 23);    
-    helmet = new Helmet();
-    chestplate = new Chestplate();
-    greaves = new Greaves();
+    helmet = new Equipment();
+    chestplate = new Equipment();
+    greaves = new Equipment();
+    this->changeHelmet(4);
+    this->changeChestplate(1);
+    this->changeGreaves(4);
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;
@@ -61,6 +65,8 @@ void Player::setTestValues()
     Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
     Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves);
     selecetedWeaponSet = 0;
+    shoulderGun = new Weapon();
+    WeaponLoader::loadWeapon(shoulderGun, 3);
 }
 
 void Player::playerMove(double X, double Y)
@@ -114,4 +120,32 @@ Equipment* Player::getHelmet() const {
 
 Equipment* Player::getChestplate() const {
     return chestplate;
+}
+
+void Player::recalculateEquipmentBenefits()
+{
+    this->armor = helmet->getArmor() + chestplate->getArmor() + greaves->getArmor();
+    for(int i = 0; i < Variables::damageTypeCount; i++)
+        this->elementalResists[i] = helmet->getResistance(i) + chestplate->getResistance(i) + greaves->getResistance(i);
+}
+
+void Player::changeHelmet(int newHelmetIndex)
+{
+    EquipmentLoader::loadNewEquipment(helmet, newHelmetIndex, "fixtures/helmets.txt");
+    recalculateEquipmentBenefits();
+    Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves);
+}
+
+void Player::changeChestplate(int newChestplateIndex)
+{
+    EquipmentLoader::loadNewEquipment(chestplate, newChestplateIndex, "fixtures/chestplates.txt");
+    recalculateEquipmentBenefits();
+    Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves);
+}
+
+void Player::changeGreaves(int newGreavesIndex)
+{
+    EquipmentLoader::loadNewEquipment(greaves, newGreavesIndex, "fixtures/greaves.txt");
+    recalculateEquipmentBenefits();
+    Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves);
 }

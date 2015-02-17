@@ -1,0 +1,8 @@
+1 AmmoPacks 20 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
+2 Insulation 35 2 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
+3 Rusznikarz 15 10 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
+4 Pancerz 50 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
+5 Szybkobiegi 20 5 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
+6 Cloack 10 20 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
+7 Grenades 20 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
+8 BlinkBoots 10 80 0.1 0.1 0.1 0.1 0.1 0.1 images/armorGreaves.png
