@@ -70,7 +70,7 @@ void TileFactory::createModuleTiles(Module* module, int **tiles)
         {
             module->moduleTiles[i*Variables::tilesPerRoom + j] =
                     new ModuleTile(false, tiles[i][j],0);
-            module->moduleTiles[i*Variables::tilesPerRoom + j]->setCenter(i * 50 + 25, j * 50 + 25);
+            module->moduleTiles[i*Variables::tilesPerRoom + j]->setCenter(i * Variables::tileSize + 25, j * Variables::tileSize + 25);
         }
     defineTilesSides(module);
 }

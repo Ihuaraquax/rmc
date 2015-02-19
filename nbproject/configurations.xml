@@ -10,8 +10,6 @@
           <itemPath>Chestplate.h</itemPath>
           <itemPath>Equipment.cpp</itemPath>
           <itemPath>Equipment.h</itemPath>
-          <itemPath>EquipmentLoader.cpp</itemPath>
-          <itemPath>EquipmentLoader.h</itemPath>
           <itemPath>Greaves.cpp</itemPath>
           <itemPath>Greaves.h</itemPath>
           <itemPath>Helmet.cpp</itemPath>
@@ -22,6 +20,8 @@
         <logicalFolder name="f2" displayName="Utils" projectFiles="true">
           <itemPath>CollisionDetector.cpp</itemPath>
           <itemPath>CollisionDetector.h</itemPath>
+          <itemPath>EquipmentLoader.cpp</itemPath>
+          <itemPath>EquipmentLoader.h</itemPath>
           <itemPath>WeaponLoader.cpp</itemPath>
           <itemPath>WeaponLoader.h</itemPath>
         </logicalFolder>

@@ -53,6 +53,7 @@ struct Variables
     static const int damageTypeCount;
     
     static const int tilesPerRoom;
+    static const int tileSize;
     
     void static giveFactors(double angle, double &x_factor, double &y_factor)
      {

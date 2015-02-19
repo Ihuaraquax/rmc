@@ -109,11 +109,11 @@ void AllEntities::createObstacles()
     for(int i = 0; i < Variables::tilesPerRoom; i++)
         for(int j = 0; j < Variables::tilesPerRoom; j++)
         {
-            bool isObstacle = (rand()%50 == 0);
+            bool isObstacle = (rand()%Variables::tileSize == 0);
             if(isObstacle)
             {
-                Entity *obstacle = new Obstacle(i * 50, j * 50);
-                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * 50, j * 50)->setObstacle(obstacle);
+                Entity *obstacle = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * Variables::tileSize, j * Variables::tileSize)->setObstacle(obstacle);
                 this->addEntity(obstacle);
             }
         }

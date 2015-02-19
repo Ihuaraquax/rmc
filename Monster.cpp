@@ -45,8 +45,8 @@ void Monster::update()
     int direction = getDirection();
     if(direction >= 0)
     {
-        int targetX = (direction / Variables::tilesPerRoom) * 50 + 24;
-        int targetY = (direction % Variables::tilesPerRoom) * 50 + 24;
+        int targetX = (direction / Variables::tilesPerRoom) * Variables::tileSize + 24;
+        int targetY = (direction % Variables::tilesPerRoom) * Variables::tileSize + 24;
         
         
         double dX, dY;

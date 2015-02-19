@@ -79,7 +79,7 @@ void Explosion::dealDamageInLargeArea()
 
 void Explosion::dealDamage()
 {
-    if(radius <= 50)this->dealDamageInSmallArea();
+    if(radius <= Variables::tileSize)this->dealDamageInSmallArea();
     else this->dealDamageInLargeArea();
 }
 

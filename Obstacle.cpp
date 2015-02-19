@@ -6,13 +6,14 @@
  */
 
 #include "Obstacle.h"
+#include "globalVariables.h"
 
 Obstacle::Obstacle(double X, double Y) {
     this->coords = new Coordinates();
     this->health = 100;
     this->armor = 1;
-    this->coords->height = 50;
-    this->coords->width = 50;
+    this->coords->height = Variables::tileSize;
+    this->coords->width = Variables::tileSize;
     this->coords->X = X;
     this->coords->Y = Y;
     std::string paths[] = {"images/table.png"};

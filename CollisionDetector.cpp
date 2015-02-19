@@ -7,6 +7,7 @@
 
 #include "CollisionDetector.h"
 #include "templateList.h"
+#include "globalVariables.h"
 
 CollisionDetector::CollisionDetector() {
 }
@@ -16,7 +17,7 @@ bool CollisionDetector::isAnyCollision(ModuleTile* tile, Entity* target)
     bool result = false;
     result = isNonEntityCollision(tile,target);
     if(result == false)result = isEntityCollisions(tile, target) != NULL;
-    if(target->getCoords()->X > 974)result = true;
+    if(target->getCoords()->X > Variables::tileSize * Variables::tilesPerRoom - 50)result = true;
     return result;
 }
 

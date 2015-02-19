@@ -49,7 +49,7 @@ std::list<Wall*> WallFactory::getRoomWall(Room* room, int **fieldTable)
         Wall *upperWall = isValidTile(x,y-1,fieldTable, room->roomTile);
         Wall *lowerWall = isValidTile(x,y+1,fieldTable, room->roomTile);
         
-        int wallSize = 50;
+        int wallSize = Variables::tileSize;
         
         if(leftWall != NULL)
         {
@@ -208,24 +208,24 @@ void WallFactory::setModuleBasicWalls(Module* module)
     {
         Coordinates *coords1 = new Coordinates();
         coords1->X = 0;
-        coords1->Y = 50 * i;
-        coords1->height = 50;
+        coords1->Y = Variables::tileSize * i;
+        coords1->height = Variables::tileSize;
         coords1->width = 2;
         Coordinates *coords2 = new Coordinates();
-        coords2->X = 50 * i;
+        coords2->X = Variables::tileSize * i;
         coords2->Y = 0;
         coords2->height = 2;
-        coords2->width = 50;
+        coords2->width = Variables::tileSize;
         Coordinates *coords3 = new Coordinates();
-        coords3->X = 1000;
-        coords3->Y = 50 * i;
-        coords3->height = 50;
+        coords3->X = Variables::tileSize * Variables::tilesPerRoom;
+        coords3->Y = Variables::tileSize * i;
+        coords3->height = Variables::tileSize;
         coords3->width = 2;
         Coordinates *coords4 = new Coordinates();
-        coords4->X = 50 * i;
-        coords4->Y = 1000;
+        coords4->X = Variables::tileSize * i;
+        coords4->Y = Variables::tileSize * Variables::tilesPerRoom;
         coords4->height = 2;
-        coords4->width = 50;
+        coords4->width = Variables::tileSize;
         Wall *wall1 = new Wall();
         wall1->setCoords(coords1);
         Wall *wall2 = new Wall();

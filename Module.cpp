@@ -62,8 +62,8 @@ void Module::displayRoomBorders()
         for(int j = 0; j < Variables::tilesPerRoom; j++)
         {
             ModuleTile *tile= moduleTiles[getModuleIndex(i,j)];
-            int X = i * 50 + 25 - Variables::offsetX;
-            int Y = j * 50 + 25 - Variables::offsetY;
+            int X = i * Variables::tileSize + 25 - Variables::offsetX;
+            int Y = j * Variables::tileSize + 25 - Variables::offsetY;
             for(int k = 0; k < 4; k++)
             {
                 if(tile->getAiTile()->getAdjacentTiles()[((k*2)+1)] != NULL)if(tile->getAiTile()->getRoomId() != tile->getAiTile()->getAdjacentTiles()[((k*2)+1)]->getRoomId())
@@ -86,9 +86,9 @@ void Module::displayModuleTileAI()
         for(int j = 0; j < Variables::tilesPerRoom; j++)
         {
             int col = moduleTiles[getModuleIndex(i,j)]->getAiTile()->getCurrentAIValue() * 1.5;
-            int X = i * 50 + 25 - Variables::offsetX;
-            int Y = j * 50 + 25 - Variables::offsetY;
-            al_draw_circle(X, Y, 10, al_map_rgb(col, col, col),25);
+            int X = i * Variables::tileSize + Variables::tileSize/2 - Variables::offsetX;
+            int Y = j * Variables::tileSize + Variables::tileSize/2 - Variables::offsetY;
+            al_draw_circle(X, Y, Variables::tileSize/5, al_map_rgb(col, col, col),25);
         }
 }
 
@@ -98,8 +98,8 @@ void Module::displayModuleThreatLevel()
         for(int j = 0; j < Variables::tilesPerRoom; j++)
         {
             int col = moduleTiles[getModuleIndex(i,j)]->getThreatLevel() * 10;
-            int X = i * 50 + 25 - Variables::offsetX;
-            int Y = j * 50 + 25 - Variables::offsetY;
+            int X = i * Variables::tileSize + 25 - Variables::offsetX;
+            int Y = j * Variables::tileSize + 25 - Variables::offsetY;
             al_draw_circle(X, Y, 10, al_map_rgb(col, col, col),25);
         }
 }
@@ -110,8 +110,8 @@ void Module::displayObstacles()
         {
             if(moduleTiles[getModuleIndex(i,j)]->getObstacle() != NULL)
             {
-                int X = i * 50 + 25 - Variables::offsetX;
-                int Y = j * 50 + 25 - Variables::offsetY;
+                int X = i * Variables::tileSize + 25 - Variables::offsetX;
+                int Y = j * Variables::tileSize + 25 - Variables::offsetY;
                 al_draw_circle(X, Y, 10, al_map_rgb(0, 0, 0),25);
             }
         }
@@ -145,7 +145,7 @@ void Module::update()
 
 void Module::updateTileAiTarget(int X, int Y)
 {
-    int index = getModuleIndex(X / 50, Y / 50);
+    int index = getModuleIndex(X / Variables::tileSize, Y / Variables::tileSize);
     moduleTiles[index]->getAiTile()->getTarget()->X = X;
     moduleTiles[index]->getAiTile()->getTarget()->Y = Y;
 }
@@ -168,7 +168,7 @@ bool Module::isObstructed(int X, int Y)
 ModuleTile *Module::getModuleTileAt(int coorX, int coorY)
 {
     ModuleTile *result;
-    int tileIndex = getModuleIndex(coorX / 50, coorY / 50);
+    int tileIndex = getModuleIndex(coorX / Variables::tileSize, coorY / Variables::tileSize);
     if(tileIndex >= 0 && tileIndex < Variables::tilesPerRoom * Variables::tilesPerRoom)
         result = this->moduleTiles[tileIndex];
     else result = NULL;

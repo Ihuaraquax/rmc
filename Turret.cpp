@@ -13,8 +13,8 @@ Turret::Turret() {
     this->coords->X = 200;
     this->coords->Y = 200;
     this->coords->angle = -1;
-    this->coords->height = 50;
-    this->coords->width = 50;
+    this->coords->height = Variables::tileSize;
+    this->coords->width = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
     std::string lowerPartsPaths[] = {"images/turretLower.png"};

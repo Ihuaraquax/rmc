@@ -34,8 +34,8 @@ void Room::display(int green)
 {
     for(int i = 0; i < tileTableSize; i++)
     {
-        int X = (tilesX[i] * 50) - Variables::offsetX;
-        int Y = (tilesY[i] * 50) - Variables::offsetY;
+        int X = (tilesX[i] * Variables::tileSize) - Variables::offsetX;
+        int Y = (tilesY[i] * Variables::tileSize) - Variables::offsetY;
         switch(green){
             case 1:al_draw_filled_rectangle(X+5, Y+5, X+45, Y+45, al_map_rgb(255,0,255));
                 break;

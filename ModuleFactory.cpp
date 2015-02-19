@@ -34,8 +34,8 @@ void ModuleFactory::setModuleBasicFloor(Module* module)
     Coordinates *coords = new Coordinates();
     coords->X = 0;
     coords->Y = 0;
-    coords->height = 1000;
-    coords->width = 1000;
+    coords->height = Variables::tileSize * Variables::tilesPerRoom;
+    coords->width = Variables::tileSize * Variables::tilesPerRoom;
     floor->setCoords(coords);
     std::string paths[1] = {"images/tile1.bmp"};
     Image *image = new Image(1, paths, false);
