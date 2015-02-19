@@ -80,7 +80,7 @@ void Player::update()
 {
     targetCoords->X = Variables::mouse_x;
     targetCoords->Y = Variables::mouse_y;
-    coords->angle = Variables::getAngle(coords->X, coords->Y, targetCoords->X, targetCoords->Y);
+    coords->angle = Variables::getAngle(coords->X - Variables::offsetX, coords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y);
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
     helmet->update();
     chestplate->update();
