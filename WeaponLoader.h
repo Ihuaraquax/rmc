@@ -16,6 +16,7 @@ public:
     void static loadWeapon(Weapon *weapon, int newWeaponId);
     DAMAGE_TYPE getDamageType(int type);
 private:
+    void static displayLogsToConsole(Weapon *weapon);
 };
 
 #endif	/* WEAPONLOADER_H */

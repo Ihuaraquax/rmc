@@ -25,7 +25,10 @@ void EquipmentLoader::loadNewEquipment(Equipment* equipment, int index, std::str
     file >> equipment->action >> equipment->name >> equipment->armor >> equipment->energyConsumption;
     for(int i = 0; i < Variables::damageTypeCount; i++)file >> equipment->resistance[i];
     file >> equipment->imagePath;
-    
+}
+
+void EquipmentLoader::displayLogsToConsole(Equipment* equipment)
+{    
     std::cout << " action: "  << equipment->action << std::endl;
     std::cout << " name: "  << equipment->name << std::endl;
     std::cout << " armor: "  << equipment->armor << std::endl;

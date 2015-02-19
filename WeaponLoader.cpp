@@ -47,9 +47,13 @@ void WeaponLoader::loadWeapon(Weapon* weapon, int newWeaponId)
             break;
     }
     
-//    std::cout << "name: " <<  weapon->name << "\n damage: " << weapon->damage << "\n ammoMax: " << weapon->ammoMax << "\n ammoType: " << weapon->ammoType
-//         << "\n reload speed: " << weapon->reloadSpeed << "\n cooldown: " << weapon->cooldown << "\n damageType: " << temp
-//         << "\n weight: " << weapon->weight << "\n target size increment: " << weapon->targetSizeIncrement
-//         << "\n target size decrement: " << weapon->targetSizeDecrement << "\n default target size: " << weapon->defaultTargetSize
-//         << "\n projectile count: " << weapon->projectileCount << std::endl << "\n display paths: " << weapon->displayPaths;
+}
+
+void WeaponLoader::displayLogsToConsole(Weapon* weapon)
+{
+    std::cout << "name: " <<  weapon->name << "\n damage: " << weapon->damage << "\n ammoMax: " << weapon->ammoMax << "\n ammoType: " << weapon->ammoType
+         << "\n reload speed: " << weapon->reloadSpeed << "\n cooldown: " << weapon->cooldown //  << "\n damageType: " << temp
+         << "\n weight: " << weapon->weight << "\n target size increment: " << weapon->targetSizeIncrement
+         << "\n target size decrement: " << weapon->targetSizeDecrement << "\n default target size: " << weapon->defaultTargetSize
+         << "\n projectile count: " << weapon->projectileCount << std::endl << "\n display paths: " << weapon->displayPaths;
 }
