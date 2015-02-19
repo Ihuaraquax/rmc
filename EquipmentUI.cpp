@@ -74,10 +74,10 @@ void EquipmentUI::display()
 
 void EquipmentUI::update()
 {
-    helmetCoords->X = 150;
-    helmetCoords->Y = Variables::RES_HEIGHT - 110;
-    chestplateCoords->X = 275;
-    chestplateCoords->Y = Variables::RES_HEIGHT - 110;
-    greavesCoords->X = 400;
-    greavesCoords->Y = Variables::RES_HEIGHT - 110;
+    helmetCoords->X = 150 + Variables::offsetX;
+    helmetCoords->Y = Variables::RES_HEIGHT - 110 + Variables::offsetY;
+    chestplateCoords->X = 275 + Variables::offsetX;
+    chestplateCoords->Y = Variables::RES_HEIGHT - 110 + Variables::offsetY;
+    greavesCoords->X = 400 + Variables::offsetX;
+    greavesCoords->Y = Variables::RES_HEIGHT - 110 + Variables::offsetY;
 }
