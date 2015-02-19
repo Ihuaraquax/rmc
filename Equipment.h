@@ -21,6 +21,7 @@ public:
     int getArmor() const;
     bool isActive() const;
     int getAction() const;
+    void setActive(bool active);
 protected:
     int action;
     int maxEnergy;

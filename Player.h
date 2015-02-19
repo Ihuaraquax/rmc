@@ -29,6 +29,7 @@ public:
     void changeHelmet(int newHelmetIndex);
     void changeChestplate(int newChestplateIndex);
     void changeGreaves(int newGreavesIndex);
+    void useEquipment(int equipmentIndex);
 private:
     void setTestValues();
     int selecetedWeaponSet;

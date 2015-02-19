@@ -54,3 +54,7 @@ bool Equipment::isActive() const {
 int Equipment::getAction() const {
     return action;
 }
+
+void Equipment::setActive(bool active) {
+    this->active = active;
+}

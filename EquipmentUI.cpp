@@ -68,7 +68,7 @@ void EquipmentUI::display()
     helmetImage->display(helmetCoords);
     if(selectedChestplate->isActive())al_draw_filled_rectangle(chestplateCoords->X-5, chestplateCoords->Y-5, chestplateCoords->X + 105, chestplateCoords->Y + 105, al_map_rgb(255,0,0));
     chestplateImage->display(chestplateCoords);
-    if(selectedChestplate->isActive())al_draw_filled_rectangle(greavesCoords->X-5, greavesCoords->Y-5, greavesCoords->X + 105, greavesCoords->Y + 105, al_map_rgb(255,0,0));
+    if(selectedGreaves->isActive())al_draw_filled_rectangle(greavesCoords->X-5, greavesCoords->Y-5, greavesCoords->X + 105, greavesCoords->Y + 105, al_map_rgb(255,0,0));
     greavesImage->display(greavesCoords);
 }
 

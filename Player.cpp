@@ -149,3 +149,10 @@ void Player::changeGreaves(int newGreavesIndex)
     recalculateEquipmentBenefits();
     Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves);
 }
+
+void Player::useEquipment(int equipmentIndex)
+{
+    if(equipmentIndex == 0)helmet->setActive(!helmet->isActive());
+    if(equipmentIndex == 1)chestplate->setActive(!chestplate->isActive());
+    if(equipmentIndex == 2)greaves->setActive(!greaves->isActive());
+}

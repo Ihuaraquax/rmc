@@ -23,12 +23,38 @@ void KeyboardControl::keyboardActions()
 
 void KeyboardControl::gameKeyboardActions()
 {
+     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+    
+     ALLEGRO_EVENT ev;
+     bool nextEvent = true;
+     while(nextEvent)
+     {
+         nextEvent = al_peek_next_event(Variables::event_queue, &ev);
+         if(nextEvent)
+         {
+             if(ev.type == ALLEGRO_EVENT_TIMER)
+             {
+                 nextEvent = false;
+                 break;
+             } else {
+                 switch(ev.keyboard.keycode){
+                     case ALLEGRO_KEY_Z: player->useEquipment(0);
+                         break;
+                     case ALLEGRO_KEY_X: player->useEquipment(1);
+                         break;
+                     case ALLEGRO_KEY_C: player->useEquipment(2);
+                         break;
+                 }
+             }
+             al_drop_next_event(Variables::event_queue);
+         }
+     }
+     
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_UP))Variables::offsetY-=5;
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_DOWN))Variables::offsetY+=5;
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_LEFT))Variables::offsetX-=5;
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_RIGHT))Variables::offsetX+=5;
      
-     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
      
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_W))player->playerMove(0,-1);
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_S))player->playerMove(0,1);
