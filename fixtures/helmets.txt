@@ -1,4 +1,4 @@
-1 Dzialko 20 10 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
+1 Dzialko 20 3 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
 2 Celownik 25 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
 3 Gazmaska 25 2 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png
 4 Pancerz 50 1 0.1 0.1 0.1 0.1 0.1 0.1 images/armorHelmet.png

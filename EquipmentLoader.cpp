@@ -26,14 +26,14 @@ void EquipmentLoader::loadNewEquipment(Equipment* equipment, int index, std::str
     for(int i = 0; i < Variables::damageTypeCount; i++)file >> equipment->resistance[i];
     file >> equipment->imagePath;
     
-    std::cout << equipment->action << ' ';
-    std::cout << equipment->name << ' ';
-    std::cout << equipment->armor << ' ';
-    std::cout << equipment->energyConsumption << ' ';
-    std::cout << equipment->resistance[0] << ' ';
-    std::cout << equipment->resistance[1] << ' ';
-    std::cout << equipment->resistance[2] << ' ';
-    std::cout << equipment->resistance[3] << ' ';
-    std::cout << equipment->resistance[4] << ' ';
-    std::cout << equipment->imagePath << std::endl;
+    std::cout << " action: "  << equipment->action << std::endl;
+    std::cout << " name: "  << equipment->name << std::endl;
+    std::cout << " armor: "  << equipment->armor << std::endl;
+    std::cout << " energy consumption: " << equipment->energyConsumption << std::endl;
+    std::cout << " resistance 0: "  << equipment->resistance[0] << std::endl;
+    std::cout << " resistance 1: "  << equipment->resistance[1] << std::endl;
+    std::cout << " resistance 2: "  << equipment->resistance[2] << std::endl;
+    std::cout << " resistance 3: "  << equipment->resistance[3] << std::endl;
+    std::cout << " resistance 4: "  << equipment->resistance[4] << std::endl;
+    std::cout << " imagePath: "  << equipment->imagePath << std::endl << std::endl;
 }

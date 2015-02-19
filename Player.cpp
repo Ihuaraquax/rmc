@@ -55,7 +55,7 @@ void Player::setTestValues()
     helmet = new Equipment();
     chestplate = new Equipment();
     greaves = new Equipment();
-    this->changeHelmet(4);
+    this->changeHelmet(1);
     this->changeChestplate(1);
     this->changeGreaves(4);
     teamId = 1;
@@ -82,6 +82,9 @@ void Player::update()
     targetCoords->Y = Variables::mouse_y;
     coords->angle = Variables::getAngle(coords->X, coords->Y, targetCoords->X, targetCoords->Y);
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
+    helmet->update();
+    chestplate->update();
+    greaves->update();
 }
 
 void Player::display()

@@ -12,10 +12,10 @@ Equipment::Equipment() {
     this->action = -1;
     this->active = false;
     this->armor = 0;
-    this->currentEnergy = 100;
+    this->currentEnergy = 1200;
     this->energyConsumption = 0;
-    this->energyRegeneration = 0;
-    this->maxEnergy = 100;
+    this->energyRegeneration = 1;
+    this->maxEnergy = 1200;
     this->resistance = new double[Variables::damageTypeCount];
     for(int i = 0; i < Variables::damageTypeCount; i++)this->resistance[i] = 0;
     this->imagePath = "images/noEquipmentInSlot.png";
@@ -27,7 +27,14 @@ Equipment::~Equipment() {
 
 void Equipment::update()
 {
-    
+    currentEnergy += energyRegeneration;
+    if(currentEnergy >= maxEnergy)currentEnergy = maxEnergy;
+    if(active)currentEnergy -= energyConsumption;
+    if(currentEnergy <= 0)
+    {
+        currentEnergy = 0;
+        active = false;
+    }
 }
 
 void Equipment::specificUpdate()
