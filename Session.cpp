@@ -71,6 +71,7 @@ void Session::update()
     mouse->mouseActions();
     if(Variables::status == GAME)
         {
+        updateOffset();
         map->update();
         allEntities->update();
         hud->update();
@@ -98,4 +99,13 @@ void Session::loop()
         update();
         display();
     }
+}
+
+
+void Session::updateOffset()
+{
+    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX < 200)Variables::offsetX -= allEntities->getPlayer()->getCoords()->speedX;
+    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX > Variables::RES_WIDTH-200)Variables::offsetX += allEntities->getPlayer()->getCoords()->speedX;
+    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY < 200)Variables::offsetY -= allEntities->getPlayer()->getCoords()->speedY;
+    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY > Variables::RES_HEIGHT-300)Variables::offsetY += allEntities->getPlayer()->getCoords()->speedY;
 }

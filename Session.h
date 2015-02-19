@@ -42,6 +42,8 @@ public:
     
     static MainGameState gameState;
 private:
+    void updateOffset();
+    
     Menu *mainMenu;
     AllEntities *allEntities;
     MouseControl *mouse;
