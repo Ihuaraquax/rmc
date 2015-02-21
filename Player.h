@@ -9,11 +9,13 @@
 #define	PLAYER_H
 #include "Entity.h"
 #include "Equipment.h"
+#include "Attributes.h"
 
 class Player : public Entity{
     friend class Helmet;
     friend class Chestplate;
     friend class Greaves;
+    friend class Attributes;
 public:
     Player();
     virtual ~Player();
@@ -36,6 +38,7 @@ public:
     
     void addExpirience(int exp);
     int getExpirience() const;
+    void increaseAttribute(int attribute, int amount);
 private:
     void setTestValues();
     int selecetedWeaponSet;
@@ -45,6 +48,8 @@ private:
     
     Weapon *shoulderGun;
     int expirience;
+    
+    Attributes *attributes;
 };
 
 #endif	/* PLAYER_H */

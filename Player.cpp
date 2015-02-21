@@ -16,14 +16,17 @@
 #include "EquipmentLoader.h"
 
 Player::Player() {
-    setTestValues();
     targetCoords = new Coordinates();
     this->threatLevel = 0;
-    Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
-        (coords->X + coords->width/2, coords->Y + coords->height/2);
-    Variables::offsetX = coords->X -Variables::RES_WIDTH/2;
-    Variables::offsetY = coords->Y -Variables::RES_HEIGHT/2;
+    this->coords = new Coordinates();
     maximumHealth = health + 100;
+    attributes = new Attributes();  
+    helmet = new Helmet();
+    chestplate = new Chestplate();
+    greaves = new Greaves();
+    weapons = new Weapon*[6];
+    for(int i = 0; i < 6; i++)weapons[i] = new Weapon();
+    setTestValues();
 }
 
 
@@ -35,7 +38,6 @@ Player::~Player() {
 
 void Player::setTestValues()
 {
-    this->coords = new Coordinates();
     this->coords->X = 115;
     this->coords->Y = 115;
     this->coords->angle = 0;
@@ -43,21 +45,20 @@ void Player::setTestValues()
     this->coords->width = 25;
     this->coords->speedX = 1;
     this->coords->speedY = 1;
+    Variables::offsetX = coords->X -Variables::RES_WIDTH/2;
+    Variables::offsetY = coords->Y -Variables::RES_HEIGHT/2;
+    Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
+        (coords->X + coords->width/2, coords->Y + coords->height/2);
     std::string paths[] = {"images/player.png"};
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
     health = 100;
-    weapons = new Weapon*[6];
-    for(int i = 0; i < 6; i++)weapons[i] = new Weapon();
     WeaponLoader::loadWeapon(weapons[0], 6);
     WeaponLoader::loadWeapon(weapons[1], 31);
     WeaponLoader::loadWeapon(weapons[2], 12);
     WeaponLoader::loadWeapon(weapons[3], 1);
     WeaponLoader::loadWeapon(weapons[4], 27);
-    WeaponLoader::loadWeapon(weapons[5], 23);    
-    helmet = new Helmet();
-    chestplate = new Chestplate();
-    greaves = new Greaves();
+    WeaponLoader::loadWeapon(weapons[5], 23);
     this->changeHelmet(4);
     this->changeChestplate(4);
     this->changeGreaves(5);
@@ -171,4 +172,19 @@ void Player::addExpirience(int exp)
 
 int Player::getExpirience() const {
     return expirience;
+}
+
+void Player::increaseAttribute(int attribute, int amount)
+{
+    switch(attribute)
+    {
+        case 0: this->attributes->addStrength(amount);
+            break;
+        case 1: this->attributes->addInteligence(amount);
+            break;
+        case 2: this->attributes->addAccuracy(amount);
+            break;
+        case 3: this->attributes->addSpeed(amount);
+            break;
+    }
 }
