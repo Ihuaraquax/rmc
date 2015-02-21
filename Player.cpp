@@ -21,6 +21,8 @@ Player::Player() {
     this->threatLevel = 0;
     Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
         (coords->X + coords->width/2, coords->Y + coords->height/2);
+    Variables::offsetX = coords->X -Variables::RES_WIDTH/2;
+    Variables::offsetY = coords->Y -Variables::RES_HEIGHT/2;
 }
 
 

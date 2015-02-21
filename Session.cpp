@@ -104,8 +104,8 @@ void Session::loop()
 
 void Session::updateOffset()
 {
-    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX < 200)Variables::offsetX -= allEntities->getPlayer()->getCoords()->speedX;
-    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX > Variables::RES_WIDTH-200)Variables::offsetX += allEntities->getPlayer()->getCoords()->speedX;
-    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY < 200)Variables::offsetY -= allEntities->getPlayer()->getCoords()->speedY;
-    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY > Variables::RES_HEIGHT-300)Variables::offsetY += allEntities->getPlayer()->getCoords()->speedY;
+    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX < 400)Variables::offsetX -= allEntities->getPlayer()->getCoords()->speedX;
+    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX > Variables::RES_WIDTH-400)Variables::offsetX += allEntities->getPlayer()->getCoords()->speedX;
+    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY < 400)Variables::offsetY -= allEntities->getPlayer()->getCoords()->speedY;
+    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY > Variables::RES_HEIGHT-500)Variables::offsetY += allEntities->getPlayer()->getCoords()->speedY;
 }
