@@ -24,6 +24,8 @@ public:
 private:
     void displaySelectedSet();
     void displayHealth();
+    void displayArmor();
+    void displayExpirience();
     
     Image *background;
     Coordinates *coords;

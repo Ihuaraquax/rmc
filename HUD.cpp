@@ -39,6 +39,8 @@ void HUD::display()
     displaySelectedSet();
     equipmentUI->display();
     displayHealth();
+    displayExpirience();
+    displayArmor();
 }
 
 WeaponUI* HUD::getMainWeaponUI() const {
@@ -89,5 +91,27 @@ void HUD::displayHealth()
     double X = 70;
     double Y = Variables::RES_HEIGHT - 90;
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, health);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y - 20, ALLEGRO_ALIGN_CENTER, healthLabel);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y - 15, ALLEGRO_ALIGN_CENTER, healthLabel);
+}
+
+void HUD::displayExpirience()
+{
+    int playerHealth = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getExpirience();
+    char expirience[4], expirienceLabel[] = "expirience";
+    itoa(playerHealth, expirience, 10);
+    double X = 70;
+    double Y = Variables::RES_HEIGHT - 55;
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, expirience);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y - 15, ALLEGRO_ALIGN_CENTER, expirienceLabel);
+}
+
+void HUD::displayArmor()
+{
+    int playerHealth = Variables::session->getAllEntities()->getPlayer()->getArmor();
+    char armor[4], armorLabel[] = "armor";
+    itoa(playerHealth, armor, 10);
+    double X = 70;
+    double Y = Variables::RES_HEIGHT - 20;
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, armor);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y - 15, ALLEGRO_ALIGN_CENTER, armorLabel);
 }
