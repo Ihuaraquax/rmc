@@ -38,6 +38,8 @@ public:
     int getAiValue() const;
     void virtual executeAgony();
     int getArmor() const;
+    
+    void heal(int healAmount);
 protected:
     void move(double X, double Y);
     Entity *isCollision();
@@ -53,6 +55,7 @@ protected:
     int armor;
     int threatLevel;
     int aiValue;
+    int maximumHealth;
 };
 
 #endif	/* ENTITY_H */

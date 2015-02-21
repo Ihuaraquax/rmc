@@ -23,6 +23,7 @@ Obstacle::Obstacle(double X, double Y) {
     this->damagedImage = new Image(1, paths2, true);
     this->damagedImage2 = new Image(1, paths3, true);
     this->image->state = NORMAL;
+    maximumHealth = health;
 }
 
 

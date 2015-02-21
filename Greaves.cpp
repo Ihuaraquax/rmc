@@ -46,13 +46,14 @@ void Greaves::activate()
     switch(action){
         case 1:
             break;
-        case 2:
+        case 2: player->elementalResists[electric] += this->resistance[electric];
             break;
         case 3:
             break;
-        case 4: player->armor += 50;
+        case 4: player->armor += armor;
             break;
-        case 5:
+        case 5: player->coords->speedX +=2;
+         player->coords->speedY +=2;
             break;
         case 6:
             break;
@@ -70,13 +71,14 @@ void Greaves::deactivate()
     switch(action){
         case 1:
             break;
-        case 2:
+        case 2: player->elementalResists[electric] -= this->resistance[electric];
             break;
         case 3:
             break;
-        case 4: player->armor -= 50;
+        case 4: player->armor -= armor;
             break;
-        case 5:
+        case 5: player->coords->speedX -=2;
+         player->coords->speedY -=2;
             break;
         case 6:
             break;

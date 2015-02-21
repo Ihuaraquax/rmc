@@ -23,6 +23,7 @@ Player::Player() {
         (coords->X + coords->width/2, coords->Y + coords->height/2);
     Variables::offsetX = coords->X -Variables::RES_WIDTH/2;
     Variables::offsetY = coords->Y -Variables::RES_HEIGHT/2;
+    maximumHealth = health + 100;
 }
 
 
@@ -57,9 +58,9 @@ void Player::setTestValues()
     helmet = new Helmet();
     chestplate = new Chestplate();
     greaves = new Greaves();
-    this->changeHelmet(1);
-    this->changeChestplate(1);
-    this->changeGreaves(4);
+    this->changeHelmet(4);
+    this->changeChestplate(4);
+    this->changeGreaves(5);
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;

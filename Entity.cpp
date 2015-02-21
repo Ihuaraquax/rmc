@@ -17,6 +17,7 @@ Entity::Entity() {
     elementalResists = new double[Variables::damageTypeCount];
     for(int i = 0; i < Variables::damageTypeCount; i++)this->elementalResists[i] = 0.5;
     aiValue = 0;
+    maximumHealth = health;
 }
 
 Entity::~Entity() {
@@ -119,4 +120,10 @@ void Entity::executeAgony()
 
 int Entity::getArmor() const {
     return armor;
+}
+
+void Entity::heal(int healAmount)
+{
+    this->health += healAmount;
+    if(this->health > this->maximumHealth) health = maximumHealth;
 }

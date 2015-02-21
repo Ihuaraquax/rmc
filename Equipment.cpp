@@ -12,10 +12,10 @@ Equipment::Equipment() {
     this->action = -1;
     this->active = false;
     this->armor = 0;
-    this->currentEnergy = 1200;
+    this->currentEnergy = 6000;
     this->energyConsumption = 0;
     this->energyRegeneration = 1;
-    this->maxEnergy = 1200;
+    this->maxEnergy = 6000;
     this->resistance = new double[Variables::damageTypeCount];
     for(int i = 0; i < Variables::damageTypeCount; i++)this->resistance[i] = 0;
     this->imagePath = "images/noEquipmentInSlot.png";

@@ -36,6 +36,7 @@ Monster::Monster() {
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
     this->setStartingTile();
     expirience = 100;
+    maximumHealth = health;
 }
 
 

@@ -43,13 +43,13 @@ void Helmet::activate()
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
     active = true;
     switch(action){
-        case 1: player->armor += 50;
+        case 1:
             break;
         case 2:
             break;
         case 3:
             break;
-        case 4:
+        case 4: player->armor += armor;
             break;
         case 5:
             break;
@@ -67,13 +67,13 @@ void Helmet::deactivate()
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
     active = false;
     switch(action){
-        case 1: player->armor -= 50;
+        case 1:
             break;
         case 2:
             break;
         case 3:
             break;
-        case 4:
+        case 4: player->armor -= armor;
             break;
         case 5:
             break;

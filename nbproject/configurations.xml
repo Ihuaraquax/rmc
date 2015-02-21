@@ -14,8 +14,16 @@
           <itemPath>Greaves.h</itemPath>
           <itemPath>Helmet.cpp</itemPath>
           <itemPath>Helmet.h</itemPath>
+          <itemPath>UsableItem.cpp</itemPath>
+          <itemPath>UsableItem.h</itemPath>
           <itemPath>Weapon.cpp</itemPath>
           <itemPath>Weapon.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="Player Classes" projectFiles="true">
+          <itemPath>Player.cpp</itemPath>
+          <itemPath>Player.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="Projectile Classes" projectFiles="true">
         </logicalFolder>
         <logicalFolder name="f2" displayName="Utils" projectFiles="true">
           <itemPath>CollisionDetector.cpp</itemPath>
@@ -33,8 +41,6 @@
         <itemPath>Monster.h</itemPath>
         <itemPath>Obstacle.cpp</itemPath>
         <itemPath>Obstacle.h</itemPath>
-        <itemPath>Player.cpp</itemPath>
-        <itemPath>Player.h</itemPath>
         <itemPath>Projectile.cpp</itemPath>
         <itemPath>Projectile.h</itemPath>
         <itemPath>Turret.cpp</itemPath>
@@ -275,6 +281,10 @@
       </item>
       <item path="Turret.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="UsableItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UsableItem.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Wall.h" ex="false" tool="3" flavor2="0">
@@ -462,6 +472,10 @@
       <item path="Turret.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Turret.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UsableItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UsableItem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>

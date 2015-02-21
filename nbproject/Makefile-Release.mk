@@ -68,6 +68,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Session.o \
 	${OBJECTDIR}/TileFactory.o \
 	${OBJECTDIR}/Turret.o \
+	${OBJECTDIR}/UsableItem.o \
 	${OBJECTDIR}/Wall.o \
 	${OBJECTDIR}/WallFactory.o \
 	${OBJECTDIR}/Weapon.o \
@@ -265,6 +266,11 @@ ${OBJECTDIR}/Turret.o: Turret.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Turret.o Turret.cpp
+
+${OBJECTDIR}/UsableItem.o: UsableItem.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UsableItem.o UsableItem.cpp
 
 ${OBJECTDIR}/Wall.o: Wall.cpp 
 	${MKDIR} -p ${OBJECTDIR}

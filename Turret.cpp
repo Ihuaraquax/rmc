@@ -38,6 +38,7 @@ Turret::Turret() {
     currentThreatLevel = 0;
     targetAngle = -1;
     targetCoords = new Coordinates();
+    maximumHealth = health;
 }
 
 void Turret::setCurrentThreatLevel(int currentThreatLevel) {
