@@ -3,7 +3,7 @@ build/Debug/MinGW-Windows/KeyboardControl.o: KeyboardControl.cpp \
  Coordinates.h WeaponUI.h Weapon.h DamageTypeEnum.h EquipmentUI.h \
  Equipment.h AllEntities.h Entity.h Wall.h Door.h templateList.h \
  MouseControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
- Player.h
+ Player.h Attributes.h AttributeEnum.h
 
 KeyboardControl.h:
 
@@ -54,3 +54,7 @@ ModuleTile.h:
 AiTile.h:
 
 Player.h:
+
+Attributes.h:
+
+AttributeEnum.h:

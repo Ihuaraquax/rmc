@@ -188,3 +188,15 @@ void Player::increaseAttribute(int attribute, int amount)
             break;
     }
 }
+
+void Player::recalculateCritical()
+{
+    this->criticalChance = this->attributes->getInteligence()/5;
+    this->criticalDamage = this->attributes->getInteligence()/100;
+}
+
+void Player::recalculateAccuracy()
+{
+    this->accuracy = this->attributes->getAccuracy();
+    this->accuracy /= 30;
+}

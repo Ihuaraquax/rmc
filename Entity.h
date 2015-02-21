@@ -56,6 +56,10 @@ protected:
     int threatLevel;
     int aiValue;
     int maximumHealth;
+    
+    int criticalChance;
+    int criticalDamage;
+    double accuracy;
 };
 
 #endif	/* ENTITY_H */

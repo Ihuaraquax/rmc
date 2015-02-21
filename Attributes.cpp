@@ -39,11 +39,13 @@ int Attributes::getStrength() const {
 void Attributes::addAccuracy(int toAdd)
 {
     this->accuracy += toAdd;
+    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateAccuracy();
 }
 
 void Attributes::addInteligence(int toAdd)
 {
     this->inteligence += toAdd;
+    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateCritical();
 }
 
 void Attributes::addSpeed(int toAdd)

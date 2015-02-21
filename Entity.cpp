@@ -18,6 +18,9 @@ Entity::Entity() {
     for(int i = 0; i < Variables::damageTypeCount; i++)this->elementalResists[i] = 0.5;
     aiValue = 0;
     maximumHealth = health;
+    criticalChance = 0;
+    criticalDamage = 0;
+    accuracy = 0;
 }
 
 Entity::~Entity() {
@@ -86,7 +89,7 @@ void Entity::getHit(int damage, int damageType)
 
 void Entity::attack(int weapon)
 {
-    weapons[weapon]->shoot(coords, targetCoords, teamId);
+    weapons[weapon]->shoot(coords, targetCoords, teamId, criticalChance, criticalDamage, accuracy);
 }
 
 int Entity::getTeamId() const {

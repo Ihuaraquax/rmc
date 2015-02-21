@@ -9,6 +9,7 @@
 #include "globalVariables.h"
 #include "Entity.h"
 #include "Player.h"
+#include "AttributeEnum.h"
 
 KeyboardControl::KeyboardControl() {
     Fpressed = false;
@@ -63,7 +64,7 @@ void KeyboardControl::gameKeyboardActions()
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_1))player->selectWeaponSet(0);
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_2))player->selectWeaponSet(1);
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_3))player->selectWeaponSet(2);
-     
+          
      if(al_key_down(&Variables::key_state, ALLEGRO_KEY_F) && !Fpressed)
      {
          dynamic_cast<Player*>(player)->interact();

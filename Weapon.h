@@ -17,7 +17,7 @@ class Weapon {
 public:
     Weapon();
     void update();
-    void shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team);
+    void shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team, int shooterCriticalChance, double shooterCriticalDamage, double accuracy);
     void reload();
     double getAngle(Coordinates *shooterCoords, Coordinates *targetCoords);
     int getCurrentTargetSize() const;
@@ -34,11 +34,11 @@ private:
     int cooldown;
     int timeToShoot;
     bool reloading;
-    int defaultTargetSize;
-    int currentTargetSize;
-    int targetSizeIncrement;
-    int targetSizeDecrement;
-    int targetSizeIncrementSlowDownPoint;
+    double defaultTargetSize;
+    double currentTargetSize;
+    double targetSizeIncrement;
+    double targetSizeDecrement;
+    double targetSizeIncrementSlowDownPoint;
     int projectileCount;
     int range;
     int ammoType;

@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/AiTile.o \
 	${OBJECTDIR}/AllEntities.o \
+	${OBJECTDIR}/Attributes.o \
 	${OBJECTDIR}/Button.o \
 	${OBJECTDIR}/Chestplate.o \
 	${OBJECTDIR}/CollisionDetector.o \
@@ -111,6 +112,11 @@ ${OBJECTDIR}/AllEntities.o: AllEntities.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/AllEntities.o AllEntities.cpp
+
+${OBJECTDIR}/Attributes.o: Attributes.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Attributes.o Attributes.cpp
 
 ${OBJECTDIR}/Button.o: Button.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -48,7 +48,7 @@ void Weapon::update()
     }
 }
 
-void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team)
+void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team, int shooterCriticalChance, double shooterCriticalDamage, double accuracy)
 {
     if(!reloading && timeToShoot == 0)
     {
@@ -56,14 +56,14 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
         timeToShoot = cooldown;
         for(int i = 0; i < projectileCount; i++)
         {
-            bool critical = rand()%100 < criticalChance;
+            bool critical = rand()%100 < criticalChance + shooterCriticalChance;
             Entity *bullet = new Projectile();
             int angle = getAngle(shooterCoords, targetCoords);
-            if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * criticalDamage, damageType, angle, team, range);
+            if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
             else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
             Variables::session->getAllEntities()->addEntity(bullet);
         }
-        currentTargetSize += targetSizeIncrement - (currentTargetSize / targetSizeIncrementSlowDownPoint);
+        currentTargetSize += (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
     }
 }
 
@@ -76,7 +76,7 @@ void Weapon::reload()
 double Weapon::getAngle(Coordinates* shooterCoords, Coordinates* targetCoords)
 {
     double tX = targetCoords->X, tY = targetCoords->Y, dX, dY;
-    int distance = rand()%this->currentTargetSize;
+    int distance = rand()%(int)ceil(this->currentTargetSize);
     double factorX, factorY;
     Variables::giveFactors(rand()%360, factorX, factorY);
     tX += distance * factorX;

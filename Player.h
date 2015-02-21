@@ -39,6 +39,9 @@ public:
     void addExpirience(int exp);
     int getExpirience() const;
     void increaseAttribute(int attribute, int amount);
+    
+    void recalculateCritical();
+    void recalculateAccuracy();
 private:
     void setTestValues();
     int selecetedWeaponSet;
