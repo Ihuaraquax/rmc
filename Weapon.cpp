@@ -81,7 +81,7 @@ double Weapon::getAngle(Coordinates* shooterCoords, Coordinates* targetCoords)
     dY = (shooterCoords->Y - Variables::offsetY) - (tY - 8);
     double angle = 180 + (atan(dX/dY) * 180 / M_PI);
     if(tY <= (shooterCoords->Y - Variables::offsetY))angle += 180;
-    if(tX > shooterCoords->X && angle > 260 && angle < 280)angle -= 180;
+    if(tX > shooterCoords->X && angle > 250 && angle < 290)angle -= 180;
     if(tX < shooterCoords->X && angle < 100 && angle > 70)angle += 180;
     return angle;
 }
