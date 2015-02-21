@@ -45,7 +45,7 @@ void Player::setTestValues()
     std::string paths[] = {"images/player.png"};
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
-    health = 20;
+    health = 100;
     weapons = new Weapon*[6];
     for(int i = 0; i < 6; i++)weapons[i] = new Weapon();
     WeaponLoader::loadWeapon(weapons[0], 6);

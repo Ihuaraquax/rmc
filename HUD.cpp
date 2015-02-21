@@ -33,13 +33,12 @@ HUD::~HUD() {
 
 void HUD::display()
 {
-    int playerHealthLine = Variables::session->getAllEntities()->getPlayer()->getHealth() * 20;
     background->display(coords);
-    al_draw_line(50, Variables::RES_HEIGHT - 75, 50 + playerHealthLine, Variables::RES_HEIGHT - 75, al_map_rgb(255,0,0), 3);
     mainWeaponUI->display();
     secondaryWeaponUI->display();
     displaySelectedSet();
     equipmentUI->display();
+    displayHealth();
 }
 
 WeaponUI* HUD::getMainWeaponUI() const {
@@ -80,4 +79,15 @@ void HUD::displaySelectedSet()
     {
         al_draw_filled_rectangle(X + 267, Y, X + 400, Y + 20, al_map_rgb(255,0,0));
     }
+}
+
+void HUD::displayHealth()
+{
+    int playerHealth = Variables::session->getAllEntities()->getPlayer()->getHealth();
+    char health[4], healthLabel[] = "health";
+    itoa(playerHealth, health, 10);
+    double X = 70;
+    double Y = Variables::RES_HEIGHT - 90;
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, health);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y - 20, ALLEGRO_ALIGN_CENTER, healthLabel);
 }

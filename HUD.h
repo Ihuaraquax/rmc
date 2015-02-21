@@ -23,6 +23,7 @@ public:
     EquipmentUI* getEquipmentUI() const;
 private:
     void displaySelectedSet();
+    void displayHealth();
     
     Image *background;
     Coordinates *coords;
