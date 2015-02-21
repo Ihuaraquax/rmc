@@ -54,9 +54,9 @@ void Player::setTestValues()
     WeaponLoader::loadWeapon(weapons[3], 1);
     WeaponLoader::loadWeapon(weapons[4], 27);
     WeaponLoader::loadWeapon(weapons[5], 23);    
-    helmet = new Equipment();
-    chestplate = new Equipment();
-    greaves = new Equipment();
+    helmet = new Helmet();
+    chestplate = new Chestplate();
+    greaves = new Greaves();
     this->changeHelmet(1);
     this->changeChestplate(1);
     this->changeGreaves(4);

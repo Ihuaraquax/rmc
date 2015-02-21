@@ -16,7 +16,8 @@ public:
     virtual ~Chestplate();
     void specificUpdate();
 private:
-
+    void activate();
+    void deactivate();
 };
 
 #endif	/* CHESTPLATE_H */

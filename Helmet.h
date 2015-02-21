@@ -16,7 +16,8 @@ public:
     virtual ~Helmet();
     void specificUpdate();
 private:
-
+    void activate();
+    void deactivate();
 };
 
 #endif	/* HELMET_H */

@@ -11,6 +11,9 @@
 #include "Equipment.h"
 
 class Player : public Entity{
+    friend class Helmet;
+    friend class Chestplate;
+    friend class Greaves;
 public:
     Player();
     virtual ~Player();

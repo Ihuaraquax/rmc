@@ -22,7 +22,12 @@ public:
     bool isActive() const;
     int getAction() const;
     void setActive(bool active);
+    int getCurrentEnergy() const;
+    int getMaxEnergy() const;
 protected:
+    void virtual activate();
+    void virtual deactivate();
+    
     int action;
     int maxEnergy;
     int currentEnergy;

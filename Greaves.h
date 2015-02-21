@@ -16,7 +16,8 @@ public:
     virtual ~Greaves();
     void specificUpdate();
 private:
-
+    void activate();
+    void deactivate();
 };
 
 #endif	/* GREAVES_H */

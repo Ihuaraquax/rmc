@@ -29,11 +29,15 @@ void Equipment::update()
 {
     currentEnergy += energyRegeneration;
     if(currentEnergy >= maxEnergy)currentEnergy = maxEnergy;
-    if(active)currentEnergy -= energyConsumption;
+    if(active)
+    {
+        currentEnergy -= energyConsumption;
+        specificUpdate();
+    }
     if(currentEnergy <= 0)
     {
         currentEnergy = 0;
-        active = false;
+        deactivate();
     }
 }
 
@@ -63,5 +67,24 @@ int Equipment::getAction() const {
 }
 
 void Equipment::setActive(bool active) {
-    this->active = active;
+    if(active)activate();
+    else deactivate();
+}
+
+int Equipment::getCurrentEnergy() const {
+    return currentEnergy;
+}
+
+int Equipment::getMaxEnergy() const {
+    return maxEnergy;
+}
+
+void Equipment::activate()
+{
+    active = true;
+}
+
+void Equipment::deactivate()
+{
+    active = false;
 }
