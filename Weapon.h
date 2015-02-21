@@ -46,6 +46,8 @@ private:
     int weight;
     std::string name;
     std::string displayPaths;
+    int criticalChance;
+    double criticalDamage;
 };
 
 #endif	/* WEAPON_H */

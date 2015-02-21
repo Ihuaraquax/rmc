@@ -28,6 +28,8 @@ Weapon::Weapon() {
     displayPaths = "images/noWeapon.png";
     projectileCount = 0;
     name = "noWeapon";
+    criticalChance = 10;
+    criticalDamage = 2;
 }
 
 void Weapon::update()
@@ -54,9 +56,11 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
         timeToShoot = cooldown;
         for(int i = 0; i < projectileCount; i++)
         {
+            bool critical = rand()%100 < criticalChance;
             Entity *bullet = new Projectile();
             int angle = getAngle(shooterCoords, targetCoords);
-            dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
+            if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * criticalDamage, damageType, angle, team, range);
+            else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
             Variables::session->getAllEntities()->addEntity(bullet);
         }
         currentTargetSize += targetSizeIncrement - (currentTargetSize / targetSizeIncrementSlowDownPoint);
