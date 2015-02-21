@@ -9,6 +9,7 @@
 #include "globalVariables.h"
 #include "ModuleTile.h"
 #include "CollisionDetector.h"
+#include "Player.h"
 
 Monster::Monster() {
     this->coords = new Coordinates();
@@ -33,7 +34,8 @@ Monster::Monster() {
     this->threatLevel = 10;
     Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
-    this->setStartingTile();    
+    this->setStartingTile();
+    expirience = 100;
 }
 
 
@@ -121,4 +123,9 @@ bool Monster::isBadSpawningPoint()
     if(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->getAiTile()->isObstructed())result = true;
     else if(CollisionDetector::isAnyCollision(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y), this))result = true;
     return result;
+}
+
+void Monster::executeAgony()
+{
+    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->addExpirience(expirience);
 }

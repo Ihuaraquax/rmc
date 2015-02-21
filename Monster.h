@@ -14,10 +14,12 @@ public:
     Monster();
     virtual ~Monster();
     void update();
+    void executeAgony();
 private:
     int getDirection();
     void checkForAttack();
     bool isBadSpawningPoint();
+    int expirience;
 };
 
 #endif	/* MONSTER_H */

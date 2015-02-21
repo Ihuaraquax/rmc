@@ -33,6 +33,9 @@ public:
     void changeChestplate(int newChestplateIndex);
     void changeGreaves(int newGreavesIndex);
     void useEquipment(int equipmentIndex);
+    
+    void addExpirience(int exp);
+    int getExpirience() const;
 private:
     void setTestValues();
     int selecetedWeaponSet;
@@ -41,6 +44,7 @@ private:
     Equipment *greaves;
     
     Weapon *shoulderGun;
+    int expirience;
 };
 
 #endif	/* PLAYER_H */

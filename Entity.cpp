@@ -116,3 +116,7 @@ void Entity::executeAgony()
 {
     
 }
+
+int Entity::getArmor() const {
+    return armor;
+}

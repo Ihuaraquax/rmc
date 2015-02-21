@@ -63,6 +63,7 @@ void Player::setTestValues()
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;
+    expirience = 0;
     Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[0]);
     Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
     Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves);
@@ -160,4 +161,13 @@ void Player::useEquipment(int equipmentIndex)
     if(equipmentIndex == 0)helmet->setActive(!helmet->isActive());
     if(equipmentIndex == 1)chestplate->setActive(!chestplate->isActive());
     if(equipmentIndex == 2)greaves->setActive(!greaves->isActive());
+}
+
+void Player::addExpirience(int exp)
+{
+    expirience += exp;
+}
+
+int Player::getExpirience() const {
+    return expirience;
 }

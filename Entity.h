@@ -37,6 +37,7 @@ public:
     
     int getAiValue() const;
     void virtual executeAgony();
+    int getArmor() const;
 protected:
     void move(double X, double Y);
     Entity *isCollision();
