@@ -63,7 +63,8 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
             else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
             Variables::session->getAllEntities()->addEntity(bullet);
         }
-        currentTargetSize += (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
+        double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
+        if(increment > 0)currentTargetSize += increment;
     }
 }
 

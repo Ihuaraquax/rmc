@@ -31,7 +31,8 @@ void Helmet::specificUpdate()
             break;
         case 6:
             break;
-        case 7:
+        case 7: player->weapons[player->selecetedWeaponSet * 2]->update();
+         player->weapons[player->selecetedWeaponSet * 2 + 1]->update();
             break;
         case 8:
             break;
@@ -45,7 +46,7 @@ void Helmet::activate()
     switch(action){
         case 1:
             break;
-        case 2:
+        case 2: player->recalculateAccuracy();
             break;
         case 3:
             break;
@@ -69,7 +70,7 @@ void Helmet::deactivate()
     switch(action){
         case 1:
             break;
-        case 2:
+        case 2: player->recalculateAccuracy();
             break;
         case 3:
             break;

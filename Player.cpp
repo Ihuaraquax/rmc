@@ -59,7 +59,7 @@ void Player::setTestValues()
     WeaponLoader::loadWeapon(weapons[3], 1);
     WeaponLoader::loadWeapon(weapons[4], 27);
     WeaponLoader::loadWeapon(weapons[5], 23);
-    this->changeHelmet(4);
+    this->changeHelmet(7);
     this->changeChestplate(4);
     this->changeGreaves(5);
     teamId = 1;
@@ -196,7 +196,12 @@ void Player::recalculateCritical()
 }
 
 void Player::recalculateAccuracy()
-{
+{ 
     this->accuracy = this->attributes->getAccuracy();
     this->accuracy /= 30;
+    if(helmet->getAction() == 2)
+    {
+        this->accuracy += 2;
+        if(helmet->isActive())this->accuracy += 3;
+    }
 }
