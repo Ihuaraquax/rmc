@@ -78,8 +78,8 @@ void Projectile::update()
 
 void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamID, int range)
 {
-    this->coords->X = coords->X + coords->width/2;
-    this->coords->Y = coords->Y + coords->height/2;
+    this->coords->X = coords->X;
+    this->coords->Y = coords->Y;
     this->coords->angle = angle;
     this->damage = damage;
     this->damageType = damageType;
