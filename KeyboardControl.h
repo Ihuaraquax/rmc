@@ -13,8 +13,11 @@ public:
     KeyboardControl();
     void keyboardActions();
     void gameKeyboardActions();
+    bool isPressed(int key);
 private:
     bool Fpressed;
+    bool Epressed;
+    bool *pressedKeys;
 };
 
 #endif	/* KEYBOARDCONTROL_H */
