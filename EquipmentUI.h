@@ -10,6 +10,7 @@
 #include "Image.h"
 #include "Coordinates.h"
 #include "Equipment.h"
+#include "UsableItem.h"
 
 class EquipmentUI {
 public:
@@ -17,19 +18,22 @@ public:
     virtual ~EquipmentUI();
     void update();
     void display();
-    void reloadImages(Equipment *helmet, Equipment *chestplate, Equipment *greaves);
+    void reloadImages(Equipment *helmet, Equipment *chestplate, Equipment *greaves, UsableItem *item);
 private:
     Equipment *selectedHelmet;
     Equipment *selectedChestplate;
     Equipment *selectedGreaves;
+    UsableItem *selectedItem;
     
     Image *helmetImage;
     Image *chestplateImage;
     Image *greavesImage;
+    Image *itemImage;
     
     Coordinates *helmetCoords;
     Coordinates *chestplateCoords;
     Coordinates *greavesCoords;
+    Coordinates *itemCoords;
 };
 
 #endif	/* EQUIPMENTUI_H */

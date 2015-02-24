@@ -21,7 +21,7 @@ void EquipmentLoader::loadNewEquipment(Equipment* equipment, int index, std::str
     std::fstream file;
     file.open(path.c_str(), std::ios::in);
     std::string temp;
-    for(int i = 1; i < index; i++)std::getline(file, temp);
+    for(int i = 0; i < index; i++)std::getline(file, temp);
     file >> equipment->action >> equipment->name >> equipment->armor >> equipment->energyConsumption;
     for(int i = 0; i < Variables::damageTypeCount; i++)file >> equipment->resistance[i];
     file >> equipment->imagePath;

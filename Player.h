@@ -10,6 +10,7 @@
 #include "Entity.h"
 #include "Equipment.h"
 #include "Attributes.h"
+#include "UsableItem.h"
 
 class Player : public Entity{
     friend class Helmet;
@@ -42,12 +43,16 @@ public:
     
     void recalculateCritical();
     void recalculateAccuracy();
+    
+    void useItem();
+    void changeItem(int index);
 private:
     void setTestValues();
     int selecetedWeaponSet;
     Equipment *chestplate;
     Equipment *helmet;
     Equipment *greaves;
+    UsableItem *item;
     
     Weapon *shoulderGun;
     int expirience;

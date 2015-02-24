@@ -45,6 +45,8 @@ void KeyboardControl::gameKeyboardActions()
                          break;
                      case ALLEGRO_KEY_C: player->useEquipment(2);
                          break;
+                     case ALLEGRO_KEY_E: player->useItem();
+                         break;
                  }
              }
              al_drop_next_event(Variables::event_queue);

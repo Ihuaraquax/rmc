@@ -70,6 +70,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TileFactory.o \
 	${OBJECTDIR}/Turret.o \
 	${OBJECTDIR}/UsableItem.o \
+	${OBJECTDIR}/UsableItemLoader.o \
 	${OBJECTDIR}/Wall.o \
 	${OBJECTDIR}/WallFactory.o \
 	${OBJECTDIR}/Weapon.o \
@@ -277,6 +278,11 @@ ${OBJECTDIR}/UsableItem.o: UsableItem.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UsableItem.o UsableItem.cpp
+
+${OBJECTDIR}/UsableItemLoader.o: UsableItemLoader.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UsableItemLoader.o UsableItemLoader.cpp
 
 ${OBJECTDIR}/Wall.o: Wall.cpp 
 	${MKDIR} -p ${OBJECTDIR}
