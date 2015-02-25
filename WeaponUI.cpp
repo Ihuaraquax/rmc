@@ -25,7 +25,9 @@ WeaponUI::WeaponUI(bool left) {
     std::string noWeaponPaths[] = {"images/noWeapon.png"};
     this->image = NULL;
     this->noWeapon = new Image(1, noWeaponPaths, true);
+    noWeapon->state = UI;
     this->damageTypeImage = new Image(1, damageTypePaths, true);
+    damageTypeImage->state = UI;
 }
 
 
@@ -79,12 +81,6 @@ void WeaponUI::displayReloadIndicator(double X, double Y)
 
 void WeaponUI::update()
 {
-    coords->X = Variables::RES_WIDTH - 205 + Variables::offsetX;
-    coords->Y = Variables::RES_HEIGHT - 95 + Variables::offsetY;
-    if(leftDisplay)coords->X -= 200;
-    damageTypeCoords->X = Variables::RES_WIDTH - 40 + Variables::offsetX;
-    damageTypeCoords->Y = Variables::RES_HEIGHT - 90 + Variables::offsetY;
-    if(leftDisplay)damageTypeCoords->X -= 200;
 }
 
 void WeaponUI::selectWeapon(Weapon* newWeapon)
@@ -95,5 +91,6 @@ void WeaponUI::selectWeapon(Weapon* newWeapon)
     {
         std::string paths[] = {selectedWeapon->getDisplayPaths()};
         image = new Image(1, paths, true);
+        image->state = UI;
     }
 }

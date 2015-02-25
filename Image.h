@@ -15,7 +15,7 @@
 #include <allegro5/allegro_image.h>
 
 enum DisplayState{
-    BASIC, NORMAL, REPEATING, CUT
+    BASIC, NORMAL, REPEATING, CUT, UI
 };
 
 enum ImageOrder{
@@ -40,6 +40,7 @@ private:
     void displayCut(Coordinates *coords);
     void displayNormal(Coordinates *coords);
     void displayBasic(Coordinates *coords);
+    void displayUI(Coordinates *coords);
 };
 
 #endif	/* IMAGE_H */

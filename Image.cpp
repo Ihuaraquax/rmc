@@ -50,6 +50,9 @@ void Image::display(Coordinates* coords){
         case CUT:
             displayCut(coords);
             break;
+        case UI:
+            displayUI(coords);
+            break;
             
     }
     if(order == LOOP)
@@ -127,6 +130,11 @@ void Image::displayNormal(Coordinates* coords)
             imageCenterX[currentImage], imageCenterY[currentImage], 
             coords->X + (coords->width/2) - Variables::offsetX, coords->Y + (coords->height/2) - Variables::offsetY, 
             Variables::ScaleX, Variables::ScaleY, angle, 0);
+}
+
+void Image::displayUI(Coordinates* coords)
+{
+    al_draw_bitmap(images[currentImage], coords->X, coords->Y, 0);
 }
 
 void Image::nextImage()
