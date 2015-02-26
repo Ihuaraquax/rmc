@@ -53,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Helmet.o \
 	${OBJECTDIR}/Image.o \
+	${OBJECTDIR}/Inventory.o \
 	${OBJECTDIR}/KeyboardControl.o \
 	${OBJECTDIR}/Map.o \
 	${OBJECTDIR}/Menu.o \
@@ -193,6 +194,11 @@ ${OBJECTDIR}/Image.o: Image.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Image.o Image.cpp
+
+${OBJECTDIR}/Inventory.o: Inventory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Inventory.o Inventory.cpp
 
 ${OBJECTDIR}/KeyboardControl.o: KeyboardControl.cpp 
 	${MKDIR} -p ${OBJECTDIR}

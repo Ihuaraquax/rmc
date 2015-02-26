@@ -19,6 +19,7 @@
 #include <allegro5/allegro_acodec.h>
 #include <cmath>
 #include "Session.h"
+#include "GameSubstateEnum.h"
 
 enum GAME_STATE
 {
@@ -54,6 +55,8 @@ struct Variables
     
     static const int tilesPerRoom;
     static const int tileSize;
+    
+    static GAME_SUBSTATE substate;
     
     void static giveFactors(double angle, double &x_factor, double &y_factor)
      {

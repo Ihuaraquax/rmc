@@ -16,6 +16,7 @@
 #include "MouseControl.h"
 #include "KeyboardControl.h"
 #include "Map.h"
+#include "Inventory.h"
 
 enum MainGameState
 {
@@ -39,6 +40,7 @@ public:
     AllEntities* getAllEntities() const;
     Menu* getMainMenu() const;
     HUD* getHud() const;
+    Inventory* getPlayerInventory() const;
     
     static MainGameState gameState;
 private:
@@ -50,6 +52,7 @@ private:
     KeyboardControl *keyboard;
     Map *map;
     HUD *hud;
+    Inventory *playerInventory;
 };
 
 #endif	/* SESSION_H */

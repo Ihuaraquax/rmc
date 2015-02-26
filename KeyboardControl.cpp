@@ -48,6 +48,15 @@ void KeyboardControl::gameKeyboardActions()
      if(isPressed(ALLEGRO_KEY_X))player->useEquipment(1);
      if(isPressed(ALLEGRO_KEY_C))player->useEquipment(2);
      if(isPressed(ALLEGRO_KEY_E))player->useItem();
+     if(isPressed(ALLEGRO_KEY_I))
+     {
+         if(Variables::substate == game)
+         {
+             Variables::session->getPlayerInventory()->init();
+             Variables::substate = inventory;
+         }
+         else if(Variables::substate == inventory)Variables::substate = game;
+     }
 }
 
 bool KeyboardControl::isPressed(int key)

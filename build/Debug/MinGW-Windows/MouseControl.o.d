@@ -3,7 +3,7 @@ build/Debug/MinGW-Windows/MouseControl.o: MouseControl.cpp MouseControl.h \
  WeaponUI.h Weapon.h DamageTypeEnum.h EquipmentUI.h Equipment.h \
  UsableItem.h AllEntities.h Entity.h Wall.h Door.h templateList.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
- Player.h Attributes.h
+ Inventory.h GameSubstateEnum.h Player.h Attributes.h
 
 MouseControl.h:
 
@@ -54,6 +54,10 @@ Room.h:
 ModuleTile.h:
 
 AiTile.h:
+
+Inventory.h:
+
+GameSubstateEnum.h:
 
 Player.h:
 

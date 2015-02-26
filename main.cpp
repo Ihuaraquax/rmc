@@ -45,6 +45,7 @@ ALLEGRO_FONT *Variables::basicFont;
 ALLEGRO_BITMAP *Variables::MouseCoursor;
 
 MainGameState Session::gameState = MAP;
+GAME_SUBSTATE Variables::substate = game;
 
 int const Variables::damageTypeCount = 6;
 

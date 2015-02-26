@@ -11,12 +11,14 @@
 #include "Equipment.h"
 #include "Attributes.h"
 #include "UsableItem.h"
+#include "Inventory.h"
 
 class Player : public Entity{
     friend class Helmet;
     friend class Chestplate;
     friend class Greaves;
     friend class Attributes;
+    friend class Inventory;
 public:
     Player();
     virtual ~Player();

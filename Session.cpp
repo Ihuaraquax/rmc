@@ -28,6 +28,7 @@ void Session::create()
     map = new Map();
     map->createLevels();
     allEntities = new AllEntities();
+    playerInventory = new Inventory();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -40,6 +41,10 @@ Menu* Session::getMainMenu() const {
 
 HUD* Session::getHud() const {
     return hud;
+}
+
+Inventory* Session::getPlayerInventory() const {
+    return playerInventory;
 }
 
 Session::Session(const Session& orig) {
@@ -61,6 +66,7 @@ void Session::display()
         map->display();
         allEntities->display();
         hud->display();
+        if(Variables::substate == inventory)playerInventory->display();
         al_flip_display();
         }
 }

@@ -3,7 +3,7 @@ build/Debug/MinGW-Windows/Projectile.o: Projectile.cpp Projectile.h \
  templateList.h globalVariables.h Session.h Menu.h HUD.h WeaponUI.h \
  EquipmentUI.h Equipment.h UsableItem.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
- CollisionDetector.h Explosion.h
+ Inventory.h GameSubstateEnum.h CollisionDetector.h Explosion.h
 
 Projectile.h:
 
@@ -56,6 +56,10 @@ Room.h:
 ModuleTile.h:
 
 AiTile.h:
+
+Inventory.h:
+
+GameSubstateEnum.h:
 
 CollisionDetector.h:
 
