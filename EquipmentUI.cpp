@@ -130,8 +130,8 @@ void EquipmentUI::display()
     itemImage->display(itemCoords);    
     char chargesLeft[2];
     itoa(selectedItem->getCharges(), chargesLeft, 10);
-    double X = itemCoords->X + 80 - Variables::offsetX;
-    double Y = itemCoords->Y + 80 - Variables::offsetY;
+    double X = itemCoords->X + 80;
+    double Y = itemCoords->Y + 80;
     al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X, Y, ALLEGRO_ALIGN_CENTER, chargesLeft);
     
 }
