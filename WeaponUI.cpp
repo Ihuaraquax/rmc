@@ -7,6 +7,7 @@
 
 #include "WeaponUI.h"
 #include "globalVariables.h"
+#include "Player.h"
 
 WeaponUI::WeaponUI(bool left) {
     this->leftDisplay = left;
@@ -47,8 +48,8 @@ void WeaponUI::display()
         image->display(coords);
         damageTypeImage->display(damageTypeCoords);
 
-        char ammoMax[4], ammoLeft[4];
-        itoa(selectedWeapon->getAmmoMax(), ammoMax, 10);
+        char ammoMax[6], ammoLeft[4];
+        itoa(dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getAmmo(selectedWeapon->ammoType) ,ammoMax, 10);
         itoa(selectedWeapon->getAmmoCurrent(), ammoLeft, 10);
         double X = Variables::RES_WIDTH - 140;
         if(leftDisplay)X -= 200;
