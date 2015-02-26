@@ -9,6 +9,7 @@
 #include "globalVariables.h"
 #include "Projectile.h"
 #include "WeaponLoader.h"
+#include "Player.h"
 
 Weapon::Weapon() {
     ammoMax = 1;
@@ -30,15 +31,25 @@ Weapon::Weapon() {
     name = "noWeapon";
     criticalChance = 10;
     criticalDamage = 2;
+    reloadable = true;
+    playerIsWielder = false;
 }
 
 void Weapon::update()
 {
     if(timeToShoot > 0)timeToShoot--;
     if(ammoCurrent == 0 && !reloading)reload();
-    if(timeToShoot == 0 && reloading)
+    if(timeToShoot == 0 && reloading && reloadable)
     {
-        ammoCurrent = ammoMax;
+        if(playerIsWielder)
+        {
+            Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+            if(player->getAmmo(ammoType) > this->ammoMax) ammoCurrent = ammoMax;
+            else ammoCurrent = player->getAmmo(ammoType);
+            player->addAmmo(-ammoCurrent, ammoType);
+            if(player->getAmmo(ammoType) == 0)reloadable = false;
+        }
+        else ammoCurrent = ammoMax;
         reloading = false;
     }
     if(Variables::currentFrame % 3 == 0)if(currentTargetSize > defaultTargetSize)
@@ -70,7 +81,7 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
 
 void Weapon::reload()
 {
-    timeToShoot = reloadSpeed;
+    if(reloadable)timeToShoot = reloadSpeed;
     reloading = true;
 }
 
@@ -109,4 +120,16 @@ std::string Weapon::getDisplayPaths() const {
 
 std::string Weapon::getName() const {
     return name;
+}
+
+void Weapon::setReloadable(bool reloadable) {
+    this->reloadable = reloadable;
+}
+
+void Weapon::setPlayerIsWielder(bool playerIsWielder) {
+    this->playerIsWielder = playerIsWielder;
+}
+
+int Weapon::getAmmoType() const {
+    return ammoType;
 }

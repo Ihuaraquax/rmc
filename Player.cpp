@@ -26,7 +26,13 @@ Player::Player() {
     item = new UsableItem();
     greaves = new Greaves();
     weapons = new Weapon*[6];
-    for(int i = 0; i < 6; i++)weapons[i] = new Weapon();
+    ammo = new int[10];
+    for(int i = 0; i < 10; i++)ammo[i] = 1000;
+    for(int i = 0; i < 6; i++)
+    {
+        weapons[i] = new Weapon();
+        weapons[i]->setPlayerIsWielder(true);
+    }
     setTestValues();
 }
 
@@ -35,6 +41,7 @@ Player::~Player() {
     delete helmet;
     delete chestplate;
     delete greaves;
+    delete []ammo;
 }
 
 void Player::setTestValues()
@@ -220,4 +227,19 @@ void Player::changeItem(int index)
 {
     UsableItemLoader::loadItem(item, index);
     Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves, item);
+}
+
+void Player::addAmmo(int ammo, int index)
+{
+    this->ammo[index] += ammo;
+    if(this->ammo[index] > 0)
+    {
+        for(int i = 0; i < 6; i++)if(weapons[i]->getAmmoType() == index)
+            weapons[i]->setReloadable(true);
+    }
+}
+
+int Player::getAmmo(int index)
+{
+    return ammo[index];
 }

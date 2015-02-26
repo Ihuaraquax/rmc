@@ -48,6 +48,9 @@ public:
     
     void useItem();
     void changeItem(int index);
+    
+    int getAmmo(int index);
+    void addAmmo(int ammo, int index);
 private:
     void setTestValues();
     int selecetedWeaponSet;
@@ -58,6 +61,7 @@ private:
     
     Weapon *shoulderGun;
     int expirience;
+    int *ammo;
     
     Attributes *attributes;
 };

@@ -25,6 +25,10 @@ public:
     int getAmmoMax() const;
     std::string getDisplayPaths() const;
     std::string getName() const;
+    
+    void setReloadable(bool reloadable);
+    void setPlayerIsWielder(bool playerIsWielder);
+    int getAmmoType() const;
 private:
     int ammoMax;
     int ammoCurrent;
@@ -48,6 +52,8 @@ private:
     std::string displayPaths;
     int criticalChance;
     double criticalDamage;
+    bool playerIsWielder;
+    bool reloadable;
 };
 
 #endif	/* WEAPON_H */
