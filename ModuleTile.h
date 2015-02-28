@@ -47,10 +47,12 @@ public:
     void setCenter(int X, int Y);
     Entity* getObstacle() const;
     void setObstacle(Entity* obstacle);
-    void useDoor(int direction);
     
     int getCenterY() const;
     int getCenterX() const;
+    bool setUsableObject(UsableObject *object);
+    
+    void useObject();
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
@@ -60,9 +62,11 @@ private:
     Door **doorList;
     AiTile *aiTile;
     int threatLevel;
-    int centerX, centerY;    
+    int centerX, centerY;        
+    UsableObject *object;
     
     void deleteFromTurretList(Entity *toDelete);
+    void useDoor(int direction);
 };
 
 #endif	/* MODULETILE_H */

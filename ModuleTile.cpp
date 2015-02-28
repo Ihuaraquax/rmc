@@ -22,6 +22,7 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
         doorList[i] = NULL;
     }
     threatLevel = 0;
+    object = NULL;
 }
 
 ModuleTile::~ModuleTile()
@@ -74,10 +75,13 @@ void ModuleTile::addToWallList(Wall *wall, int direction)
     aiTile->setOpenDoorValue(direction*2 + 1, false);
 }
 
-void ModuleTile::addToDoorList(Door *doors, int direction)
+void ModuleTile::addToDoorList(Door *door, int direction)
 {
-    doorList[direction] = doors;
-    aiTile->setOpenDoorValue(((direction+1) * 2) - 1, doors->isOpen());
+    if(this->setUsableObject(door))
+    {
+        doorList[direction] = door;
+        aiTile->setOpenDoorValue(((direction+1) * 2) - 1, door->isOpen());
+    }
 }
 
 void ModuleTile::addToEntityList(Entity* toAdd)
@@ -228,8 +232,7 @@ void ModuleTile::useDoor(int direction)
 {
     if(doorList[direction] != NULL)
     {
-        bool newValue = !doorList[direction]->isOpen();
-        doorList[direction]->setOpen(newValue);
+        bool newValue = doorList[direction]->isOpen();
         aiTile->setOpenDoorValue(direction * 2 + 1, newValue);
         switch(direction)
         {
@@ -286,5 +289,28 @@ void ModuleTile::deleteFromTurretList(Entity* toDelete)
         templateList<Entity> *listToDelete = temp->next;
         temp->next = listToDelete->next;
         delete listToDelete;
+    }
+}
+
+bool ModuleTile::setUsableObject(UsableObject* object)
+{
+    bool result = false;
+    if(this->object == NULL)
+    {
+        this->object = object;
+        result = true;
+    }
+    return result;    
+}
+
+void ModuleTile::useObject()
+{
+    if(object != NULL)
+    {
+        object->use();
+        for(int i = 0; i < 4; i++)
+        {
+            this->useDoor(i);
+        }
     }
 }

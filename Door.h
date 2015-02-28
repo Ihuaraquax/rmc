@@ -8,8 +8,9 @@
 #ifndef DOOR_H
 #define	DOOR_H
 #include "Coordinates.h"
+#include "UsableObject.h"
 
-class Door {
+class Door : public UsableObject {
 public:
     Door(Coordinates *coords);
     ~Door();
@@ -20,6 +21,7 @@ public:
     bool isOpen() const;
     void getHit(int damage, int damageType);
     int getHealth() const;
+    void use();
 private:
     Coordinates *coords;
     bool open;

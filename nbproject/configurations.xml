@@ -74,6 +74,8 @@
           <itemPath>ModuleTile.h</itemPath>
           <itemPath>TileFactory.cpp</itemPath>
           <itemPath>TileFactory.h</itemPath>
+          <itemPath>UsableObject.cpp</itemPath>
+          <itemPath>UsableObject.h</itemPath>
         </logicalFolder>
         <itemPath>Door.cpp</itemPath>
         <itemPath>Door.h</itemPath>
@@ -318,6 +320,10 @@
       </item>
       <item path="UsableItemLoader.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="UsableObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UsableObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Wall.h" ex="false" tool="3" flavor2="0">
@@ -523,6 +529,10 @@
       <item path="UsableItemLoader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UsableItemLoader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UsableObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UsableObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>

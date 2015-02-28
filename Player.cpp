@@ -111,10 +111,7 @@ void Player::display()
 
 void Player::interact()
 {
-    for(int i = 0; i < 4; i++)
-    {
-        Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->useDoor(i);
-    }
+        Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->useObject();
 }
 
 void Player::selectWeaponSet(int set)

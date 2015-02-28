@@ -58,3 +58,8 @@ void Door::getHit(int damage, int damageType)
 int Door::getHealth() const {
     return health;
 }
+
+void Door::use()
+{
+    open = !open;
+}
