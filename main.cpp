@@ -22,7 +22,7 @@ using namespace std;
 
 int  Variables::RES_WIDTH = 1024;
 int  Variables::RES_HEIGHT = 768;
-const float  Variables::fps = 120;
+const float  Variables::fps = 90;
 
 double  Variables::offsetX = 0;
 double  Variables::offsetY = 0;
