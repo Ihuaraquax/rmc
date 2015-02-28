@@ -34,6 +34,8 @@ private:
     
     Image **equipmentImages;
     Coordinates **equipmentCoords;
+    
+    std::string *ammoNames;
 };
 
 #endif	/* INVENTORY_H */

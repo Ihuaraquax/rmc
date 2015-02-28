@@ -45,6 +45,18 @@ Inventory::Inventory() {
     {
         equipmentImages[i]  = NULL;
     }
+    
+    ammoNames = new std::string[10];
+    ammoNames[0] = "PIST";
+    ammoNames[1] = "SMG";
+    ammoNames[2] = ".50";
+    ammoNames[3] = "12G";
+    ammoNames[4] = "RIFLE";
+    ammoNames[5] = "GRND";
+    ammoNames[6] = "RKET";
+    ammoNames[7] = "ENRG";
+    ammoNames[8] = "HEAVY";
+    ammoNames[9] = "HCG";
 }
 
 Inventory::~Inventory() {
@@ -57,6 +69,7 @@ void Inventory::display()
     displayEquipment();
     displayAttributes();
     displayStats();
+    displayAmmo();
 }
 
 void Inventory::displayWeapons()
@@ -142,7 +155,19 @@ void Inventory::displayStats()
 
 void Inventory::displayAmmo()
 {
-    // NOT YET IMPLEMENTED
+    Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+    double X = 700;
+    double Y = 450;
+    char label[20];
+    for(int i = 0; i < 10 ; i++)
+    {
+        char ammo[5];
+        strcpy(label, ammoNames[i].c_str());
+        itoa(player->getAmmo(i), ammo, 10);
+        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X-55, Y, ALLEGRO_ALIGN_LEFT, label);
+        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X+60, Y, ALLEGRO_ALIGN_RIGHT, ammo);
+        Y += 32;
+    }
 }
 
 void Inventory::init()
