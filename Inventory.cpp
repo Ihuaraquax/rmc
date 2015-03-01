@@ -99,15 +99,15 @@ void Inventory::displayAttributes()
     double X = 81;
     double Y = 50;
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, strength);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 157, Y, ALLEGRO_ALIGN_CENTER, intelligence);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 320, Y, ALLEGRO_ALIGN_CENTER, accuracy);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 480, Y, ALLEGRO_ALIGN_CENTER, speed);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 157 + 9, Y, ALLEGRO_ALIGN_CENTER, intelligence);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 320 + 9, Y, ALLEGRO_ALIGN_CENTER, accuracy);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 480 + 9, Y, ALLEGRO_ALIGN_CENTER, speed);
     
     Y = 20;
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, strengthLabel);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 157, Y, ALLEGRO_ALIGN_CENTER, intelligenceLabel);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 320, Y, ALLEGRO_ALIGN_CENTER, accuracyLabel);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 480, Y, ALLEGRO_ALIGN_CENTER, speedLabel);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 157 + 9, Y, ALLEGRO_ALIGN_CENTER, intelligenceLabel);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 320 + 9, Y, ALLEGRO_ALIGN_CENTER, accuracyLabel);
+    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 480 + 9, Y, ALLEGRO_ALIGN_CENTER, speedLabel);
 }
 
 void Inventory::displayStats()
