@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/AllEntities.o \
 	${OBJECTDIR}/Attributes.o \
 	${OBJECTDIR}/Button.o \
+	${OBJECTDIR}/Chest.o \
 	${OBJECTDIR}/Chestplate.o \
 	${OBJECTDIR}/CollisionDetector.o \
 	${OBJECTDIR}/Coordinates.o \
@@ -125,6 +126,11 @@ ${OBJECTDIR}/Button.o: Button.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Button.o Button.cpp
+
+${OBJECTDIR}/Chest.o: Chest.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Chest.o Chest.cpp
 
 ${OBJECTDIR}/Chestplate.o: Chestplate.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -12,6 +12,8 @@
 #include "globalVariables.h"
 
 Module::Module() {
+    Chest *newChest = new Chest();
+    chests.push_back(newChest);
 }
 
 Module::~Module()
@@ -30,6 +32,11 @@ Module::~Module()
     {
         Door *temp = *i;
 //        delete temp;  Dziwny błąd - delete powoduje wyrzucenie błędu podczas wychodzenia z debug w netbeans
+    }
+    for(std::list<Chest*>::iterator i = chests.begin(); i != chests.end(); ++i)
+    {
+        Chest *temp = *i;
+        delete temp;
     }
 }
 
@@ -50,10 +57,10 @@ void Module::display()
         Door *temp = *i;
         temp->display();
     }
-    this->displayModuleTileAI();
+//    this->displayModuleTileAI();
 //    this->displayModuleThreatLevel();
 //    this->displayObstacles();
-    this->displayRoomBorders();
+//    this->displayRoomBorders();
 }
 
 void Module::displayRoomBorders()
@@ -251,4 +258,14 @@ ModuleTile** Module::getModuleTiles() const {
 void Module::deleteDoor(Door* toDelete)
 {
     doors.remove(toDelete);
+}
+
+void Module::useChest()
+{
+    Variables::session->getPlayerInventory()->init();    
+    for(std::list<Chest*>::iterator i = chests.begin(); i != chests.end(); ++i)
+    {
+        Chest *temp = *i;
+        temp->use();
+    }
 }

@@ -12,6 +12,7 @@
 #include "Floor.h"
 #include "Room.h"
 #include "ModuleTile.h"
+#include "Chest.h"
 
 class Module {
 friend class ModuleFactory;
@@ -31,6 +32,8 @@ public:
     void deleteDoor(Door *toDelete);
     int getIndexOfModule(ModuleTile *tile);
     ModuleTile** getModuleTiles() const;
+    
+    void useChest();
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();
@@ -40,6 +43,7 @@ private:
     std::list<Wall*> walls;
     std::list<Door*> doors;
     std::list<Floor*> floorTiles;
+    std::list<Chest*> chests;
     ModuleTile **moduleTiles;
     
     int getModuleIndex(int X, int Y);

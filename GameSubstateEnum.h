@@ -9,7 +9,7 @@
 #define	GAMESUBSTATEENUM_H
 
 enum GAME_SUBSTATE{
-    game, inventory, plan, console, shrine
+    game, inventory, chest, plan, console, shrine
 };
 
 #endif	/* GAMESUBSTATEENUM_H */

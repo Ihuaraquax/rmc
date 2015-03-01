@@ -1,0 +1,10 @@
+0 pistol
+1 smg
+2 .50
+3 12gauge
+4 rifle
+5 grenade
+6 rockets
+7 energy
+8 Heavy
+9 Autocannon

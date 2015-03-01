@@ -4,7 +4,7 @@
 3 GrenadeRevolver 100 6 5 1000 120 1 40 15 2 10 1 images/weaponImage.png
 4 LaserPistol 20 15 2 500 40 2 25 15 2 10 1 images/weaponImage.png
 5 Ingram 5 60 1 350 5 0 20 15 2 10 1 images/weaponImage.png
-6 Thompson 3 100 1 1000 3 0 40 15 2 10 1 images\turretLower.png
+6 Thompson 3 100 1 1000 3 0 40 15 2 10 1 images/weaponImage.png
 7 Uzi 7 50 1 350 7 0 25 15 2 10 1 images/weaponImage.png
 8 MP5 12 32 1 600 12 0 40 15 2 10 1 images/weaponImage.png
 9 RocketMachinegun 25 32 6 800 25 1 70 15 2 10 1 images/weaponImage.png
@@ -29,5 +29,5 @@
 28 M61Vulcan 5 300 8 4500 3 0 200 15 2 10 1 images/weaponImage.png
 29 KPVT-14 15 200 8 4000 12 0 150 15 2 10 1 images/weaponImage.png
 30 LaserMinigun 15 150 7 1500 8 2 120 15 2 10 1 images/weaponImage.png
-31 Grazjew-Szipunov 7 500 8 5000 1 0 230 15 2 10 1 images/weaponImage.png
+31 Grazjew-Szipunov 7 500 8 500 1 0 230 15 2 10 1 images/weaponImage.png
 32 Autocannon 100 40 9 3500 30 1 250 15 20 10 1 images/weaponImage.png

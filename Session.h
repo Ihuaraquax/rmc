@@ -17,6 +17,7 @@
 #include "KeyboardControl.h"
 #include "Map.h"
 #include "Inventory.h"
+#include "Chest.h"
 
 enum MainGameState
 {
@@ -41,6 +42,7 @@ public:
     Menu* getMainMenu() const;
     HUD* getHud() const;
     Inventory* getPlayerInventory() const;
+    void setOpenChest(Chest* openChest);
     
     static MainGameState gameState;
 private:
@@ -52,7 +54,8 @@ private:
     KeyboardControl *keyboard;
     Map *map;
     HUD *hud;
-    Inventory *playerInventory;
+    Inventory *playerInventory;    
+    Chest *openChest;
 };
 
 #endif	/* SESSION_H */

@@ -47,6 +47,10 @@ Inventory* Session::getPlayerInventory() const {
     return playerInventory;
 }
 
+void Session::setOpenChest(Chest* openChest) {
+    this->openChest = openChest;
+}
+
 Session::Session(const Session& orig) {
 }
 
@@ -67,6 +71,11 @@ void Session::display()
         allEntities->display();
         hud->display();
         if(Variables::substate == inventory)playerInventory->display();
+        if(Variables::substate == chest)
+        {
+            playerInventory->display();
+            openChest->displayContent();
+        }
         al_flip_display();
         }
 }
@@ -81,7 +90,8 @@ void Session::update()
         map->update();
         allEntities->update();
         hud->update();
-        }
+        if(Variables::substate == chest)openChest->update();
+    }
 }
 
 void Session::loadSave()
@@ -96,6 +106,7 @@ void Session::loadNew()
 
 void Session::loop()
 {
+    map->getCurrentModule()->useChest();
     while(Variables::status != END)
     {
         ALLEGRO_EVENT ev;
