@@ -28,17 +28,19 @@ void KeyboardControl::gameKeyboardActions()
 {
      Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
     
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_UP))Variables::offsetY-=5;
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_DOWN))Variables::offsetY+=5;
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_LEFT))Variables::offsetX-=5;
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_RIGHT))Variables::offsetX+=5;
-     
-     
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_W))player->playerMove(0,-1);
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_S))player->playerMove(0,1);
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_A))player->playerMove(-1,0);
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_D))player->playerMove(1,0);
-     
+     if(Variables::substate == game)
+     {
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_UP))Variables::offsetY-=5;
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_DOWN))Variables::offsetY+=5;
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_LEFT))Variables::offsetX-=5;
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_RIGHT))Variables::offsetX+=5;
+
+
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_W))player->playerMove(0,-1);
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_S))player->playerMove(0,1);
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_A))player->playerMove(-1,0);
+         if(al_key_down(&Variables::key_state, ALLEGRO_KEY_D))player->playerMove(1,0);
+     }
      if(isPressed(ALLEGRO_KEY_1))player->selectWeaponSet(0);
      if(isPressed(ALLEGRO_KEY_2))player->selectWeaponSet(1);
      if(isPressed(ALLEGRO_KEY_3))player->selectWeaponSet(2);
