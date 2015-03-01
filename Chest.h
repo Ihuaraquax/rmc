@@ -10,8 +10,9 @@
 #include "UsableObject.h"
 #include "Image.h"
 #include "Coordinates.h"
+#include "Obstacle.h"
 
-class Chest : public UsableObject {
+class Chest : public Entity, public UsableObject {
 public:
     Chest();
     virtual ~Chest();
@@ -31,9 +32,6 @@ private:
     Coordinates **contentCoords;
     Image *backgroundImage;
     Image **contentImages;
-    
-    Coordinates *coords;
-    Image *image;
     
     int chestSize;
     int *contentType;

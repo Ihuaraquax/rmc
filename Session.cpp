@@ -106,7 +106,6 @@ void Session::loadNew()
 
 void Session::loop()
 {
-    map->getCurrentModule()->useChest();
     while(Variables::status != END)
     {
         ALLEGRO_EVENT ev;

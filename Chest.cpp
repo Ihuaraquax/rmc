@@ -9,14 +9,17 @@
 
 #include "Chest.h"
 #include "globalVariables.h"
+#include "ModuleTile.h"
 
 Chest::Chest() {
     open = false;
     std::string paths[] = {"images/chest.jpg"};
     this->image = new Image(1, paths, true);
     this->coords = new Coordinates();
-    this->coords->X = 200;
+    this->coords->X = 300;
     this->coords->Y = 200;
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
     
     std::string backgroundPaths[] = {"images/chestBackground.png"};
     this->backgroundImage = new Image(1, backgroundPaths, false);
@@ -48,6 +51,15 @@ Chest::Chest() {
         contentCoords[i]->X = 860;
         contentCoords[i]->Y = 100 + 150*i;
     }
+    health = 100;
+    
+    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
+    tile->setObstacle(this);
+    tile->addToEntityList(this);
+    for(int i = 0; i < 4; i++)
+    {
+        tile->getAdjacentTiles()[i*2 +1]->setUsableObject(this);
+    }
 }
 
 Chest::~Chest() {
@@ -62,8 +74,6 @@ Chest::~Chest() {
         delete []contentType;
         delete backgroundImage;
         delete backgroundCoords;
-        delete image;
-        delete coords;
 }
 
 void Chest::display()
@@ -140,6 +150,7 @@ void Chest::use()
         Variables::substate = chest;
         open = true;
         Variables::session->setOpenChest(this);
+        Variables::session->getPlayerInventory()->init();
     }
 }
 void Chest::update()

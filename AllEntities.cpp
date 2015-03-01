@@ -11,6 +11,7 @@
 #include "Turret.h"
 #include "globalVariables.h"
 #include "Obstacle.h"
+#include "Chest.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -24,6 +25,8 @@ AllEntities::AllEntities() {
     }
     Entity *turret = new Turret();
     entityList.push_back(turret);
+    Entity *chest = new Chest();
+    entityList.push_back(chest);
 }
 
 AllEntities::~AllEntities()

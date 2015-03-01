@@ -12,8 +12,6 @@
 #include "globalVariables.h"
 
 Module::Module() {
-    Chest *newChest = new Chest();
-    chests.push_back(newChest);
 }
 
 Module::~Module()
