@@ -15,14 +15,14 @@ Inventory::Inventory() {
     backgroundImage = new Image(1, paths, false);
     backgroundImage->state = UI;
     backgroundCoords = new Coordinates();
-    backgroundCoords->X = -17;
+    backgroundCoords->X = 0;
     backgroundCoords->Y = -17;
     
     weaponCoords = new Coordinates*[6];
     for(int i = 0; i <6; i++)
     {
         weaponCoords[i] = new Coordinates();
-        weaponCoords[i]->X = 12 + 210*(i/2);
+        weaponCoords[i]->X = 29 + 210*(i/2);
         weaponCoords[i]->Y = 575 + 90*(i%2);
     }
     weaponImages = new Image*[6];
@@ -36,7 +36,7 @@ Inventory::Inventory() {
     for(int i = 0; i <4; i++)
     {
         equipmentCoords[i] = new Coordinates();
-        equipmentCoords[i]->X = 46 + 140*i;
+        equipmentCoords[i]->X = 63 + 140*i;
         equipmentCoords[i]->Y = 455;
     }
     equipmentImages = new Image*[4];
@@ -96,7 +96,7 @@ void Inventory::displayAttributes()
     itoa(player->attributes->getInteligence(), intelligence, 10);
     itoa(player->attributes->getAccuracy(), accuracy, 10);
     itoa(player->attributes->getSpeed(), speed, 10);
-    double X = 74;
+    double X = 81;
     double Y = 50;
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, strength);
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 157, Y, ALLEGRO_ALIGN_CENTER, intelligence);
@@ -124,7 +124,7 @@ void Inventory::displayStats()
         int resistPercentage = ceil(player->elementalResists[i] * 100);
         itoa(resistPercentage, resistance[i], 10);
     }
-    double X = 700;
+    double X = 717;
     double Y = 20;
     
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, healthLabel);
@@ -156,7 +156,7 @@ void Inventory::displayStats()
 void Inventory::displayAmmo()
 {
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
-    double X = 700;
+    double X = 717;
     double Y = 450;
     char label[20];
     for(int i = 0; i < 10 ; i++)
