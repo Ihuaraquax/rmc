@@ -54,13 +54,13 @@ void WeaponUI::display()
         double X = Variables::RES_WIDTH - 140;
         if(leftDisplay)X -= 200;
         double Y = Variables::RES_HEIGHT - 90;
-        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 25, Y, ALLEGRO_ALIGN_CENTER, ammoMax);
-        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, " / ");
-        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X - 25, Y, ALLEGRO_ALIGN_CENTER, ammoLeft);
+        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X + 25, Y, ALLEGRO_ALIGN_CENTER, ammoMax);
+        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X, Y, ALLEGRO_ALIGN_CENTER, " / ");
+        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X - 25, Y, ALLEGRO_ALIGN_CENTER, ammoLeft);
         
         char *name = new char[selectedWeapon->getName().length()+1];
         strcpy(name, selectedWeapon->getName().c_str());
-        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 40, Y+65, ALLEGRO_ALIGN_CENTER, name);
+        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X + 40, Y+65, ALLEGRO_ALIGN_CENTER, name);
         
         displayReloadIndicator(X, Y);
     }
