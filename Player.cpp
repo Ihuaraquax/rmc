@@ -62,12 +62,12 @@ void Player::setTestValues()
     this->image->state = NORMAL;
     health = 100;
     maximumHealth = health + 100;
-    WeaponLoader::loadWeapon(weapons[0], 6);
-    WeaponLoader::loadWeapon(weapons[1], 31);
-    WeaponLoader::loadWeapon(weapons[2], 12);
+    WeaponLoader::loadWeapon(weapons[0], 2);
+    WeaponLoader::loadWeapon(weapons[1], 4);
+    WeaponLoader::loadWeapon(weapons[2], 6);
     WeaponLoader::loadWeapon(weapons[3], 1);
-    WeaponLoader::loadWeapon(weapons[4], 27);
-    WeaponLoader::loadWeapon(weapons[5], 23);
+    WeaponLoader::loadWeapon(weapons[4], 8);
+    WeaponLoader::loadWeapon(weapons[5], 10);
     this->changeHelmet(7);
     this->changeChestplate(4);
     this->changeGreaves(5);
@@ -238,5 +238,11 @@ void Player::addAmmo(int ammo, int index)
 
 int Player::getAmmo(int index)
 {
-    return ammo[index];
+    if(index == -1)return 0;
+    else return ammo[index];
+}
+
+bool Player::isWeapon(int index)
+{
+    return weapons[index]->getWeaponId() != -1;
 }

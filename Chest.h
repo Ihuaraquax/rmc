@@ -27,6 +27,10 @@ public:
     int getContentType(int index);
     int getContentValue(int index);
     bool isOpen() const;
+    int getSelectedContent() const;
+    
+    bool isFieldNotEmpty(int index);
+    void swapContent(int firstContentIndex, int secondContentIndex);
 private:
     Coordinates *backgroundCoords;
     Coordinates **contentCoords;
@@ -38,6 +42,7 @@ private:
     int *contentValue;
 
     bool open;
+    int selectedContent;
 };
 
 #endif	/* CHEST_H */

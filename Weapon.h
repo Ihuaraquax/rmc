@@ -29,7 +29,10 @@ public:
     void setReloadable(bool reloadable);
     void setPlayerIsWielder(bool playerIsWielder);
     int getAmmoType() const;
+    void setAmmoCurrent(int ammoCurrent);
+    int getWeaponId() const;
 private:
+    int weaponId;
     int ammoMax;
     int ammoCurrent;
     int reloadSpeed;

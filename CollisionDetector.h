@@ -21,8 +21,8 @@ public:
     static Entity *isEntityCollisions(ModuleTile *tile, Entity* target);
     static Wall* isWallCollisions(ModuleTile *tile, Entity *target);
     static Door *isDoorCollision(ModuleTile *tile, Entity *target);
-private:
     static bool isCollision(Coordinates *otherCoords, Coordinates *targetCoords);
+private:
     static Entity *checkCollisions(templateList<Entity> *otherEntities, Entity *target);
     static bool checkCollisions(Door **doors, Entity *target);
 };

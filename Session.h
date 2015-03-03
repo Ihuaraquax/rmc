@@ -43,6 +43,7 @@ public:
     HUD* getHud() const;
     Inventory* getPlayerInventory() const;
     void setOpenChest(Chest* openChest);
+    Chest* getOpenChest() const;
     
     static MainGameState gameState;
 private:

@@ -12,8 +12,9 @@
 #include "Player.h"
 
 Weapon::Weapon() {
+    weaponId = -1;
     ammoMax = 1;
-    ammoCurrent = 1;
+    ammoCurrent = 0;
     reloadSpeed = 0;
     damage = 0;
     cooldown = 0;
@@ -31,8 +32,9 @@ Weapon::Weapon() {
     name = "noWeapon";
     criticalChance = 10;
     criticalDamage = 2;
-    reloadable = true;
+    reloadable = false;
     playerIsWielder = false;
+    ammoType = -1;
 }
 
 void Weapon::update()
@@ -132,4 +134,12 @@ void Weapon::setPlayerIsWielder(bool playerIsWielder) {
 
 int Weapon::getAmmoType() const {
     return ammoType;
+}
+
+void Weapon::setAmmoCurrent(int ammoCurrent) {
+    this->ammoCurrent = ammoCurrent;
+}
+
+int Weapon::getWeaponId() const {
+    return weaponId;
 }

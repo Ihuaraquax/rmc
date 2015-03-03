@@ -9,6 +9,8 @@
 #include <iostream>
 #include "Player.h"
 #include "globalVariables.h"
+#include "WeaponLoader.h"
+#include "CollisionDetector.h"
 
 Inventory::Inventory() {
     std::string paths[] = {"images/inventoryBackground.png"};
@@ -24,6 +26,8 @@ Inventory::Inventory() {
         weaponCoords[i] = new Coordinates();
         weaponCoords[i]->X = 29 + 210*(i/2);
         weaponCoords[i]->Y = 575 + 90*(i%2);
+        weaponCoords[i]->width = 200;
+        weaponCoords[i]->height = 90;
     }
     weaponImages = new Image*[6];
     
@@ -208,4 +212,83 @@ void Inventory::clearImages()
     {
         if(equipmentImages[i] != NULL)delete equipmentImages[i];
     }
+}
+
+void Inventory::swapWeapons(bool inventory, int index)
+{
+    Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+    int firstWeaponIndex = this->getWeaponIndex();
+    int secondWeaponIndex = index;
+    if(firstWeaponIndex == -1)return;
+    if(inventory)
+    {
+        int firstWeaponAmmo = player->weapons[firstWeaponIndex]->getAmmoCurrent();
+        int secondWeaponAmmo = player->weapons[secondWeaponIndex]->getAmmoCurrent();
+        int secondWeaponId = player->weapons[secondWeaponIndex]->getWeaponId();
+        WeaponLoader::loadWeapon(player->weapons[secondWeaponIndex], player->weapons[firstWeaponIndex]->getWeaponId());
+        WeaponLoader::loadWeapon(player->weapons[firstWeaponIndex], secondWeaponId);
+        player->weapons[firstWeaponIndex]->setAmmoCurrent(secondWeaponAmmo);
+        player->weapons[secondWeaponIndex]->setAmmoCurrent(firstWeaponAmmo);
+    } else {
+        int firstWeaponAmmo = player->weapons[firstWeaponIndex]->getAmmoCurrent();
+        player->addAmmo(firstWeaponAmmo, player->weapons[firstWeaponIndex]->getAmmoType());
+        int secondWeaponId = Variables::session->getOpenChest()->getContentValue(index);
+        Variables::session->getOpenChest()->loadContent(index, 1, player->weapons[firstWeaponIndex]->getWeaponId());
+        WeaponLoader::loadWeapon(player->weapons[firstWeaponIndex], secondWeaponId);
+    }
+    this->init();
+    Variables::session->getHud()->getMainWeaponUI()->reloadImage();
+    Variables::session->getHud()->getSecondaryWeaponUI()->reloadImage();
+}
+
+void Inventory::swapEquipment(bool inventory, int index)
+{
+    
+}
+
+int Inventory::getEquipmentIndex()
+{
+    int result = -1;
+    Coordinates *mouseCoords = new Coordinates();
+    mouseCoords->X = Variables::mouse_x;
+    mouseCoords->Y = Variables::mouse_y;
+    for(int i = 0; i < 4; i++)
+    {
+        if(CollisionDetector::isCollision(mouseCoords, equipmentCoords[i]))
+        {
+            result = i;
+            break;
+        }
+    }
+    return result;
+}
+
+int Inventory::getWeaponIndex()
+{
+    int result = -1;
+    Coordinates *mouseCoords = new Coordinates();
+    mouseCoords->X = Variables::mouse_x;
+    mouseCoords->Y = Variables::mouse_y;
+    mouseCoords->width = 1;
+    mouseCoords->height = 1;
+    for(int i = 0; i < 6; i++)
+    {
+        if(CollisionDetector::isCollision(mouseCoords, weaponCoords[i]))
+        {
+            result = i;
+            break;
+        }
+    }
+    return result;
+}
+
+void Inventory::storeInChest(int chestFieldIndex, int inventoryFieldIndex)
+{
+    Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+    int chestWeaponType = Variables::session->getOpenChest()->getContentValue(chestFieldIndex);
+    Variables::session->getOpenChest()->loadContent(chestFieldIndex, 1, player->weapons[inventoryFieldIndex]->getWeaponId());
+    WeaponLoader::loadWeapon(player->weapons[inventoryFieldIndex], chestWeaponType);
+    init();
+    Variables::session->getHud()->getMainWeaponUI()->reloadImage();
+    Variables::session->getHud()->getSecondaryWeaponUI()->reloadImage();
 }

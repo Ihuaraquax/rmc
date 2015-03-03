@@ -87,8 +87,13 @@ void WeaponUI::update()
 void WeaponUI::selectWeapon(Weapon* newWeapon)
 {
     selectedWeapon = newWeapon;
-    if(image != NULL)delete image;
-    if(newWeapon != NULL)
+    reloadImage();
+}
+
+void WeaponUI::reloadImage()
+{
+    if(image != NULL)delete image;    
+    if(selectedWeapon != NULL)
     {
         std::string paths[] = {selectedWeapon->getDisplayPaths()};
         image = new Image(1, paths, true);

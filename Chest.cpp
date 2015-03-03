@@ -10,11 +10,14 @@
 #include "Chest.h"
 #include "globalVariables.h"
 #include "ModuleTile.h"
+#include "CollisionDetector.h"
+#include "WeaponLoader.h"
 
 Chest::Chest() {
     open = false;
-    std::string paths[] = {"images/chest.jpg"};
-    this->image = new Image(1, paths, true);
+    std::string paths[] = {"images/chest.png"};
+    this->image = new Image(1, paths, true);    
+    
     this->coords = new Coordinates();
     this->coords->X = 300;
     this->coords->Y = 200;
@@ -35,23 +38,22 @@ Chest::Chest() {
     this->contentCoords = new Coordinates*[chestSize];
     for(int i = 0; i < chestSize; i++)
     {
+        contentCoords[i] = new Coordinates();
         contentImages[i] = NULL;
         this->contentType[i] = rand()%2;
         switch(contentType[i])
         {
-            case 0: 
+            case 0:
+                this->loadContent(i, 0, -1);
+                break;
+            case 1: 
                 this->contentValue[i] = rand()%32;
                 this->loadContent(i, contentType[i], contentValue[i]);
                 break;
-            case 1:
-                this->loadContent(i, 0, -1);
-                break;
         }
-        contentCoords[i] = new Coordinates();
-        contentCoords[i]->X = 860;
         contentCoords[i]->Y = 100 + 150*i;
     }
-    health = 100;
+    health = 10000;
     
     ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
     tile->setObstacle(this);
@@ -101,36 +103,45 @@ bool Chest::isOpen() const {
     return open;
 }
 
+int Chest::getSelectedContent() const {
+    return selectedContent;
+}
+
 int Chest::getSelectedField()
 {
     int result = -1;
+    Coordinates *mouseCoords = new Coordinates();
+    mouseCoords->X = Variables::mouse_x;
+    mouseCoords->Y = Variables::mouse_y;
     for(int i = 0; i < chestSize; i++)
     {
-        if(contentCoords[i]->X < Variables::mouse_x && contentCoords[i]->X + contentCoords[i]->width > Variables::mouse_x)
-        if(contentCoords[i]->Y < Variables::mouse_y && contentCoords[i]->Y + contentCoords[i]->height > Variables::mouse_y)
+        if(CollisionDetector::isCollision(mouseCoords, contentCoords[i]))
+        {
             result = i;
-    }    
+            break;
+        }
+    }
     return result;
 }
 
 void Chest::loadContent(int index, int type, int value)
 {
     if(contentImages[index] != NULL)delete contentImages[index];
-    if(type == 0)
+    if(type == 0 || value == -1)
     {
         std::string paths[] = {"images/noEquipmentInSlot.png"};
         contentImages[index] = new Image(1, paths, false);
+        contentCoords[index]->X = 860;
+        contentCoords[index]->width = 100;
+        contentCoords[index]->height = 100;
     }
-    if(type == 1)
+    else if(type == 1)
     {
-        std::string path;
-        char *temp;
-        std::fstream file;
-        file.open("fixtures/weapons.txt", std::ios::in);
-        for(int i = 0; i <= value; i++)std::getline(file, path);
-        path.copy(temp, 100, path.find_last_of(" "));
-        std::string paths[] = {temp};
-        contentImages[index] = new Image(1, paths, false);
+        std::string paths[] = {WeaponLoader::loadPath(value)};
+        contentImages[index] = new Image(1, paths, true);
+        contentCoords[index]->X = 810;
+        contentCoords[index]->width = 200;
+        contentCoords[index]->height = 90;
     }
     contentImages[index]->state = UI;
     contentType[index] = type;
@@ -156,4 +167,17 @@ void Chest::use()
 void Chest::update()
 {
     
+}
+
+bool Chest::isFieldNotEmpty(int index)
+{
+    return contentType[index] != 0;
+}
+
+void Chest::swapContent(int firstContentIndex, int secondContentIndex)
+{
+    int secondType = contentType[secondContentIndex];
+    int secondValue = contentValue[secondContentIndex];
+    this->loadContent(secondContentIndex, contentType[firstContentIndex], contentValue[firstContentIndex]);
+    this->loadContent(firstContentIndex, secondType, secondValue);
 }

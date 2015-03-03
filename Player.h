@@ -51,6 +51,8 @@ public:
     
     int getAmmo(int index);
     void addAmmo(int ammo, int index);
+    
+    bool isWeapon(int index);
 private:
     void setTestValues();
     int selecetedWeaponSet;

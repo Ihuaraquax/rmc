@@ -15,7 +15,13 @@ public:
     Inventory();
     virtual ~Inventory();
     void display();
+    void swapWeapons(bool inventory, int index);
+    void swapEquipment(bool inventory, int index);
+    void storeInChest(int chestFieldIndex, int inventoryFieldIndex);
     void init();
+    
+    int getWeaponIndex();
+    int getEquipmentIndex();
 private:
     void clearImages();
     

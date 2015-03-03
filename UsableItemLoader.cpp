@@ -16,6 +16,5 @@ void UsableItemLoader::loadItem(UsableItem* item, int type)
     std::string temp;
     for(int i = 0; i < type; i++)std::getline(file, temp);
     file >> item->action >> item->imagePath >> item->charges;
-    
-    std::cout << item->action << ' ' << item->imagePath << ' ' << item->charges << std::endl;
+   
 }

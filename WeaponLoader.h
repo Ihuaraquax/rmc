@@ -15,8 +15,10 @@ public:
     WeaponLoader();
     void static loadWeapon(Weapon *weapon, int newWeaponId);
     DAMAGE_TYPE getDamageType(int type);
+    std::string static loadPath(int index);
 private:
     void static displayLogsToConsole(Weapon *weapon);
+    void static loadNone(Weapon *weapon);
 };
 
 #endif	/* WEAPONLOADER_H */

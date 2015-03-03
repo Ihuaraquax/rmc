@@ -19,6 +19,7 @@ public:
     void display();
     void displayReloadIndicator(double X, double Y);
     void update();
+    void reloadImage();
 private:
     bool leftDisplay;
     Weapon *selectedWeapon;

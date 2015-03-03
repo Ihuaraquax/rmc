@@ -51,6 +51,10 @@ void Session::setOpenChest(Chest* openChest) {
     this->openChest = openChest;
 }
 
+Chest* Session::getOpenChest() const {
+    return openChest;
+}
+
 Session::Session(const Session& orig) {
 }
 
