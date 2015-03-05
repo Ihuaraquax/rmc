@@ -18,7 +18,8 @@ public:
     void hit (Entity *target);
     bool isProjectile();
     void virtual executeAgony();
-private:
+    void setRange(int range);
+protected :
     int damage;
     int damageType;
     int range;

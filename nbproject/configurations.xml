@@ -28,6 +28,10 @@
         <logicalFolder name="f4" displayName="Projectile Classes" projectFiles="true">
           <itemPath>Explosion.cpp</itemPath>
           <itemPath>Explosion.h</itemPath>
+          <itemPath>Grenade.cpp</itemPath>
+          <itemPath>Grenade.h</itemPath>
+          <itemPath>Missle.cpp</itemPath>
+          <itemPath>Missle.h</itemPath>
           <itemPath>Projectile.cpp</itemPath>
           <itemPath>Projectile.h</itemPath>
         </logicalFolder>
@@ -36,6 +40,8 @@
           <itemPath>CollisionDetector.h</itemPath>
           <itemPath>EquipmentLoader.cpp</itemPath>
           <itemPath>EquipmentLoader.h</itemPath>
+          <itemPath>ProjectileFactory.cpp</itemPath>
+          <itemPath>ProjectileFactory.h</itemPath>
           <itemPath>UsableItemLoader.cpp</itemPath>
           <itemPath>UsableItemLoader.h</itemPath>
           <itemPath>WeaponLoader.cpp</itemPath>
@@ -240,6 +246,10 @@
       </item>
       <item path="Greaves.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Grenade.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Grenade.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HUD.h" ex="false" tool="3" flavor2="0">
@@ -267,6 +277,10 @@
       <item path="Menu.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Missle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Missle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Module.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -299,6 +313,10 @@
       <item path="Projectile.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProjectileFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProjectileFactory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Room.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -454,6 +472,10 @@
       </item>
       <item path="Greaves.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Grenade.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Grenade.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HUD.h" ex="false" tool="3" flavor2="0">
@@ -481,6 +503,10 @@
       <item path="Menu.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Missle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Missle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Module.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -513,6 +539,10 @@
       <item path="Projectile.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Projectile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProjectileFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProjectileFactory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Room.cpp" ex="false" tool="1" flavor2="0">
       </item>

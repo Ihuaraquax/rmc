@@ -31,6 +31,7 @@ public:
     int getAmmoType() const;
     void setAmmoCurrent(int ammoCurrent);
     int getWeaponId() const;
+    void setRange(int range);
 private:
     int weaponId;
     int ammoMax;

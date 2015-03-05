@@ -52,6 +52,7 @@ void WeaponLoader::loadWeapon(Weapon* weapon, int newWeaponId)
                 break;
         }
     }
+    if(weapon->weaponId == 3 || weapon->weaponId == 19)weapon->range = 200;
     
 }
 

@@ -13,7 +13,7 @@ Explosion::Explosion() {
     damage = 100;
     damageType = normal;
     radius = 20;
-    health = 240;
+    health = 190;
     image = NULL;
 }
 

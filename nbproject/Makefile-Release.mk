@@ -51,6 +51,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Explosion.o \
 	${OBJECTDIR}/Floor.o \
 	${OBJECTDIR}/Greaves.o \
+	${OBJECTDIR}/Grenade.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Helmet.o \
 	${OBJECTDIR}/Image.o \
@@ -58,6 +59,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/KeyboardControl.o \
 	${OBJECTDIR}/Map.o \
 	${OBJECTDIR}/Menu.o \
+	${OBJECTDIR}/Missle.o \
 	${OBJECTDIR}/Module.o \
 	${OBJECTDIR}/ModuleFactory.o \
 	${OBJECTDIR}/ModuleTile.o \
@@ -66,6 +68,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Obstacle.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
+	${OBJECTDIR}/ProjectileFactory.o \
 	${OBJECTDIR}/Room.o \
 	${OBJECTDIR}/RoomFactory.o \
 	${OBJECTDIR}/Session.o \
@@ -187,6 +190,11 @@ ${OBJECTDIR}/Greaves.o: Greaves.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Greaves.o Greaves.cpp
 
+${OBJECTDIR}/Grenade.o: Grenade.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grenade.o Grenade.cpp
+
 ${OBJECTDIR}/HUD.o: HUD.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -221,6 +229,11 @@ ${OBJECTDIR}/Menu.o: Menu.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Menu.o Menu.cpp
+
+${OBJECTDIR}/Missle.o: Missle.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Missle.o Missle.cpp
 
 ${OBJECTDIR}/Module.o: Module.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -261,6 +274,11 @@ ${OBJECTDIR}/Projectile.o: Projectile.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Projectile.o Projectile.cpp
+
+${OBJECTDIR}/ProjectileFactory.o: ProjectileFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ProjectileFactory.o ProjectileFactory.cpp
 
 ${OBJECTDIR}/Room.o: Room.cpp 
 	${MKDIR} -p ${OBJECTDIR}

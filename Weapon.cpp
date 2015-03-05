@@ -10,6 +10,7 @@
 #include "Projectile.h"
 #include "WeaponLoader.h"
 #include "Player.h"
+#include "ProjectileFactory.h"
 
 Weapon::Weapon() {
     weaponId = -1;
@@ -26,7 +27,7 @@ Weapon::Weapon() {
     targetSizeIncrement = 1;
     targetSizeDecrement = 1;
     targetSizeIncrementSlowDownPoint = 10;
-    range = 0;
+    range = -1;
     displayPaths = "images/noWeapon.png";
     projectileCount = 0;
     name = "noWeapon";
@@ -70,10 +71,21 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
         for(int i = 0; i < projectileCount; i++)
         {
             bool critical = rand()%100 < criticalChance + shooterCriticalChance;
-            Entity *bullet = new Projectile();
+            Entity *bullet = ProjectileFactory::provideProjectile(weaponId, 0);
             int angle = getAngle(shooterCoords, targetCoords);
             if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
             else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
+            if(weaponId == 33)dynamic_cast<Projectile*>(bullet)->setRange(Variables::proximity(shooterCoords->X - Variables::offsetX, shooterCoords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y) - 30);
+            if(shooterCoords == targetCoords)
+            {
+                bullet->getCoords()->angle = shooterCoords->angle + (rand()%40 - 20);
+                Variables::giveFactors(bullet->getCoords()->angle, bullet->getCoords()->speedX, bullet->getCoords()->speedY);
+                double speed = 0.0 + rand()% 20;
+                speed /=10;
+                speed += 4;
+                bullet->getCoords()->speedX *= speed + 15;
+                bullet->getCoords()->speedY *= speed + 15;
+            }
             Variables::session->getAllEntities()->addEntity(bullet);
         }
         double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
@@ -142,4 +154,8 @@ void Weapon::setAmmoCurrent(int ammoCurrent) {
 
 int Weapon::getWeaponId() const {
     return weaponId;
+}
+
+void Weapon::setRange(int range) {
+    this->range = range;
 }

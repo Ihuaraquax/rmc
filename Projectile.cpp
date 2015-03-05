@@ -113,3 +113,7 @@ void Projectile::executeAgony()
         Variables::session->getAllEntities()->addEntity(explosion);
     }
 }
+
+void Projectile::setRange(int range) {
+    this->range = range;
+}
