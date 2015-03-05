@@ -3,7 +3,8 @@ build/Debug/MinGW-Windows/EquipmentUI.o: EquipmentUI.cpp EquipmentUI.h \
  Session.h Menu.h HUD.h WeaponUI.h Weapon.h DamageTypeEnum.h \
  AllEntities.h Entity.h Wall.h Door.h UsableObject.h templateList.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
- ModuleTile.h AiTile.h Chest.h Obstacle.h Inventory.h GameSubstateEnum.h
+ ModuleTile.h AiTile.h Chest.h Obstacle.h Inventory.h GameSubstateEnum.h \
+ TextDisplayer.h
 
 EquipmentUI.h:
 
@@ -64,3 +65,5 @@ Obstacle.h:
 Inventory.h:
 
 GameSubstateEnum.h:
+
+TextDisplayer.h:

@@ -9,6 +9,7 @@
 #include "globalVariables.h"
 #include "Equipment.h"
 #include "UsableItem.h"
+#include "TextDisplayer.h"
 
 EquipmentUI::EquipmentUI() {
     selectedHelmet = NULL;
@@ -128,12 +129,7 @@ void EquipmentUI::display()
             al_map_rgb(70,70,255), 4);
     
     itemImage->display(itemCoords);    
-    char chargesLeft[2];
-    itoa(selectedItem->getCharges(), chargesLeft, 10);
-    double X = itemCoords->X + 80;
-    double Y = itemCoords->Y + 80;
-    al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X, Y, ALLEGRO_ALIGN_CENTER, chargesLeft);
-    
+    TextDisplayer::displayInt(itemCoords->X + 80, itemCoords->Y + 80, selectedItem->getCharges());    
 }
 
 void EquipmentUI::update()

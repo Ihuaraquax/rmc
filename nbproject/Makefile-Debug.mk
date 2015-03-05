@@ -72,6 +72,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Room.o \
 	${OBJECTDIR}/RoomFactory.o \
 	${OBJECTDIR}/Session.o \
+	${OBJECTDIR}/TextDisplayer.o \
 	${OBJECTDIR}/TileFactory.o \
 	${OBJECTDIR}/Turret.o \
 	${OBJECTDIR}/UsableItem.o \
@@ -294,6 +295,11 @@ ${OBJECTDIR}/Session.o: Session.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Session.o Session.cpp
+
+${OBJECTDIR}/TextDisplayer.o: TextDisplayer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/TextDisplayer.o TextDisplayer.cpp
 
 ${OBJECTDIR}/TileFactory.o: TileFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}

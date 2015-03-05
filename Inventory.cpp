@@ -11,6 +11,7 @@
 #include "globalVariables.h"
 #include "WeaponLoader.h"
 #include "CollisionDetector.h"
+#include "TextDisplayer.h"
 
 Inventory::Inventory() {
     std::string paths[] = {"images/inventoryBackground.png"};
@@ -94,66 +95,51 @@ void Inventory::displayEquipment()
 void Inventory::displayAttributes()
 {
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
-    char strength[3], intelligence[3], accuracy[3], speed[3];
-    char strengthLabel[] = "STRENGTH", intelligenceLabel[] = "INTELLIGENCE", accuracyLabel[] = "ACCURACY", speedLabel[] = "SPEED";
-    itoa(player->attributes->getStrength(), strength, 10);
-    itoa(player->attributes->getInteligence(), intelligence, 10);
-    itoa(player->attributes->getAccuracy(), accuracy, 10);
-    itoa(player->attributes->getSpeed(), speed, 10);
+    
     double X = 81;
     double Y = 50;
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, strength);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 157 + 9, Y, ALLEGRO_ALIGN_CENTER, intelligence);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 320 + 9, Y, ALLEGRO_ALIGN_CENTER, accuracy);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 480 + 9, Y, ALLEGRO_ALIGN_CENTER, speed);
+    
+    TextDisplayer::displayInt(X, Y, player->attributes->getStrength());
+    TextDisplayer::displayInt(X + 157 + 9, Y, player->attributes->getInteligence());
+    TextDisplayer::displayInt(X + 320 + 9, Y, player->attributes->getAccuracy());
+    TextDisplayer::displayInt(X + 480 + 9, Y, player->attributes->getSpeed());
     
     Y = 20;
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, strengthLabel);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 157 + 9, Y, ALLEGRO_ALIGN_CENTER, intelligenceLabel);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 320 + 9, Y, ALLEGRO_ALIGN_CENTER, accuracyLabel);
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X + 480 + 9, Y, ALLEGRO_ALIGN_CENTER, speedLabel);
+    
+    TextDisplayer::displayText(X, Y, "STRENGTH");
+    TextDisplayer::displayText(X + 157 + 9, Y, "INTELLIGENCE");
+    TextDisplayer::displayText(X + 320 + 9, Y, "ACCURACY");
+    TextDisplayer::displayText(X + 480 + 9, Y, "SPEED");
 }
 
 void Inventory::displayStats()
 {
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
-    char health[4], armor[4], expirience[5], resistance[Variables::damageTypeCount][3];
-    char healthLabel[] = "HEALTH", armorLabel[] = "ARMOR", expirienceLabel[] = "EXPIRIENCE";
-    std::string resistsLabel[] = {"RESISTS", "NORMAL", "FIRE", "ELECTRIC", "POISON", "COLD", "EXPLOSIVE"};
-    itoa(player->getHealth(), health, 10);
-    itoa(player->getArmor(), armor, 10);
-    itoa(player->getExpirience(), expirience, 10);
-    for(int i = 0 ; i < Variables::damageTypeCount; i++)
-    {
-        int resistPercentage = ceil(player->elementalResists[i] * 100);
-        itoa(resistPercentage, resistance[i], 10);
-    }
     double X = 717;
     double Y = 20;
     
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, healthLabel);
+    std::string resistsLabel[] = {"NORMAL", "FIRE", "ELECTRIC", "POISON", "COLD", "EXPLOSIVE"};
+    TextDisplayer::displayText(X, Y, "HEALTH");
     Y += 20;
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, health);
+    TextDisplayer::displayInt(X, Y, player->getHealth());
     Y += 20;
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, armorLabel);
+    TextDisplayer::displayText(X, Y, "ARMOR");
     Y += 20;
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, armor);
+    TextDisplayer::displayInt(X, Y, player->getArmor());
     Y += 20;
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, expirienceLabel);
+    TextDisplayer::displayText(X, Y, "EXPIRIENCE");
     Y += 20;
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, expirience);
+    TextDisplayer::displayInt(X, Y, player->getExpirience());
     Y += 40;
-    char label[20];
-    strcpy(label, resistsLabel[0].c_str());
-    al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, label);
+    TextDisplayer::displayText(X, Y, "RESISTS");
     Y += 20;
     for(int i = 0; i < Variables::damageTypeCount; i++)
     {
+    
         Y += 20;
-        strcpy(label, resistsLabel[i+1].c_str());
-        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, label);
+        TextDisplayer::displayText(X, Y, resistsLabel[i]);
         Y += 20;
-        al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, resistance[i]);
+        TextDisplayer::displayInt(X, Y, player->elementalResists[i] * 100);
     }
 }
 

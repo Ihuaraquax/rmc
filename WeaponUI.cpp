@@ -8,6 +8,7 @@
 #include "WeaponUI.h"
 #include "globalVariables.h"
 #include "Player.h"
+#include "TextDisplayer.h"
 
 WeaponUI::WeaponUI(bool left) {
     this->leftDisplay = left;
@@ -46,22 +47,16 @@ void WeaponUI::display()
         if(leftDisplay)al_draw_filled_rectangle(Variables::RES_WIDTH - 405, Variables::RES_HEIGHT - 95, Variables::RES_WIDTH-5, Variables::RES_HEIGHT -5, al_map_rgb(75,75,75));
         else al_draw_filled_rectangle(Variables::RES_WIDTH - 205, Variables::RES_HEIGHT - 95, Variables::RES_WIDTH-5, Variables::RES_HEIGHT -5, al_map_rgb(75,75,75));
         image->display(coords);
-        damageTypeImage->display(damageTypeCoords);
-
-        char ammoMax[6], ammoLeft[4];
-        itoa(dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getAmmo(selectedWeapon->ammoType) ,ammoMax, 10);
-        itoa(selectedWeapon->getAmmoCurrent(), ammoLeft, 10);
+        damageTypeImage->display(damageTypeCoords);        
+        Player * player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+        
         double X = Variables::RES_WIDTH - 140;
         if(leftDisplay)X -= 200;
         double Y = Variables::RES_HEIGHT - 90;
-        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X + 25, Y, ALLEGRO_ALIGN_CENTER, ammoMax);
-        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X, Y, ALLEGRO_ALIGN_CENTER, " / ");
-        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X - 25, Y, ALLEGRO_ALIGN_CENTER, ammoLeft);
-        
-        char *name = new char[selectedWeapon->getName().length()+1];
-        strcpy(name, selectedWeapon->getName().c_str());
-        al_draw_text(Variables::basicFont, al_map_rgb(0,0,0), X + 40, Y+65, ALLEGRO_ALIGN_CENTER, name);
-        
+        TextDisplayer::displayInt(X+25, Y, player->getAmmo(selectedWeapon->ammoType));
+        TextDisplayer::displayText(X, Y, " / ");
+        TextDisplayer::displayInt(X-25, Y, selectedWeapon->getAmmoCurrent());
+        TextDisplayer::displayText(X+40, Y+65, selectedWeapon->getName());        
         displayReloadIndicator(X, Y);
     }
     else

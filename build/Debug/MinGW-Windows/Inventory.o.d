@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/Inventory.o: Inventory.cpp Inventory.h Image.h \
  globalVariables.h Session.h Menu.h HUD.h WeaponUI.h EquipmentUI.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h ModuleTile.h AiTile.h Chest.h Obstacle.h GameSubstateEnum.h \
- WeaponLoader.h CollisionDetector.h
+ WeaponLoader.h CollisionDetector.h TextDisplayer.h
 
 Inventory.h:
 
@@ -73,3 +73,5 @@ GameSubstateEnum.h:
 WeaponLoader.h:
 
 CollisionDetector.h:
+
+TextDisplayer.h:
