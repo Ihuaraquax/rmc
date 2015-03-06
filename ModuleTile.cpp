@@ -106,6 +106,7 @@ void ModuleTile::deleteFromEntityList(Entity* toDelete)
         this->obstacle = NULL;
         this->aiTile->setObstructed(false);
         this->aiTile->setBaseAIValue(0);
+        for(int i = 0; i < 4; i++)this->setUsableObject(adjacentTiles[i*2 +1]->object);
     }
     if(entityList != NULL && entityList->find(toDelete) != NULL)
     {
@@ -295,7 +296,7 @@ void ModuleTile::deleteFromTurretList(Entity* toDelete)
 bool ModuleTile::setUsableObject(UsableObject* object)
 {
     bool result = false;
-    if(this->object == NULL)
+    if(this->object == NULL && this->obstacle == NULL)
     {
         this->object = object;
         result = true;

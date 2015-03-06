@@ -60,7 +60,8 @@ Chest::Chest() {
     tile->addToEntityList(this);
     for(int i = 0; i < 4; i++)
     {
-        tile->getAdjacentTiles()[i*2 +1]->setUsableObject(this);
+        if(tile->getAiTile()->getRoomId() == tile->getAdjacentTiles()[i*2 +1]->getAiTile()->getRoomId() || tile->hasOpenDoor(i*2+1))
+            tile->getAdjacentTiles()[i*2 +1]->setUsableObject(this);
     }
 }
 
