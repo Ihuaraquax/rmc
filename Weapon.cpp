@@ -64,32 +64,43 @@ void Weapon::update()
 
 void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team, int shooterCriticalChance, double shooterCriticalDamage, double accuracy)
 {
-    if(!reloading && timeToShoot == 0)
+    if(shooterCoords == targetCoords) this->shootMIRV(shooterCoords, team);
+    else
     {
-        ammoCurrent--;
-        timeToShoot = cooldown;
-        for(int i = 0; i < projectileCount; i++)
+        if(!reloading && timeToShoot == 0)
         {
-            bool critical = rand()%100 < criticalChance + shooterCriticalChance;
-            Entity *bullet = ProjectileFactory::provideProjectile(weaponId, 0);
-            int angle = getAngle(shooterCoords, targetCoords);
-            if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
-            else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
-            if(weaponId == 33)dynamic_cast<Projectile*>(bullet)->setRange(Variables::proximity(shooterCoords->X - Variables::offsetX, shooterCoords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y) - 30);
-            if(shooterCoords == targetCoords)
+            ammoCurrent--;
+            timeToShoot = cooldown;
+            for(int i = 0; i < projectileCount; i++)
             {
-                bullet->getCoords()->angle = shooterCoords->angle + (rand()%40 - 20);
-                Variables::giveFactors(bullet->getCoords()->angle, bullet->getCoords()->speedX, bullet->getCoords()->speedY);
-                double speed = 0.0 + rand()% 20;
-                speed /=10;
-                speed += 4;
-                bullet->getCoords()->speedX *= speed + 15;
-                bullet->getCoords()->speedY *= speed + 15;
+                bool critical = rand()%100 < criticalChance + shooterCriticalChance;
+                Entity *bullet = ProjectileFactory::provideProjectile(weaponId, 0);
+                int angle = getAngle(shooterCoords, targetCoords);
+                if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
+                else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
+                if(weaponId == 33)dynamic_cast<Projectile*>(bullet)->setRange(Variables::proximity(shooterCoords->X - Variables::offsetX, shooterCoords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y) - 30);
+                Variables::session->getAllEntities()->addEntity(bullet);
             }
-            Variables::session->getAllEntities()->addEntity(bullet);
+            double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
+            if(increment > 0)currentTargetSize += increment;
         }
-        double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
-        if(increment > 0)currentTargetSize += increment;
+    }
+}
+
+void Weapon::shootMIRV(Coordinates *shooterCoords, int team)
+{
+    for(int i = 0; i < projectileCount; i++)
+    {
+        Entity *bullet = ProjectileFactory::provideProjectile(weaponId, 0);
+        dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, 0, team, range);
+        bullet->getCoords()->angle = shooterCoords->angle + (rand()%40 - 20);
+        Variables::giveFactors(bullet->getCoords()->angle, bullet->getCoords()->speedX, bullet->getCoords()->speedY);
+        double speed = 0.0 + rand()% 20;
+        speed /=10;
+        speed += 4;
+        bullet->getCoords()->speedX *= speed + 15;
+        bullet->getCoords()->speedY *= speed + 15;
+        Variables::session->getAllEntities()->addEntity(bullet);
     }
 }
 

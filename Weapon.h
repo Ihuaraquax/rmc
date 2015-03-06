@@ -33,6 +33,8 @@ public:
     int getWeaponId() const;
     void setRange(int range);
 private:
+    void shootMIRV(Coordinates *shooterCoords, int team);
+    
     int weaponId;
     int ammoMax;
     int ammoCurrent;
