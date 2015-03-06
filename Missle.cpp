@@ -70,14 +70,18 @@ void Missle::update()
 
 void Missle::executeAgony()
 {
-    if(MIRV)
+    if(this->coords->X > 0 && this->coords->X < Variables::tileSize * Variables::tilesPerRoom)
+    if(this->coords->Y > 0 && this->coords->Y < Variables::tileSize * Variables::tilesPerRoom)
     {
-        weapons[0]->shoot(coords, coords, -1, 0, 0, 0);
-    } else {
-        Entity *explosion = new Explosion();
-        dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
-        dynamic_cast<Explosion*>(explosion)->dealDamage();
-        Variables::session->getAllEntities()->addEntity(explosion);
+        if(MIRV)
+        {
+            weapons[0]->shoot(coords, coords, -1, 0, 0, 0);
+        } else {
+            Entity *explosion = new Explosion();
+            dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
+            dynamic_cast<Explosion*>(explosion)->dealDamage();
+            Variables::session->getAllEntities()->addEntity(explosion);
+        }
     }
 }
 bool Missle::isProjectile()
