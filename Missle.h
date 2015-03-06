@@ -15,6 +15,7 @@ public:
     void executeAgony();
     void update();
     bool isProjectile();
+    void setRange(int range);
 private:
     bool MIRV;
 };

@@ -23,7 +23,6 @@ Missle::Missle(bool isMIRV) {
     this->weapons = new Weapon*[1];
     this->weapons[0] = new Weapon();
     WeaponLoader::loadWeapon(weapons[0], 101);
-    this->weapons[0]->setRange(45);
     MIRV = isMIRV;
 }
 
@@ -31,10 +30,10 @@ void Missle::update()
 {
     this->coords->X += this->coords->speedX;
     this->coords->Y += this->coords->speedY;
-    if(Variables::currentFrame % 20 == 0)
+    if(Variables::currentFrame % 3 == 0)
     {
-        this->coords->speedX *= 1.5;
-        this->coords->speedY *= 1.5;
+        this->coords->speedX *= 1.1;
+        this->coords->speedY *= 1.1;
     }
     ModuleTile *currentTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
@@ -63,8 +62,10 @@ void Missle::update()
         }
     }
     else health = 0;
-    range -= this->coords->speedX;
-    range -= this->coords->speedY;
+    if(this->coords->speedX > 0)range -= this->coords->speedX;
+    else range += this->coords->speedX;
+    if(this->coords->speedY > 0)range -= this->coords->speedY;
+    else range += this->coords->speedY;
     if(range <= 0)health = 0;
 }
 
@@ -87,4 +88,13 @@ void Missle::executeAgony()
 bool Missle::isProjectile()
 {
     return true;
+}
+
+void Missle::setRange(int range)
+{
+    this->range = range * 0.9;
+    if(MIRV)
+    {
+        weapons[0]->setRange(range / 2);
+    }
 }
