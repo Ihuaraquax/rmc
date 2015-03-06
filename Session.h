@@ -41,9 +41,6 @@ public:
     AllEntities* getAllEntities() const;
     Menu* getMainMenu() const;
     HUD* getHud() const;
-    Inventory* getPlayerInventory() const;
-    void setOpenChest(Chest* openChest);
-    Chest* getOpenChest() const;
     
     static MainGameState gameState;
 private:
@@ -55,8 +52,6 @@ private:
     KeyboardControl *keyboard;
     Map *map;
     HUD *hud;
-    Inventory *playerInventory;    
-    Chest *openChest;
 };
 
 #endif	/* SESSION_H */

@@ -28,7 +28,6 @@ void Session::create()
     map = new Map();
     map->createLevels();
     allEntities = new AllEntities();
-    playerInventory = new Inventory();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -41,18 +40,6 @@ Menu* Session::getMainMenu() const {
 
 HUD* Session::getHud() const {
     return hud;
-}
-
-Inventory* Session::getPlayerInventory() const {
-    return playerInventory;
-}
-
-void Session::setOpenChest(Chest* openChest) {
-    this->openChest = openChest;
-}
-
-Chest* Session::getOpenChest() const {
-    return openChest;
 }
 
 Session::Session(const Session& orig) {
@@ -74,11 +61,11 @@ void Session::display()
         map->display();
         allEntities->display();
         hud->display();
-        if(Variables::substate == inventory)playerInventory->display();
+        if(Variables::substate == inventory)hud->getPlayerInventory()->display();
         if(Variables::substate == chest)
         {
-            playerInventory->display();
-            openChest->displayContent();
+            hud->getPlayerInventory()->display();
+            hud->getOpenChest()->displayContent();
         }
         al_flip_display();
         }
@@ -94,7 +81,7 @@ void Session::update()
         map->update();
         allEntities->update();
         hud->update();
-        if(Variables::substate == chest)openChest->update();
+        if(Variables::substate == chest)hud->getOpenChest()->update();
     }
 }
 

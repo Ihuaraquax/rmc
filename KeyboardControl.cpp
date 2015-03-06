@@ -54,7 +54,7 @@ void KeyboardControl::gameKeyboardActions()
      {
          if(Variables::substate == game)
          {
-             Variables::session->getPlayerInventory()->init();
+             Variables::session->getHud()->getPlayerInventory()->init();
              Variables::substate = inventory;
          }
          else if(Variables::substate == inventory)Variables::substate = game;

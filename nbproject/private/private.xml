@@ -7,20 +7,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/WeaponLoader.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Chest.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/ProjectileFactory.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Projectile.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/WeaponLoader.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/ProjectileFactory.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Grenade.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Missle.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Missle.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Weapon.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Chestplate.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/WeaponUI.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/EquipmentUI.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/TextDisplayer.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/AllEntities.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Inventory.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Helmet.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Player.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Weapon.h</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Chest.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Grenade.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Greaves.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/TextDisplayer.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Module.cpp</file>
         </group>
     </open-files>
 </project-private>

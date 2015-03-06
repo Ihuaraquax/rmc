@@ -218,8 +218,8 @@ void Inventory::swapWeapons(bool inventory, int index)
     } else {
         int firstWeaponAmmo = player->weapons[firstWeaponIndex]->getAmmoCurrent();
         player->addAmmo(firstWeaponAmmo, player->weapons[firstWeaponIndex]->getAmmoType());
-        int secondWeaponId = Variables::session->getOpenChest()->getContentValue(index);
-        Variables::session->getOpenChest()->loadContent(index, 1, player->weapons[firstWeaponIndex]->getWeaponId());
+        int secondWeaponId = Variables::session->getHud()->getOpenChest()->getContentValue(index);
+        Variables::session->getHud()->getOpenChest()->loadContent(index, 1, player->weapons[firstWeaponIndex]->getWeaponId());
         WeaponLoader::loadWeapon(player->weapons[firstWeaponIndex], secondWeaponId);
     }
     this->init();
@@ -271,8 +271,8 @@ int Inventory::getWeaponIndex()
 void Inventory::storeInChest(int chestFieldIndex, int inventoryFieldIndex)
 {
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
-    int chestWeaponType = Variables::session->getOpenChest()->getContentValue(chestFieldIndex);
-    Variables::session->getOpenChest()->loadContent(chestFieldIndex, 1, player->weapons[inventoryFieldIndex]->getWeaponId());
+    int chestWeaponType = Variables::session->getHud()->getOpenChest()->getContentValue(chestFieldIndex);
+    Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, 1, player->weapons[inventoryFieldIndex]->getWeaponId());
     WeaponLoader::loadWeapon(player->weapons[inventoryFieldIndex], chestWeaponType);
     init();
     Variables::session->getHud()->getMainWeaponUI()->reloadImage();

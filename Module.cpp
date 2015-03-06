@@ -260,7 +260,7 @@ void Module::deleteDoor(Door* toDelete)
 
 void Module::useChest()
 {
-    Variables::session->getPlayerInventory()->init();    
+    Variables::session->getHud()->getPlayerInventory()->init();    
     for(std::list<Chest*>::iterator i = chests.begin(); i != chests.end(); ++i)
     {
         Chest *temp = *i;

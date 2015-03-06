@@ -155,14 +155,14 @@ void Chest::use()
     {
         Variables::substate = game;
         open = false;
-        Variables::session->setOpenChest(NULL);
+        Variables::session->getHud()->setOpenChest(NULL);
     }
     else
     {
         Variables::substate = chest;
         open = true;
-        Variables::session->setOpenChest(this);
-        Variables::session->getPlayerInventory()->init();
+        Variables::session->getHud()->setOpenChest(this);
+        Variables::session->getHud()->getPlayerInventory()->init();
     }
 }
 void Chest::update()

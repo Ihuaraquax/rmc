@@ -20,6 +20,11 @@ HUD::HUD() {
     mainWeaponUI = new WeaponUI(true);
     secondaryWeaponUI = new WeaponUI(false);
     equipmentUI = new EquipmentUI();
+    playerInventory = new Inventory();
+    
+    contentIndex = -1;
+    isLeftButtonPressed = false;
+    fromChest = false;
 }
 
 
@@ -53,6 +58,22 @@ WeaponUI* HUD::getSecondaryWeaponUI() const {
 
 EquipmentUI* HUD::getEquipmentUI() const {
     return equipmentUI;
+}
+
+void HUD::setOpenChest(Chest* openChest) {
+    this->openChest = openChest;
+}
+
+Chest* HUD::getOpenChest() const {
+    return openChest;
+}
+
+void HUD::setPlayerInventory(Inventory* playerInventory) {
+    this->playerInventory = playerInventory;
+}
+
+Inventory* HUD::getPlayerInventory() const {
+    return playerInventory;
 }
 
 void HUD::update()
@@ -114,4 +135,80 @@ void HUD::displayArmor()
     double Y = Variables::RES_HEIGHT - 20;
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y, ALLEGRO_ALIGN_CENTER, armor);
     al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X, Y - 15, ALLEGRO_ALIGN_CENTER, armorLabel);
+}
+
+void HUD::mouseChestControls()
+{
+     int inventoryIndex = Variables::session->getHud()->getPlayerInventory()->getWeaponIndex();
+     int chestIndex = Variables::session->getHud()->getOpenChest()->getSelectedField();
+     if(Variables::mouse_state.buttons & 1)
+     {
+         if(!isLeftButtonPressed)if(contentIndex == -1)
+         {
+             if(inventoryIndex != -1)
+             {
+                 contentIndex = inventoryIndex;
+                 if(!dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->isWeapon(contentIndex))contentIndex = -1;
+                 fromChest = false;
+             }
+             else
+             {
+                 contentIndex = chestIndex;
+                 if(!Variables::session->getHud()->getOpenChest()->isFieldNotEmpty(contentIndex))contentIndex = -1;
+                 fromChest = true;
+             }
+         }
+         isLeftButtonPressed = true;
+     } else
+     {
+         if(isLeftButtonPressed)if(contentIndex != -1) 
+         {
+             if(fromChest && inventoryIndex != -1)
+             {
+                 Variables::session->getHud()->getPlayerInventory()->swapWeapons(false, contentIndex);
+                 contentIndex = -1;
+             }
+             if(fromChest && chestIndex != -1 && chestIndex != contentIndex)
+             {
+                 Variables::session->getHud()->getOpenChest()->swapContent(chestIndex, contentIndex);
+                 contentIndex = -1;
+             }
+             if(!fromChest && inventoryIndex != -1 && inventoryIndex != contentIndex)
+             {
+                Variables::session->getHud()->getPlayerInventory()->swapWeapons(true, contentIndex);
+                contentIndex = -1;
+             }
+             if(!fromChest && chestIndex != -1)
+             {
+                 Variables::session->getHud()->getPlayerInventory()->storeInChest(chestIndex, contentIndex);
+                 contentIndex = -1;
+             }
+         }             
+         isLeftButtonPressed = false;
+     } 
+}
+
+void HUD::mouseInventoryControls()
+{
+     int inventoryIndex = Variables::session->getHud()->getPlayerInventory()->getWeaponIndex();
+     if(Variables::mouse_state.buttons & 1)
+     {
+         if(!isLeftButtonPressed)if(contentIndex == -1)
+         {
+             contentIndex = inventoryIndex;
+             if(!dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->isWeapon(contentIndex))contentIndex = -1;
+         }
+         isLeftButtonPressed = true;
+     } else
+     {
+         if(isLeftButtonPressed)if(contentIndex != -1) 
+         {
+             if(inventoryIndex != -1 && inventoryIndex != contentIndex)
+             {
+                 Variables::session->getHud()->getPlayerInventory()->swapWeapons(true, contentIndex);
+                 contentIndex = -1;
+             }
+         }
+         isLeftButtonPressed = false;    
+     }
 }
