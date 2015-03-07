@@ -82,6 +82,7 @@ void Player::setTestValues()
     selecetedWeaponSet = 0;
     shoulderGun = new Weapon();
     WeaponLoader::loadWeapon(shoulderGun, 3);
+    this->setStartingTile();
 }
 
 void Player::playerMove(double X, double Y)
