@@ -25,8 +25,11 @@ AllEntities::AllEntities() {
     }
     Entity *turret = new Turret();
     entityList.push_back(turret);
-    Entity *chest = new Chest();
-    entityList.push_back(chest);
+    for(int i = 0; i < 20; i++)
+    {
+        Entity *chest = new Chest();
+        entityList.push_back(chest);
+    }
 }
 
 AllEntities::~AllEntities()

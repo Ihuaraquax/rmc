@@ -21,8 +21,8 @@ Chest::Chest() {
     this->image = new Image(1, paths, true);    
     
     this->coords = new Coordinates();
-    this->coords->X = 300;
-    this->coords->Y = 200;
+    this->coords->X = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
+    this->coords->Y = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
     this->coords->width = Variables::tileSize;
     this->coords->height = Variables::tileSize;
     
@@ -33,7 +33,7 @@ Chest::Chest() {
     this->backgroundCoords->X = 800;
     this->backgroundCoords->Y = 0;
     
-    this->chestSize = 4;
+    this->chestSize = rand()%5 + 1;
     this->contentType = new int[chestSize];
     this->contentValue = new int[chestSize];
     this->contentImages = new Image*[chestSize];
@@ -42,7 +42,7 @@ Chest::Chest() {
     {
         contentCoords[i] = new Coordinates();
         contentImages[i] = NULL;
-        this->contentType[i] = rand()%1;
+        this->contentType[i] = rand()%10;
         switch(contentType[i])
         {
             case 0:
@@ -67,6 +67,10 @@ Chest::Chest() {
             case 5: 
                 this->contentValue[i] = 1;
                 this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            default:
+                this->contentType[i] = 0;
+                this->loadContent(i, 0, -1);
                 break;
         }
         contentCoords[i]->Y = 100 + 150*i;
