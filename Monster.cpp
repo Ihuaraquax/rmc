@@ -10,19 +10,20 @@
 #include "ModuleTile.h"
 #include "CollisionDetector.h"
 #include "Player.h"
+#include "WeaponLoader.h"
 
 Monster::Monster() {
     this->coords = new Coordinates();
     do
     {
-        this->coords->X = rand()%800 + 15;
-        this->coords->Y = rand()%800 + 15;
+        this->coords->X = ((rand()%(Variables::tilesPerRoom - 2)) * Variables::tileSize) + Variables::tileSize;
+        this->coords->Y = ((rand()%(Variables::tilesPerRoom - 2)) * Variables::tileSize) + Variables::tileSize;
     }while(isBadSpawningPoint());
     this->coords->angle = 0;
     this->coords->height = 25;
     this->coords->width = 25;
-    this->coords->speedX = 1;
-    this->coords->speedY = 1;
+    this->coords->speedX = 1.7;
+    this->coords->speedY = 1.7;
     std::string paths[] = {"images/monster.png"};
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
@@ -31,6 +32,8 @@ Monster::Monster() {
     this->weapons = new Weapon*[2];
     this->weapons[0] = new Weapon();
     this->weapons[1] = new Weapon();
+    WeaponLoader::loadWeapon(weapons[0], 0);
+    WeaponLoader::loadWeapon(weapons[1], 0);
     this->threatLevel = 10;
     Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
@@ -62,7 +65,7 @@ void Monster::update()
         Variables::giveFactors(coords->angle, x,y);
         this->move(x,y);
     }
-//    checkForAttack();
+    checkForAttack();
     this->weapons[0]->update();
     this->weapons[1]->update();
 }

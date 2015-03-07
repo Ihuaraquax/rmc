@@ -51,8 +51,8 @@ void Player::setTestValues()
     this->coords->angle = 0;
     this->coords->height = 25;
     this->coords->width = 25;
-    this->coords->speedX = 1;
-    this->coords->speedY = 1;
+    this->coords->speedX = 1.5;
+    this->coords->speedY = 1.5;
     Variables::offsetX = coords->X -Variables::RES_WIDTH/2;
     Variables::offsetY = coords->Y -Variables::RES_HEIGHT/2;
     Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
@@ -62,16 +62,16 @@ void Player::setTestValues()
     this->image->state = NORMAL;
     health = 10000;
     maximumHealth = health + 100;
-    WeaponLoader::loadWeapon(weapons[0], 3);
-    WeaponLoader::loadWeapon(weapons[1], 9);
-    WeaponLoader::loadWeapon(weapons[2], 33);
-    WeaponLoader::loadWeapon(weapons[3], 1);
-    WeaponLoader::loadWeapon(weapons[4], 8);
-    WeaponLoader::loadWeapon(weapons[5], 10);
-    this->changeHelmet(7);
-    this->changeChestplate(4);
-    this->changeGreaves(5);
-    this->changeItem(1);
+    WeaponLoader::loadWeapon(weapons[0], 1);
+    WeaponLoader::loadWeapon(weapons[1], -1);
+    WeaponLoader::loadWeapon(weapons[2], -1);
+    WeaponLoader::loadWeapon(weapons[3], -1);
+    WeaponLoader::loadWeapon(weapons[4], -1);
+    WeaponLoader::loadWeapon(weapons[5], -1);
+    this->changeHelmet(0);
+    this->changeChestplate(0);
+    this->changeGreaves(0);
+    this->changeItem(0);
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;
@@ -111,7 +111,7 @@ void Player::display()
 
 void Player::interact()
 {
-        Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->useObject();
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->useObject();
 }
 
 void Player::selectWeaponSet(int set)

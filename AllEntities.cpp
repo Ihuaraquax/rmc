@@ -18,14 +18,14 @@ AllEntities::AllEntities() {
     player = new Player();
     entityList.push_back(player);
     createObstacles();
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 100; i++)
     {
         Entity *monster = new Monster();
         entityList.push_back(monster);
     }
-    Entity *turret = new Turret();
-    entityList.push_back(turret);
-    for(int i = 0; i < 20; i++)
+//    Entity *turret = new Turret();
+//    entityList.push_back(turret);
+    for(int i = 0; i < 5; i++)
     {
         Entity *chest = new Chest();
         entityList.push_back(chest);

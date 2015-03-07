@@ -59,7 +59,7 @@ void Turret::update()
             if(!turnRight())coords->angle++;
             else coords->angle--;
         }
-//        this->attack(0);
+        this->attack(0);
         targetAngle = -1;
     }
     currentThreatLevel = 0;
