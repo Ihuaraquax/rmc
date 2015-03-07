@@ -1,2 +1,3 @@
 0 images/noEquipmentInSlot.png 1
 1 images/medkit.png 3
+2 images/turret.png 1

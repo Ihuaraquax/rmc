@@ -19,6 +19,7 @@ public:
     std::string getImagePath() const;
     int getAction() const;
 private:
+    bool isTileNearToPlayer(double X, double Y);
     int action;
     std::string imagePath;
     int charges;

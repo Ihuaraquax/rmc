@@ -12,6 +12,7 @@
 class Turret : public Entity{
 public:
     Turret();
+    Turret(double X, double Y);
     void update();
     void display();
     void setRange(int range);

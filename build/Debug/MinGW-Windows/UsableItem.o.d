@@ -3,7 +3,8 @@ build/Debug/MinGW-Windows/UsableItem.o: UsableItem.cpp UsableItem.h \
  WeaponUI.h Weapon.h DamageTypeEnum.h EquipmentUI.h Equipment.h \
  Inventory.h Chest.h UsableObject.h Obstacle.h Entity.h Wall.h Door.h \
  templateList.h AllEntities.h MouseControl.h KeyboardControl.h Map.h \
- Module.h Floor.h Room.h ModuleTile.h AiTile.h GameSubstateEnum.h
+ Module.h Floor.h Room.h ModuleTile.h AiTile.h GameSubstateEnum.h \
+ Turret.h
 
 UsableItem.h:
 
@@ -64,3 +65,5 @@ ModuleTile.h:
 AiTile.h:
 
 GameSubstateEnum.h:
+
+Turret.h:
