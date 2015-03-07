@@ -65,7 +65,7 @@ Chest::Chest() {
                 this->loadContent(i, contentType[i], contentValue[i]);
                 break;
             case 5: 
-                this->contentValue[i] = 1;
+                this->contentValue[i] = rand()%2 + 1;
                 this->loadContent(i, contentType[i], contentValue[i]);
                 break;
             default:
