@@ -8,10 +8,12 @@
 #ifndef USABLEITEMLOADER_H
 #define	USABLEITEMLOADER_H
 #include "UsableItem.h"
+#include <iostream>
 
 class UsableItemLoader {
 public:
     static void loadItem(UsableItem *item, int type);
+    static std::string loadItemPath(int type);
 private:
 };
 

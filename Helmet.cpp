@@ -86,3 +86,8 @@ void Helmet::deactivate()
             break;
     }
 }
+
+std::string Helmet::getFilePath()
+{
+    return "fixtures/helmets.txt";
+}

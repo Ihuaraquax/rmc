@@ -88,3 +88,8 @@ void Equipment::deactivate()
 {
     active = false;
 }
+
+std::string Equipment::getFilePath()
+{
+   return ""; 
+}

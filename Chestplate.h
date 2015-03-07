@@ -15,6 +15,7 @@ public:
     Chestplate();
     virtual ~Chestplate();
     void specificUpdate();
+    std::string getFilePath();
 private:
     void activate();
     void deactivate();

@@ -100,4 +100,5 @@ void WeaponLoader::loadNone(Weapon* weapon)
     weapon->criticalDamage = 2;
     weapon->reloadable = false;
     weapon->ammoType = -1;
+    weapon->weaponId = -1;
 }

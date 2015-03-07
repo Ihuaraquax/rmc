@@ -24,6 +24,7 @@ public:
     void setActive(bool active);
     int getCurrentEnergy() const;
     int getMaxEnergy() const;
+    std::string virtual getFilePath();
 protected:
     void virtual activate();
     void virtual deactivate();

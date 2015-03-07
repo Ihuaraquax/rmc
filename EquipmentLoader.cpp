@@ -27,6 +27,18 @@ void EquipmentLoader::loadNewEquipment(Equipment* equipment, int index, std::str
     file >> equipment->imagePath;
 }
 
+std::string EquipmentLoader::loadEquipmentImagePath(int index, std::string path)
+{
+    std::string result;
+    std::fstream file;
+    file.open(path.c_str(), std::ios::in);
+    std::string temp;
+    for(int i = 0; i < index; i++)std::getline(file, temp);
+    for(int i = 0; i < 4+Variables::damageTypeCount; i++)file >> result;
+    file >> result;
+    return result;
+}
+
 void EquipmentLoader::displayLogsToConsole(Equipment* equipment)
 {    
     std::cout << " action: "  << equipment->action << std::endl;

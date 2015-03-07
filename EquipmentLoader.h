@@ -14,6 +14,7 @@ public:
     EquipmentLoader();
     virtual ~EquipmentLoader();
     void static loadNewEquipment(Equipment *equipment, int index, std::string path);
+    std::string static loadEquipmentImagePath(int index, std::string path);
 private:
     void static displayLogsToConsole(Equipment *equipment);
 };

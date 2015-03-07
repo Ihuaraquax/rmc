@@ -148,7 +148,7 @@ void HUD::mouseChestControls()
              if(inventoryIndex != -1)
              {
                  contentIndex = inventoryIndex;
-                 if(!dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->isWeapon(contentIndex))contentIndex = -1;
+                 if(inventoryIndex < 9)if(!dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->isWeapon(contentIndex))contentIndex = -1;
                  fromChest = false;
              }
              else

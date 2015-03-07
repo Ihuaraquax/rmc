@@ -98,3 +98,8 @@ void Chestplate::deactivate()
             break;
     }
 }
+
+std::string Chestplate::getFilePath()
+{
+    return "fixtures/chestplates.txt";
+}

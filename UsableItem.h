@@ -17,6 +17,7 @@ public:
     void activate();
     int getCharges() const;
     std::string getImagePath() const;
+    int getAction() const;
 private:
     int action;
     std::string imagePath;

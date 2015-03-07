@@ -16,7 +16,7 @@ public:
     virtual ~Inventory();
     void display();
     void swapWeapons(bool inventory, int index);
-    void swapEquipment(bool inventory, int index);
+    void storeEquipmentInChest(int chestFieldIndex, int inventoryFieldIndex);
     void storeInChest(int chestFieldIndex, int inventoryFieldIndex);
     void init();
     
@@ -24,6 +24,7 @@ public:
     int getEquipmentIndex();
 private:
     void clearImages();
+    bool isCorrectEquipmentType(int chestIndex, int inventoryIndex);
     
     void displayWeapons();
     void displayEquipment();

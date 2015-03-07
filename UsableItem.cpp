@@ -35,3 +35,7 @@ int UsableItem::getCharges() const {
 std::string UsableItem::getImagePath() const {
     return imagePath;
 }
+
+int UsableItem::getAction() const {
+    return action;
+}

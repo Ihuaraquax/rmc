@@ -15,6 +15,7 @@ public:
     Greaves();
     virtual ~Greaves();
     void specificUpdate();
+    std::string getFilePath();
 private:
     void activate();
     void deactivate();

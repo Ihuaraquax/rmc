@@ -15,6 +15,7 @@ public:
     Helmet();
     virtual ~Helmet();
     void specificUpdate();
+    std::string getFilePath();
 private:
     void activate();
     void deactivate();

@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/Chest.o: Chest.cpp Chest.h UsableObject.h \
  WeaponUI.h EquipmentUI.h Equipment.h UsableItem.h Inventory.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h ModuleTile.h AiTile.h GameSubstateEnum.h CollisionDetector.h \
- WeaponLoader.h
+ WeaponLoader.h EquipmentLoader.h UsableItemLoader.h
 
 Chest.h:
 
@@ -69,3 +69,7 @@ GameSubstateEnum.h:
 CollisionDetector.h:
 
 WeaponLoader.h:
+
+EquipmentLoader.h:
+
+UsableItemLoader.h:

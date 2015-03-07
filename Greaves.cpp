@@ -88,3 +88,8 @@ void Greaves::deactivate()
             break;
     }
 }
+
+std::string Greaves::getFilePath()
+{
+    return "fixtures/greaves.txt";
+}

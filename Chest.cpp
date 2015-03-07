@@ -12,6 +12,8 @@
 #include "ModuleTile.h"
 #include "CollisionDetector.h"
 #include "WeaponLoader.h"
+#include "EquipmentLoader.h"
+#include "UsableItemLoader.h"
 
 Chest::Chest() {
     open = false;
@@ -40,7 +42,7 @@ Chest::Chest() {
     {
         contentCoords[i] = new Coordinates();
         contentImages[i] = NULL;
-        this->contentType[i] = rand()%2;
+        this->contentType[i] = rand()%1;
         switch(contentType[i])
         {
             case 0:
@@ -48,6 +50,22 @@ Chest::Chest() {
                 break;
             case 1: 
                 this->contentValue[i] = rand()%32;
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 2: 
+                this->contentValue[i] = rand()%8 + 1;
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 3: 
+                this->contentValue[i] = rand()%8 + 1;
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 4: 
+                this->contentValue[i] = rand()%8 + 1;
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 5: 
+                this->contentValue[i] = 1;
                 this->loadContent(i, contentType[i], contentValue[i]);
                 break;
         }
@@ -143,6 +161,38 @@ void Chest::loadContent(int index, int type, int value)
         contentCoords[index]->X = 810;
         contentCoords[index]->width = 200;
         contentCoords[index]->height = 90;
+    }
+    else if(type == 2)
+    {
+        std::string paths[] = {EquipmentLoader::loadEquipmentImagePath(value, "fixtures/helmets.txt")};
+        contentImages[index] = new Image(1, paths, true);
+        contentCoords[index]->X = 860;
+        contentCoords[index]->width = 100;
+        contentCoords[index]->height = 100;
+    }
+    else if(type == 3)
+    {
+        std::string paths[] = {EquipmentLoader::loadEquipmentImagePath(value, "fixtures/chestplates.txt")};
+        contentImages[index] = new Image(1, paths, true);
+        contentCoords[index]->X = 860;
+        contentCoords[index]->width = 100;
+        contentCoords[index]->height = 100;
+    }
+    else if(type == 4)
+    {
+        std::string paths[] = {EquipmentLoader::loadEquipmentImagePath(value, "fixtures/greaves.txt")};
+        contentImages[index] = new Image(1, paths, true);
+        contentCoords[index]->X = 860;
+        contentCoords[index]->width = 100;
+        contentCoords[index]->height = 100;
+    }
+    else if(type == 5)
+    {
+        std::string paths[] = {UsableItemLoader::loadItemPath(value)};
+        contentImages[index] = new Image(1, paths, true);
+        contentCoords[index]->X = 860;
+        contentCoords[index]->width = 100;
+        contentCoords[index]->height = 100;
     }
     contentImages[index]->state = UI;
     contentType[index] = type;

@@ -12,6 +12,7 @@
 #include "WeaponLoader.h"
 #include "CollisionDetector.h"
 #include "TextDisplayer.h"
+#include "EquipmentLoader.h"
 
 Inventory::Inventory() {
     std::string paths[] = {"images/inventoryBackground.png"};
@@ -43,6 +44,8 @@ Inventory::Inventory() {
         equipmentCoords[i] = new Coordinates();
         equipmentCoords[i]->X = 63 + 140*i;
         equipmentCoords[i]->Y = 455;
+        equipmentCoords[i]->width = 100;
+        equipmentCoords[i]->height = 100;
     }
     equipmentImages = new Image*[4];
     
@@ -206,7 +209,8 @@ void Inventory::swapWeapons(bool inventory, int index)
     int firstWeaponIndex = this->getWeaponIndex();
     int secondWeaponIndex = index;
     if(firstWeaponIndex == -1)return;
-    if(inventory)
+    else if(firstWeaponIndex > 9)this->storeEquipmentInChest(secondWeaponIndex, firstWeaponIndex);
+    else if(inventory)
     {
         int firstWeaponAmmo = player->weapons[firstWeaponIndex]->getAmmoCurrent();
         int secondWeaponAmmo = player->weapons[secondWeaponIndex]->getAmmoCurrent();
@@ -219,17 +223,16 @@ void Inventory::swapWeapons(bool inventory, int index)
         int firstWeaponAmmo = player->weapons[firstWeaponIndex]->getAmmoCurrent();
         player->addAmmo(firstWeaponAmmo, player->weapons[firstWeaponIndex]->getAmmoType());
         int secondWeaponId = Variables::session->getHud()->getOpenChest()->getContentValue(index);
-        Variables::session->getHud()->getOpenChest()->loadContent(index, 1, player->weapons[firstWeaponIndex]->getWeaponId());
+        int weaponId = player->weapons[firstWeaponIndex]->getWeaponId();
+        if(weaponId == -1)Variables::session->getHud()->getOpenChest()->loadContent(index, 0, -1);
+        else Variables::session->getHud()->getOpenChest()->loadContent(index, 1, weaponId);
+            
+            
         WeaponLoader::loadWeapon(player->weapons[firstWeaponIndex], secondWeaponId);
     }
     this->init();
     Variables::session->getHud()->getMainWeaponUI()->reloadImage();
     Variables::session->getHud()->getSecondaryWeaponUI()->reloadImage();
-}
-
-void Inventory::swapEquipment(bool inventory, int index)
-{
-    
 }
 
 int Inventory::getEquipmentIndex()
@@ -265,16 +268,75 @@ int Inventory::getWeaponIndex()
             break;
         }
     }
+    if(result == -1)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if(CollisionDetector::isCollision(mouseCoords, equipmentCoords[i]))
+            {
+                result = i + 10;
+                break;
+            }
+        }
+    }
     return result;
 }
 
 void Inventory::storeInChest(int chestFieldIndex, int inventoryFieldIndex)
 {
+    if(inventoryFieldIndex > 9)storeEquipmentInChest(chestFieldIndex, inventoryFieldIndex);
+    else
+    {
+        Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+        int chestWeaponType = Variables::session->getHud()->getOpenChest()->getContentValue(chestFieldIndex);
+        int weaponId = player->weapons[inventoryFieldIndex]->getWeaponId();
+        if(weaponId == -1)Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, 0, -1);
+        else Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, 1, weaponId);
+        WeaponLoader::loadWeapon(player->weapons[inventoryFieldIndex], chestWeaponType);
+        init();
+        Variables::session->getHud()->getMainWeaponUI()->reloadImage();
+        Variables::session->getHud()->getSecondaryWeaponUI()->reloadImage();
+    }
+}
+
+void Inventory::storeEquipmentInChest(int chestFieldIndex, int inventoryFieldIndex)
+{
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
-    int chestWeaponType = Variables::session->getHud()->getOpenChest()->getContentValue(chestFieldIndex);
-    Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, 1, player->weapons[inventoryFieldIndex]->getWeaponId());
-    WeaponLoader::loadWeapon(player->weapons[inventoryFieldIndex], chestWeaponType);
-    init();
-    Variables::session->getHud()->getMainWeaponUI()->reloadImage();
-    Variables::session->getHud()->getSecondaryWeaponUI()->reloadImage();
+    if(isCorrectEquipmentType(chestFieldIndex, inventoryFieldIndex))
+    {
+        inventoryFieldIndex -= 10;
+        int chestEquipmentValue = Variables::session->getHud()->getOpenChest()->getContentValue(chestFieldIndex); 
+        if(inventoryFieldIndex == 3)
+        {
+            int equipmentType = player->item->getAction();
+            if(equipmentType == 0)Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, 0, -1);
+            else Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, inventoryFieldIndex+2, equipmentType);
+            player->changeItem(chestEquipmentValue);
+        }
+        else
+        {
+            Equipment *equipment = player->helmet;
+            if(inventoryFieldIndex == 1)equipment = player->chestplate;
+            if(inventoryFieldIndex == 2)equipment = player->greaves;
+            int equipmentType = equipment->getAction();
+            if(equipmentType == 0) Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, 0, -1);
+            else Variables::session->getHud()->getOpenChest()->loadContent(chestFieldIndex, inventoryFieldIndex+2, equipmentType);
+            EquipmentLoader::loadNewEquipment(equipment, chestEquipmentValue, equipment->getFilePath());
+        }
+        init();
+        Variables::session->getHud()->getEquipmentUI()->reloadImages(player->helmet, player->chestplate, player->greaves, player->item);
+    }
+}
+
+bool Inventory::isCorrectEquipmentType(int chestIndex, int inventoryIndex)
+{
+    bool result;
+    if(inventoryIndex > 9)
+    {
+        result = (inventoryIndex-10) == Variables::session->getHud()->getOpenChest()->getContentType(chestIndex) - 2;
+    } else {
+        result = Variables::session->getHud()->getOpenChest()->getContentType(chestIndex) == 1;
+    }
+    result = result || Variables::session->getHud()->getOpenChest()->getContentType(chestIndex) == 0;
+    return result;
 }
