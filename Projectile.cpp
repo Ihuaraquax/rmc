@@ -87,7 +87,7 @@ void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageTy
     Variables::giveFactors(angle, this->coords->speedX, this->coords->speedY);
     double speed = 0.0 + rand()% 20;
     speed /=10;
-    speed += 4;
+    speed += 12;
     this->coords->speedX *= speed;
     this->coords->speedY *= speed;
     this->range = range;
