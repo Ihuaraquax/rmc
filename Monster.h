@@ -10,6 +10,7 @@
 #include "Entity.h"
 
 class Monster : public Entity {
+    friend class MonsterLoader;
 public:
     Monster();
     Monster(double X, double Y);

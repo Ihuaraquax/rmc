@@ -64,6 +64,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ModuleFactory.o \
 	${OBJECTDIR}/ModuleTile.o \
 	${OBJECTDIR}/Monster.o \
+	${OBJECTDIR}/MonsterLoader.o \
 	${OBJECTDIR}/MouseControl.o \
 	${OBJECTDIR}/Obstacle.o \
 	${OBJECTDIR}/Player.o \
@@ -256,6 +257,11 @@ ${OBJECTDIR}/Monster.o: Monster.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Monster.o Monster.cpp
+
+${OBJECTDIR}/MonsterLoader.o: MonsterLoader.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/MonsterLoader.o MonsterLoader.cpp
 
 ${OBJECTDIR}/MouseControl.o: MouseControl.cpp 
 	${MKDIR} -p ${OBJECTDIR}

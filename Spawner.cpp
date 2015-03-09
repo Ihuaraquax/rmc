@@ -8,6 +8,7 @@
 #include "Spawner.h"
 #include "globalVariables.h"
 #include "Monster.h"
+#include "MonsterLoader.h"
 
 Spawner::Spawner() {
     this->coords = new Coordinates();
@@ -40,7 +41,7 @@ Spawner::Spawner() {
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
     this->setStartingTile();
     maximumHealth = health;
-    monsterType = 0;
+    monsterType = rand()%3;
     spawnTimer = 5;
     spawnCountdown = 5;
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
@@ -75,7 +76,8 @@ void Spawner::spawnMonster()
     } while(!isViableTile);
     spawnCoords->X = X;
     spawnCoords->Y = Y;
-    Entity *monster = new Monster(spawnCoords->X, spawnCoords->Y);    
+    Entity *monster = new Monster(spawnCoords->X, spawnCoords->Y);  
+    MonsterLoader::loadMonster(monster, monsterType);
     Variables::session->getAllEntities()->addEntity(monster);
     delete spawnCoords;
 }
