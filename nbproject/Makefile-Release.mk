@@ -72,6 +72,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Room.o \
 	${OBJECTDIR}/RoomFactory.o \
 	${OBJECTDIR}/Session.o \
+	${OBJECTDIR}/Spawner.o \
 	${OBJECTDIR}/TextDisplayer.o \
 	${OBJECTDIR}/TileFactory.o \
 	${OBJECTDIR}/Turret.o \
@@ -295,6 +296,11 @@ ${OBJECTDIR}/Session.o: Session.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Session.o Session.cpp
+
+${OBJECTDIR}/Spawner.o: Spawner.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Spawner.o Spawner.cpp
 
 ${OBJECTDIR}/TextDisplayer.o: TextDisplayer.cpp 
 	${MKDIR} -p ${OBJECTDIR}

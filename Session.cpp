@@ -102,7 +102,7 @@ void Session::loop()
         ALLEGRO_EVENT ev;
         al_wait_for_event(Variables::event_queue, &ev);
         Variables::currentFrame++;
-        if(Variables::currentFrame >= 20)Variables::currentFrame = 0;
+        if(Variables::currentFrame >= Variables::fps)Variables::currentFrame = 0;
         update();
         display();
     }

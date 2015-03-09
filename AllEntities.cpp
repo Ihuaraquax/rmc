@@ -12,19 +12,23 @@
 #include "globalVariables.h"
 #include "Obstacle.h"
 #include "Chest.h"
+#include "Spawner.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
     player = new Player();
     entityList.push_back(player);
     createObstacles();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 1; i++)
     {
         Entity *monster = new Monster();
         entityList.push_back(monster);
     }
-//    Entity *turret = new Turret();
-//    entityList.push_back(turret);
+    for(int i = 0; i < 5; i++)
+    {
+        Entity *spawner = new Spawner();
+        entityList.push_back(spawner);
+    }
     for(int i = 0; i < 5; i++)
     {
         Entity *chest = new Chest();

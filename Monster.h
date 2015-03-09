@@ -12,6 +12,7 @@
 class Monster : public Entity {
 public:
     Monster();
+    Monster(double X, double Y);
     virtual ~Monster();
     void update();
     void executeAgony();

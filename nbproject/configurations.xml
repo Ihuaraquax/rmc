@@ -19,6 +19,12 @@
           <itemPath>Weapon.cpp</itemPath>
           <itemPath>Weapon.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="f5" displayName="Monster Classes" projectFiles="true">
+          <itemPath>Monster.cpp</itemPath>
+          <itemPath>Monster.h</itemPath>
+          <itemPath>Spawner.cpp</itemPath>
+          <itemPath>Spawner.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="f3" displayName="Player Classes" projectFiles="true">
           <itemPath>Attributes.cpp</itemPath>
           <itemPath>Attributes.h</itemPath>
@@ -49,8 +55,6 @@
         </logicalFolder>
         <itemPath>Entity.cpp</itemPath>
         <itemPath>Entity.h</itemPath>
-        <itemPath>Monster.cpp</itemPath>
-        <itemPath>Monster.h</itemPath>
         <itemPath>Obstacle.cpp</itemPath>
         <itemPath>Obstacle.h</itemPath>
         <itemPath>Turret.cpp</itemPath>
@@ -332,6 +336,10 @@
       </item>
       <item path="Session.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Spawner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spawner.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="TextDisplayer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TextDisplayer.h" ex="false" tool="3" flavor2="0">
@@ -561,6 +569,10 @@
       <item path="Session.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Session.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Spawner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spawner.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TextDisplayer.cpp" ex="false" tool="1" flavor2="0">
       </item>

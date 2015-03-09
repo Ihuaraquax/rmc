@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/AllEntities.o: AllEntities.cpp AllEntities.h \
  UsableItem.h Inventory.h Monster.h Turret.h globalVariables.h Session.h \
  Menu.h HUD.h WeaponUI.h EquipmentUI.h Chest.h Obstacle.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
- GameSubstateEnum.h
+ GameSubstateEnum.h Spawner.h
 
 AllEntities.h:
 
@@ -73,3 +73,5 @@ ModuleTile.h:
 AiTile.h:
 
 GameSubstateEnum.h:
+
+Spawner.h:

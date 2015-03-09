@@ -42,6 +42,34 @@ Monster::Monster() {
     maximumHealth = health;
 }
 
+Monster::Monster(double X, double Y)
+{
+    this->coords = new Coordinates();
+    this->coords->X = X;
+    this->coords->Y = Y;
+    this->coords->angle = 0;
+    this->coords->height = 25;
+    this->coords->width = 25;
+    this->coords->speedX = 1.7;
+    this->coords->speedY = 1.7;
+    std::string paths[] = {"images/monster.png"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
+    health = 20;
+    teamId = 0;
+    this->weapons = new Weapon*[2];
+    this->weapons[0] = new Weapon();
+    this->weapons[1] = new Weapon();
+    WeaponLoader::loadWeapon(weapons[0], 0);
+    WeaponLoader::loadWeapon(weapons[1], 0);
+    this->threatLevel = 10;
+    Variables::session->getMap()
+            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
+    this->setStartingTile();
+    expirience = 100;
+    maximumHealth = health;
+}
+
 
 Monster::~Monster() {
 }
