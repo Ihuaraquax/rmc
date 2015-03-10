@@ -45,7 +45,7 @@ void AiTile::resetAIValue()
     currentAIValue = baseAIValue + entitiesAiValue;
 }
 
-void AiTile::updateCurrenTAIValue() {
+void AiTile::updateCurrentAIValue() {
     if(currentAIValue >= 5)
     {
         for(int i = 0; i < 8; i++)
@@ -57,7 +57,7 @@ void AiTile::updateCurrenTAIValue() {
                 if(adjacentTiles[i]->currentAIValue < currentAIValue-5)
                 {
                     adjacentTiles[i]->currentAIValue = currentAIValue - 5;
-                    adjacentTiles[i]->updateCurrenTAIValue();
+                    adjacentTiles[i]->updateCurrentAIValue();
                 }
             }
         }

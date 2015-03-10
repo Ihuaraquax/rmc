@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/ModuleTile.o: ModuleTile.cpp ModuleTile.h \
  Menu.h HUD.h WeaponUI.h EquipmentUI.h Equipment.h UsableItem.h \
  Inventory.h Chest.h Obstacle.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h GameSubstateEnum.h \
- Turret.h
+ Turret.h AiTileAdjacentSetter.h
 
 ModuleTile.h:
 
@@ -67,3 +67,5 @@ Room.h:
 GameSubstateEnum.h:
 
 Turret.h:
+
+AiTileAdjacentSetter.h:

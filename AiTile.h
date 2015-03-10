@@ -16,7 +16,7 @@ public:
     void setRoomId(int roomId);
     int getRoomId() const;
     void resetAIValue();
-    void updateCurrenTAIValue();
+    void updateCurrentAIValue();
     int getCurrentAIValue() const;
     void setAdjacentTile(int index, AiTile *tile);
     AiTile** getAdjacentTiles() const;

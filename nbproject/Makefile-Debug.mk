@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/AiTile.o \
+	${OBJECTDIR}/AiTileAdjacentSetter.o \
 	${OBJECTDIR}/AllEntities.o \
 	${OBJECTDIR}/Attributes.o \
 	${OBJECTDIR}/Button.o \
@@ -117,6 +118,11 @@ ${OBJECTDIR}/AiTile.o: AiTile.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/AiTile.o AiTile.cpp
+
+${OBJECTDIR}/AiTileAdjacentSetter.o: AiTileAdjacentSetter.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/AiTileAdjacentSetter.o AiTileAdjacentSetter.cpp
 
 ${OBJECTDIR}/AllEntities.o: AllEntities.cpp 
 	${MKDIR} -p ${OBJECTDIR}

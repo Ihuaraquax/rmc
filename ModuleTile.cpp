@@ -8,6 +8,7 @@
 #include "ModuleTile.h"
 #include "globalVariables.h"
 #include "Turret.h"
+#include "AiTileAdjacentSetter.h"
 
 ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->aiTile = new AiTile(obstructed, roomId, base);
@@ -23,12 +24,22 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     }
     threatLevel = 0;
     object = NULL;
+    aiTiles = new AiTile*[16];
+    for(int i = 0; i < 16; i++)
+    {
+        aiTiles[i] = new AiTile(obstructed, roomId, base);
+    }
 }
 
 ModuleTile::~ModuleTile()
 {
     obstacle = NULL;
     delete aiTile;
+    for(int i = 0; i < 16; i++)
+    {
+        delete aiTiles[i];
+    }
+    delete []aiTiles;
 }
 
 void ModuleTile::update()
@@ -62,6 +73,7 @@ ModuleTile** ModuleTile::getAdjacentTiles() const {
 void ModuleTile::setAdjacentTiles(ModuleTile **tiles)
 {
     adjacentTiles = tiles;
+    AiTileAdjacentSetter::setAdjacentTiles(this);
     for(int i = 0; i < 8; i++)
     {
         if(adjacentTiles[i] == NULL)aiTile->setAdjacentTile(i, NULL);
@@ -314,4 +326,15 @@ void ModuleTile::useObject()
             this->useDoor(i);
         }
     }
+}
+
+AiTile** ModuleTile::getAiTiles() const {
+    return aiTiles;
+}
+
+AiTile *ModuleTile::getAiTileAt(double X, double Y)
+{
+    int x = floor(X / 12.5);
+    int y = floor(Y / 12.5);
+    return aiTiles[x * 4 + y];
 }

@@ -63,26 +63,26 @@ void Module::display()
 
 void Module::displayRoomBorders()
 {
-    for(int i = 0; i < Variables::tilesPerRoom; i++)
-        for(int j = 0; j < Variables::tilesPerRoom; j++)
-        {
-            ModuleTile *tile= moduleTiles[getModuleIndex(i,j)];
-            int X = i * Variables::tileSize + 25 - Variables::offsetX;
-            int Y = j * Variables::tileSize + 25 - Variables::offsetY;
-            for(int k = 0; k < 4; k++)
-            {
-                if(tile->getAiTile()->getAdjacentTiles()[((k*2)+1)] != NULL)if(tile->getAiTile()->getRoomId() != tile->getAiTile()->getAdjacentTiles()[((k*2)+1)]->getRoomId())
-                {
-                    int deltaX = 0, deltaY = 0;
-                    if(k == 0)deltaY = 15;
-                    if(k == 1)deltaX = -15;
-                    if(k == 2)deltaY = -15;
-                    if(k == 3)deltaX = 15;
-                    if(tile->getAiTile()->isOpenDoor((k*2)+1))al_draw_circle(X - deltaX, Y - deltaY, 3, al_map_rgb(255, 0, 0),5);
-                    else al_draw_circle(X - deltaX, Y - deltaY, 3, al_map_rgb(255, 255, 0),5);
-                }
-            }
-        }
+//    for(int i = 0; i < Variables::tilesPerRoom; i++)
+//        for(int j = 0; j < Variables::tilesPerRoom; j++)
+//        {
+//            ModuleTile *tile= moduleTiles[getModuleIndex(i,j)];
+//            int X = i * Variables::tileSize + 25 - Variables::offsetX;
+//            int Y = j * Variables::tileSize + 25 - Variables::offsetY;
+//            for(int k = 0; k < 4; k++)
+//            {
+//                if(tile->getAiTile()->getAdjacentTiles()[((k*2)+1)] != NULL)if(tile->getAiTile()->getRoomId() != tile->getAiTile()->getAdjacentTiles()[((k*2)+1)]->getRoomId())
+//                {
+//                    int deltaX = 0, deltaY = 0;
+//                    if(k == 0)deltaY = 15;
+//                    if(k == 1)deltaX = -15;
+//                    if(k == 2)deltaY = -15;
+//                    if(k == 3)deltaX = 15;
+//                    if(tile->getAiTile()->isOpenDoor((k*2)+1))al_draw_circle(X - deltaX, Y - deltaY, 3, al_map_rgb(255, 0, 0),5);
+//                    else al_draw_circle(X - deltaX, Y - deltaY, 3, al_map_rgb(255, 255, 0),5);
+//                }
+//            }
+//        }
 }
 
 void Module::displayModuleTileAI()
@@ -144,7 +144,8 @@ void Module::update()
     }
     for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
     {
-        moduleTiles[i]->getAiTile()->updateCurrenTAIValue();
+        moduleTiles[i]->getAiTile()->updateCurrentAIValue();
+//        for(int j = 0; j < 16; j++) moduleTiles[i]->getAiTiles()[j]->updateCurrentAIValue();
     }
 }
 

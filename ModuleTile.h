@@ -15,6 +15,7 @@
 #include "AiTile.h"
 
 class ModuleTile {
+    friend class AiTileAdjacentSetter;
 public:
     void update();
     
@@ -52,7 +53,9 @@ public:
     int getCenterX() const;
     bool setUsableObject(UsableObject *object);
     
+    AiTile *getAiTileAt(double X, double Y);
     void useObject();
+    AiTile** getAiTiles() const;
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
@@ -61,6 +64,7 @@ private:
     Entity *obstacle;
     Door **doorList;
     AiTile *aiTile;
+    AiTile **aiTiles;
     int threatLevel;
     int centerX, centerY;        
     UsableObject *object;
