@@ -32,6 +32,7 @@ public:
     void setAmmoCurrent(int ammoCurrent);
     int getWeaponId() const;
     void setRange(int range);
+    void setDamageType(DAMAGE_TYPE damageType);
 private:
     void shootMIRV(Coordinates *shooterCoords, int team);
     

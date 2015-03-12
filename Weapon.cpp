@@ -170,3 +170,7 @@ int Weapon::getWeaponId() const {
 void Weapon::setRange(int range) {
     this->range = range;
 }
+
+void Weapon::setDamageType(DAMAGE_TYPE damageType) {
+    this->damageType = damageType;
+}

@@ -11,7 +11,7 @@
 
 class MonsterLoader {
 public:
-    void static loadMonster(Entity *entity, int type);
+    void static loadMonster(Entity *entity, int type, int modifier);
 private:
 };
 

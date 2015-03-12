@@ -77,7 +77,7 @@ void Spawner::spawnMonster()
     spawnCoords->X = X;
     spawnCoords->Y = Y;
     Entity *monster = new Monster(spawnCoords->X, spawnCoords->Y);  
-    MonsterLoader::loadMonster(monster, monsterType);
+    MonsterLoader::loadMonster(monster, monsterType, rand()%7);
     Variables::session->getAllEntities()->addEntity(monster);
     delete spawnCoords;
 }
