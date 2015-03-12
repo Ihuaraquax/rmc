@@ -15,6 +15,7 @@
 #include "Weapon.h"
 #include "templateList.h"
 #include "DamageTypeEnum.h"
+#include "GenericBuffer.h"
 
 class Entity {
 public:
@@ -40,6 +41,9 @@ public:
     int getArmor() const;
     
     void heal(int healAmount);
+    double getValueOfBuffer(int type);
+    void updateBuffers();
+    void addBuffer(GenericBuffer *buffer);
 protected:
     void move(double X, double Y);
     Entity *isCollision();
@@ -60,6 +64,8 @@ protected:
     int criticalChance;
     int criticalDamage;
     double accuracy;
+    
+    templateList<GenericBuffer> *bufferList;
 };
 
 #endif	/* ENTITY_H */

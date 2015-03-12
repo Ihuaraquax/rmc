@@ -5,6 +5,16 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Entity Classes" projectFiles="true">
+        <logicalFolder name="f6" displayName="Buffer Classes" projectFiles="true">
+          <itemPath>BuffRod.cpp</itemPath>
+          <itemPath>BuffRod.h</itemPath>
+          <itemPath>DistanceBuffer.cpp</itemPath>
+          <itemPath>DistanceBuffer.h</itemPath>
+          <itemPath>GenericBuffer.cpp</itemPath>
+          <itemPath>GenericBuffer.h</itemPath>
+          <itemPath>TimedBuffer.cpp</itemPath>
+          <itemPath>TimedBuffer.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="f1" displayName="Equipment" projectFiles="true">
           <itemPath>Chestplate.cpp</itemPath>
           <itemPath>Chestplate.h</itemPath>
@@ -206,6 +216,10 @@
       </item>
       <item path="Attributes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="BuffRod.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BuffRod.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Button.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Button.h" ex="false" tool="3" flavor2="0">
@@ -227,6 +241,10 @@
       <item path="Coordinates.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DamageTypeEnum.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DistanceBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DistanceBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Door.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -257,6 +275,10 @@
       <item path="Floor.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GameSubstateEnum.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GenericBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GenericBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Greaves.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -361,6 +383,10 @@
       <item path="TileFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TileFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TimedBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TimedBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Turret.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -448,6 +474,10 @@
       </item>
       <item path="Attributes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="BuffRod.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BuffRod.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Button.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Button.h" ex="false" tool="3" flavor2="0">
@@ -469,6 +499,10 @@
       <item path="Coordinates.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DamageTypeEnum.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DistanceBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DistanceBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Door.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -499,6 +533,10 @@
       <item path="Floor.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GameSubstateEnum.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GenericBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GenericBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Greaves.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -603,6 +641,10 @@
       <item path="TileFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TileFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TimedBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TimedBuffer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Turret.cpp" ex="false" tool="1" flavor2="0">
       </item>

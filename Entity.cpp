@@ -11,6 +11,7 @@
 #include "globalVariables.h"
 #include "ModuleTile.h"
 #include "CollisionDetector.h"
+#include "TimedBuffer.h"
 
 Entity::Entity() {
     armor = 0;
@@ -21,6 +22,7 @@ Entity::Entity() {
     criticalChance = 0;
     criticalDamage = 0;
     accuracy = 0;
+    bufferList = NULL;
 }
 
 Entity::~Entity() {
@@ -36,24 +38,28 @@ void Entity::display(){
 }
 
 void Entity::move(double X, double Y){
+    
+    double speedX = this->coords->speedX + this->getValueOfBuffer(0);
+    double speedY = this->coords->speedY + this->getValueOfBuffer(0);
+    
     ModuleTile *currentTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     
-    this->coords->X += X * this->coords->speedX;
+    this->coords->X += X * speedX;
     ModuleTile *newTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     if(CollisionDetector::isAnyCollision(newTile, this))
     {
-        this->coords->X -= X * this->coords->speedX;;
+        this->coords->X -= X * speedX;
     }
     
     
-    this->coords->Y += Y * this->coords->speedY;
+    this->coords->Y += Y * speedY;
     newTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     if(CollisionDetector::isAnyCollision(newTile, this))
     {
-        this->coords->Y -= Y * this->coords->speedY;;
+        this->coords->Y -= Y * speedY;
     }
     
     newTile = Variables::session->getMap()
@@ -129,4 +135,50 @@ void Entity::heal(int healAmount)
 {
     this->health += healAmount;
     if(this->health > this->maximumHealth) health = maximumHealth;
+}
+
+double Entity::getValueOfBuffer(int type)
+{
+    double result = 0;
+    templateList<GenericBuffer> *buffers = this->bufferList;
+    while(buffers != NULL)
+    {
+        if(buffers->data->GetBuffType() == type)result += buffers->data->GetBuffValue();
+        buffers = buffers->next;
+    }
+    buffers = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->getBufferList();
+    
+    while(buffers != NULL)
+    {
+        if(buffers->data->GetBuffType() == type)result += buffers->data->GetBuffValue();
+        buffers = buffers->next;
+    }
+    return result;
+}
+
+void Entity::updateBuffers()
+{
+    templateList<GenericBuffer> *buffers = this->bufferList;
+    while(buffers != NULL)
+    {
+        static_cast<TimedBuffer*>(buffers->data)->SetBuffTime(static_cast<TimedBuffer*>(buffers->data)->GetBuffTime()-1);
+        if(static_cast<TimedBuffer*>(buffers->data)->GetBuffTime() == 0)
+        {
+            templateList<GenericBuffer> *toDelete = buffers;
+            buffers = buffers->next;
+            if(toDelete != bufferList)this->bufferList->findPrevious(toDelete->data)->next = buffers;
+            else bufferList = buffers;
+            delete toDelete->data;
+            delete toDelete;
+        }
+        else buffers = buffers->next;
+    }
+}
+
+void Entity::addBuffer(GenericBuffer* buffer)
+{
+    templateList<GenericBuffer> *newBuffer = new templateList<GenericBuffer>();
+    newBuffer->data = buffer;
+    newBuffer->next = bufferList;
+    bufferList = newBuffer;
 }

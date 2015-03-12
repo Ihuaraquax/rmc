@@ -55,6 +55,7 @@ void Spawner::update()
         spawnCountdown = spawnTimer;
         spawnMonster();
     }
+    this->updateBuffers();
 }
 
 void Spawner::spawnMonster()

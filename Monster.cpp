@@ -78,6 +78,7 @@ void Monster::update()
     checkForAttack();
     this->weapons[0]->update();
     this->weapons[1]->update();
+    this->updateBuffers();
 }
 
 int Monster::getDirection()

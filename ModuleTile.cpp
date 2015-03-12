@@ -29,6 +29,7 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     {
         aiTiles[i] = new AiTile(obstructed, roomId, base);
     }
+    this->bufferList = NULL;
 }
 
 ModuleTile::~ModuleTile()
@@ -332,9 +333,48 @@ AiTile** ModuleTile::getAiTiles() const {
     return aiTiles;
 }
 
+templateList<GenericBuffer>* ModuleTile::getBufferList() const {
+    return bufferList;
+}
+
 AiTile *ModuleTile::getAiTileAt(double X, double Y)
 {
     int x = floor(X / 12.5);
     int y = floor(Y / 12.5);
     return aiTiles[x * 4 + y];
+}
+
+void ModuleTile::propagateBuffs(GenericBuffer* buff, int tileDistance)
+{
+    if(bufferList->find(buff) == NULL)
+    {
+        templateList<GenericBuffer> *newBuffer = new templateList<GenericBuffer>();
+        newBuffer->data = buff;
+        newBuffer->next = bufferList;
+        bufferList = newBuffer;
+        if(tileDistance > 0)
+        {
+            for(int i = 0; i < 8; i++)if(adjacentTiles[i] != NULL)adjacentTiles[i]->propagateBuffs(buff, tileDistance-1);
+        }
+    }
+}
+
+void ModuleTile::depropagateBuffs(GenericBuffer* buff)
+{
+    templateList<GenericBuffer> *toDelete = bufferList->find(buff);
+    if(toDelete != NULL)
+    {
+        if(toDelete == bufferList)
+        {
+            bufferList = bufferList->next;
+            delete toDelete;
+        }
+        else
+        {
+            templateList<GenericBuffer> *previous = bufferList->findPrevious(buff);
+            previous->next = toDelete->next;
+            delete toDelete;
+        }
+        for(int i = 0; i < 8; i++)if(adjacentTiles[i] != NULL)adjacentTiles[i]->depropagateBuffs(buff);
+    }
 }

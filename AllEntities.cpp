@@ -13,6 +13,8 @@
 #include "Obstacle.h"
 #include "Chest.h"
 #include "Spawner.h"
+#include "DistanceBuffer.h"
+#include "BuffRod.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -34,6 +36,10 @@ AllEntities::AllEntities() {
         Entity *chest = new Chest();
         entityList.push_back(chest);
     }
+    GenericBuffer *buffer = new DistanceBuffer(0, 1, 200);
+    BuffRod *rod = new BuffRod(buffer);
+    rod->setCoords(500, 500);
+    this->addEntity(rod);
 }
 
 AllEntities::~AllEntities()

@@ -13,6 +13,7 @@
 #include "Door.h"
 #include "templateList.h"
 #include "AiTile.h"
+#include "GenericBuffer.h"
 
 class ModuleTile {
     friend class AiTileAdjacentSetter;
@@ -56,6 +57,10 @@ public:
     AiTile *getAiTileAt(double X, double Y);
     void useObject();
     AiTile** getAiTiles() const;
+    
+    templateList<GenericBuffer>* getBufferList() const;
+    void propagateBuffs(GenericBuffer *buff, int tileDistance);
+    void depropagateBuffs(GenericBuffer *buff);
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
@@ -68,6 +73,7 @@ private:
     int threatLevel;
     int centerX, centerY;        
     UsableObject *object;
+    templateList<GenericBuffer> *bufferList;
     
     void deleteFromTurretList(Entity *toDelete);
     void useDoor(int direction);

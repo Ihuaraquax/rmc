@@ -39,11 +39,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/AiTileAdjacentSetter.o \
 	${OBJECTDIR}/AllEntities.o \
 	${OBJECTDIR}/Attributes.o \
+	${OBJECTDIR}/BuffRod.o \
 	${OBJECTDIR}/Button.o \
 	${OBJECTDIR}/Chest.o \
 	${OBJECTDIR}/Chestplate.o \
 	${OBJECTDIR}/CollisionDetector.o \
 	${OBJECTDIR}/Coordinates.o \
+	${OBJECTDIR}/DistanceBuffer.o \
 	${OBJECTDIR}/Door.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Equipment.o \
@@ -51,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/EquipmentUI.o \
 	${OBJECTDIR}/Explosion.o \
 	${OBJECTDIR}/Floor.o \
+	${OBJECTDIR}/GenericBuffer.o \
 	${OBJECTDIR}/Greaves.o \
 	${OBJECTDIR}/Grenade.o \
 	${OBJECTDIR}/HUD.o \
@@ -77,6 +80,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Spawner.o \
 	${OBJECTDIR}/TextDisplayer.o \
 	${OBJECTDIR}/TileFactory.o \
+	${OBJECTDIR}/TimedBuffer.o \
 	${OBJECTDIR}/Turret.o \
 	${OBJECTDIR}/UsableItem.o \
 	${OBJECTDIR}/UsableItemLoader.o \
@@ -134,6 +138,11 @@ ${OBJECTDIR}/Attributes.o: Attributes.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Attributes.o Attributes.cpp
 
+${OBJECTDIR}/BuffRod.o: BuffRod.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/BuffRod.o BuffRod.cpp
+
 ${OBJECTDIR}/Button.o: Button.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -158,6 +167,11 @@ ${OBJECTDIR}/Coordinates.o: Coordinates.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Coordinates.o Coordinates.cpp
+
+${OBJECTDIR}/DistanceBuffer.o: DistanceBuffer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/DistanceBuffer.o DistanceBuffer.cpp
 
 ${OBJECTDIR}/Door.o: Door.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -193,6 +207,11 @@ ${OBJECTDIR}/Floor.o: Floor.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Floor.o Floor.cpp
+
+${OBJECTDIR}/GenericBuffer.o: GenericBuffer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/GenericBuffer.o GenericBuffer.cpp
 
 ${OBJECTDIR}/Greaves.o: Greaves.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -323,6 +342,11 @@ ${OBJECTDIR}/TileFactory.o: TileFactory.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/TileFactory.o TileFactory.cpp
+
+${OBJECTDIR}/TimedBuffer.o: TimedBuffer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/TimedBuffer.o TimedBuffer.cpp
 
 ${OBJECTDIR}/Turret.o: Turret.cpp 
 	${MKDIR} -p ${OBJECTDIR}

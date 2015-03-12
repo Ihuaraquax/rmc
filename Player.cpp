@@ -15,6 +15,7 @@
 #include "Greaves.h"
 #include "EquipmentLoader.h"
 #include "UsableItemLoader.h"
+#include "TimedBuffer.h"
 
 Player::Player() {
     targetCoords = new Coordinates();
@@ -101,6 +102,7 @@ void Player::update()
     helmet->update();
     chestplate->update();
     greaves->update();
+    this->updateBuffers();
 }
 
 void Player::display()

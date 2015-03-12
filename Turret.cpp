@@ -95,6 +95,7 @@ void Turret::update()
         targetAngle = -1;
     }
     currentThreatLevel = 0;
+    this->updateBuffers();
 }
 
 bool Turret::turnRight()
