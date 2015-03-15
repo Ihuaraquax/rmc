@@ -87,6 +87,30 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
     }
 }
 
+void Weapon::shoot(Coordinates* shooterCoords, int team, int shooterCriticalChance, double shooterCriticalDamage, double accuracy)
+{
+    shooterCoords->X += shooterCoords->width/2;
+    shooterCoords->Y += shooterCoords->height/2;
+    if(!reloading && timeToShoot == 0)
+    {
+        ammoCurrent--;
+        timeToShoot = cooldown;
+        for(int i = 0; i < projectileCount; i++)
+        {
+            bool critical = rand()%100 < criticalChance + shooterCriticalChance;
+            Entity *bullet = ProjectileFactory::provideProjectile(weaponId, 0);
+            int angle = (shooterCoords->angle - rand()%20) + 10;
+            if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
+            else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
+            Variables::session->getAllEntities()->addEntity(bullet);
+        }
+        double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
+        if(increment > 0)currentTargetSize += increment;
+    }
+    shooterCoords->X -= shooterCoords->width/2;
+    shooterCoords->Y -= shooterCoords->height/2;
+}
+
 void Weapon::shootMIRV(Coordinates *shooterCoords, int team)
 {
     for(int i = 0; i < projectileCount; i++)

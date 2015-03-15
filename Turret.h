@@ -23,6 +23,7 @@ public:
     void setCurrentThreatLevel(int currentThreatLevel);
     int getCurrentThreatLevel() const;
     void executeAgony();
+    void attack(int weapon);
 private:
     Image *upperPart;
     Image *lowerPart;

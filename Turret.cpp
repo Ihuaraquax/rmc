@@ -29,6 +29,7 @@ Turret::Turret() {
     armor = 0;
     weapons = new Weapon*[2];
     weapons[0] = new Weapon();
+    WeaponLoader::loadWeapon(weapons[0], 25);
     teamId = 1;
     possessedWeapons = 2;
     range = 500;
@@ -61,6 +62,7 @@ Turret::Turret(double X, double Y) {
     armor = 0;
     weapons = new Weapon*[2];
     weapons[0] = new Weapon();
+    WeaponLoader::loadWeapon(weapons[0], 25);
     teamId = 1;
     possessedWeapons = 2;
     range = 500;
@@ -97,6 +99,11 @@ void Turret::update()
     }
     currentThreatLevel = 0;
     this->updateBuffers();
+}
+
+void Turret::attack(int weapon)
+{
+    weapons[weapon]->shoot(coords, teamId, criticalChance, criticalDamage, accuracy);
 }
 
 bool Turret::turnRight()

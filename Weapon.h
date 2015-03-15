@@ -18,6 +18,7 @@ public:
     Weapon();
     void update();
     void shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team, int shooterCriticalChance, double shooterCriticalDamage, double accuracy);
+    void shoot(Coordinates *shooterCoords, int team, int shooterCriticalChance, double shooterCriticalDamage, double accuracy);
     void reload();
     double getAngle(Coordinates *shooterCoords, Coordinates *targetCoords);
     int getCurrentTargetSize() const;

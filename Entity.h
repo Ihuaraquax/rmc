@@ -24,7 +24,7 @@ public:
     
     void virtual update();
     void virtual display();
-    void attack(int weapon);
+    void virtual attack(int weapon);
     
     void setStartingTile();
     void getHit(int damage, int damageType);
