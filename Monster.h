@@ -18,6 +18,7 @@ public:
     void update();
     void executeAgony();
 private:
+    bool turnRight(double targetAngle);
     int getDirection();
     void checkForAttack();
     bool isBadSpawningPoint();

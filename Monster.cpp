@@ -62,15 +62,19 @@ void Monster::update()
     if(direction >= 0)
     {
         int targetX = (direction / Variables::tilesPerRoom) * Variables::tileSize + 24;
-        int targetY = (direction % Variables::tilesPerRoom) * Variables::tileSize + 24;
-        
-        
+        int targetY = (direction % Variables::tilesPerRoom) * Variables::tileSize + 24;        
         double dX, dY;
         dX = targetX - (coords->X);
         dY = (coords->Y) - targetY;
-        coords->angle = 180 + (atan(dX/dY) * 180 / M_PI);
-        if(targetY <= (coords->Y))coords->angle += 180;    
-    
+        double targetAngle= 180 + (atan(dX/dY) * 180 / M_PI);
+        if(targetY <= (coords->Y))targetAngle += 180;
+        targetAngle += 180;
+        if(targetAngle > 360)targetAngle -= 360;
+        if(ceil(coords->angle) - ceil(targetAngle) < -10 || ceil(coords->angle) - ceil(targetAngle) > 10)
+        {
+            if(!turnRight(targetAngle))coords->angle += coords->speedX;
+            else coords->angle -= coords->speedX;
+        }    
         double x,y;
         Variables::giveFactors(coords->angle, x,y);
         this->move(x,y);
@@ -143,4 +147,17 @@ bool Monster::isBadSpawningPoint()
 void Monster::executeAgony()
 {
     dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->addExpirience(expirience);
+}
+
+bool Monster::turnRight(double targetAngle)
+{
+    bool result = false;
+    
+    int tempTargetAngle = ceil(targetAngle) +180;
+    tempTargetAngle %= 360;
+    int delta = 180 - ceil(coords->angle);
+    tempTargetAngle += delta;
+    if(tempTargetAngle < 180)result = true;
+    
+    return result;
 }

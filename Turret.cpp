@@ -7,6 +7,7 @@
 
 #include "Turret.h"
 #include "globalVariables.h"
+#include "WeaponLoader.h"
 
 Turret::Turret() {
     this->coords = new Coordinates();
@@ -102,14 +103,11 @@ bool Turret::turnRight()
 {
     bool result = false;
     
-    if(coords->angle < 180)
-    {
-        if(targetAngle <= coords->angle + 180)result = true;
-    }
-    else
-    {
-        if(targetAngle > coords->angle || targetAngle < (coords->angle - 180))result = true;
-    }
+    int tempTargetAngle = ceil(targetAngle) +180;
+    tempTargetAngle %= 360;
+    int delta = 180 - ceil(coords->angle);
+    tempTargetAngle += delta;
+    if(tempTargetAngle < 180)result = true;
     
     return result;
 }
