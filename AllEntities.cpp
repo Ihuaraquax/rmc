@@ -26,20 +26,20 @@ AllEntities::AllEntities() {
         Entity *monster = new Monster();
         entityList.push_back(monster);
     }
-    for(int i = 0; i < 5; i++)
-    {
-        Entity *spawner = new Spawner();
-        entityList.push_back(spawner);
-    }
+//    for(int i = 0; i < 5; i++)
+//    {
+//        Entity *spawner = new Spawner();
+//        entityList.push_back(spawner);
+//    }
     for(int i = 0; i < 5; i++)
     {
         Entity *chest = new Chest();
         entityList.push_back(chest);
     }
-    GenericBuffer *buffer = new DistanceBuffer(0, 1, 200);
-    BuffRod *rod = new BuffRod(buffer);
-    rod->setCoords(500, 500);
-    this->addEntity(rod);
+//    GenericBuffer *buffer = new DistanceBuffer(0, 1, 101);
+//    BuffRod *rod = new BuffRod(buffer);
+//    rod->setCoords(500, 500);
+//    this->addEntity(rod);
 }
 
 AllEntities::~AllEntities()

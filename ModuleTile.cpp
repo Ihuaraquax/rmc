@@ -344,19 +344,12 @@ AiTile *ModuleTile::getAiTileAt(double X, double Y)
     return aiTiles[x * 4 + y];
 }
 
-void ModuleTile::propagateBuffs(GenericBuffer* buff, int tileDistance)
+void ModuleTile::propagateBuffs(GenericBuffer* buff)
 {
-    if(bufferList->find(buff) == NULL)
-    {
-        templateList<GenericBuffer> *newBuffer = new templateList<GenericBuffer>();
-        newBuffer->data = buff;
-        newBuffer->next = bufferList;
-        bufferList = newBuffer;
-        if(tileDistance > 0)
-        {
-            for(int i = 0; i < 8; i++)if(adjacentTiles[i] != NULL)adjacentTiles[i]->propagateBuffs(buff, tileDistance-1);
-        }
-    }
+    templateList<GenericBuffer> *newBuffer = new templateList<GenericBuffer>();
+    newBuffer->data = buff;
+    newBuffer->next = bufferList;
+    bufferList = newBuffer;
 }
 
 void ModuleTile::depropagateBuffs(GenericBuffer* buff)

@@ -72,7 +72,7 @@ void Player::setTestValues()
     this->changeHelmet(0);
     this->changeChestplate(0);
     this->changeGreaves(0);
-    this->changeItem(2);
+    this->changeItem(3);
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;
@@ -110,6 +110,7 @@ void Player::display()
     image->display(coords);
     al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize(), al_map_rgb(255,0,0), 5);
     al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize(), al_map_rgb(0,0,255), 3);
+    this->displayIsInBuffRange();
 }
 
 void Player::interact()
@@ -248,4 +249,10 @@ int Player::getAmmo(int index)
 bool Player::isWeapon(int index)
 {
     return weapons[index]->getWeaponId() != -1;
+}
+
+void Player::displayIsInBuffRange()
+{
+    if(this->getValueOfBuffer(0) > 0)al_draw_circle(coords->X + coords->width/2 - Variables::offsetX, coords->Y + coords->height/2 - Variables::offsetY, 5, al_map_rgb(0,255,0), 3);
+    else al_draw_circle(coords->X + coords->width/2 - Variables::offsetX, coords->Y + coords->height/2 - Variables::offsetY, 5, al_map_rgb(255,0,0), 3);
 }

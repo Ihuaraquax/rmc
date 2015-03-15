@@ -47,6 +47,7 @@ private:
     ModuleTile **moduleTiles;
     
     int getModuleIndex(int X, int Y);
+    void displayBuffs();
 };
 
 #endif	/* MODULE_H */

@@ -22,3 +22,14 @@ int DistanceBuffer::GetModuleTileDistance() const {
 double DistanceBuffer::GetDistance() const {
     return distance;
 }
+
+void DistanceBuffer::setCoords(double X, double Y)
+{
+    this->X = X;
+    this->Y = Y;
+}
+
+bool DistanceBuffer::isInRange(double X, double Y)
+{
+    return true;
+}

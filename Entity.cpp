@@ -12,6 +12,7 @@
 #include "ModuleTile.h"
 #include "CollisionDetector.h"
 #include "TimedBuffer.h"
+#include "DistanceBuffer.h"
 
 Entity::Entity() {
     armor = 0;
@@ -150,7 +151,11 @@ double Entity::getValueOfBuffer(int type)
     
     while(buffers != NULL)
     {
-        if(buffers->data->GetBuffType() == type)result += buffers->data->GetBuffValue();
+        if(buffers->data->GetBuffType() == type)
+        {
+            DistanceBuffer *distanceBuffer = static_cast<DistanceBuffer*>(buffers->data);
+            if(distanceBuffer->isInRange(coords->X, coords->Y))result += buffers->data->GetBuffValue();
+        }
         buffers = buffers->next;
     }
     return result;

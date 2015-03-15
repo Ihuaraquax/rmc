@@ -55,6 +55,7 @@ public:
     bool isWeapon(int index);
 private:
     void setTestValues();
+    void displayIsInBuffRange();
     int selecetedWeaponSet;
     Equipment *chestplate;
     Equipment *helmet;

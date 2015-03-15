@@ -59,7 +59,7 @@ public:
     AiTile** getAiTiles() const;
     
     templateList<GenericBuffer>* getBufferList() const;
-    void propagateBuffs(GenericBuffer *buff, int tileDistance);
+    void propagateBuffs(GenericBuffer *buff);
     void depropagateBuffs(GenericBuffer *buff);
 private:
     ModuleTile **adjacentTiles;

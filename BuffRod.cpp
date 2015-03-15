@@ -25,14 +25,20 @@ void BuffRod::update()
 void BuffRod::display()
 {
     image->display(coords);
-    al_draw_circle(coords->X - Variables::offsetX, coords->Y - Variables::offsetY, static_cast<DistanceBuffer*>(buffer)->GetDistance(), al_map_rgb(0,255,0), 5);
+    al_draw_circle(coords->X - Variables::offsetX + coords->width/2, coords->Y - Variables::offsetY + coords->height/2, static_cast<DistanceBuffer*>(buffer)->GetDistance(), al_map_rgb(0,255,0), 5);
 }
 void BuffRod::setCoords(double X, double Y)
 {
     coords->X = X - ((int)X % Variables::tileSize);
     coords->Y = Y - ((int)Y % Variables::tileSize);
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,Y)->propagateBuffs(buffer, static_cast<DistanceBuffer*>(buffer)->GetModuleTileDistance());
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            if(Variables::proximity(X,Y, i * Variables::tileSize, j * Variables::tileSize) <= static_cast<DistanceBuffer*>(buffer)->GetDistance()+25)
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * Variables::tileSize, j * Variables::tileSize)->propagateBuffs(buffer);
+        }
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,Y)->setObstacle(this);
+    static_cast<DistanceBuffer*>(buffer)->setCoords(X + coords->width/2, Y + coords->height/2);
 }
 
 void BuffRod::executeAgony()
