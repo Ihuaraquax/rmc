@@ -5,7 +5,7 @@ build/Debug/MinGW-Windows/AllEntities.o: AllEntities.cpp AllEntities.h \
  globalVariables.h Session.h Menu.h HUD.h WeaponUI.h EquipmentUI.h \
  Chest.h Obstacle.h MouseControl.h KeyboardControl.h Map.h Module.h \
  Floor.h Room.h ModuleTile.h AiTile.h GameSubstateEnum.h Spawner.h \
- DistanceBuffer.h BuffRod.h
+ DistanceBuffer.h BuffRod.h ExplosiveBarrel.h
 
 AllEntities.h:
 
@@ -82,3 +82,5 @@ Spawner.h:
 DistanceBuffer.h:
 
 BuffRod.h:
+
+ExplosiveBarrel.h:

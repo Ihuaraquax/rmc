@@ -15,6 +15,7 @@
 #include "Spawner.h"
 #include "DistanceBuffer.h"
 #include "BuffRod.h"
+#include "ExplosiveBarrel.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -36,6 +37,8 @@ AllEntities::AllEntities() {
         Entity *chest = new Chest();
         entityList.push_back(chest);
     }
+    Entity *barrel = new ExplosiveBarrel(150, 200, 0);
+    this->addEntity(barrel);
 }
 
 AllEntities::~AllEntities()
