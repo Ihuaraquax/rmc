@@ -1,16 +1,15 @@
 /* 
- * File:   ExplosiveBarrel.cpp
+ * File:   Explosives.cpp
  * Author: Qb
  * 
- * Created on 16 marzec 2015, 16:46
+ * Created on 16 marzec 2015, 17:35
  */
 
-#include "ExplosiveBarrel.h"
+#include "Explosives.h"
 #include "globalVariables.h"
 #include "Explosion.h"
 
-
-ExplosiveBarrel::ExplosiveBarrel(double X, double Y, int type) {
+Explosives::Explosives(double X, double Y) {
     this->coords = new Coordinates();
     this->coords->X = X;
     this->coords->Y = Y;
@@ -19,32 +18,29 @@ ExplosiveBarrel::ExplosiveBarrel(double X, double Y, int type) {
     this->coords->width = 50;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    std::string paths[] = {"images/barrel.png"};
+    std::string paths[] = {"images/dynamite.png"};
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
-    health = 300;
+    health = 450;
     teamId = 0;
     Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,Y)->setObstacle(this);
-    this->setStartingTile();
     maximumHealth = health;
-    this->barrelType = type;
 }
 
-void ExplosiveBarrel::update()
+void Explosives::update()
 {
-    
+    health--;
 }
 
-void ExplosiveBarrel::executeAgony()
+void Explosives::executeAgony()
 {
     Entity *explosion = new Explosion();
     Explosion *temp = dynamic_cast<Explosion*>(explosion);
     temp->setCoords(coords->X, coords->Y);
-    temp->setDamageType(normal);
-    temp->setRadius(100);
-    temp->setDamage(3000);
+    temp->setDamageType(explosive);
+    temp->setRadius(175);
+    temp->setDamage(5000);
     temp->dealDamage();
     Variables::session->getAllEntities()->addEntity(explosion);
 }

@@ -40,6 +40,8 @@
         <logicalFolder name="f3" displayName="Player Classes" projectFiles="true">
           <itemPath>Attributes.cpp</itemPath>
           <itemPath>Attributes.h</itemPath>
+          <itemPath>Explosives.cpp</itemPath>
+          <itemPath>Explosives.h</itemPath>
           <itemPath>Player.cpp</itemPath>
           <itemPath>Player.h</itemPath>
         </logicalFolder>
@@ -275,6 +277,10 @@
       <item path="ExplosiveBarrel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ExplosiveBarrel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Explosives.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Explosives.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Floor.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -537,6 +543,10 @@
       <item path="ExplosiveBarrel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ExplosiveBarrel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Explosives.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Explosives.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Floor.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -2,3 +2,4 @@
 1 images/medkit.png 3
 2 images/turret.png 1
 3 images/bufferRodItem.png 1
+4 images/dynamiteItem.png 1

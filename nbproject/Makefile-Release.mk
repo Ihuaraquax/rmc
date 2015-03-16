@@ -53,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/EquipmentUI.o \
 	${OBJECTDIR}/Explosion.o \
 	${OBJECTDIR}/ExplosiveBarrel.o \
+	${OBJECTDIR}/Explosives.o \
 	${OBJECTDIR}/Floor.o \
 	${OBJECTDIR}/GenericBuffer.o \
 	${OBJECTDIR}/Greaves.o \
@@ -208,6 +209,11 @@ ${OBJECTDIR}/ExplosiveBarrel.o: ExplosiveBarrel.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ExplosiveBarrel.o ExplosiveBarrel.cpp
+
+${OBJECTDIR}/Explosives.o: Explosives.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Explosives.o Explosives.cpp
 
 ${OBJECTDIR}/Floor.o: Floor.cpp 
 	${MKDIR} -p ${OBJECTDIR}

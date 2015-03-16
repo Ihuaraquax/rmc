@@ -11,6 +11,7 @@
 #include "GenericBuffer.h"
 #include "DistanceBuffer.h"
 #include "BuffRod.h"
+#include "Explosives.h"
 
 UsableItem::UsableItem() {
     charges = 0;
@@ -55,6 +56,18 @@ void UsableItem::activate()
                 BuffRod *rod = new BuffRod(buff);
                 rod->setCoords(X,Y);
                 Variables::session->getAllEntities()->addEntity(rod);
+            } else charges++;
+            break;
+        case 4:
+            X = Variables::mouse_x + Variables::offsetX;
+            Y =Variables::mouse_y + Variables::offsetY;
+            X -= X%Variables::tileSize;
+            Y -= Y%Variables::tileSize;
+            tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
+            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            {
+                Entity *explosive = new Explosives(X, Y);
+                Variables::session->getAllEntities()->addEntity(explosive);
             } else charges++;
             break;
     }
