@@ -16,9 +16,11 @@
 #include "DistanceBuffer.h"
 #include "BuffRod.h"
 #include "ExplosiveBarrel.h"
+#include "RemoteCharges.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
+    remoteCharges = NULL;
     player = new Player();
     entityList.push_back(player);
     createObstacles();
@@ -132,4 +134,33 @@ void AllEntities::createObstacles()
                 this->addEntity(obstacle);
             }
         }
+}
+
+void AllEntities::addRemoteCharge(Entity* toAdd)
+{
+    templateList<Entity> *newCharge = new templateList<Entity>();
+    newCharge->data = toAdd;
+    newCharge->next = remoteCharges;
+    remoteCharges = newCharge;
+    addEntity(toAdd);
+}
+
+bool AllEntities::deleteRemoteCharge(int signalId)
+{
+    bool result = false;
+    templateList<Entity> *temp = remoteCharges;
+    while(temp != NULL)
+    {
+        if(dynamic_cast<RemoteCharges*>(temp->data)->getSignalId() == signalId)
+        {
+            result = true;
+            templateList<Entity> *toDelete = temp;
+            temp = temp->next;
+            if(temp != remoteCharges) { remoteCharges->findPrevious(toDelete->data)->next = temp; }
+            toDelete->data->executeAgony();
+            deleteEntity(toDelete->data);
+        }
+        else temp = temp->next;
+    }
+    return result;
 }

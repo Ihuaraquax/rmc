@@ -44,6 +44,8 @@
           <itemPath>Explosives.h</itemPath>
           <itemPath>Player.cpp</itemPath>
           <itemPath>Player.h</itemPath>
+          <itemPath>RemoteCharges.cpp</itemPath>
+          <itemPath>RemoteCharges.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="Projectile Classes" projectFiles="true">
           <itemPath>Explosion.cpp</itemPath>
@@ -372,6 +374,10 @@
       </item>
       <item path="ProjectileFactory.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="RemoteCharges.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RemoteCharges.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Room.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Room.h" ex="false" tool="3" flavor2="0">
@@ -637,6 +643,10 @@
       <item path="ProjectileFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ProjectileFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RemoteCharges.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RemoteCharges.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Room.cpp" ex="false" tool="1" flavor2="0">
       </item>

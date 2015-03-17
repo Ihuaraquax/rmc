@@ -107,7 +107,7 @@ void HUD::displaySelectedSet()
 void HUD::displayHealth()
 {
     int playerHealth = Variables::session->getAllEntities()->getPlayer()->getHealth();
-    char health[4], healthLabel[] = "health";
+    char health[5], healthLabel[] = "health";
     itoa(playerHealth, health, 10);
     double X = 70;
     double Y = Variables::RES_HEIGHT - 90;

@@ -72,7 +72,7 @@ void Player::setTestValues()
     this->changeHelmet(0);
     this->changeChestplate(0);
     this->changeGreaves(0);
-    this->changeItem(4);
+    this->changeItem(5);
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;

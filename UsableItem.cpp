@@ -12,6 +12,9 @@
 #include "DistanceBuffer.h"
 #include "BuffRod.h"
 #include "Explosives.h"
+#include "UsableItemLoader.h"
+#include "RemoteCharges.h"
+#include "Player.h"
 
 UsableItem::UsableItem() {
     charges = 0;
@@ -69,6 +72,26 @@ void UsableItem::activate()
                 Entity *explosive = new Explosives(X, Y);
                 Variables::session->getAllEntities()->addEntity(explosive);
             } else charges++;
+            break;
+        case 5:
+            X = Variables::mouse_x + Variables::offsetX;
+            Y =Variables::mouse_y + Variables::offsetY;
+            X -= X%Variables::tileSize;
+            Y -= Y%Variables::tileSize;
+            tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
+            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            {
+                Entity *explosive = new RemoteCharges(X, Y);
+                Variables::session->getAllEntities()->addRemoteCharge(explosive);
+                dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->changeItem(6);
+                this->additionalData = dynamic_cast<RemoteCharges*>(explosive)->getSignalId();
+            } else charges++;
+            break;
+        case 6:
+            if(Variables::session->getAllEntities()->deleteRemoteCharge(additionalData) == false)
+            {
+                charges++;
+            }
             break;
     }
 }

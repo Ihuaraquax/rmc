@@ -24,8 +24,12 @@ public:
     Entity* getPlayer() const;
     void deleteDead();
     void createObstacles();
+    
+    void addRemoteCharge(Entity *toAdd);
+    bool deleteRemoteCharge(int signalId);
 private:
     std::list<Entity*> entityList;
+    templateList<Entity> *remoteCharges;
     Entity *player;
 };
 

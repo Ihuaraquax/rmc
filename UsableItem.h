@@ -23,6 +23,7 @@ private:
     int action;
     std::string imagePath;
     int charges;
+    int additionalData;
 };
 
 #endif	/* USABLEITEM_H */
