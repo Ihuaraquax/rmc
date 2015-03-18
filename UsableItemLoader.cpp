@@ -13,8 +13,15 @@ void UsableItemLoader::loadItem(UsableItem* item, int type)
     std::fstream file;
     file.open("fixtures/usableItems.txt", std::ios::in);
     std::string temp;
-    for(int i = 0; i < type; i++)std::getline(file, temp);
-    file >> item->action >> item->imagePath >> item->charges;
+    int id;
+    file >> id;
+    while(id != type)
+    {
+        std::getline(file, temp);
+        file >> id;
+    }
+    file >> item->imagePath >> item->charges;
+    item->action = id;
    
 }
 

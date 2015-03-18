@@ -83,11 +83,22 @@ void UsableItem::activate()
             {
                 Entity *explosive = new RemoteCharges(X, Y);
                 Variables::session->getAllEntities()->addRemoteCharge(explosive);
-                dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->changeItem(6);
+                dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->changeItem(100);
                 this->additionalData = dynamic_cast<RemoteCharges*>(explosive)->getSignalId();
             } else charges++;
             break;
         case 6:
+            X = Variables::mouse_x + Variables::offsetX;
+            Y =Variables::mouse_y + Variables::offsetY;
+            X -= X%Variables::tileSize;
+            Y -= Y%Variables::tileSize;
+            tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
+            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            {
+                Variables::session->getAllEntities()->getPlayer()->setCoords(X,Y);
+            } else charges++;
+            break;
+        case 100:
             if(Variables::session->getAllEntities()->deleteRemoteCharge(additionalData) == false)
             {
                 charges++;

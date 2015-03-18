@@ -4,4 +4,5 @@
 3 images/bufferRodItem.png 1
 4 images/dynamiteItem.png 1
 5 images/remoteChargeItem.jpg 1
-6 images/remoteDetonator.jpg 1
+6 images/teleporter.jpg 1
+100 images/remoteDetonator.jpg 1

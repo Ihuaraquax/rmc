@@ -187,3 +187,9 @@ void Entity::addBuffer(GenericBuffer* buffer)
     newBuffer->next = bufferList;
     bufferList = newBuffer;
 }
+
+void Entity::setCoords(double X, double Y)
+{
+    coords->X = X;
+    coords->Y = Y;
+}

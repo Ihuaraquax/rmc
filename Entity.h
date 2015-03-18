@@ -44,6 +44,7 @@ public:
     double getValueOfBuffer(int type);
     void updateBuffers();
     void addBuffer(GenericBuffer *buffer);
+    void setCoords(double X, double Y);
 protected:
     void move(double X, double Y);
     Entity *isCollision();
