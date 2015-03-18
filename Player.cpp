@@ -94,7 +94,8 @@ void Player::playerMove(double X, double Y)
 }
 
 void Player::update()
-{
+{    
+    if(Variables::log == full)std::cout << " player Update Begin ";
     targetCoords->X = Variables::mouse_x;
     targetCoords->Y = Variables::mouse_y;
     coords->angle = Variables::getAngle(coords->X - Variables::offsetX, coords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y);
@@ -103,6 +104,7 @@ void Player::update()
     chestplate->update();
     greaves->update();
     this->updateBuffers();
+    if(Variables::log == full)std::cout << " player Update End ";
 }
 
 void Player::display()
@@ -248,6 +250,7 @@ int Player::getAmmo(int index)
 
 bool Player::isWeapon(int index)
 {
+    if(index == -1)return false;
     return weapons[index]->getWeaponId() != -1;
 }
 

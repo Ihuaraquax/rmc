@@ -96,7 +96,7 @@ void Entity::getHit(int damage, int damageType)
 
 void Entity::attack(int weapon)
 {
-    weapons[weapon]->shoot(coords, targetCoords, teamId, criticalChance, criticalDamage, accuracy);
+    if(weapons[weapon]->getWeaponId() != -1)weapons[weapon]->shoot(coords, targetCoords, teamId, criticalChance, criticalDamage, accuracy);
 }
 
 int Entity::getTeamId() const {
