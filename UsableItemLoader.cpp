@@ -31,7 +31,13 @@ std::string UsableItemLoader::loadItemPath(int type)
     std::fstream file;
     file.open("fixtures/usableItems.txt", std::ios::in);
     std::string temp;
-    for(int i = 0; i < type; i++)std::getline(file, temp);
-    file >> result >> result;
+    int id;
+    file >> id;
+    while(id != type)
+    {
+        std::getline(file, temp);
+        file >> id;
+    }
+    file >> result;
     return result;
 }
