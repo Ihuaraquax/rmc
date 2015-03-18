@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/WeaponUI.o: WeaponUI.cpp WeaponUI.h Weapon.h \
  UsableObject.h Obstacle.h Entity.h Wall.h Door.h templateList.h \
  GenericBuffer.h AllEntities.h MouseControl.h KeyboardControl.h Map.h \
  Module.h Floor.h Room.h ModuleTile.h AiTile.h GameSubstateEnum.h \
- Player.h Attributes.h TextDisplayer.h
+ LogLevels.h Player.h Attributes.h TextDisplayer.h
 
 WeaponUI.h:
 
@@ -67,6 +67,8 @@ ModuleTile.h:
 AiTile.h:
 
 GameSubstateEnum.h:
+
+LogLevels.h:
 
 Player.h:
 

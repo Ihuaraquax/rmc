@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/WallFactory.o: WallFactory.cpp WallFactory.h \
  GenericBuffer.h AiTile.h Chest.h Obstacle.h globalVariables.h Session.h \
  Menu.h HUD.h WeaponUI.h EquipmentUI.h Equipment.h UsableItem.h \
  Inventory.h AllEntities.h MouseControl.h KeyboardControl.h Map.h \
- GameSubstateEnum.h
+ GameSubstateEnum.h LogLevels.h
 
 WallFactory.h:
 
@@ -69,3 +69,5 @@ KeyboardControl.h:
 Map.h:
 
 GameSubstateEnum.h:
+
+LogLevels.h:

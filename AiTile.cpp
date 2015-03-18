@@ -7,6 +7,7 @@
 
 #include "AiTile.h"
 #include "Coordinates.h"
+#include "globalVariables.h"
 #include <stdlib.h>
 #include <iostream>
 

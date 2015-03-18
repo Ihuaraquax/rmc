@@ -4,7 +4,8 @@ build/Debug/MinGW-Windows/Weapon.o: Weapon.cpp Weapon.h Coordinates.h \
  UsableObject.h Obstacle.h Entity.h Wall.h Door.h templateList.h \
  GenericBuffer.h AllEntities.h MouseControl.h KeyboardControl.h Map.h \
  Module.h Floor.h Room.h ModuleTile.h AiTile.h GameSubstateEnum.h \
- Projectile.h WeaponLoader.h Player.h Attributes.h ProjectileFactory.h
+ LogLevels.h Projectile.h WeaponLoader.h Player.h Attributes.h \
+ ProjectileFactory.h
 
 Weapon.h:
 
@@ -67,6 +68,8 @@ ModuleTile.h:
 AiTile.h:
 
 GameSubstateEnum.h:
+
+LogLevels.h:
 
 Projectile.h:
 

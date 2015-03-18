@@ -138,30 +138,36 @@ void Module::displayObstacles()
 }
 void Module::update()
 {
+    if(Variables::log == full)std::cout << " Module Update Floor ";
     for(std::list<Floor*>::iterator i = floorTiles.begin(); i != floorTiles.end(); ++i)
     {
         Floor *temp = *i;
         temp->update();
     }
+    if(Variables::log == full)std::cout << " Module Update wall ";
     for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
     {
         Wall *temp = *i;
         temp->update();
     }
+    if(Variables::log == full)std::cout << " Module Update door ";
     for(std::list<Door*>::iterator i = doors.begin(); i != doors.end(); ++i)
     {
         Door *temp = *i;
         temp->update();
     }
+    if(Variables::log == full)std::cout << " Module Update tiles ";
     for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
     {
         moduleTiles[i]->update();
     }
+    if(Variables::log == full)std::cout << " Module Update AITles ";
     for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
     {
         moduleTiles[i]->getAiTile()->updateCurrentAIValue();
 //        for(int j = 0; j < 16; j++) moduleTiles[i]->getAiTiles()[j]->updateCurrentAIValue();
     }
+    if(Variables::log == full)std::cout << " Ai Tile ai update end";
 }
 
 void Module::updateTileAiTarget(int X, int Y)

@@ -64,12 +64,15 @@ void AllEntities::display()
 
 void AllEntities::update()
 {
+    if(Variables::log == full)std::cout << " AllEntities Update ";
     for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
     {
         Entity *temp = *i;
         temp->update();
     }
+    if(Variables::log == full)std::cout << " AllEntities Update end ";
     deleteDead();
+    if(Variables::log == full)std::cout << " AllEntities Delete ";
 }
 
 void AllEntities::collisions()

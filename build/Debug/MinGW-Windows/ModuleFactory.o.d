@@ -4,7 +4,8 @@ build/Debug/MinGW-Windows/ModuleFactory.o: ModuleFactory.cpp \
  templateList.h GenericBuffer.h AiTile.h Chest.h Obstacle.h WallFactory.h \
  globalVariables.h Session.h Menu.h HUD.h WeaponUI.h EquipmentUI.h \
  Equipment.h UsableItem.h Inventory.h AllEntities.h MouseControl.h \
- KeyboardControl.h Map.h GameSubstateEnum.h TileFactory.h RoomFactory.h
+ KeyboardControl.h Map.h GameSubstateEnum.h LogLevels.h TileFactory.h \
+ RoomFactory.h
 
 ModuleFactory.h:
 
@@ -71,6 +72,8 @@ KeyboardControl.h:
 Map.h:
 
 GameSubstateEnum.h:
+
+LogLevels.h:
 
 TileFactory.h:
 

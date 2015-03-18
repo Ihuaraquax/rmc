@@ -83,6 +83,7 @@
           <itemPath>AttributeEnum.h</itemPath>
           <itemPath>DamageTypeEnum.h</itemPath>
           <itemPath>GameSubstateEnum.h</itemPath>
+          <itemPath>LogLevels.h</itemPath>
         </logicalFolder>
         <itemPath>Coordinates.cpp</itemPath>
         <itemPath>Coordinates.h</itemPath>
@@ -321,6 +322,8 @@
       <item path="KeyboardControl.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="KeyboardControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LogLevels.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Map.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -591,6 +594,8 @@
       <item path="KeyboardControl.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="KeyboardControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LogLevels.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Map.cpp" ex="false" tool="1" flavor2="0">
       </item>

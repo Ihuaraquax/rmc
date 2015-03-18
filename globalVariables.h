@@ -20,6 +20,7 @@
 #include <cmath>
 #include "Session.h"
 #include "GameSubstateEnum.h"
+#include "LogLevels.h"
 
 enum GAME_STATE
 {
@@ -55,6 +56,8 @@ struct Variables
     
     static const int tilesPerRoom;
     static const int tileSize;
+    
+    static LogLevel log;
     
     static GAME_SUBSTATE substate;
     

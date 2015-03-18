@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/Helmet.o: Helmet.cpp Helmet.h Equipment.h \
  Inventory.h Chest.h UsableObject.h Obstacle.h Entity.h Wall.h Door.h \
  templateList.h GenericBuffer.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
- GameSubstateEnum.h Player.h Attributes.h
+ GameSubstateEnum.h LogLevels.h Player.h Attributes.h
 
 Helmet.h:
 
@@ -69,6 +69,8 @@ ModuleTile.h:
 AiTile.h:
 
 GameSubstateEnum.h:
+
+LogLevels.h:
 
 Player.h:
 

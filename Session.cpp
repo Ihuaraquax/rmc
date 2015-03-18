@@ -55,6 +55,7 @@ Session::~Session() {
 
 void Session::display()
 {
+    if(Variables::log == full)std::cout << " display ";
     if(Variables::status == GAME)
         {
         al_clear_to_color(al_map_rgb(0,0,0));
@@ -73,6 +74,7 @@ void Session::display()
 
 void Session::update()
 {
+    if(Variables::log == full)std::cout << " update ";
     keyboard->keyboardActions();
     mouse->mouseActions();
     if(Variables::status == GAME)
@@ -105,6 +107,7 @@ void Session::loop()
         if(Variables::currentFrame >= Variables::fps)Variables::currentFrame = 0;
         update();
         display();
+        if(Variables::log == full)std::cout << std::endl;
     }
 }
 
