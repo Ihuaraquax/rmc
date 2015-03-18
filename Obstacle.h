@@ -12,8 +12,10 @@
 class Obstacle : public Entity {
 public:
     Obstacle(double X, double Y);
+    void setAsWall();
     bool isBarricade();
     void display();
+    void setStartingTile();
 private:
     Image *damagedImage;
     Image *damagedImage2;

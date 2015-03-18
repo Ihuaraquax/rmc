@@ -26,8 +26,9 @@ void Session::create()
     mouse = new MouseControl();
     hud = new HUD();
     map = new Map();
-    map->createLevels();
     allEntities = new AllEntities();
+    map->createLevels();
+    allEntities->init();
 }
 
 AllEntities* Session::getAllEntities() const {

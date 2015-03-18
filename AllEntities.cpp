@@ -21,6 +21,15 @@
   
 AllEntities::AllEntities() {
     remoteCharges = NULL;
+}
+
+void AllEntities::init()
+{
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
+    {
+        Entity *temp = *i;
+        temp->setStartingTile();
+    }
     player = new Player();
     entityList.push_back(player);
     createObstacles();

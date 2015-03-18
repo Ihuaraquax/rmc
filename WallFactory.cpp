@@ -10,172 +10,23 @@
 #include "WallFactory.h"
 #include "Coordinates.h"
 #include "globalVariables.h"
+#include "Obstacle.h"
 
 WallFactory::WallFactory() {
 }
 
-void WallFactory::setTileBarriers(Module* module, int roomCount, Room **rooms, int **tiles)
-{
-    setModuleBasicWalls(module);
-    
-    for(int i = 1; i < roomCount; i++)
-    {
-        std::list<Wall*> wallList = getRoomWall(rooms[i], tiles);
-        for(std::list<Wall*>::iterator i = wallList.begin(); i != wallList.end(); ++i)
-        {
-            Wall *temp = *i;
-            module->walls.push_back(temp);
-        }
-        std::list<Door*> doorList = getDoors();
-        for(std::list<Door*>::iterator i = doorList.begin(); i != doorList.end(); ++i)
-        {
-            Door *temp = *i;
-            module->doors.push_back(temp);
-        }
-    }
-}
 
-std::list<Wall*> WallFactory::getRoomWall(Room* room, int **fieldTable)
-{
-    std::list<Wall*> wallList;
-    bool first = true;
-    for(int i = 0; i < room->tileTableSize; i++)
-    {
-        int x = room->tilesX[i];
-        int y = room->tilesY[i];
-        
-        Wall *leftWall = isValidTile(x-1,y,fieldTable, room->roomTile);
-        Wall *rightWall = isValidTile(x+1,y,fieldTable, room->roomTile);
-        Wall *upperWall = isValidTile(x,y-1,fieldTable, room->roomTile);
-        Wall *lowerWall = isValidTile(x,y+1,fieldTable, room->roomTile);
-        
-        int wallSize = Variables::tileSize;
-        
-        if(leftWall != NULL)
-        {
-            Coordinates *coords = new Coordinates();
-            coords->X = x * wallSize;
-            coords->Y = y * wallSize;
-            coords->width = 2;
-            coords->height = wallSize;
-            if(isTaken(coords) == false)
-            {
-                int isDoor = rand()%10;
-                if(isDoor == 0 || first)
-                {
-                    Door *newDoor = new Door(coords);
-                    doors.push_back(newDoor);
-                    first = false;
-                }
-                else 
-                {
-                    leftWall->setCoords(coords);
-                    leftWall->setWallSize(wallSize);
-                    wallList.push_back(leftWall);
-                    walls.push_back(leftWall);
-                }
-            }
-        }
-        if(rightWall != NULL)
-        {
-            Coordinates *coords = new Coordinates();
-            coords->X = (x+1) * wallSize;
-            coords->Y = y * wallSize;
-            coords->width = 2;
-            coords->height = wallSize;
-            
-            if(isTaken(coords) == false)
-            {
-                int isDoor = rand()%10;
-                if(isDoor == 0 || first)
-                {
-                    Door *newDoor = new Door(coords);
-                    doors.push_back(newDoor);
-                    first = false;
-                }
-                else 
-                {
-                    rightWall->setCoords(coords);
-                    rightWall->setWallSize(wallSize);
-                    wallList.push_back(rightWall);
-                    walls.push_back(rightWall);
-                }
-            }
-        }
-        if(upperWall != NULL)
-        {
-            Coordinates *coords = new Coordinates();
-            coords->X = x * wallSize;
-            coords->Y = y * wallSize;
-            coords->width = wallSize;
-            coords->height = 2;
-            
-            if(isTaken(coords) == false)
-            {
-                int isDoor = rand()%10;
-                if(isDoor == 0 || first)
-                {
-                    Door *newDoor = new Door(coords);
-                    doors.push_back(newDoor);
-                    first = false;
-                }
-                else 
-                {
-                    upperWall->setCoords(coords);
-                    upperWall->setWallSize(wallSize);
-                    wallList.push_back(upperWall);
-                    walls.push_back(upperWall);
-                }
-            }
-        }
-        if(lowerWall != NULL)
-        {
-            Coordinates *coords = new Coordinates();
-            coords->X = x * wallSize;
-            coords->Y = (y+1) * wallSize;
-            coords->width = wallSize;
-            coords->height = 2;
-            
-            if(isTaken(coords) == false)
-            {
-                int isDoor = rand()%10;
-                if(isDoor == 0 || first)
-                {
-                    Door *newDoor = new Door(coords);
-                    doors.push_back(newDoor);
-                    first = false;
-                }
-                else 
-                {
-                    lowerWall->setCoords(coords);
-                    lowerWall->setWallSize(wallSize);
-                    wallList.push_back(lowerWall);
-                    walls.push_back(lowerWall);
-                }
-            }
-        }
-        
-    }
-    
-    return wallList;
-}
-
-Wall* WallFactory::isValidTile(int X, int Y, int **fieldTable, int roomTileID)
+bool WallFactory::isValidTile(int X, int Y, int **fieldTable, int roomTileID)
 {
     int const MAX_FIELD_SIZE = Variables::tilesPerRoom-1;    
-    Wall *wall = NULL;
+    bool result = false;
     
     if(X >= 0 && X <= MAX_FIELD_SIZE && Y >= 0 && Y <= MAX_FIELD_SIZE)
     {
-        if(fieldTable[X][Y] != roomTileID)wall = new Wall();
+        if(fieldTable[X][Y] != roomTileID)result = true;
     }
     
-    return wall;
-}
-
-std::list<Door*> WallFactory::getDoors()
-{
-    return doors;
+    return result;
 }
 
 bool WallFactory::isTaken(Coordinates* coords)
@@ -242,5 +93,30 @@ void WallFactory::setModuleBasicWalls(Module* module)
         module->walls.push_back(wall2);
         module->walls.push_back(wall3);
         module->walls.push_back(wall4);
+    }
+}
+
+void WallFactory::setObstacleWalls(Module* module, int roomCount, Room** rooms, int** tiles)
+{
+    setModuleBasicWalls(module);
+    bool first = true;
+    for(int j = 1; j < roomCount; j++)
+    {
+        Room *room = rooms[j];
+        for(int i = 0; i < room->tileTableSize; i++)
+        {
+            int x = room->tilesX[i];
+            int y = room->tilesY[i];
+
+            if(isValidTile(x-1,y,tiles, room->roomTile) ||
+               isValidTile(x+1,y,tiles, room->roomTile) ||
+               isValidTile(x,y-1,tiles, room->roomTile) ||
+               isValidTile(x,y+1,tiles, room->roomTile))
+            {
+                Entity *wall = new Obstacle(x * Variables::tileSize, y * Variables::tileSize);
+                dynamic_cast<Obstacle*>(wall)->setAsWall();
+                Variables::session->getAllEntities()->addEntity(wall);
+            }
+        }
     }
 }

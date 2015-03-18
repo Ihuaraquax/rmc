@@ -85,7 +85,6 @@ void ModuleTile::setAdjacentTiles(ModuleTile **tiles)
 void ModuleTile::addToWallList(Wall *wall, int direction)
 {
     wallList[direction] = wall;
-    aiTile->setOpenDoorValue(direction*2 + 1, false);
 }
 
 void ModuleTile::addToDoorList(Door *door, int direction)
@@ -93,7 +92,6 @@ void ModuleTile::addToDoorList(Door *door, int direction)
     if(this->setUsableObject(door))
     {
         doorList[direction] = door;
-        aiTile->setOpenDoorValue(((direction+1) * 2) - 1, door->isOpen());
     }
 }
 
@@ -149,7 +147,6 @@ void ModuleTile::deleteWall(Wall* toDelete)
     for(int i = 0; i < 4; i++)if(wallList[i] == toDelete)
     {
         wallList[i] = NULL;
-        aiTile->setOpenDoorValue(i*2 + 1, true);
     }
     for(int j = 0; j < 8; j++)
     {
@@ -158,7 +155,6 @@ void ModuleTile::deleteWall(Wall* toDelete)
             for(int i = 0; i < 4; i++)if(adjacentTiles[j]->wallList[i] == toDelete)
             {
                 adjacentTiles[j]->wallList[i] = NULL;
-                adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
             }
         }
     }
@@ -171,8 +167,7 @@ AiTile* ModuleTile::getAiTile() const {
 
 bool ModuleTile::hasOpenDoor(int direction)
 {
-    bool result = aiTile->isOpenDoor(direction);
-    return result;
+    return true;
 }
 
 void ModuleTile::addToThreatLevel(int threatLevel) {
@@ -199,7 +194,7 @@ void ModuleTile::propagateTurret(Entity* turret)
             for(int i = 0; i < 8; i++)
             {
                 if(adjacentTiles[i] != NULL)
-                    if(adjacentTiles[i]->aiTile->getRoomId() == aiTile->getRoomId() || hasOpenDoor(i))
+                    if(adjacentTiles[i]->aiTile->getRoomId() == aiTile->getRoomId() && adjacentTiles[i]->getObstacle() == NULL)
                         adjacentTiles[i]->propagateTurret(turret);
             }
         }
@@ -227,7 +222,6 @@ void ModuleTile::deleteDoor(Door* toDelete)
     for(int i = 0; i < 4; i++)if(doorList[i] == toDelete)
     {
         doorList[i] = NULL;
-        aiTile->setOpenDoorValue(i*2 + 1, true);
     }
     for(int j = 0; j < 8; j++)
     {
@@ -236,7 +230,6 @@ void ModuleTile::deleteDoor(Door* toDelete)
             for(int i = 0; i < 4; i++)if(adjacentTiles[j]->doorList[i] == toDelete)
             {
                 adjacentTiles[j]->doorList[i] = NULL;
-                adjacentTiles[j]->aiTile->setOpenDoorValue(i*2 +1, true);
             }
         }
     }
@@ -247,20 +240,15 @@ void ModuleTile::useDoor(int direction)
     if(doorList[direction] != NULL)
     {
         bool newValue = doorList[direction]->isOpen();
-        aiTile->setOpenDoorValue(direction * 2 + 1, newValue);
         switch(direction)
         {
             case 0:
-                adjacentTiles[1]->aiTile->setOpenDoorValue(5, newValue);
                 break;
             case 1:
-                adjacentTiles[3]->aiTile->setOpenDoorValue(7, newValue);
                 break;
             case 2:
-                adjacentTiles[5]->aiTile->setOpenDoorValue(1, newValue);
                 break;
             case 3:
-                adjacentTiles[7]->aiTile->setOpenDoorValue(3, newValue);
                 break;
         }
     }
@@ -283,7 +271,7 @@ void ModuleTile::deleteTurret(Entity* turret)
             for(int i = 0; i < 8; i++)
             {
                 if(adjacentTiles[i] != NULL)
-                    if(adjacentTiles[i]->aiTile->getRoomId() == aiTile->getRoomId() || hasOpenDoor(i))
+                    if(adjacentTiles[i]->aiTile->getRoomId() == aiTile->getRoomId() && adjacentTiles[i]->getObstacle() == NULL)
                         adjacentTiles[i]->deleteTurret(turret);
             }
     }

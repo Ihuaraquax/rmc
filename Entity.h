@@ -26,7 +26,7 @@ public:
     void virtual display();
     void virtual attack(int weapon);
     
-    void setStartingTile();
+    void virtual setStartingTile();
     void getHit(int damage, int damageType);
     
     Coordinates* getCoords() const;

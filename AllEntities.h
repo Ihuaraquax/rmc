@@ -14,6 +14,7 @@ class AllEntities {
 public:
     AllEntities();
     ~AllEntities();
+    void init();
     void update();
     void display();
     void collisions();

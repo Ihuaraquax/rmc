@@ -20,11 +20,9 @@ public:
     int getCurrentAIValue() const;
     void setAdjacentTile(int index, AiTile *tile);
     AiTile** getAdjacentTiles() const;
-    void setOpenDoorValue(int index, bool value);
     Coordinates* getTarget() const;
     void setObstructed(bool obstructed);
     void setBaseAIValue(int baseAIValue);
-    bool isOpenDoor(int direction);
     void changeEntitiesAiValue(int delta);
 private:
     AiTile **adjacentTiles;
@@ -33,7 +31,6 @@ private:
     int baseAIValue;
     int currentAIValue;
     int entitiesAiValue;
-    bool openDoors[8];
     Coordinates *target;
 };
 

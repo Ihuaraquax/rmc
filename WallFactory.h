@@ -15,9 +15,9 @@
 class WallFactory {
 public:
     WallFactory();
-    void setTileBarriers(Module *module, int roomCount, Room **rooms, int **tiles);
+    void setObstacleWalls(Module *module, int roomCount, Room **rooms, int **tiles);
 private:
-    Wall* isValidTile(int X,int Y, int **fieldTable, int roomTileID);
+    bool isValidTile(int X,int Y, int **fieldTable, int roomTileID);
     bool isTaken(Coordinates *coords);
     std::list<Wall*> getRoomWall(Room *room, int **fieldTable);
     std::list<Door*> getDoors();
