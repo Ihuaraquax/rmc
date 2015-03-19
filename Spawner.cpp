@@ -65,20 +65,26 @@ void Spawner::spawnMonster()
     spawnCoords->Y = coords->Y;
     
     int X, Y;
+    int tries = 0;
     bool isViableTile = false;
     do
     {
+        tries++;
         int angle = rand()%360;
         X = coords->X + 70 * cos(angle * M_PI / 180);
         Y = coords->Y + 70 * sin(angle * M_PI / 180); 
         ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
         if(tile->getObstacle() == NULL && tile->getEntityList() == NULL)isViableTile = true;
         else isViableTile = false;
+        if(tries == 5)isViableTile = true;
     } while(!isViableTile);
-    spawnCoords->X = X;
-    spawnCoords->Y = Y;
-    Entity *monster = new Monster(spawnCoords->X, spawnCoords->Y);  
-    MonsterLoader::loadMonster(monster, monsterType, rand()%7);
-    Variables::session->getAllEntities()->addEntity(monster);
-    delete spawnCoords;
+    if(tries < 5)
+    {
+        spawnCoords->X = X;
+        spawnCoords->Y = Y;
+        Entity *monster = new Monster(spawnCoords->X, spawnCoords->Y);  
+        MonsterLoader::loadMonster(monster, monsterType, rand()%7);
+        Variables::session->getAllEntities()->addEntity(monster);
+    }
+        delete spawnCoords;
 }
