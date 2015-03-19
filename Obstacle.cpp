@@ -45,6 +45,7 @@ void Obstacle::setAsWall()
 
 void Obstacle::setAsCornerWall(int corner)
 {
+    this->coords->angle = 0;
     for(int i = 0; i < corner-2; i++)coords->angle += 90;
     delete image;
     delete damagedImage;

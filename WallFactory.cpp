@@ -165,7 +165,7 @@ void WallFactory::addHoleWalls(int **temp)
                 if(temp[i+1][j] == 0)neighbours--;
                 if(temp[i][j+1] == 0)neighbours--;
                 
-                if(neighbours == 3)temp[i][j] = 1;
+                if(neighbours >= 3)temp[i][j] = 1;
             }
         }
     }
