@@ -31,7 +31,7 @@ Weapon::Weapon() {
     displayPaths = "images/noWeapon.png";
     projectileCount = 0;
     name = "noWeapon";
-    criticalChance = 10;
+    criticalChance = 1;
     criticalDamage = 2;
     reloadable = false;
     playerIsWielder = false;

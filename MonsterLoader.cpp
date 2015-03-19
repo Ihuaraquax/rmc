@@ -26,7 +26,7 @@ void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
             paths[0] = "images/monster1.png";
             monster->image = new Image(1, paths, true);
             monster->image->state = NORMAL;
-            monster->health = 20;
+            monster->health = 500;
             monster->teamId = 0;
             WeaponLoader::loadWeapon(monster->weapons[0], 0);
             WeaponLoader::loadWeapon(monster->weapons[1], 0);
@@ -45,7 +45,7 @@ void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
             paths[0] = "images/monster2.png";
             monster->image = new Image(1, paths, true);
             monster->image->state = NORMAL;
-            monster->health = 20;
+            monster->health = 500;
             monster->teamId = 0;
             WeaponLoader::loadWeapon(monster->weapons[0], 0);
             WeaponLoader::loadWeapon(monster->weapons[1], 0);
@@ -64,7 +64,7 @@ void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
             paths[0] = "images/monster3.png";
             monster->image = new Image(1, paths, true);
             monster->image->state = NORMAL;
-            monster->health = 20;
+            monster->health = 500;
             monster->teamId = 0;
             WeaponLoader::loadWeapon(monster->weapons[0], 0);
             WeaponLoader::loadWeapon(monster->weapons[1], 0);
@@ -76,30 +76,30 @@ void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
             break;
     }
     
-    switch(modifier)
-    {
-        case 0: monster->weapons[0]->setDamageType(normal);
-            break;
-        case 1: monster->weapons[0]->setDamageType(fire);
-            break;
-        case 2: monster->weapons[0]->setDamageType(electric);
-            break;
-        case 3: monster->weapons[0]->setDamageType(poison);
-            break;
-        case 4: monster->weapons[0]->setDamageType(cold);
-            break;
-        case 5: monster->coords->speedX *=2;
-                monster->coords->speedY *=2;
-                break;
-        case 6: monster->coords->speedX *=1.3;
-                monster->coords->speedY *=1.3;
-                monster->armor += 30;
-                monster->health *=3;
-                monster->maximumHealth *=3;
-                monster->expirience *= 2;
-                monster->criticalDamage *=2;
-                monster->coords->height *= 1.5;
-                monster->coords->width *= 1.5;
-                break;
-    }
+//    switch(modifier)
+//    {
+//        case 0: monster->weapons[0]->setDamageType(normal);
+//            break;
+//        case 1: monster->weapons[0]->setDamageType(fire);
+//            break;
+//        case 2: monster->weapons[0]->setDamageType(electric);
+//            break;
+//        case 3: monster->weapons[0]->setDamageType(poison);
+//            break;
+//        case 4: monster->weapons[0]->setDamageType(cold);
+//            break;
+//        case 5: monster->coords->speedX *=2;
+//                monster->coords->speedY *=2;
+//                break;
+//        case 6: monster->coords->speedX *=1.3;
+//                monster->coords->speedY *=1.3;
+//                monster->armor += 30;
+//                monster->health *=3;
+//                monster->maximumHealth *=3;
+//                monster->expirience *= 2;
+//                monster->criticalDamage *=2;
+//                monster->coords->height *= 1.5;
+//                monster->coords->width *= 1.5;
+//                break;
+//    }
 }

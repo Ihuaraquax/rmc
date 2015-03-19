@@ -18,7 +18,7 @@
 Entity::Entity() {
     armor = 0;
     elementalResists = new double[Variables::damageTypeCount];
-    for(int i = 0; i < Variables::damageTypeCount; i++)this->elementalResists[i] = 0.5;
+    for(int i = 0; i < Variables::damageTypeCount; i++)this->elementalResists[i] = 0.0;
     aiValue = 0;
     maximumHealth = health;
     criticalChance = 0;

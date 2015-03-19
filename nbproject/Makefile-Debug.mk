@@ -76,6 +76,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/MonsterLoader.o \
 	${OBJECTDIR}/MouseControl.o \
 	${OBJECTDIR}/Obstacle.o \
+	${OBJECTDIR}/ObstacleDoor.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
 	${OBJECTDIR}/ProjectileFactory.o \
@@ -328,6 +329,11 @@ ${OBJECTDIR}/Obstacle.o: Obstacle.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Obstacle.o Obstacle.cpp
+
+${OBJECTDIR}/ObstacleDoor.o: ObstacleDoor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/ObstacleDoor.o ObstacleDoor.cpp
 
 ${OBJECTDIR}/Player.o: Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -45,6 +45,12 @@
           <itemPath>Spawner.cpp</itemPath>
           <itemPath>Spawner.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="f7" displayName="Obstacle Classes" projectFiles="true">
+          <itemPath>Obstacle.cpp</itemPath>
+          <itemPath>Obstacle.h</itemPath>
+          <itemPath>ObstacleDoor.cpp</itemPath>
+          <itemPath>ObstacleDoor.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="f3" displayName="Player Classes" projectFiles="true">
           <itemPath>Attributes.cpp</itemPath>
           <itemPath>Attributes.h</itemPath>
@@ -81,8 +87,6 @@
         </logicalFolder>
         <itemPath>Entity.cpp</itemPath>
         <itemPath>Entity.h</itemPath>
-        <itemPath>Obstacle.cpp</itemPath>
-        <itemPath>Obstacle.h</itemPath>
         <itemPath>Turret.cpp</itemPath>
         <itemPath>Turret.h</itemPath>
       </logicalFolder>
@@ -387,6 +391,10 @@
       </item>
       <item path="Obstacle.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ObstacleDoor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ObstacleDoor.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.h" ex="false" tool="3" flavor2="0">
@@ -670,6 +678,10 @@
       <item path="Obstacle.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Obstacle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ObstacleDoor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ObstacleDoor.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
