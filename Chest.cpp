@@ -21,8 +21,10 @@ Chest::Chest() {
     this->image = new Image(1, paths, true);    
     
     this->coords = new Coordinates();
+    do{
     this->coords->X = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
     this->coords->Y = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
+    }while(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(this->coords->X, this->coords->Y)->getObstacle() != NULL);
     this->coords->width = Variables::tileSize;
     this->coords->height = Variables::tileSize;
     
