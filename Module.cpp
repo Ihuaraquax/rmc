@@ -12,6 +12,7 @@
 #include "globalVariables.h"
 
 Module::Module() {
+    allDecals = new AllDecals;
 }
 
 Module::~Module()
@@ -36,6 +37,7 @@ Module::~Module()
         Chest *temp = *i;
         delete temp;
     }
+    delete allDecals;
 }
 
 void Module::display()
@@ -55,6 +57,7 @@ void Module::display()
         Door *temp = *i;
         temp->display();
     }
+    allDecals->display();
 //    this->displayModuleTileAI();
 //    this->displayModuleThreatLevel();
 //    this->displayObstacles();
@@ -141,6 +144,7 @@ void Module::update()
         moduleTiles[i]->getAiTile()->updateCurrentAIValue();
 //        for(int j = 0; j < 16; j++) moduleTiles[i]->getAiTiles()[j]->updateCurrentAIValue();
     }
+    allDecals->update();
     if(Variables::log == full)std::cout << " Ai Tile ai update end";
 }
 
@@ -262,4 +266,8 @@ void Module::useChest()
         Chest *temp = *i;
         temp->use();
     }
+}
+
+AllDecals* Module::getAllDecals() const {
+    return allDecals;
 }

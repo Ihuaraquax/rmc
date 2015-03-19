@@ -4,7 +4,7 @@ build/Debug/MinGW-Windows/RoomFactory.o: RoomFactory.cpp RoomFactory.h \
  UsableItem.h Inventory.h Chest.h UsableObject.h Obstacle.h Entity.h \
  Wall.h Door.h templateList.h GenericBuffer.h AllEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h ModuleTile.h \
- AiTile.h GameSubstateEnum.h LogLevels.h
+ AiTile.h AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h
 
 RoomFactory.h:
 
@@ -67,6 +67,10 @@ Floor.h:
 ModuleTile.h:
 
 AiTile.h:
+
+AllDecals.h:
+
+Decal.h:
 
 GameSubstateEnum.h:
 

@@ -13,6 +13,7 @@
 #include "CollisionDetector.h"
 #include "TimedBuffer.h"
 #include "DistanceBuffer.h"
+#include "BloodSplatter.h"
 
 Entity::Entity() {
     armor = 0;
@@ -24,6 +25,7 @@ Entity::Entity() {
     criticalDamage = 0;
     accuracy = 0;
     bufferList = NULL;
+    bleeds= false;
 }
 
 Entity::~Entity() {
@@ -91,6 +93,11 @@ void Entity::getHit(int damage, int damageType)
 {
     int damageInflicted = (damage - armor) * (1-elementalResists[damageType]);
     if(damageInflicted < 0)damageInflicted = 0;
+    else if (bleeds)
+    {
+        Decal *decal = new BloodSplatter(coords->X, coords->Y);
+        Variables::session->getMap()->getCurrentModule()->getAllDecals()->addDecal(decal);
+    }
     health -= damageInflicted;
 }
 

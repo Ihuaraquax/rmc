@@ -67,6 +67,7 @@ protected:
     double accuracy;
     
     templateList<GenericBuffer> *bufferList;
+    bool bleeds;
 };
 
 #endif	/* ENTITY_H */

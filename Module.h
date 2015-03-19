@@ -13,6 +13,7 @@
 #include "Room.h"
 #include "ModuleTile.h"
 #include "Chest.h"
+#include "AllDecals.h"
 
 class Module {
 friend class ModuleFactory;
@@ -34,6 +35,7 @@ public:
     ModuleTile** getModuleTiles() const;
     
     void useChest();
+    AllDecals* getAllDecals() const;
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();
@@ -47,6 +49,7 @@ private:
     
     int getModuleIndex(int X, int Y);
     void displayBuffs();
+    AllDecals *allDecals;
 };
 
 #endif	/* MODULE_H */

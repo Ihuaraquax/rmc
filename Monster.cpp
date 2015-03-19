@@ -40,6 +40,7 @@ Monster::Monster() {
     this->setStartingTile();
     expirience = 100;
     maximumHealth = health;
+    bleeds = true;
 }
 
 Monster::Monster(double X, double Y)
@@ -50,6 +51,7 @@ Monster::Monster(double X, double Y)
     this->weapons = new Weapon*[2];
     this->weapons[0] = new Weapon();
     this->weapons[1] = new Weapon();
+    bleeds = true;
 }
 
 

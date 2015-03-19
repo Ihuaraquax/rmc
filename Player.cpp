@@ -34,6 +34,7 @@ Player::Player() {
         weapons[i] = new Weapon();
         weapons[i]->setPlayerIsWielder(true);
     }
+    bleeds = true;
     setTestValues();
 }
 

@@ -37,14 +37,17 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/AiTile.o \
 	${OBJECTDIR}/AiTileAdjacentSetter.o \
+	${OBJECTDIR}/AllDecals.o \
 	${OBJECTDIR}/AllEntities.o \
 	${OBJECTDIR}/Attributes.o \
+	${OBJECTDIR}/BloodSplatter.o \
 	${OBJECTDIR}/BuffRod.o \
 	${OBJECTDIR}/Button.o \
 	${OBJECTDIR}/Chest.o \
 	${OBJECTDIR}/Chestplate.o \
 	${OBJECTDIR}/CollisionDetector.o \
 	${OBJECTDIR}/Coordinates.o \
+	${OBJECTDIR}/Decal.o \
 	${OBJECTDIR}/DistanceBuffer.o \
 	${OBJECTDIR}/Door.o \
 	${OBJECTDIR}/Entity.o \
@@ -131,6 +134,11 @@ ${OBJECTDIR}/AiTileAdjacentSetter.o: AiTileAdjacentSetter.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/AiTileAdjacentSetter.o AiTileAdjacentSetter.cpp
 
+${OBJECTDIR}/AllDecals.o: AllDecals.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/AllDecals.o AllDecals.cpp
+
 ${OBJECTDIR}/AllEntities.o: AllEntities.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -140,6 +148,11 @@ ${OBJECTDIR}/Attributes.o: Attributes.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Attributes.o Attributes.cpp
+
+${OBJECTDIR}/BloodSplatter.o: BloodSplatter.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/BloodSplatter.o BloodSplatter.cpp
 
 ${OBJECTDIR}/BuffRod.o: BuffRod.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -170,6 +183,11 @@ ${OBJECTDIR}/Coordinates.o: Coordinates.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Coordinates.o Coordinates.cpp
+
+${OBJECTDIR}/Decal.o: Decal.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Decal.o Decal.cpp
 
 ${OBJECTDIR}/DistanceBuffer.o: DistanceBuffer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
