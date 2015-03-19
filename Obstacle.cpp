@@ -34,13 +34,32 @@ void Obstacle::setAsWall()
     delete damagedImage;
     delete damagedImage2;
     
-    std::string paths[] = {"images/stoneWall1.jpg"};
-    std::string paths2[] = {"images/stoneWall1Damaged.jpg"};
-    std::string paths3[] = {"images/stoneWall1Damaged2.jpg"};
+    std::string paths[] = {"images/wall/stoneWall1.jpg"};
+    std::string paths2[] = {"images/wall/stoneWall1Damaged.jpg"};
+    std::string paths3[] = {"images/wall/stoneWall1Damaged2.jpg"};
     
     this->image = new Image(1, paths, true);
     this->damagedImage = new Image(1, paths2, true);
     this->damagedImage2 = new Image(1, paths3, true);
+}
+
+void Obstacle::setAsCornerWall(int corner)
+{
+    for(int i = 0; i < corner-2; i++)coords->angle += 90;
+    delete image;
+    delete damagedImage;
+    delete damagedImage2;
+    
+    std::string paths[] = {"images/wall/cornerWall1.png"};
+    std::string paths2[] = {"images/wall/cornerWallDamaged.png"};
+    std::string paths3[] = {"images/wall/cornerWallDamaged2.png"};
+    
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
+    this->damagedImage = new Image(1, paths2, true);
+    this->damagedImage->state = NORMAL;
+    this->damagedImage2 = new Image(1, paths3, true);
+    this->damagedImage2->state = NORMAL;
 }
 
 

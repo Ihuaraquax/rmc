@@ -29,30 +29,6 @@ bool WallFactory::isValidTile(int X, int Y, int **fieldTable, int roomTileID)
     return result;
 }
 
-bool WallFactory::isTaken(Coordinates* coords)
-{
-    bool result = false;
-    for(std::list<Door*>::iterator i = doors.begin(); i != doors.end(); ++i)
-    {
-        Door* door = *i;
-        Coordinates *temp =door->getCoords();
-        if(temp->X == coords->X && temp->Y == coords->Y && 
-           temp->height == coords->height && temp->width == coords->width)
-                result = true;
-        if(result)break;
-    }
-    for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
-    {
-        Wall* wall = *i;
-        Coordinates *temp =wall->getCoords();
-        if(temp->X == coords->X && temp->Y == coords->Y && 
-           temp->height == coords->height && temp->width == coords->width)
-                result = true;
-        if(result)break;
-    }
-    return result;
-}
-
 void WallFactory::setModuleBasicWalls(Module* module)
 {
     for(int i = 0; i < Variables::tilesPerRoom; i++)
@@ -99,7 +75,12 @@ void WallFactory::setModuleBasicWalls(Module* module)
 void WallFactory::setObstacleWalls(Module* module, int roomCount, Room** rooms, int** tiles)
 {
     setModuleBasicWalls(module);
-    bool first = true;
+    int **temp = new int*[Variables::tilesPerRoom];
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+    {
+        temp[i] = new int[Variables::tilesPerRoom];
+        for(int j = 0; j < Variables::tilesPerRoom; j++)temp[i][j] = 0;
+    }
     for(int j = 1; j < roomCount; j++)
     {
         Room *room = rooms[j];
@@ -108,13 +89,104 @@ void WallFactory::setObstacleWalls(Module* module, int roomCount, Room** rooms, 
             int x = room->tilesX[i];
             int y = room->tilesY[i];
 
-            if(isValidTile(x-1,y,tiles, room->roomTile) ||
-               isValidTile(x+1,y,tiles, room->roomTile) ||
-               isValidTile(x,y-1,tiles, room->roomTile) ||
-               isValidTile(x,y+1,tiles, room->roomTile))
+            if(WallFactory::isValidTile(x-1,y,tiles, room->roomTile) ||
+               WallFactory::isValidTile(x+1,y,tiles, room->roomTile) ||
+               WallFactory::isValidTile(x,y-1,tiles, room->roomTile) ||
+               WallFactory::isValidTile(x,y+1,tiles, room->roomTile))
             {
-                Entity *wall = new Obstacle(x * Variables::tileSize, y * Variables::tileSize);
+                temp[x][y] = 1;
+            }
+        }
+    }
+    WallFactory::deleteSingleWalls(temp);
+    WallFactory::addHoleWalls(temp);
+    WallFactory::generateCorners(temp);
+    WallFactory::generateWalls(temp);
+}
+
+void WallFactory::generateCorners(int** temp)
+{
+    for(int i = 1; i < Variables::tilesPerRoom-1; i++)
+    {
+        for(int j = 1; j < Variables::tilesPerRoom-1; j++)
+        {
+            if(temp[i][j] == 1)
+            {
+                int neighbours = 4;
+                if(temp[i-1][j] == 0)neighbours--;
+                if(temp[i][j-1] == 0)neighbours--;
+                if(temp[i+1][j] == 0)neighbours--;
+                if(temp[i][j+1] == 0)neighbours--;
+                
+                if(neighbours == 2)
+                {
+                    if(temp[i-1][j] > 0 && temp[i][j-1] > 0)temp[i][j] = 2;
+                    if(temp[i+1][j] > 0 && temp[i][j-1] > 0)temp[i][j] = 3;
+                    if(temp[i+1][j] > 0 && temp[i][j+1] > 0)temp[i][j] = 4;
+                    if(temp[i-1][j] > 0 && temp[i][j+1] > 0)temp[i][j] = 5;
+                }
+            }
+        }
+    }
+}
+
+void WallFactory::deleteSingleWalls(int **temp)
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+    {
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            if(temp[i][j] == 1)
+            {
+                int neighbours = 4;
+                if(i-1 >= 0 && !temp[i-1][j] == 0)neighbours--;
+                if(j-1 >= 0 && !temp[i][j-1] == 0)neighbours--;
+                if(i+1 < Variables::tilesPerRoom && !temp[i+1][j] == 0)neighbours--;
+                if(j-1 >= Variables::tilesPerRoom && !temp[i][j+1] == 0)neighbours--;
+                
+                if(neighbours == 1)temp[i][j] = 0;
+            }
+        }
+    }
+}
+
+
+void WallFactory::addHoleWalls(int **temp)
+{
+    for(int i = 1; i < Variables::tilesPerRoom-1; i++)
+    {
+        for(int j = 1; j < Variables::tilesPerRoom-1; j++)
+        {
+            if(temp[i][j] == 0)
+            {
+                int neighbours = 4;
+                if(temp[i-1][j] == 0)neighbours--;
+                if(temp[i][j-1] == 0)neighbours--;
+                if(temp[i+1][j] == 0)neighbours--;
+                if(temp[i][j+1] == 0)neighbours--;
+                
+                if(neighbours == 3)temp[i][j] = 1;
+            }
+        }
+    }
+}
+
+void WallFactory::generateWalls(int **temp)
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+    {
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            if(temp[i][j] == 1)
+            {
+                Entity *wall = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
                 dynamic_cast<Obstacle*>(wall)->setAsWall();
+                Variables::session->getAllEntities()->addEntity(wall);
+            }
+            else if(temp[i][j] > 1)
+            {
+                Entity *wall = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
+                dynamic_cast<Obstacle*>(wall)->setAsCornerWall(temp[i][j]);
                 Variables::session->getAllEntities()->addEntity(wall);
             }
         }

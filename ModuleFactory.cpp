@@ -51,9 +51,8 @@ void ModuleFactory::setModuleRooms(Module* module)
     
     Room **rooms = RoomFactory::createRooms(roomCount, tiles);    
     
-    WallFactory factory;
 //    factory.OLDsetTileBarriers(module, roomCount, rooms, tiles);
-    factory.setObstacleWalls(module, roomCount, rooms, tiles);
+    WallFactory::setObstacleWalls(module, roomCount, rooms, tiles);
     
     TileFactory::createModuleTiles(module, tiles);
     for(int i = 1; i < roomCount; i++)
