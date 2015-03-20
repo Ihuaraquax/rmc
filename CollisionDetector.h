@@ -21,10 +21,11 @@ public:
     static Entity *isEntityCollisions(ModuleTile *tile, Entity* target);
     static Wall* isWallCollisions(ModuleTile *tile, Entity *target);
     static Door *isDoorCollision(ModuleTile *tile, Entity *target);
-    static bool isCollision(Coordinates *otherCoords, Coordinates *targetCoords);
+    static bool isBasicCollision(Coordinates *otherCoords, Coordinates *targetCoords);
 private:
     static Entity *checkCollisions(templateList<Entity> *otherEntities, Entity *target);
     static bool checkCollisions(Door **doors, Entity *target);
+    static bool isSquareTriangleCollision(Coordinates *otherCoords, Coordinates *targetCoords);
 };
 
 #endif	/* COLLISIONDETECTOR_H */

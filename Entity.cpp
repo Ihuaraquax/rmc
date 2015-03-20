@@ -26,6 +26,7 @@ Entity::Entity() {
     accuracy = 0;
     bufferList = NULL;
     bleeds= false;
+    shape = rectangle;
 }
 
 Entity::~Entity() {
@@ -199,4 +200,8 @@ void Entity::setCoords(double X, double Y)
 {
     coords->X = X;
     coords->Y = Y;
+}
+
+EntityShape Entity::getShape() const {
+    return shape;
 }

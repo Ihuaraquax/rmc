@@ -17,7 +17,7 @@ public:
     bool isBarricade();
     void display();
     void setStartingTile();
-private:
+protected:
     Image *damagedImage;
     Image *damagedImage2;
 };

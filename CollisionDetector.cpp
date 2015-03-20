@@ -49,9 +49,16 @@ Entity* CollisionDetector::checkCollisions(templateList<Entity> *otherEntities, 
     while(temp != NULL)
     {
         Coordinates *oCoords = temp->data->getCoords();
-        if(temp->data != target)if(isCollision(oCoords, target->getCoords()))
+        if(temp->data != target)
         {
-            value = temp->data;
+            if(temp->data->getShape() == rectangle)if(isBasicCollision(oCoords, target->getCoords()))
+            {
+                value = temp->data;
+            }
+            if(temp->data->getShape() == triangle)if(isSquareTriangleCollision(oCoords, target->getCoords()))
+            {
+                value = temp->data;
+            }
         }
         if(value != NULL)break;
         temp = temp -> next;
@@ -69,7 +76,7 @@ Wall *CollisionDetector::isWallCollisions(ModuleTile* tile, Entity* target)
         if(temp != NULL)
         {
             Coordinates *oCoords = temp->getCoords();
-            if(isCollision(oCoords, target->getCoords()))value = temp;
+            if(isBasicCollision(oCoords, target->getCoords()))value = temp;
             if(value != NULL)break;
         }
     }
@@ -84,7 +91,7 @@ Wall *CollisionDetector::isWallCollisions(ModuleTile* tile, Entity* target)
                 if(temp != NULL)
                 {
                     Coordinates *oCoords = temp->getCoords();
-                    if(isCollision(oCoords, target->getCoords()))value = temp;
+                    if(isBasicCollision(oCoords, target->getCoords()))value = temp;
                     if(value != NULL)break;
                 }
             }
@@ -102,7 +109,7 @@ Door *CollisionDetector::isDoorCollision(ModuleTile* tile, Entity* target)
     for(int i = 0; i < 4; i++)
     {
         if(doors[i] != NULL)if(doors[i]->isOpen() == false)
-            if(isCollision(doors[i]->getCoords(), target->getCoords()))
+            if(isBasicCollision(doors[i]->getCoords(), target->getCoords()))
         {
             value = doors[i];
             break;
@@ -121,16 +128,38 @@ bool CollisionDetector::checkCollisions(Door **doors, Entity *target)
         if(temp != NULL)
         {
             Coordinates *oCoords = temp->getCoords();
-            if(temp->isOpen() == false)value = isCollision(oCoords, target->getCoords());
+            if(temp->isOpen() == false)value = isBasicCollision(oCoords, target->getCoords());
             if(value)break;
         }
     }
     return value;
 }
-bool CollisionDetector::isCollision(Coordinates *oCoords, Coordinates*targetCoords)
+bool CollisionDetector::isBasicCollision(Coordinates *oCoords, Coordinates*targetCoords)
 {
     bool value = true;
     if(oCoords->X + oCoords->width < targetCoords->X || oCoords->X > targetCoords->X  + targetCoords->width ||
        oCoords->Y + oCoords->height < targetCoords->Y || oCoords->Y  > targetCoords->Y + targetCoords->height)value = false;
     return value;
+}
+
+bool CollisionDetector::isSquareTriangleCollision(Coordinates *otherCoords, Coordinates *targetCoords)
+{
+    bool result = isBasicCollision(otherCoords, targetCoords);
+    if(result == true)
+    {
+        if(otherCoords->angle == 0)
+        {
+            if((targetCoords->X - otherCoords->X) + (targetCoords->Y - otherCoords->Y) > (otherCoords->width/2 + otherCoords->height/2))result = false;
+        } else if(otherCoords->angle == 90)
+        {
+            if((otherCoords->X - targetCoords->X + targetCoords->width) + (targetCoords->Y - otherCoords->Y) > (otherCoords->width/2 + otherCoords->height/2))result = false;
+        } else if(otherCoords->angle == 180)
+        {
+            if((otherCoords->X - targetCoords->X + targetCoords->width) + (otherCoords->Y - targetCoords->Y + targetCoords->height) > (otherCoords->width/2 + otherCoords->height/2))result = false;
+        } else if(otherCoords->angle == 270)
+        {
+            if((targetCoords->X - otherCoords->X) + (otherCoords->Y - targetCoords->Y + targetCoords->height) > (otherCoords->width/2 + otherCoords->height/2))result = false;
+        }
+    }
+    return result;
 }

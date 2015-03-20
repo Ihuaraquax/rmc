@@ -16,6 +16,7 @@
 #include "templateList.h"
 #include "DamageTypeEnum.h"
 #include "GenericBuffer.h"
+#include "EntityShape.h"
 
 class Entity {
 public:
@@ -45,6 +46,7 @@ public:
     void updateBuffers();
     void addBuffer(GenericBuffer *buffer);
     void setCoords(double X, double Y);
+    EntityShape getShape() const;
 protected:
     void move(double X, double Y);
     Entity *isCollision();
@@ -68,6 +70,7 @@ protected:
     
     templateList<GenericBuffer> *bufferList;
     bool bleeds;
+    EntityShape shape;
 };
 
 #endif	/* ENTITY_H */
