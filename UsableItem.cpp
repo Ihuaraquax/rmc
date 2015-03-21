@@ -27,8 +27,9 @@ UsableItem::~UsableItem() {
 void UsableItem::activate()
 {
     charges--;
-    int X, Y;
     ModuleTile *tile;
+    double X,Y;
+    bool acceptableCoords = this->getPointedCoords(X,Y);
     switch(action)
     {
         case 0: charges++;
@@ -36,24 +37,16 @@ void UsableItem::activate()
         case 1: Variables::session->getAllEntities()->getPlayer()->heal(50);
             break;
         case 2:
-            X = Variables::mouse_x + Variables::offsetX;
-            Y =Variables::mouse_y + Variables::offsetY;
-            X -= X%Variables::tileSize;
-            Y -= Y%Variables::tileSize;
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
-            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
                 Entity *turret = new Turret(X, Y);
                 Variables::session->getAllEntities()->addEntity(turret);
             } else charges++;
             break;
         case 3:
-            X = Variables::mouse_x + Variables::offsetX;
-            Y =Variables::mouse_y + Variables::offsetY;
-            X -= X%Variables::tileSize;
-            Y -= Y%Variables::tileSize;
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
-            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
                 GenericBuffer *buff = new DistanceBuffer(0, 1, 200);
                 BuffRod *rod = new BuffRod(buff);
@@ -62,24 +55,16 @@ void UsableItem::activate()
             } else charges++;
             break;
         case 4:
-            X = Variables::mouse_x + Variables::offsetX;
-            Y =Variables::mouse_y + Variables::offsetY;
-            X -= X%Variables::tileSize;
-            Y -= Y%Variables::tileSize;
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
-            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
                 Entity *explosive = new Explosives(X, Y);
                 Variables::session->getAllEntities()->addEntity(explosive);
             } else charges++;
             break;
         case 5:
-            X = Variables::mouse_x + Variables::offsetX;
-            Y =Variables::mouse_y + Variables::offsetY;
-            X -= X%Variables::tileSize;
-            Y -= Y%Variables::tileSize;
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
-            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
                 Entity *explosive = new RemoteCharges(X, Y);
                 Variables::session->getAllEntities()->addRemoteCharge(explosive);
@@ -88,12 +73,8 @@ void UsableItem::activate()
             } else charges++;
             break;
         case 6:
-            X = Variables::mouse_x + Variables::offsetX;
-            Y =Variables::mouse_y + Variables::offsetY;
-            X -= X%Variables::tileSize;
-            Y -= Y%Variables::tileSize;
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
-            if(isTileNearToPlayer(X,Y) && tile->getObstacle() == NULL && tile->getEntityList() == NULL)
+            if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
                 Variables::session->getAllEntities()->getPlayer()->setCoords(X,Y);
             } else charges++;
@@ -122,4 +103,18 @@ int UsableItem::getAction() const {
 bool UsableItem::isTileNearToPlayer(double X, double Y)
 {
     return Variables::proximity(X,Y, Variables::session->getAllEntities()->getPlayer()->getCoords()->X, Variables::session->getAllEntities()->getPlayer()->getCoords()->Y) < 200;
+}
+
+bool UsableItem::getPointedCoords(double& X, double& Y)
+{
+    int x,y;
+    x = Variables::mouse_x + Variables::offsetX;
+    y = Variables::mouse_y + Variables::offsetY;
+    x -= x%Variables::tileSize;
+    y -= y%Variables::tileSize;
+    X = x;
+    Y = y;
+    if(X < 0 || Y < 0 || X > Variables::tileSize * Variables::tilesPerRoom || Y > Variables::tileSize * Variables::tilesPerRoom
+            || Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y)->getObstacle() != NULL)return false;
+    return true;
 }
