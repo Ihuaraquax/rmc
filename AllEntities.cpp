@@ -50,8 +50,6 @@ void AllEntities::init()
         Entity *chest = new Chest();
         entityList.push_back(chest);
     }
-    Entity *barrel = new ExplosiveBarrel(150, 200, 0);
-    this->addEntity(barrel);
 }
 
 void AllEntities::createDoors()
@@ -180,7 +178,9 @@ void AllEntities::createObstacles()
             bool isObstacle = (rand()%Variables::tileSize == 0);
             if(isObstacle && Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * Variables::tileSize, j * Variables::tileSize)->getObstacle() == NULL)
             {
-                Entity *obstacle = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
+                Entity *obstacle;
+                if(rand()%5 == 0)obstacle = new ExplosiveBarrel(i * Variables::tileSize, j * Variables::tileSize, 0);
+                else obstacle = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
                 Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * Variables::tileSize, j * Variables::tileSize)->setObstacle(obstacle);
                 this->addEntity(obstacle);
             }
