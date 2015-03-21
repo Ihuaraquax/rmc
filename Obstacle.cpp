@@ -8,6 +8,11 @@
 #include "Obstacle.h"
 #include "globalVariables.h"
 
+Obstacle::Obstacle()
+{
+    
+}
+
 Obstacle::Obstacle(double X, double Y) {
     this->coords = new Coordinates();
     this->health = 1000;

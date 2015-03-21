@@ -17,18 +17,20 @@ public:
     void init();
     void update();
     void display();
-    void collisions();
     void loadFile();
     void loadNew();
     void addEntity(Entity *newEntity);
     void deleteEntity(Entity *toDelete);
     Entity* getPlayer() const;
-    void deleteDead();
-    void createObstacles();
     
     void addRemoteCharge(Entity *toAdd);
     bool deleteRemoteCharge(int signalId);
 private:
+    void deleteDead();
+    void createObstacles();
+    void createDoors();
+    void collisions();
+    
     std::list<Entity*> entityList;
     templateList<Entity> *remoteCharges;
     Entity *player;

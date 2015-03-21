@@ -243,7 +243,7 @@ int Inventory::getEquipmentIndex()
     mouseCoords->Y = Variables::mouse_y;
     for(int i = 0; i < 4; i++)
     {
-        if(CollisionDetector::isCollision(mouseCoords, equipmentCoords[i]))
+        if(CollisionDetector::isBasicCollision(mouseCoords, equipmentCoords[i]))
         {
             result = i;
             break;
@@ -262,7 +262,7 @@ int Inventory::getWeaponIndex()
     mouseCoords->height = 1;
     for(int i = 0; i < 6; i++)
     {
-        if(CollisionDetector::isCollision(mouseCoords, weaponCoords[i]))
+        if(CollisionDetector::isBasicCollision(mouseCoords, weaponCoords[i]))
         {
             result = i;
             break;
@@ -272,7 +272,7 @@ int Inventory::getWeaponIndex()
     {
         for(int i = 0; i < 4; i++)
         {
-            if(CollisionDetector::isCollision(mouseCoords, equipmentCoords[i]))
+            if(CollisionDetector::isBasicCollision(mouseCoords, equipmentCoords[i]))
             {
                 result = i + 10;
                 break;

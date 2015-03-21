@@ -140,7 +140,7 @@ int Chest::getSelectedField()
     mouseCoords->Y = Variables::mouse_y;
     for(int i = 0; i < chestSize; i++)
     {
-        if(CollisionDetector::isCollision(mouseCoords, contentCoords[i]))
+        if(CollisionDetector::isBasicCollision(mouseCoords, contentCoords[i]))
         {
             result = i;
             break;

@@ -11,6 +11,7 @@
 
 class Obstacle : public Entity {
 public:
+    Obstacle();
     Obstacle(double X, double Y);
     void setAsWall();
     void setAsCornerWall(int corner);
