@@ -36,6 +36,7 @@ public:
     
     void useChest();
     AllDecals* getAllDecals() const;
+    double* getModificatorsTable() const;
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();
@@ -50,6 +51,8 @@ private:
     int getModuleIndex(int X, int Y);
     void displayBuffs();
     AllDecals *allDecals;
+    
+    double *modificatorsTable;
 };
 
 #endif	/* MODULE_H */

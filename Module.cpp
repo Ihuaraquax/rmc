@@ -13,6 +13,8 @@
 
 Module::Module() {
     allDecals = new AllDecals;
+    modificatorsTable = new double[100];
+    for(int i = 0; i < 100; i++)modificatorsTable[i] = 0;
 }
 
 Module::~Module()
@@ -38,6 +40,7 @@ Module::~Module()
         delete temp;
     }
     delete allDecals;
+    delete []modificatorsTable;
 }
 
 void Module::display()
@@ -270,4 +273,8 @@ void Module::useChest()
 
 AllDecals* Module::getAllDecals() const {
     return allDecals;
+}
+
+double* Module::getModificatorsTable() const {
+    return modificatorsTable;
 }
