@@ -18,6 +18,7 @@
 #include "ExplosiveBarrel.h"
 #include "RemoteCharges.h"
 #include "ObstacleDoor.h"
+#include "DoorFactory.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -33,7 +34,7 @@ void AllEntities::init()
     }
     player = new Player();
     entityList.push_back(player);
-    createDoors();
+    DoorFactory::createDoors();
     createObstacles();
     for(int i = 0; i < 1; i++)
     {
@@ -51,44 +52,6 @@ void AllEntities::init()
         entityList.push_back(chest);
     }
 }
-
-void AllEntities::createDoors()
-{
-    for(int i = 1; i < Variables::tilesPerRoom - 1; i++)
-        for(int j = 1; j < Variables::tilesPerRoom - 1; j++)
-        {
-            ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i * Variables::tilesPerRoom + j];
-            if(tile->getObstacle() != NULL)
-            {
-                if(tile->getAdjacentTiles()[7]->getObstacle() == NULL && tile->getAdjacentTiles()[3]->getObstacle() != NULL &&
-                   tile->getAdjacentTiles()[3]->getAdjacentTiles()[3] != NULL && tile->getAdjacentTiles()[3]->getAdjacentTiles()[3]->getObstacle() == NULL)if(rand()% 15 == 0)
-                {
-                    this->deleteEntity(tile->getObstacle());
-                    this->deleteEntity(tile->getAdjacentTiles()[3]->getObstacle());
-                    
-                    tile->deleteFromEntityList(tile->getObstacle());
-                    tile->getAdjacentTiles()[3]->deleteFromEntityList(tile->getAdjacentTiles()[3]->getObstacle());
-                    Entity *door = new ObstacleDoor(i * Variables::tileSize, j * Variables::tileSize);
-                    this->addEntity(door);
-                    dynamic_cast<ObstacleDoor*>(door)->setAngle(true);
-                }
-                if(tile->getAdjacentTiles()[1]->getObstacle()== NULL && tile->getAdjacentTiles()[5]->getObstacle() != NULL &&
-                   tile->getAdjacentTiles()[5]->getAdjacentTiles()[5] != NULL && tile->getAdjacentTiles()[5]->getAdjacentTiles()[5]->getObstacle() == NULL)if(rand()% 15 == 0)
-                {
-                    this->deleteEntity(tile->getObstacle());
-                    this->deleteEntity(tile->getAdjacentTiles()[5]->getObstacle());
-                    
-                    tile->deleteFromEntityList(tile->getObstacle());
-                    tile->getAdjacentTiles()[5]->deleteFromEntityList(tile->getAdjacentTiles()[5]->getObstacle());
-                    Entity *door = new ObstacleDoor(i * Variables::tileSize, j * Variables::tileSize);
-                    this->addEntity(door);
-                    dynamic_cast<ObstacleDoor*>(door)->setAngle(false);
-                }
-            }
-        }
-    
-}
-
 AllEntities::~AllEntities()
 {
     for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
