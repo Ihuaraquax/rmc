@@ -103,6 +103,7 @@ void AllEntities::loadNew()
 
 void AllEntities::addEntity(Entity* newEntity)
 {
+    newEntity->adaptToModificators();
     entityList.push_back(newEntity);
 }
 
