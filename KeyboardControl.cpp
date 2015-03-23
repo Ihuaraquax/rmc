@@ -41,6 +41,11 @@ void KeyboardControl::gameKeyboardActions()
          if(al_key_down(&Variables::key_state, ALLEGRO_KEY_A))player->playerMove(-1,0);
          if(al_key_down(&Variables::key_state, ALLEGRO_KEY_D))player->playerMove(1,0);
      }
+     if(isPressed(ALLEGRO_KEY_I))Variables::session->getMap()->switchModule(0);
+     if(isPressed(ALLEGRO_KEY_L))Variables::session->getMap()->switchModule(1);
+     if(isPressed(ALLEGRO_KEY_K))Variables::session->getMap()->switchModule(2);
+     if(isPressed(ALLEGRO_KEY_J))Variables::session->getMap()->switchModule(3);
+     
      if(isPressed(ALLEGRO_KEY_1))player->selectWeaponSet(0);
      if(isPressed(ALLEGRO_KEY_2))player->selectWeaponSet(1);
      if(isPressed(ALLEGRO_KEY_3))player->selectWeaponSet(2);

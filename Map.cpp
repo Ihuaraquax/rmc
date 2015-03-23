@@ -52,21 +52,19 @@ void Map::createLevels()
 {
     
     ModuleFactory factory;
-    Module *newModule = new Module();
-    currentAllEntities = allEntities[1][1];
-    factory.setModuleBasics(newModule);
-    modules[1][1] = newModule;
-    currentModule = modules[1][1];
-    allEntities[1][1]->init();
-    allEntities[1][1]->applyModifiers();
     
-    Module *newModule2 = new Module();
-    currentAllEntities = allEntities[1][0];
-    factory.setModuleBasics(newModule2);
-    modules[1][0] = newModule2;
-    currentModule = modules[1][0];
-    allEntities[1][0]->init();
-    allEntities[1][0]->applyModifiers();
+    for(int i = 0; i < modulesTableSize; i++)
+    {
+        for(int j = 0; j < modulesTableSize; j++)
+        {
+            currentAllEntities = allEntities[i][j];
+            modules[i][j] = new Module();
+            factory.setModuleBasics(modules[i][j]);
+            currentModule = modules[i][j];
+            allEntities[i][j]->init();
+            allEntities[i][j]->applyModifiers();
+        }
+    }
     
     currentModule = modules[moduleX][moduleY];
     currentAllEntities = allEntities[moduleX][moduleY];
@@ -109,11 +107,11 @@ void Map::switchModule(int side)
         case 3: if(moduleX != 0) moduleX--;
             break;
     }
-    if(currentModule != modules[moduleX][moduleY])
+    if(currentModule != modules[moduleY][moduleX])
     {
-        allEntities[moduleX][moduleY]->setPlayer(currentAllEntities->getPlayer());
-        currentModule = modules[moduleX][moduleY];
-        currentAllEntities = allEntities[moduleX][moduleY];
+        allEntities[moduleY][moduleX]->setPlayer(currentAllEntities->getPlayer());
+        currentModule = modules[moduleY][moduleX];
+        currentAllEntities = allEntities[moduleY][moduleX];
     }
 }
 
