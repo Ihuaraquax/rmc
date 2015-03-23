@@ -92,7 +92,14 @@ int Entity::getHealth() const {
 
 void Entity::getHit(int damage, int damageType)
 {
-    int damageInflicted = (damage - armor) * (1-elementalResists[damageType]);
+    double *table = Variables::session->getMap()->getCurrentModule()->getModificatorsTable();
+    if(table[58] != 0 && damageType == 1)damageType = 3;
+    if(table[59] != 0 && damageType == 3)damageType = 4;
+    if(table[60] != 0 && damageType == 4)damageType = 2;
+    if(table[61] != 0 && damageType == 2)damageType = 1;
+    double resist = 1-elementalResists[damageType];
+    if(table[63] != 0)resist = this->getSmallestResistance();
+    int damageInflicted = (damage - armor) * resist;
     if(damageInflicted < 0)damageInflicted = 0;
     else if (bleeds)
     {
@@ -232,4 +239,12 @@ void Entity::adaptToModificators()
         this->coords->speedX *= 0.65;
         this->coords->speedY *= 0.65;
     }
+}
+
+double Entity::getSmallestResistance()
+{
+    double result = this->elementalResists[0];
+    for(int i = 0; i < Variables::damageTypeCount; i++)
+        if(this->elementalResists[i] < result)result = this->elementalResists[i];
+    return result;
 }

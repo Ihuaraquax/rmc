@@ -178,3 +178,12 @@ bool AllEntities::deleteRemoteCharge(int signalId)
     }
     return result;
 }
+
+void AllEntities::applyModifiers()
+{
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
+    {
+        Entity *temp = *i;
+        temp->adaptToModificators();
+    }
+}

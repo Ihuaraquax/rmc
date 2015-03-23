@@ -19,9 +19,15 @@ public:
     bool isProjectile();
     void virtual executeAgony();
     void virtual setRange(int range);
+    
+    void setAdditionalDamage(int additionalDamage, int additionalDamageType);
+    int getDamage() const;
+    void setDamage(int damage);
 protected :
     int damage;
     int damageType;
+    int additionalDamage;
+    int additionalDamageType;
     int range;
     bool explode;
 };

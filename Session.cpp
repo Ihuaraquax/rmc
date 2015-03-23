@@ -29,6 +29,7 @@ void Session::create()
     allEntities = new AllEntities();
     map->createLevels();
     allEntities->init();
+    allEntities->applyModifiers();
 }
 
 AllEntities* Session::getAllEntities() const {

@@ -52,6 +52,7 @@ public:
 protected:
     void move(double X, double Y);
     Entity *isCollision();
+    double getSmallestResistance();
     
     Image *image;
     Coordinates *coords;

@@ -81,6 +81,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Projectile.o \
 	${OBJECTDIR}/ProjectileFactory.o \
+	${OBJECTDIR}/ProjectileModificator.o \
 	${OBJECTDIR}/RemoteCharges.o \
 	${OBJECTDIR}/Room.o \
 	${OBJECTDIR}/RoomFactory.o \
@@ -355,6 +356,11 @@ ${OBJECTDIR}/ProjectileFactory.o: ProjectileFactory.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ProjectileFactory.o ProjectileFactory.cpp
+
+${OBJECTDIR}/ProjectileModificator.o: ProjectileModificator.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ProjectileModificator.o ProjectileModificator.cpp
 
 ${OBJECTDIR}/RemoteCharges.o: RemoteCharges.cpp 
 	${MKDIR} -p ${OBJECTDIR}

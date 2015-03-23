@@ -88,6 +88,15 @@ void Projectile::update()
         range--;
         if(range == 0)health = 0;
     }
+    if(range != 0 && health == 0)
+    {
+        if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[70] != 0 && rand()%10 == 0)
+        {
+            health = 1;
+            coords->speedX *= -1;
+            coords->speedY *= -1;
+        }
+    }
 }
 
 void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageType, int angle, int teamID, int range)
@@ -110,6 +119,7 @@ void Projectile::setValues(Coordinates *coords, int damage, DAMAGE_TYPE damageTy
 void Projectile::hit(Entity* target)
 {
     target->getHit(damage, damageType);
+    target->getHit(additionalDamage, additionalDamageType);
 }
 
 bool Projectile::isProjectile()
@@ -130,4 +140,17 @@ void Projectile::executeAgony()
 
 void Projectile::setRange(int range) {
     this->range = range;
+}
+
+void Projectile::setAdditionalDamage(int additionalDamage, int additionalDamageType) {
+    this->additionalDamage = additionalDamage;
+    this->additionalDamageType = additionalDamageType;
+}
+
+int Projectile::getDamage() const {
+    return damage;
+}
+
+void Projectile::setDamage(int damage) {
+    this->damage = damage;
 }
