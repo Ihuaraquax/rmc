@@ -32,8 +32,7 @@ void AllEntities::init()
         Entity *temp = *i;
         temp->setStartingTile();
     }
-    player = new Player();
-    entityList.push_back(player);
+    player = NULL;
     DoorFactory::createDoors();
     createObstacles();
     for(int i = 0; i < 1; i++)
@@ -59,6 +58,7 @@ AllEntities::~AllEntities()
         Entity *temp = *i;
         delete temp;
     }
+    player = NULL;
 }
 
 
@@ -69,6 +69,7 @@ void AllEntities::display()
         Entity *temp = *i;
         temp->display();
     }
+    player->display();
 }
 
 void AllEntities::update()
@@ -79,6 +80,7 @@ void AllEntities::update()
         Entity *temp = *i;
         temp->update();
     }
+    player->update();
     if(Variables::log == full)std::cout << " AllEntities Update end ";
     deleteDead();
     if(Variables::log == full)std::cout << " AllEntities Delete ";
@@ -186,4 +188,8 @@ void AllEntities::applyModifiers()
         Entity *temp = *i;
         temp->adaptToModificators();
     }
+}
+
+void AllEntities::setPlayer(Entity* player) {
+    this->player = player;
 }

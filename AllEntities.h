@@ -26,6 +26,7 @@ public:
     void addRemoteCharge(Entity *toAdd);
     bool deleteRemoteCharge(int signalId);
     void applyModifiers();
+    void setPlayer(Entity* player);
 private:
     void deleteDead();
     void createObstacles();

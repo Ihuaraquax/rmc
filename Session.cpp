@@ -26,14 +26,11 @@ void Session::create()
     mouse = new MouseControl();
     hud = new HUD();
     map = new Map();
-    allEntities = new AllEntities();
     map->createLevels();
-    allEntities->init();
-    allEntities->applyModifiers();
 }
 
 AllEntities* Session::getAllEntities() const {
-    return allEntities;
+    map->getCurrentAllEntities();
 }
 
 Menu* Session::getMainMenu() const {
@@ -49,7 +46,6 @@ Session::Session(const Session& orig) {
 
 Session::~Session() {
     delete mainMenu;
-    delete allEntities;
     delete keyboard;
     delete mouse;
     delete map;
@@ -62,7 +58,6 @@ void Session::display()
         {
         al_clear_to_color(al_map_rgb(0,0,0));
         map->display();
-        allEntities->display();
         hud->display();
         if(Variables::substate == inventory)hud->getPlayerInventory()->display();
         if(Variables::substate == chest)
@@ -83,7 +78,6 @@ void Session::update()
         {
         updateOffset();
         map->update();
-        allEntities->update();
         hud->update();
         if(Variables::substate == chest)hud->getOpenChest()->update();
     }
@@ -116,8 +110,8 @@ void Session::loop()
 
 void Session::updateOffset()
 {
-    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX < 400)Variables::offsetX -= allEntities->getPlayer()->getCoords()->speedX;
-    if(allEntities->getPlayer()->getCoords()->X - Variables::offsetX > Variables::RES_WIDTH-400)Variables::offsetX += allEntities->getPlayer()->getCoords()->speedX;
-    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY < 400)Variables::offsetY -= allEntities->getPlayer()->getCoords()->speedY;
-    if(allEntities->getPlayer()->getCoords()->Y - Variables::offsetY > Variables::RES_HEIGHT-500)Variables::offsetY += allEntities->getPlayer()->getCoords()->speedY;
+    if(getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX < 400)Variables::offsetX -= getAllEntities()->getPlayer()->getCoords()->speedX;
+    if(getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX > Variables::RES_WIDTH-400)Variables::offsetX += getAllEntities()->getPlayer()->getCoords()->speedX;
+    if(getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY < 400)Variables::offsetY -= getAllEntities()->getPlayer()->getCoords()->speedY;
+    if(getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY > Variables::RES_HEIGHT-500)Variables::offsetY += getAllEntities()->getPlayer()->getCoords()->speedY;
 }

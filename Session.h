@@ -47,7 +47,6 @@ private:
     void updateOffset();
     
     Menu *mainMenu;
-    AllEntities *allEntities;
     MouseControl *mouse;
     KeyboardControl *keyboard;
     Map *map;
