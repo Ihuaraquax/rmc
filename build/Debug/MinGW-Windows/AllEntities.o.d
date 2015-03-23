@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/AllEntities.o: AllEntities.cpp AllEntities.h \
  Chest.h Obstacle.h MouseControl.h KeyboardControl.h Map.h Module.h \
  Floor.h Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h \
  GameSubstateEnum.h LogLevels.h Spawner.h DistanceBuffer.h BuffRod.h \
- ExplosiveBarrel.h RemoteCharges.h ObstacleDoor.h
+ ExplosiveBarrel.h RemoteCharges.h ObstacleDoor.h DoorFactory.h
 
 AllEntities.h:
 
@@ -97,3 +97,5 @@ ExplosiveBarrel.h:
 RemoteCharges.h:
 
 ObstacleDoor.h:
+
+DoorFactory.h:

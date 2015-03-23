@@ -47,10 +47,24 @@ void Projectile::update()
         else
         {
             Entity *targetEntity = CollisionDetector::isEntityCollisions(currentTile, this);
-            if(targetEntity != NULL && targetEntity->getTeamId() != this->teamId)
+            if(targetEntity != NULL )
             {
-                health--;
-                targetEntity->getHit(damage, damageType);
+                if(targetEntity->getTeamId() == this->teamId)
+                {
+                    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[1] != 0)
+                    {
+                        health--;
+                        targetEntity->getHit(damage, damageType);
+                    } else if (Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[2] != 0)
+                    {
+                        health--;
+                        targetEntity->heal(damage);
+                    }
+                } else 
+                {
+                    health--;
+                    targetEntity->getHit(damage, damageType); 
+                }
             }
             else
             {

@@ -87,7 +87,8 @@ void Explosion::dealDamageInTile(templateList<Entity>* entityList, Wall** walls,
 {
     while(entityList != NULL)
     {
-        entityList->data->getHit(damage, damageType);
+        if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[0] == 0)entityList->data->getHit(damage, damageType);
+        else entityList->data->heal(damage);
         entityList = entityList->next;
     }
     for(int j = 0; j < 4; j++)

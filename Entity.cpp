@@ -142,8 +142,12 @@ int Entity::getArmor() const {
 
 void Entity::heal(int healAmount)
 {
-    this->health += healAmount;
-    if(this->health > this->maximumHealth) health = maximumHealth;
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[18] != 0)this->getHit(healAmount, normal);
+    else
+    {
+        this->health += healAmount;
+        if(this->health > this->maximumHealth) health = maximumHealth;
+    }
 }
 
 double Entity::getValueOfBuffer(int type)
@@ -204,4 +208,28 @@ void Entity::setCoords(double X, double Y)
 
 EntityShape Entity::getShape() const {
     return shape;
+}
+
+void Entity::adaptToModificators()
+{
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[3] != 0)
+    {
+        this->health *= 0.5;
+        this->maximumHealth *= 0.5;
+    }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[4] != 0)
+    {
+        this->health *= 2;
+        this->maximumHealth *= 2;
+    }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[5] != 0)
+    {
+        this->coords->speedX *= 1.5;
+        this->coords->speedY *= 1.5;
+    }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[6] != 0)
+    {
+        this->coords->speedX *= 0.65;
+        this->coords->speedY *= 0.65;
+    }
 }

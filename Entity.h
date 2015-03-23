@@ -47,6 +47,8 @@ public:
     void addBuffer(GenericBuffer *buffer);
     void setCoords(double X, double Y);
     EntityShape getShape() const;
+    
+    void adaptToModificators();
 protected:
     void move(double X, double Y);
     Entity *isCollision();

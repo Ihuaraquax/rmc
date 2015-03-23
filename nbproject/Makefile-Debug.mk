@@ -50,6 +50,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Decal.o \
 	${OBJECTDIR}/DistanceBuffer.o \
 	${OBJECTDIR}/Door.o \
+	${OBJECTDIR}/DoorFactory.o \
 	${OBJECTDIR}/Entity.o \
 	${OBJECTDIR}/Equipment.o \
 	${OBJECTDIR}/EquipmentLoader.o \
@@ -199,6 +200,11 @@ ${OBJECTDIR}/Door.o: Door.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Door.o Door.cpp
+
+${OBJECTDIR}/DoorFactory.o: DoorFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/DoorFactory.o DoorFactory.cpp
 
 ${OBJECTDIR}/Entity.o: Entity.cpp 
 	${MKDIR} -p ${OBJECTDIR}
