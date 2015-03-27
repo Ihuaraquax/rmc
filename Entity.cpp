@@ -27,12 +27,18 @@ Entity::Entity() {
     bufferList = NULL;
     bleeds= false;
     shape = rectangle;
+    health = 0;
+    maximumHealth = 0;
+    aiValue = 0;
+    criticalChance = 0;
+    criticalDamage = 0;
+    teamId = 0;
+    threatLevel = 0;
+    for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0;
+    possessedWeapons = 0;
 }
 
 Entity::~Entity() {
-    ModuleTile *tile = Variables::session->getMap()
-            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
-    if(tile != NULL)tile->addToThreatLevel(-threatLevel);
     delete coords;
     if(image != NULL)delete image;
 }
@@ -247,4 +253,20 @@ double Entity::getSmallestResistance()
     for(int i = 0; i < Variables::damageTypeCount; i++)
         if(this->elementalResists[i] < result)result = this->elementalResists[i];
     return result;
+}
+
+void Entity::save(std::fstream& file)
+{
+    
+}
+
+void Entity::saveGeneric(std::fstream& file)
+{    
+    file << health << ' ' << coords->X << ' ' << coords->Y << ' ' << maximumHealth  << ' ' << aiValue << ' ' << criticalChance  << ' ' <<  criticalDamage;
+    file << ' ' << teamId << ' ' << threatLevel << ' ';
+    for(int i = 0; i < Variables::damageTypeCount; i++)file << elementalResists[i] << ' ';
+    if(bleeds)file << 1 << ' ';
+    else file << 0 << ' ';
+    file << possessedWeapons << ' ';
+    for(int i = 0; i < possessedWeapons; i++)file << weapons[i]->getWeaponId() << ' ' << weapons[i]->getAmmoCurrent() << ' ';
 }

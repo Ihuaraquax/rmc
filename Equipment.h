@@ -8,6 +8,7 @@
 #ifndef EQUIPMENT_H
 #define	EQUIPMENT_H
 #include <iostream>
+#include <fstream>
 
 class Equipment {
     friend class EquipmentLoader;
@@ -25,6 +26,8 @@ public:
     int getCurrentEnergy() const;
     int getMaxEnergy() const;
     std::string virtual getFilePath();
+    
+    void save(std::fstream &file);
 protected:
     void virtual activate();
     void virtual deactivate();

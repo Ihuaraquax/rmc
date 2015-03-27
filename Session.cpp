@@ -10,6 +10,7 @@
 #include "MouseControl.h"
 #include "globalVariables.h"
 #include "configurator.h"
+#include <fstream>
 
 Session::Session() {
     configurator::config();
@@ -114,4 +115,12 @@ void Session::updateOffset()
     if(getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX > Variables::RES_WIDTH-400)Variables::offsetX += getAllEntities()->getPlayer()->getCoords()->speedX;
     if(getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY < 400)Variables::offsetY -= getAllEntities()->getPlayer()->getCoords()->speedY;
     if(getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY > Variables::RES_HEIGHT-500)Variables::offsetY += getAllEntities()->getPlayer()->getCoords()->speedY;
+}
+
+void Session::save()
+{
+    std::fstream file;
+    file.open("saves/save01.txt", std::ios::out);
+    map->save(file);
+    file.close();
 }

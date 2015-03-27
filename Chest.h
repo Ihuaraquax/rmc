@@ -11,6 +11,7 @@
 #include "Image.h"
 #include "Coordinates.h"
 #include "Obstacle.h"
+#include <fstream>
 
 class Chest : public Entity, public UsableObject {
 public:
@@ -31,6 +32,7 @@ public:
     
     bool isFieldNotEmpty(int index);
     void swapContent(int firstContentIndex, int secondContentIndex);
+    void save(std::fstream &savefile);
 private:
     Coordinates *backgroundCoords;
     Coordinates **contentCoords;

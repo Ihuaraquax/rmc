@@ -238,3 +238,12 @@ void Chest::swapContent(int firstContentIndex, int secondContentIndex)
     this->loadContent(secondContentIndex, contentType[firstContentIndex], contentValue[firstContentIndex]);
     this->loadContent(firstContentIndex, secondType, secondValue);
 }
+
+void Chest::save(std::fstream& file)
+{
+    file << "CH" << std::endl;
+    saveGeneric(file);
+    file << chestSize << ' ';
+    for(int i = 0; i < chestSize; i++)file << this->contentType[i] << ' ' <<  this->contentValue[i]  << ' ';
+    file << std::endl;
+}

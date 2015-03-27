@@ -35,6 +35,7 @@ public:
     void config();
     void loadSave();
     void loadNew();
+    void save();
     void loop();
     void destroy();
     Map* getMap() const;

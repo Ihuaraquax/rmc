@@ -194,3 +194,26 @@ void AllEntities::applyModifiers()
 void AllEntities::setPlayer(Entity* player) {
     this->player = player;
 }
+
+void AllEntities::save(std::fstream& file)
+{
+    file << "AE" << std::endl;
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
+    {
+        Entity *temp = *i;
+        temp->save(file);
+    }
+    file << std::endl;
+}
+
+bool AllEntities::isOnList(Entity* entity)
+{
+    bool result = false;
+    
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
+    {
+        Entity *temp = *i;
+        if(temp == entity)result = true;
+    }
+    return result;
+}

@@ -53,3 +53,10 @@ void RemoteCharges::executeAgony()
     temp->dealDamage();
     Variables::session->getAllEntities()->addEntity(explosion);
 }
+
+void RemoteCharges::save(std::fstream& file)
+{
+    file << "RC" << std::endl;
+    saveGeneric(file);
+    file << this->signalId << ' ';
+}

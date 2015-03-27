@@ -93,3 +93,11 @@ std::string Equipment::getFilePath()
 {
    return ""; 
 }
+
+void Equipment::save(std::fstream& file)
+{
+    file << action << ' ' << armor << ' ' << currentEnergy << ' ' << energyConsumption << ' ' << energyRegeneration << ' ' << maxEnergy << ' ' << imagePath << ' ';
+    if(active)file << 1 << ' ';
+    else file << 0 << ' ';
+    for(int i = 0; i < Variables::damageTypeCount; i++)file << resistance[i] << ' ';
+}

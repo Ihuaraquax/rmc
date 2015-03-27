@@ -17,6 +17,7 @@ public:
     virtual ~Monster();
     void update();
     void executeAgony();
+    void save(std::fstream &file);
 private:
     bool turnRight(double targetAngle);
     int getDirection();

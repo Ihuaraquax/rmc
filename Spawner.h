@@ -13,6 +13,7 @@ class Spawner : public Entity{
 public:
     Spawner();
     void update();
+    void save(std::fstream &file);
 private:
     void spawnMonster();
     int monsterType;

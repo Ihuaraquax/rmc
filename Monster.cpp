@@ -149,6 +149,9 @@ bool Monster::isBadSpawningPoint()
 void Monster::executeAgony()
 {
     dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->addExpirience(expirience);
+    ModuleTile *tile = Variables::session->getMap()
+            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
+    if(tile != NULL)tile->addToThreatLevel(-threatLevel);
 }
 
 bool Monster::turnRight(double targetAngle)
@@ -162,4 +165,12 @@ bool Monster::turnRight(double targetAngle)
     if(tempTargetAngle < 180)result = true;
     
     return result;
+}
+
+void Monster::save(std::fstream& file)
+{
+    file << "MO" << std::endl;
+    saveGeneric(file);
+    file << expirience << ' ';
+    file << std::endl;
 }

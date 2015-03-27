@@ -31,6 +31,7 @@ Obstacle::Obstacle(double X, double Y) {
     this->damagedImage2 = new Image(1, paths3, true);
     this->image->state = NORMAL;
     maximumHealth = health;
+    isWall = false;
 }
 
 void Obstacle::setAsWall()
@@ -46,6 +47,7 @@ void Obstacle::setAsWall()
     this->image = new Image(1, paths, true);
     this->damagedImage = new Image(1, paths2, true);
     this->damagedImage2 = new Image(1, paths3, true);
+    isWall = true;
 }
 
 void Obstacle::setAsCornerWall(int corner)
@@ -86,4 +88,19 @@ void Obstacle::display()
     if(health >= maximumHealth * 0.75)image->display(coords);
     else if(health >= maximumHealth * 0.45)damagedImage->display(coords);
     else damagedImage2->display(coords);
+}
+
+void Obstacle::save(std::fstream& file)
+{
+    if(isWall)
+    {
+        if(this->shape == rectangle)file << "WA" << std::endl;
+        else file << "CW" << std::endl;
+    }
+    else
+    {
+        file << "OB" << std::endl;
+    }
+    saveGeneric(file);
+    file << std::endl;
 }

@@ -14,6 +14,8 @@ public:
     ExplosiveBarrel(double X, double Y, int type);
     void update();
     void executeAgony();
+    
+    void save(std::fstream &file);
 private:
     int barrelType;
 };

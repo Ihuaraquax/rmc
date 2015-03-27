@@ -27,6 +27,9 @@ public:
     bool deleteRemoteCharge(int signalId);
     void applyModifiers();
     void setPlayer(Entity* player);
+    
+    void save(std::fstream &savefile);
+    bool isOnList(Entity *entity);
 private:
     void deleteDead();
     void createObstacles();

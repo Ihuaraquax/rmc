@@ -53,6 +53,8 @@ public:
     void addAmmo(int ammo, int index);
     
     bool isWeapon(int index);
+    
+    void save(std::fstream& file);
 private:
     void setTestValues();
     void displayIsInBuffRange();

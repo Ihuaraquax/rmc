@@ -16,6 +16,7 @@ public:
     void executeAgony();
     void setSignalId(int signalId);
     int getSignalId() const;
+    void save(std::fstream &file);
 private:
     int signalId;
 };

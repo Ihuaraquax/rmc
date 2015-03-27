@@ -8,6 +8,7 @@
 #ifndef USABLEITEM_H
 #define	USABLEITEM_H
 #include <iostream>
+#include <fstream>
 
 class UsableItem {
     friend class UsableItemLoader;
@@ -18,6 +19,7 @@ public:
     int getCharges() const;
     std::string getImagePath() const;
     int getAction() const;
+    void save(std::fstream &file);
 private:
     bool getPointedCoords(double &X, double &Y);
     bool isTileNearToPlayer(double X, double Y);

@@ -7,6 +7,7 @@
 
 #ifndef ATTRIBUTES_H
 #define	ATTRIBUTES_H
+#include <fstream>
 
 class Attributes {
 public:
@@ -21,6 +22,8 @@ public:
     void addSpeed(int toAdd);
     void addInteligence(int toAdd);
     void addAccuracy(int toAdd);
+    
+    void save(std::fstream &file);
 private:
     int strength;
     int speed;

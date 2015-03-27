@@ -45,3 +45,11 @@ void BuffRod::executeAgony()
 {
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->depropagateBuffs(buffer);
 }
+
+void BuffRod::save(std::fstream& file)
+{
+    file << "BR" << std::endl;
+    saveGeneric(file);
+    file << this->buffer->GetBuffType()  << ' ' <<  this->buffer->GetBuffValue()  << ' ';
+    file << std::endl;
+}

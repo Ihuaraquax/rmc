@@ -44,3 +44,10 @@ void Explosives::executeAgony()
     temp->dealDamage();
     Variables::session->getAllEntities()->addEntity(explosion);
 }
+
+void Explosives::save(std::fstream& file)
+{
+    file << "EX" << std::endl;
+    saveGeneric(file);
+    file << std::endl;
+}

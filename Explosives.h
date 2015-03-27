@@ -13,6 +13,7 @@ public:
     Explosives(double X, double Y);
     void update();
     void executeAgony();
+    void save(std::fstream &file);
 private:
 };
 

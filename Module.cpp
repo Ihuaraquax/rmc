@@ -278,3 +278,11 @@ AllDecals* Module::getAllDecals() const {
 double* Module::getModificatorsTable() const {
     return modificatorsTable;
 }
+
+void Module::save(std::fstream& file)
+{
+    file << "MO" << std::endl;
+    file << "MD" << std::endl;
+    for(int i = 0; i < 100; i++)if(this->modificatorsTable[i] != 0)file << i << ' ';
+    file << std::endl;
+}

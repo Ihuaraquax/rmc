@@ -63,3 +63,8 @@ void Attributes::addStrength(int toAdd)
     dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->health += toAdd;
     dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->maximumHealth += toAdd;
 }
+
+void Attributes::save(std::fstream& file)
+{
+    file << strength << ' ' << speed << ' ' << inteligence << ' ' << accuracy << ' ';
+}

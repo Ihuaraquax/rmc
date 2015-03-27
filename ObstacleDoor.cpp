@@ -100,3 +100,14 @@ bool ObstacleDoor::isBarricade()
 {
     return true;
 }
+
+void ObstacleDoor::save(std::fstream& file)
+{
+    file << "OD" << std::endl;
+    saveGeneric(file);
+    if(open) file << 1 << ' ';
+    else  file << 0 << ' ';
+    if(vertical) file << 1 << ' ';
+    else file << 0 << ' ';    
+    file << std::endl;
+}

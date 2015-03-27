@@ -17,6 +17,7 @@
 #include "DamageTypeEnum.h"
 #include "GenericBuffer.h"
 #include "EntityShape.h"
+#include <fstream>
 
 class Entity {
 public:
@@ -49,6 +50,8 @@ public:
     EntityShape getShape() const;
     
     void adaptToModificators();
+    void virtual save(std::fstream &savefile);
+    void saveGeneric(std::fstream &file);
 protected:
     void move(double X, double Y);
     Entity *isCollision();

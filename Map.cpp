@@ -12,9 +12,9 @@
 #include "Player.h"
 
 Map::Map() {
-    modulesTableSize = 3;
-    moduleX = 1;
-    moduleY = 1;
+    modulesTableSize = 1;
+    moduleX = 0;
+    moduleY = 0;
     
     
     modules = new Module**[modulesTableSize];
@@ -117,4 +117,20 @@ void Map::switchModule(int side)
 
 AllEntities* Map::getCurrentAllEntities() const {
     return currentAllEntities;
+}
+
+void Map::save(std::fstream& file)
+{
+    file << this->modulesTableSize << std::endl;
+    for(int i = 0; i < this->modulesTableSize; i++)
+    {
+        for(int j = 0; j < this->modulesTableSize; j++)
+        {
+            this->modules[i][j]->save(file);
+            this->allEntities[i][j]->save(file);
+        }
+    }
+    file << "MC" << ' ' << moduleX  << ' ' << moduleY << std::endl;
+    this->getCurrentAllEntities()->getPlayer()->save(file);
+    file << std::endl;
 }

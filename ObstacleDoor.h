@@ -19,6 +19,7 @@ public:
     void update();
     void display();
     bool isBarricade();
+    void save(std::fstream &file);
 private:
     Image *closedImage;
     Image *openImage;

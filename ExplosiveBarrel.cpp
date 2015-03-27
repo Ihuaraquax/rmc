@@ -48,3 +48,11 @@ void ExplosiveBarrel::executeAgony()
     temp->dealDamage();
     Variables::session->getAllEntities()->addEntity(explosion);
 }
+
+void ExplosiveBarrel::save(std::fstream& file)
+{
+    file << "EB" << std::endl;
+    saveGeneric(file);
+    file << barrelType << ' ';    
+    file << std::endl;
+}

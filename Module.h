@@ -37,6 +37,8 @@ public:
     void useChest();
     AllDecals* getAllDecals() const;
     double* getModificatorsTable() const;
+    
+    void save(std::fstream &savefile);
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();

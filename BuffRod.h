@@ -17,6 +17,7 @@ public:
     void display();
     void setCoords(double X, double Y);
     void executeAgony();
+    void save(std::fstream &file);
 private:
     GenericBuffer *buffer;
 };

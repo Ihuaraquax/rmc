@@ -24,6 +24,8 @@ public:
     int getCurrentThreatLevel() const;
     void executeAgony();
     void attack(int weapon);
+    
+    void save(std::fstream& file);
 private:
     Image *upperPart;
     Image *lowerPart;

@@ -260,3 +260,17 @@ void Player::displayIsInBuffRange()
     if(this->getValueOfBuffer(0) > 0)al_draw_circle(coords->X + coords->width/2 - Variables::offsetX, coords->Y + coords->height/2 - Variables::offsetY, 5, al_map_rgb(0,255,0), 3);
     else al_draw_circle(coords->X + coords->width/2 - Variables::offsetX, coords->Y + coords->height/2 - Variables::offsetY, 5, al_map_rgb(255,0,0), 3);
 }
+
+void Player::save(std::fstream& file)
+{
+    file << "PL" << std::endl;
+    saveGeneric(file);
+    file << ' ' << expirience << ' ' << selecetedWeaponSet << ' ';
+    for(int i = 0; i < 10; i++)file << ammo[i] << ' ';
+    attributes->save(file);
+    this->helmet->save(file);
+    this->chestplate->save(file);
+    this->greaves->save(file);
+    this->item->save(file);
+    file << std::endl;
+}

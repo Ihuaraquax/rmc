@@ -9,6 +9,7 @@
 #define	MAP_H
 #include "Module.h"
 #include "AllEntities.h"
+#include <fstream>
 
 class Map {
 public:
@@ -22,6 +23,8 @@ public:
     Module* getCurrentModule() const;
     void switchModule(int side);
     AllEntities* getCurrentAllEntities() const;
+    
+    void save(std::fstream &file);
 private:
     Module ***modules;
     AllEntities ***allEntities;

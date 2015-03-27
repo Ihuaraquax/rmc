@@ -12,7 +12,6 @@
 #include "AttributeEnum.h"
 
 KeyboardControl::KeyboardControl() {
-    Fpressed = false;
     pressedKeys = new bool[ALLEGRO_KEY_MAX];
     for(int i = 0; i < ALLEGRO_KEY_MAX; i++)pressedKeys[i] = false;
 }
@@ -55,6 +54,7 @@ void KeyboardControl::gameKeyboardActions()
      if(isPressed(ALLEGRO_KEY_X))player->useEquipment(1);
      if(isPressed(ALLEGRO_KEY_C))player->useEquipment(2);
      if(isPressed(ALLEGRO_KEY_E))player->useItem();
+     if(isPressed(ALLEGRO_KEY_P))Variables::session->save();
      if(isPressed(ALLEGRO_KEY_I))
      {
          if(Variables::substate == game)

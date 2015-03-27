@@ -88,3 +88,12 @@ void Spawner::spawnMonster()
     }
         delete spawnCoords;
 }
+
+
+void Spawner::save(std::fstream& file)
+{
+    file << "SP" << std::endl;
+    this->saveGeneric(file);
+    file << monsterType << ' ' << spawnCountdown << ' ' << spawnTimer << ' ';
+    file << std::endl;
+}

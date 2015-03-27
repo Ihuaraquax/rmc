@@ -10,7 +10,6 @@
 #include "WeaponLoader.h"
 
 Turret::Turret() {
-    this->coords = new Coordinates();
     this->coords->X = 200;
     this->coords->Y = 200;
     this->coords->angle = -1;
@@ -149,4 +148,11 @@ double Turret::getTargetAngle() const {
 void Turret::executeAgony()
 {
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->deleteTurret(this);
+}
+
+void Turret::save(std::fstream& file)
+{
+    file << "TU" << std::endl;
+    this->saveGeneric(file);
+    file << std::endl;
 }

@@ -118,3 +118,8 @@ bool UsableItem::getPointedCoords(double& X, double& Y)
             || Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y)->getObstacle() != NULL)return false;
     return true;
 }
+
+void UsableItem::save(std::fstream& file)
+{
+    file << action  << ' ' << charges << ' ' << additionalData << ' ';
+}
