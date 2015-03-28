@@ -21,6 +21,7 @@ class Player : public Entity{
     friend class Inventory;
 public:
     Player();
+    Player(bool isLoad);
     virtual ~Player();
     void playerMove(double X, double Y);
     void update();
@@ -54,7 +55,9 @@ public:
     
     bool isWeapon(int index);
     
-    void save(std::fstream& file);
+    void save(std::fstream &file);
+    void load(std::fstream &file);
+    void loadGeneric(std::fstream &file);
 private:
     void setTestValues();
     void displayIsInBuffRange();

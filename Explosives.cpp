@@ -14,8 +14,8 @@ Explosives::Explosives(double X, double Y) {
     this->coords->X = X;
     this->coords->Y = Y;
     this->coords->angle = 0;
-    this->coords->height = 50;
-    this->coords->width = 50;
+    this->coords->height = Variables::tileSize;
+    this->coords->width = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
     std::string paths[] = {"images/dynamite.png"};
@@ -26,6 +26,18 @@ Explosives::Explosives(double X, double Y) {
     Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
     maximumHealth = health;
+}
+
+Explosives::Explosives(bool isLoad)
+{
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string paths[] = {"images/dynamite.png"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
 }
 
 void Explosives::update()
@@ -50,4 +62,9 @@ void Explosives::save(std::fstream& file)
     file << "EX" << std::endl;
     saveGeneric(file);
     file << std::endl;
+}
+
+void Explosives::load(std::fstream& file)
+{
+    loadGeneric(file);
 }

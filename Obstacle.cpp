@@ -10,7 +10,25 @@
 
 Obstacle::Obstacle()
 {
-    
+    bleeds = false;
+}
+
+Obstacle::Obstacle(bool isLoad)
+{
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->angle = 0;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string paths[] = {"images/table.png"};
+    std::string paths2[] = {"images/tableDamaged1.png"};
+    std::string paths3[] = {"images/tableDamaged2.png"};
+    this->image = new Image(1, paths, true);
+    this->damagedImage = new Image(1, paths2, true);
+    this->damagedImage2 = new Image(1, paths3, true);
+    isWall = false;
+    bleeds = false;
 }
 
 Obstacle::Obstacle(double X, double Y) {
@@ -22,6 +40,9 @@ Obstacle::Obstacle(double X, double Y) {
     this->coords->width = Variables::tileSize;
     this->coords->X = X;
     this->coords->Y = Y;
+    this->coords->angle = 0;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
     std::string paths[] = {"images/table.png"};
     std::string paths2[] = {"images/tableDamaged1.png"};
@@ -32,6 +53,7 @@ Obstacle::Obstacle(double X, double Y) {
     this->image->state = NORMAL;
     maximumHealth = health;
     isWall = false;
+    bleeds = false;
 }
 
 void Obstacle::setAsWall()
@@ -53,6 +75,7 @@ void Obstacle::setAsWall()
 void Obstacle::setAsCornerWall(int corner)
 {
     shape = triangle;
+    isWall = true;
     this->coords->angle = 0;
     for(int i = 0; i < corner-2; i++)coords->angle += 90;
     delete image;
@@ -103,4 +126,10 @@ void Obstacle::save(std::fstream& file)
     }
     saveGeneric(file);
     file << std::endl;
+}
+
+void Obstacle::load(std::fstream& file)
+{
+    loadGeneric(file);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
 }

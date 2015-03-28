@@ -11,11 +11,13 @@
 
 class ExplosiveBarrel : public Entity {
 public:
+    ExplosiveBarrel(bool isLoad);
     ExplosiveBarrel(double X, double Y, int type);
     void update();
     void executeAgony();
     
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     int barrelType;
 };

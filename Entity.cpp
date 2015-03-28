@@ -14,6 +14,7 @@
 #include "TimedBuffer.h"
 #include "DistanceBuffer.h"
 #include "BloodSplatter.h"
+#include "WeaponLoader.h"
 
 Entity::Entity() {
     armor = 0;
@@ -36,6 +37,7 @@ Entity::Entity() {
     threatLevel = 0;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0;
     possessedWeapons = 0;
+    image = NULL;
 }
 
 Entity::~Entity() {
@@ -260,13 +262,39 @@ void Entity::save(std::fstream& file)
     
 }
 
+void Entity::load(std::fstream& savefile)
+{
+    
+}
+
 void Entity::saveGeneric(std::fstream& file)
 {    
-    file << health << ' ' << coords->X << ' ' << coords->Y << ' ' << maximumHealth  << ' ' << aiValue << ' ' << criticalChance  << ' ' <<  criticalDamage;
+    file << health << ' ' << coords->X << ' ' << coords->Y << ' ' << coords->angle
+         << ' ' << coords->speedX << ' ' << coords->speedY << ' ' << maximumHealth  << ' ' << aiValue << ' ' << criticalChance  << ' ' <<  criticalDamage;
     file << ' ' << teamId << ' ' << threatLevel << ' ';
     for(int i = 0; i < Variables::damageTypeCount; i++)file << elementalResists[i] << ' ';
     if(bleeds)file << 1 << ' ';
     else file << 0 << ' ';
     file << possessedWeapons << ' ';
     for(int i = 0; i < possessedWeapons; i++)file << weapons[i]->getWeaponId() << ' ' << weapons[i]->getAmmoCurrent() << ' ';
+}
+
+void Entity::loadGeneric(std::fstream& file)
+{
+    file >> health >> coords->X >> coords->Y >> coords->angle >> coords->speedX >> coords->speedY >> maximumHealth  >> aiValue >> criticalChance  >>  criticalDamage;
+    file >> teamId >> threatLevel;
+    for(int i = 0; i < Variables::damageTypeCount; i++)file >> elementalResists[i];
+    int bleedsValue;
+    file >> bleedsValue;
+    file >> possessedWeapons;
+    int weaponIds[possessedWeapons];
+    int weaponsAmmos[possessedWeapons];
+    for(int i = 0; i < possessedWeapons; i++)
+    {
+        file >> weaponIds[i] >> weaponsAmmos[i];
+        weapons[i] = new Weapon();
+        WeaponLoader::loadWeapon(weapons[i], weaponIds[i]);
+        weapons[i]->setAmmoCurrent(weaponsAmmos[i]);
+    }
+    this->setStartingTile();
 }

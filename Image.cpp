@@ -23,6 +23,7 @@ Image::Image(int count, std::string paths[], bool isMask) {
     }
     this->order = LOOP;
     this->state = BASIC;
+    imagePath = paths[0];
 }
 
 Image::~Image() {
@@ -147,4 +148,8 @@ void Image::specificImage(int imageNo)
 {
     currentImage = imageNo;
     currentImage %= imageCount;
+}
+
+std::string Image::getImagePath() const {
+    return imagePath;
 }

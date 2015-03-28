@@ -68,3 +68,8 @@ void Attributes::save(std::fstream& file)
 {
     file << strength << ' ' << speed << ' ' << inteligence << ' ' << accuracy << ' ';
 }
+
+void Attributes::load(std::fstream& file)
+{
+    file >> strength >> speed >> inteligence >> accuracy;
+}

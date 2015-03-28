@@ -19,6 +19,7 @@
 #include "RemoteCharges.h"
 #include "ObstacleDoor.h"
 #include "DoorFactory.h"
+#include "Explosives.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -193,6 +194,8 @@ void AllEntities::applyModifiers()
 
 void AllEntities::setPlayer(Entity* player) {
     this->player = player;
+    Variables::offsetX = player->getCoords()->X - Variables::RES_WIDTH/2;
+    Variables::offsetY = player->getCoords()->Y - (Variables::RES_HEIGHT - 100)/2;
 }
 
 void AllEntities::save(std::fstream& file)
@@ -203,7 +206,7 @@ void AllEntities::save(std::fstream& file)
         Entity *temp = *i;
         temp->save(file);
     }
-    file << std::endl;
+    file << "END" << std::endl;
 }
 
 bool AllEntities::isOnList(Entity* entity)
@@ -216,4 +219,32 @@ bool AllEntities::isOnList(Entity* entity)
         if(temp == entity)result = true;
     }
     return result;
+}
+
+void AllEntities::load(std::fstream& file)
+{
+    std::string fileInput;
+    do{
+        file >> fileInput;
+        Entity *newEntity = NULL;
+        if(fileInput == "CH")newEntity = new Chest(true);
+        if(fileInput == "TU")newEntity = new Turret(true);
+        if(fileInput == "RC")newEntity = new RemoteCharges(true);
+        if(fileInput == "OD")newEntity = new ObstacleDoor(true);
+        if(fileInput == "WA")newEntity = new Obstacle(true);
+        if(fileInput == "CW")newEntity = new Obstacle(true);
+        if(fileInput == "EB")newEntity = new ExplosiveBarrel(true);
+        if(fileInput == "SP")newEntity = new Spawner(true);
+        if(fileInput == "MO")newEntity = new Monster(true);
+        if(fileInput == "BR")newEntity = new BuffRod(true);
+        if(fileInput == "EX")newEntity = new Explosives(true);
+        if(fileInput == "OB")newEntity = new Obstacle(true);
+        
+        if(newEntity != NULL)newEntity->load(file);
+        if(fileInput == "RC")addRemoteCharge(newEntity);
+        if(fileInput == "WA")dynamic_cast<Obstacle*>(newEntity)->setAsWall();
+        if(fileInput == "CW")dynamic_cast<Obstacle*>(newEntity)->setAsCornerWall((newEntity->getCoords()->angle/90) + 2);
+        
+        if(newEntity != NULL)addEntity(newEntity);
+    }while(fileInput != "END");
 }

@@ -28,6 +28,7 @@ public:
     std::string virtual getFilePath();
     
     void save(std::fstream &file);
+    void load(std::fstream &file);
 protected:
     void virtual activate();
     void virtual deactivate();

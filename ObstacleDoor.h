@@ -13,6 +13,7 @@
 class ObstacleDoor : public Obstacle, public UsableObject{
 public:
     ObstacleDoor(double X, double Y);
+    ObstacleDoor(bool isLoad);
     virtual ~ObstacleDoor();
     void setAngle(bool vertical);
     void use();
@@ -20,6 +21,7 @@ public:
     void display();
     bool isBarricade();
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     Image *closedImage;
     Image *openImage;

@@ -18,6 +18,15 @@ BuffRod::BuffRod(GenericBuffer * buff) {
     image = new Image(1, paths, true);
     this->health = 10;
 }
+
+BuffRod::BuffRod(bool isLoad)
+{
+    coords = new Coordinates();
+    coords->width = Variables::tileSize;
+    coords->height = Variables::tileSize;
+    std::string paths[] = {"images/bufferRod.png"};
+    image = new Image(1, paths, true);
+}
 void BuffRod::update()
 {
     
@@ -50,6 +59,16 @@ void BuffRod::save(std::fstream& file)
 {
     file << "BR" << std::endl;
     saveGeneric(file);
-    file << this->buffer->GetBuffType()  << ' ' <<  this->buffer->GetBuffValue()  << ' ';
+    file << this->buffer->GetBuffType()  << ' ' <<  this->buffer->GetBuffValue()  << ' '
+         << static_cast<DistanceBuffer*>(buffer)->GetDistance() << ' ';
     file << std::endl;
+}
+
+void BuffRod::load(std::fstream& file)
+{
+    loadGeneric(file);
+    double type, value, distance;
+    file >> type >> value >> distance;
+    GenericBuffer *buff = new DistanceBuffer(type, value, distance);
+    buffer = buff;
 }

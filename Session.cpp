@@ -27,7 +27,8 @@ void Session::create()
     mouse = new MouseControl();
     hud = new HUD();
     map = new Map();
-    map->createLevels();
+//    map->createLevels();
+    this->loadSave();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -86,7 +87,10 @@ void Session::update()
 
 void Session::loadSave()
 {
-    
+    std::fstream file;
+    file.open("saves/save01.txt", std::ios::in);
+    map->load(file);
+    file.close();
 }
 
 void Session::loadNew()

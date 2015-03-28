@@ -43,6 +43,16 @@ Monster::Monster() {
     bleeds = true;
 }
 
+Monster::Monster(bool isLoad)
+{
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 1.25;
+    this->coords->speedY = 1.25;
+    bleeds = true;
+}
+
 Monster::Monster(double X, double Y)
 {
     this->coords = new Coordinates();
@@ -82,8 +92,7 @@ void Monster::update()
         this->move(x,y);
     }
     checkForAttack();
-    this->weapons[0]->update();
-    this->weapons[1]->update();
+    for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
     this->updateBuffers();
 }
 
@@ -171,6 +180,15 @@ void Monster::save(std::fstream& file)
 {
     file << "MO" << std::endl;
     saveGeneric(file);
-    file << expirience << ' ';
+    file << expirience << ' ' << this->image->getImagePath() << ' ';
     file << std::endl;
+}
+
+void Monster::load(std::fstream& file)
+{
+    loadGeneric(file);
+    std::string paths[] = {"images/monster2.png"};
+    file >> expirience >> paths[0];
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
 }

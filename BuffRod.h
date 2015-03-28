@@ -12,12 +12,14 @@
 
 class BuffRod : public Entity {
 public:
+    BuffRod(bool isLoad);
     BuffRod(GenericBuffer * buff);
     void update();
     void display();
     void setCoords(double X, double Y);
     void executeAgony();
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     GenericBuffer *buffer;
 };

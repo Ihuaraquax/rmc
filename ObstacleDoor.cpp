@@ -17,6 +17,9 @@ ObstacleDoor::ObstacleDoor(double X, double Y) {
     this->armor = 1;
     this->coords->height = Variables::tileSize;
     this->coords->width = Variables::tileSize;
+    this->coords->angle = 0;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
     std::string paths[] = {"images/blastDoorClosed.jpg"};
     std::string paths2[] = {"images/blastDoorOpen.jpg"};
@@ -29,6 +32,21 @@ ObstacleDoor::ObstacleDoor(double X, double Y) {
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,Y)->setObstacle(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,Y)->addToEntityList(this);
     image = NULL;
+}
+
+ObstacleDoor::ObstacleDoor(bool isLoad)
+{
+    coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string paths[] = {"images/blastDoorClosed.jpg"};
+    std::string paths2[] = {"images/blastDoorOpen.jpg"};
+    this->closedImage = new Image(1, paths, true);
+    this->openImage = new Image(1, paths2, true);
+    this->closedImage->state = NORMAL;
+    this->openImage->state = NORMAL;
 }
 
 ObstacleDoor::~ObstacleDoor() {
@@ -105,9 +123,26 @@ void ObstacleDoor::save(std::fstream& file)
 {
     file << "OD" << std::endl;
     saveGeneric(file);
-    if(open) file << 1 << ' ';
+    if(closed) file << 1 << ' ';
     else  file << 0 << ' ';
     if(vertical) file << 1 << ' ';
     else file << 0 << ' ';    
     file << std::endl;
+}
+
+void ObstacleDoor::load(std::fstream& file)
+{
+    loadGeneric(file);
+    int temp;
+    file >> temp;
+    if(temp == 1)closed = true;
+    else closed = false;
+    file >> temp;
+    if(temp == 1)vertical = true;
+    else vertical = false;
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->setObstacle(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToEntityList(this);
+    this->setAngle(vertical);
+    if(vertical)this->coords->X -= Variables::tileSize/2;
+    else this->coords->Y -= Variables::tileSize/2;
 }

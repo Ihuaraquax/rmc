@@ -9,13 +9,26 @@
 #include "Explosion.h"
 #include "globalVariables.h"
 
+RemoteCharges::RemoteCharges(bool isLoad)
+{
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->angle = 0;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string paths[] = {"images/remoteCharge.jpg"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
+}
+
 RemoteCharges::RemoteCharges(double X, double Y) {
     this->coords = new Coordinates();
     this->coords->X = X;
     this->coords->Y = Y;
     this->coords->angle = 0;
-    this->coords->height = 50;
-    this->coords->width = 50;
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
     std::string paths[] = {"images/remoteCharge.jpg"};
@@ -59,4 +72,10 @@ void RemoteCharges::save(std::fstream& file)
     file << "RC" << std::endl;
     saveGeneric(file);
     file << this->signalId << ' ';
+}
+
+void RemoteCharges::load(std::fstream& file)
+{
+    loadGeneric(file);
+    file >> signalId;
 }

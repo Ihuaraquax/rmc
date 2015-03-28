@@ -20,6 +20,7 @@ public:
     std::string getImagePath() const;
     int getAction() const;
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     bool getPointedCoords(double &X, double &Y);
     bool isTileNearToPlayer(double X, double Y);

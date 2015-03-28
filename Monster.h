@@ -13,11 +13,13 @@ class Monster : public Entity {
     friend class MonsterLoader;
 public:
     Monster();
+    Monster(bool isLoad);
     Monster(double X, double Y);
     virtual ~Monster();
     void update();
     void executeAgony();
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     bool turnRight(double targetAngle);
     int getDirection();

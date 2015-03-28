@@ -12,6 +12,7 @@
 class Obstacle : public Entity {
 public:
     Obstacle();
+    Obstacle(bool isLoad);
     Obstacle(double X, double Y);
     void setAsWall();
     void setAsCornerWall(int corner);
@@ -19,6 +20,7 @@ public:
     void display();
     void setStartingTile();
     void save(std::fstream &file);
+    void load(std::fstream &file);
 protected:
     Image *damagedImage;
     Image *damagedImage2;

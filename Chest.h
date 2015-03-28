@@ -16,6 +16,7 @@
 class Chest : public Entity, public UsableObject {
 public:
     Chest();
+    Chest(bool isLoad);
     virtual ~Chest();
     
     void update();
@@ -32,7 +33,8 @@ public:
     
     bool isFieldNotEmpty(int index);
     void swapContent(int firstContentIndex, int secondContentIndex);
-    void save(std::fstream &savefile);
+    void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     Coordinates *backgroundCoords;
     Coordinates **contentCoords;

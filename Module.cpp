@@ -10,6 +10,7 @@
 #include "Module.h"
 #include "WallFactory.h"
 #include "globalVariables.h"
+#include "TileFactory.h"
 
 Module::Module() {
     allDecals = new AllDecals;
@@ -281,8 +282,38 @@ double* Module::getModificatorsTable() const {
 
 void Module::save(std::fstream& file)
 {
-    file << "MO" << std::endl;
     file << "MD" << std::endl;
     for(int i = 0; i < 100; i++)if(this->modificatorsTable[i] != 0)file << i << ' ';
     file << std::endl;
+}
+
+void Module::load(std::fstream& file)
+{ 
+    std::string temp;
+    file >> temp;
+    this->moduleTiles = new ModuleTile*[Variables::tilesPerRoom * Variables::tilesPerRoom];
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            moduleTiles[i*Variables::tilesPerRoom + j] = new ModuleTile(false,0,0);
+            moduleTiles[i*Variables::tilesPerRoom + j]->setCenter(i * Variables::tileSize + 25, j * Variables::tileSize + 25);
+        }
+    for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
+    {
+        TileFactory::addNeighboursToTile(i, moduleTiles);
+    }
+    Floor *floor = new Floor();
+    Coordinates *coords = new Coordinates();
+    coords->X = 0;
+    coords->Y = 0;
+    coords->height = Variables::tileSize * Variables::tilesPerRoom;
+    coords->width = Variables::tileSize * Variables::tilesPerRoom;
+    floor->setCoords(coords);
+    std::string paths[1] = {"images/stoneFloor3.jpg"};
+    Image *image = new Image(1, paths, false);
+    image->state = REPEATING;
+    floor->setImage(image);
+    this->floorTiles.push_back(floor);
+    WallFactory::setModuleBasicWalls(this);
+    TileFactory::defineTilesSides(this);
 }

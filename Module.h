@@ -39,6 +39,7 @@ public:
     double* getModificatorsTable() const;
     
     void save(std::fstream &savefile);
+    void load(std::fstream &file);
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();

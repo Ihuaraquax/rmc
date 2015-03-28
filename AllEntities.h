@@ -28,7 +28,8 @@ public:
     void applyModifiers();
     void setPlayer(Entity* player);
     
-    void save(std::fstream &savefile);
+    void save(std::fstream &file);
+    void load(std::fstream &file);
     bool isOnList(Entity *entity);
 private:
     void deleteDead();

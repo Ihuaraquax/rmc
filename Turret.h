@@ -13,6 +13,7 @@ class Turret : public Entity{
 public:
     Turret();
     Turret(double X, double Y);
+    Turret(bool isLoad);
     void update();
     void display();
     void setRange(int range);
@@ -26,6 +27,7 @@ public:
     void attack(int weapon);
     
     void save(std::fstream& file);
+    void load(std::fstream& file);
 private:
     Image *upperPart;
     Image *lowerPart;

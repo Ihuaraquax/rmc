@@ -24,6 +24,7 @@ public:
     void addAccuracy(int toAdd);
     
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     int strength;
     int speed;

@@ -15,8 +15,8 @@ ExplosiveBarrel::ExplosiveBarrel(double X, double Y, int type) {
     this->coords->X = X;
     this->coords->Y = Y;
     this->coords->angle = 0;
-    this->coords->height = 50;
-    this->coords->width = 50;
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
     std::string paths[] = {"images/barrel.png"};
@@ -30,6 +30,17 @@ ExplosiveBarrel::ExplosiveBarrel(double X, double Y, int type) {
     this->setStartingTile();
     maximumHealth = health;
     this->barrelType = type;
+}
+ExplosiveBarrel::ExplosiveBarrel(bool isLoad)
+{
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string paths[] = {"images/barrel.png"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
 }
 
 void ExplosiveBarrel::update()
@@ -55,4 +66,12 @@ void ExplosiveBarrel::save(std::fstream& file)
     saveGeneric(file);
     file << barrelType << ' ';    
     file << std::endl;
+}
+
+void ExplosiveBarrel::load(std::fstream& file)
+{
+    loadGeneric(file);
+    file >> barrelType;
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->setObstacle(this);
+    this->setStartingTile();
 }

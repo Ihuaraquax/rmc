@@ -27,8 +27,8 @@ Spawner::Spawner() {
     coords->X = X;
     coords->Y = Y;
     this->coords->angle = 0;
-    this->coords->height = 50;
-    this->coords->width = 50;
+    this->coords->height = Variables::tileSize;
+    this->coords->width = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
     std::string paths[] = {"images/spawner.png"};
@@ -45,6 +45,17 @@ Spawner::Spawner() {
     spawnTimer = 5;
     spawnCountdown = 5;
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
+}
+Spawner::Spawner(bool isLoad)
+{
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string paths[] = {"images/spawner.png"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
 }
 
 void Spawner::update()
@@ -96,4 +107,12 @@ void Spawner::save(std::fstream& file)
     this->saveGeneric(file);
     file << monsterType << ' ' << spawnCountdown << ' ' << spawnTimer << ' ';
     file << std::endl;
+}
+
+void Spawner::load(std::fstream& file)
+{
+    loadGeneric(file);
+    file >> monsterType >> spawnCountdown >> spawnTimer;
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
 }

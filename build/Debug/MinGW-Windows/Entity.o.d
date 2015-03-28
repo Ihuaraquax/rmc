@@ -5,7 +5,7 @@ build/Debug/MinGW-Windows/Entity.o: Entity.cpp Entity.h Image.h \
  Inventory.h Chest.h Obstacle.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h CollisionDetector.h \
- TimedBuffer.h DistanceBuffer.h BloodSplatter.h
+ TimedBuffer.h DistanceBuffer.h BloodSplatter.h WeaponLoader.h
 
 Entity.h:
 
@@ -84,3 +84,5 @@ TimedBuffer.h:
 DistanceBuffer.h:
 
 BloodSplatter.h:
+
+WeaponLoader.h:

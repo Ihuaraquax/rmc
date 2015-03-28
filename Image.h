@@ -29,6 +29,7 @@ public:
     void display(Coordinates *coords);
     void nextImage();
     void specificImage(int imageNo);
+    std::string getImagePath() const;
     DisplayState state;
     ImageOrder order;
 private:
@@ -36,6 +37,7 @@ private:
     int imageCount;
     int currentImage;
     int *imageCenterX, *imageCenterY;
+    std::string imagePath;
     void displayMultiples(Coordinates *coords);
     void displayCut(Coordinates *coords);
     void displayNormal(Coordinates *coords);

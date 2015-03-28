@@ -27,7 +27,9 @@ Chest::Chest() {
     }while(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(this->coords->X, this->coords->Y)->getObstacle() != NULL);
     this->coords->width = Variables::tileSize;
     this->coords->height = Variables::tileSize;
-    
+    this->coords->angle = 0;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
     std::string backgroundPaths[] = {"images/chestBackground.png"};
     this->backgroundImage = new Image(1, backgroundPaths, false);
     this->backgroundImage->state = UI;    
@@ -87,6 +89,25 @@ Chest::Chest() {
         if(tile->getAiTile()->getRoomId() == tile->getAdjacentTiles()[i*2 +1]->getAiTile()->getRoomId())
             tile->getAdjacentTiles()[i*2 +1]->setUsableObject(this);
     }
+}
+
+Chest::Chest(bool isLoad)
+{
+    open = false;
+    std::string paths[] = {"images/chest.png"};
+    this->image = new Image(1, paths, true);   
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string backgroundPaths[] = {"images/chestBackground.png"};
+    this->backgroundImage = new Image(1, backgroundPaths, false);
+    this->backgroundImage->state = UI;    
+    this->backgroundCoords = new Coordinates();
+    this->backgroundCoords->X = 800;
+    this->backgroundCoords->Y = 0;
+    health = 10000;    
 }
 
 Chest::~Chest() {
@@ -246,4 +267,54 @@ void Chest::save(std::fstream& file)
     file << chestSize << ' ';
     for(int i = 0; i < chestSize; i++)file << this->contentType[i] << ' ' <<  this->contentValue[i]  << ' ';
     file << std::endl;
+}
+
+void Chest::load(std::fstream& file)
+{
+    loadGeneric(file);
+    file >> chestSize;
+    this->contentType = new int[chestSize];
+    this->contentValue = new int[chestSize];
+    this->contentImages = new Image*[chestSize];
+    this->contentCoords = new Coordinates*[chestSize];
+    for(int i = 0; i < chestSize; i++)file >> contentType[i] >> contentValue[i];
+    for(int i = 0; i < chestSize; i++)
+    {
+        contentCoords[i] = new Coordinates();
+        contentImages[i] = NULL;
+        switch(contentType[i])
+        {
+            case 0:
+                this->loadContent(i, 0, -1);
+                break;
+            case 1: 
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 2: 
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 3: 
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 4: 
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            case 5: 
+                this->loadContent(i, contentType[i], contentValue[i]);
+                break;
+            default:
+                this->loadContent(i, 0, -1);
+                break;
+        }
+        contentCoords[i]->Y = 100 + 150*i;
+    }
+    
+    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
+    tile->setObstacle(this);
+    tile->addToEntityList(this);
+    for(int i = 0; i < 4; i++)
+    {
+        if(tile->getAiTile()->getRoomId() == tile->getAdjacentTiles()[i*2 +1]->getAiTile()->getRoomId())
+            tile->getAdjacentTiles()[i*2 +1]->setUsableObject(this);
+    }
 }

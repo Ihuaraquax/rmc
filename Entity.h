@@ -51,7 +51,9 @@ public:
     
     void adaptToModificators();
     void virtual save(std::fstream &savefile);
+    void virtual load(std::fstream &savefile);
     void saveGeneric(std::fstream &file);
+    void virtual loadGeneric(std::fstream &file);
 protected:
     void move(double X, double Y);
     Entity *isCollision();

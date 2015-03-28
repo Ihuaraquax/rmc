@@ -101,3 +101,13 @@ void Equipment::save(std::fstream& file)
     else file << 0 << ' ';
     for(int i = 0; i < Variables::damageTypeCount; i++)file << resistance[i] << ' ';
 }
+
+void Equipment::load(std::fstream& file)
+{
+    file >> action >> armor >> currentEnergy >> energyConsumption >> energyRegeneration >> maxEnergy >> imagePath;
+    int temp;
+    file >> temp;
+    if(temp == 1)active = true;
+    else active = false;
+    for(int i = 0; i < Variables::damageTypeCount; i++)file >> resistance[i];
+}

@@ -15,10 +15,10 @@ public:
     TileFactory();
     static void createModuleTiles(Module *module, int **tiles);
     static void defineTilesSides(Module *module);
+    static void addNeighboursToTile(int tileNo, ModuleTile** moduleTiles);
 private:
     static ModuleTile *getTile(int X, int Y, ModuleTile** moduleTiles);
     static bool isCorrect(int X, int Y);
-    static void addNeighboursToTile(int tileNo, ModuleTile** moduleTiles);
 };
 
 #endif	/* TILEFACTORY_H */

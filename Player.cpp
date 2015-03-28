@@ -38,6 +38,33 @@ Player::Player() {
     setTestValues();
 }
 
+Player::Player(bool isLoad)
+{
+    std::string paths[] = {"images/player.png"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
+    targetCoords = new Coordinates();
+    this->threatLevel = 0;
+    this->coords = new Coordinates();
+    this->coords->width = 25;
+    this->coords->height = 25;
+    this->coords->speedX = 1.5;
+    this->coords->speedY = 1.5;
+    attributes = new Attributes();  
+    helmet = new Helmet();
+    chestplate = new Chestplate();
+    item = new UsableItem();
+    greaves = new Greaves();
+    ammo = new int[10];
+    weapons = new Weapon*[6];
+    for(int i = 0; i < 6; i++)
+    {
+        weapons[i] = new Weapon();
+        weapons[i]->setPlayerIsWielder(true);
+    }
+    bleeds = true;
+}
+
 
 Player::~Player() {
     delete helmet;
@@ -273,4 +300,42 @@ void Player::save(std::fstream& file)
     this->greaves->save(file);
     this->item->save(file);
     file << std::endl;
+}
+
+
+void Player::load(std::fstream& file)
+{
+    loadGeneric(file);
+    file >> expirience >> selecetedWeaponSet;
+    for(int i = 0; i < 10; i++)file >> ammo[i];
+    attributes->load(file);
+    this->helmet->load(file);
+    this->chestplate->load(file);
+    this->greaves->load(file);
+    this->item->load(file);
+    Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[0]);
+    Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
+    Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves, item);
+    Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
+        (coords->X + coords->width/2, coords->Y + coords->height/2);
+}
+
+void Player::loadGeneric(std::fstream& file)
+{
+    file >> health >> coords->X >> coords->Y >> coords->angle >> coords->speedX >> coords->speedY >> maximumHealth  >> aiValue >> criticalChance  >>  criticalDamage;
+    file >> teamId >> threatLevel;
+    for(int i = 0; i < Variables::damageTypeCount; i++)file >> elementalResists[i];
+    int bleedsValue;
+    file >> bleedsValue;
+    if(bleedsValue = 1)bleeds = true;
+    else bleeds = false;
+    file >> possessedWeapons;
+    int weaponIds[possessedWeapons];
+    int weaponsAmmos[possessedWeapons];
+    for(int i = 0; i < possessedWeapons; i++)
+    {
+        file >> weaponIds[i] >> weaponsAmmos[i];
+        WeaponLoader::loadWeapon(weapons[i], weaponIds[i]);
+        weapons[i]->setAmmoCurrent(weaponsAmmos[i]);
+    }
 }

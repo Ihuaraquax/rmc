@@ -15,6 +15,7 @@ class Map {
 public:
     Map();
     ~Map();
+    void init(int size);
     void createLevels();
     void loadLevels();
     
@@ -25,6 +26,7 @@ public:
     AllEntities* getCurrentAllEntities() const;
     
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     Module ***modules;
     AllEntities ***allEntities;

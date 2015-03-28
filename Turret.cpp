@@ -75,6 +75,20 @@ Turret::Turret(double X, double Y) {
     maximumHealth = health;
 }
 
+Turret::Turret(bool isLoad)
+{
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string lowerPartsPaths[] = {"images/turretLower.png"};
+    std::string upperPartsPaths[] = {"images/turretUpper.png"};
+    this->lowerPart = new Image(1, lowerPartsPaths, true);
+    this->upperPart = new Image(1, upperPartsPaths, true);
+    targetCoords = new Coordinates();
+}
+
 void Turret::setCurrentThreatLevel(int currentThreatLevel) {
     this->currentThreatLevel = currentThreatLevel;
 }
@@ -155,4 +169,13 @@ void Turret::save(std::fstream& file)
     file << "TU" << std::endl;
     this->saveGeneric(file);
     file << std::endl;
+}
+
+void Turret::load(std::fstream& file)
+{
+    loadGeneric(file);
+    
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->propagateTurret(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToEntityList(this);
 }

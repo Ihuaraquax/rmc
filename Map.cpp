@@ -12,10 +12,14 @@
 #include "Player.h"
 
 Map::Map() {
-    modulesTableSize = 1;
     moduleX = 0;
     moduleY = 0;
-    
+    init(3);
+}
+
+void Map::init(int size)
+{
+    modulesTableSize = size;    
     
     modules = new Module**[modulesTableSize];
     allEntities = new AllEntities**[modulesTableSize];
@@ -25,7 +29,7 @@ Map::Map() {
         modules[i] = new Module*[modulesTableSize];
         for(int j = 0; j < modulesTableSize; j++)
         {
-            modules[i][j] = NULL;
+            modules[i][j] = new Module();
             allEntities[i][j] = new AllEntities();
         }
     }
@@ -133,4 +137,28 @@ void Map::save(std::fstream& file)
     file << "MC" << ' ' << moduleX  << ' ' << moduleY << std::endl;
     this->getCurrentAllEntities()->getPlayer()->save(file);
     file << std::endl;
+}
+
+void Map::load(std::fstream& file)
+{
+    file >> modulesTableSize;
+    init(modulesTableSize);
+    
+    for(int i = 0; i < this->modulesTableSize; i++)
+    {
+        for(int j = 0; j < this->modulesTableSize; j++)
+        {
+            this->currentModule = modules[i][j];
+            this->currentAllEntities = allEntities[i][j];
+            this->modules[i][j]->load(file);
+            this->allEntities[i][j]->load(file);
+        }
+    }
+    std::string temp;
+    file >> temp >> moduleX >> moduleY >> temp;
+    currentModule = modules[moduleX][moduleY];
+    currentAllEntities = allEntities[moduleX][moduleY];
+    Entity *player = new Player(true);
+    player->load(file);
+    this->getCurrentAllEntities()->setPlayer(player);
 }

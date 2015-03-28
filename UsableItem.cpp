@@ -123,3 +123,9 @@ void UsableItem::save(std::fstream& file)
 {
     file << action  << ' ' << charges << ' ' << additionalData << ' ';
 }
+
+void UsableItem::load(std::fstream& file)
+{
+    file >>action >> charges >> additionalData;
+    this->imagePath = UsableItemLoader::loadItemPath(action);
+}

@@ -12,8 +12,10 @@
 class Spawner : public Entity{
 public:
     Spawner();
+    Spawner(bool isLoad);
     void update();
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
     void spawnMonster();
     int monsterType;

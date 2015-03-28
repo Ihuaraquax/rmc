@@ -10,10 +10,12 @@
 #include "Entity.h"
 class Explosives : public Entity{
 public:
+    Explosives(bool isLoad);
     Explosives(double X, double Y);
     void update();
     void executeAgony();
     void save(std::fstream &file);
+    void load(std::fstream &file);
 private:
 };
 
