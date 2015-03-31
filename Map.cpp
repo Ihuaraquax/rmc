@@ -75,6 +75,39 @@ void Map::createLevels()
     
     Entity *player = new Player();
     currentAllEntities->setPlayer(player);
+    setTransferBlocks();
+}
+
+void Map::setTransferBlocks()
+{
+    for(int i = 0; i < modulesTableSize; i++)
+    {
+        for(int j = 0; j < modulesTableSize - 1; j++)
+        {
+            ModuleFactory::setTransferBlocks(modules[i][j], 1);
+        }
+    }
+    for(int i = 0; i < modulesTableSize - 1; i++)
+    {
+        for(int j = 0; j < modulesTableSize; j++)
+        {
+            ModuleFactory::setTransferBlocks(modules[i][j], 2);
+        }
+    }
+    for(int i = 1; i < modulesTableSize; i++)
+    {
+        for(int j = 0; j < modulesTableSize; j++)
+        {
+            ModuleFactory::setTransferBlocks(modules[i][j], 0);
+        }
+    }
+    for(int i = 0; i < modulesTableSize; i++)
+    {
+        for(int j = 1; j < modulesTableSize; j++)
+        {
+            ModuleFactory::setTransferBlocks(modules[i][j], 3);
+        }
+    }
 }
 
 void Map::loadLevels()
@@ -161,4 +194,5 @@ void Map::load(std::fstream& file)
     Entity *player = new Player(true);
     player->load(file);
     this->getCurrentAllEntities()->setPlayer(player);
+    setTransferBlocks();
 }

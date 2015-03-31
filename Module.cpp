@@ -66,6 +66,7 @@ void Module::display()
 //    this->displayModuleThreatLevel();
 //    this->displayObstacles();
 //    this->displayBuffs();
+    this->displayTransferBlocks();
 }
 
 void Module::displayBuffs()
@@ -81,6 +82,22 @@ void Module::displayBuffs()
             }
         }
 }
+
+
+void Module::displayTransferBlocks()
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            if(moduleTiles[getModuleIndex(i,j)]->getTransferDirection() != -1)
+            {
+                int X = i * Variables::tileSize + Variables::tileSize/2 - Variables::offsetX;
+                int Y = j * Variables::tileSize + Variables::tileSize/2 - Variables::offsetY;
+                al_draw_circle(X, Y, Variables::tileSize/5, al_map_rgb(0, 255, 0),25);
+            }
+        }
+}
+
 void Module::displayModuleTileAI()
 {
     for(int i = 0; i < Variables::tilesPerRoom; i++)

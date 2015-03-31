@@ -17,6 +17,7 @@ public:
     ~Map();
     void init(int size);
     void createLevels();
+    void setTransferBlocks();
     void loadLevels();
     
     void display();

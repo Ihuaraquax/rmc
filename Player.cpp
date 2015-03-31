@@ -119,6 +119,12 @@ void Player::playerMove(double X, double Y)
     move(X,Y);
     Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
         (coords->X + coords->width/2, coords->Y + coords->height/2);
+    int side = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->getTransferDirection();
+    if(side != -1)
+    {
+        this->setTransferCoords(side);
+        Variables::session->getMap()->switchModule(side);
+    }
 }
 
 void Player::update()
@@ -337,5 +343,21 @@ void Player::loadGeneric(std::fstream& file)
         file >> weaponIds[i] >> weaponsAmmos[i];
         WeaponLoader::loadWeapon(weapons[i], weaponIds[i]);
         weapons[i]->setAmmoCurrent(weaponsAmmos[i]);
+    }
+}
+
+void Player::setTransferCoords(int side)
+{
+    double totalSize = Variables::tileSize * Variables::tilesPerRoom;
+    switch(side)
+    {
+        case 0: coords->Y = totalSize - Variables::tileSize - coords->Y;
+            break;
+        case 1: coords->X = Variables::tileSize + (totalSize - coords->X);
+            break;
+        case 2: coords->Y = Variables::tileSize + (totalSize - coords->Y);
+            break;
+        case 3: coords->X = totalSize - Variables::tileSize - coords->X;
+            break;
     }
 }

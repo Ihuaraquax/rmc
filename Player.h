@@ -59,6 +59,7 @@ public:
     void load(std::fstream &file);
     void loadGeneric(std::fstream &file);
 private:
+    void setTransferCoords(int side);
     void setTestValues();
     void displayIsInBuffRange();
     int selecetedWeaponSet;

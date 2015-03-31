@@ -73,3 +73,35 @@ int **ModuleFactory::createTiles()
     }
     return tiles;
 }
+
+void ModuleFactory::setTransferBlocks(Module* module, int side)
+{
+    int center = (Variables::tilesPerRoom /2) * Variables::tileSize;
+    switch(side)
+    {
+        case 0:
+            module->getModuleTileAt(center, 0)->setTransferDirection(side);
+            module->getModuleTileAt(center + 1 * Variables::tileSize, 0)->setTransferDirection(side);
+            module->getModuleTileAt(center - 1 * Variables::tileSize, 0)->setTransferDirection(side);
+            module->getModuleTileAt(center - 2 * Variables::tileSize, 0)->setTransferDirection(side);
+            break;
+        case 1:
+            module->getModuleTileAt(Variables::tilesPerRoom * Variables::tileSize - 1, center)->setTransferDirection(side);
+            module->getModuleTileAt(Variables::tilesPerRoom * Variables::tileSize - 1, center + 1 * Variables::tileSize)->setTransferDirection(side);
+            module->getModuleTileAt(Variables::tilesPerRoom * Variables::tileSize - 1, center - 1 * Variables::tileSize)->setTransferDirection(side);
+            module->getModuleTileAt(Variables::tilesPerRoom * Variables::tileSize - 1, center - 2 * Variables::tileSize)->setTransferDirection(side);
+            break;
+        case 2:
+            module->getModuleTileAt(center, Variables::tilesPerRoom * Variables::tileSize - 1)->setTransferDirection(side);
+            module->getModuleTileAt(center + 1 * Variables::tileSize, Variables::tilesPerRoom * Variables::tileSize - 1)->setTransferDirection(side);
+            module->getModuleTileAt(center - 1 * Variables::tileSize, Variables::tilesPerRoom * Variables::tileSize - 1)->setTransferDirection(side);
+            module->getModuleTileAt(center - 2 * Variables::tileSize, Variables::tilesPerRoom * Variables::tileSize - 1)->setTransferDirection(side);
+            break;
+        case 3:
+            module->getModuleTileAt(0, center)->setTransferDirection(side);
+            module->getModuleTileAt(0, center + 1 * Variables::tileSize)->setTransferDirection(side);
+            module->getModuleTileAt(0, center - 1 * Variables::tileSize)->setTransferDirection(side);
+            module->getModuleTileAt(0, center - 2 * Variables::tileSize)->setTransferDirection(side);
+            break;
+    }
+}

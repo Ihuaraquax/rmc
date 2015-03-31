@@ -61,6 +61,9 @@ public:
     templateList<GenericBuffer>* getBufferList() const;
     void propagateBuffs(GenericBuffer *buff);
     void depropagateBuffs(GenericBuffer *buff);
+    
+    void setTransferDirection(int transferDirection);
+    int getTransferDirection() const;
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
@@ -77,6 +80,8 @@ private:
     
     void deleteFromTurretList(Entity *toDelete);
     void useDoor(int direction);
+    
+    int transferDirection;
 };
 
 #endif	/* MODULETILE_H */

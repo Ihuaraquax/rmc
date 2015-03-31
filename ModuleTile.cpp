@@ -30,6 +30,7 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
         aiTiles[i] = new AiTile(obstructed, roomId, base);
     }
     this->bufferList = NULL;
+    transferDirection = -1;
 }
 
 ModuleTile::~ModuleTile()
@@ -358,4 +359,12 @@ void ModuleTile::depropagateBuffs(GenericBuffer* buff)
         }
         for(int i = 0; i < 8; i++)if(adjacentTiles[i] != NULL)adjacentTiles[i]->depropagateBuffs(buff);
     }
+}
+
+void ModuleTile::setTransferDirection(int transferDirection) {
+    this->transferDirection = transferDirection;
+}
+
+int ModuleTile::getTransferDirection() const {
+    return transferDirection;
 }
