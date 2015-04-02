@@ -29,4 +29,5 @@ BloodSplatter::BloodSplatter(double X, double Y) {
             break;
     }
     image = new Image(1, paths, true);
+    image->state = NORMAL;
 }

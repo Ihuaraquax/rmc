@@ -82,8 +82,8 @@ void Player::setTestValues()
     this->coords->width = 25;
     this->coords->speedX = 1.5;
     this->coords->speedY = 1.5;
-    Variables::offsetX = coords->X -Variables::RES_WIDTH/2;
-    Variables::offsetY = coords->Y -Variables::RES_HEIGHT/2;
+    Variables::offsetX = (coords->X * Variables::ScaleX) -Variables::RES_WIDTH/2;
+    Variables::offsetY = (coords->Y * Variables::ScaleY) -Variables::RES_HEIGHT/2;
     Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
         (coords->X + coords->width/2, coords->Y + coords->height/2);
     std::string paths[] = {"images/player.png"};
@@ -130,9 +130,11 @@ void Player::playerMove(double X, double Y)
 void Player::update()
 {    
     if(Variables::log == full)std::cout << " player Update Begin ";
-    targetCoords->X = Variables::mouse_x;
-    targetCoords->Y = Variables::mouse_y;
-    coords->angle = Variables::getAngle(coords->X - Variables::offsetX, coords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y);
+    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX;
+    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY;
+    targetCoords->X = Variables::mouse_x * (1/Variables::ScaleX);
+    targetCoords->Y = Variables::mouse_y * (1/Variables::ScaleX);
+    coords->angle = Variables::getAngle(X, Y, targetCoords->X, targetCoords->Y);
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
     helmet->update();
     chestplate->update();
@@ -144,9 +146,9 @@ void Player::update()
 void Player::display()
 {
     image->display(coords);
-    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize(), al_map_rgb(255,0,0), 5);
-    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize(), al_map_rgb(0,0,255), 3);
-    this->displayIsInBuffRange();
+    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize() * Variables::ScaleX, al_map_rgb(255,0,0), 5);
+    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize() * Variables::ScaleX, al_map_rgb(0,0,255), 3);
+//    this->displayIsInBuffRange();
 }
 
 void Player::interact()
@@ -290,8 +292,10 @@ bool Player::isWeapon(int index)
 
 void Player::displayIsInBuffRange()
 {
-    if(this->getValueOfBuffer(0) > 0)al_draw_circle(coords->X + coords->width/2 - Variables::offsetX, coords->Y + coords->height/2 - Variables::offsetY, 5, al_map_rgb(0,255,0), 3);
-    else al_draw_circle(coords->X + coords->width/2 - Variables::offsetX, coords->Y + coords->height/2 - Variables::offsetY, 5, al_map_rgb(255,0,0), 3);
+    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX;
+    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY;
+    if(this->getValueOfBuffer(0) > 0)al_draw_circle(X, Y, 5, al_map_rgb(0,255,0), 3);
+    else al_draw_circle(X, Y, 5, al_map_rgb(255,0,0), 3);
 }
 
 void Player::save(std::fstream& file)

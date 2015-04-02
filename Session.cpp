@@ -27,8 +27,8 @@ void Session::create()
     mouse = new MouseControl();
     hud = new HUD();
     map = new Map();
-//    map->createLevels();
-    this->loadSave();
+    map->createLevels();
+//    this->loadSave();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -115,10 +115,13 @@ void Session::loop()
 
 void Session::updateOffset()
 {
-    if(getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX < 400)Variables::offsetX -= getAllEntities()->getPlayer()->getCoords()->speedX;
-    if(getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX > Variables::RES_WIDTH-400)Variables::offsetX += getAllEntities()->getPlayer()->getCoords()->speedX;
-    if(getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY < 400)Variables::offsetY -= getAllEntities()->getPlayer()->getCoords()->speedY;
-    if(getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY > Variables::RES_HEIGHT-500)Variables::offsetY += getAllEntities()->getPlayer()->getCoords()->speedY;
+    double X = (getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX) * Variables::ScaleX;
+    double Y = (getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY) * Variables::ScaleY;
+    
+    if(X < 400)Variables::offsetX -= getAllEntities()->getPlayer()->getCoords()->speedX;
+    if(X > Variables::RES_WIDTH-400)Variables::offsetX += getAllEntities()->getPlayer()->getCoords()->speedX;
+    if(Y < 400)Variables::offsetY -= getAllEntities()->getPlayer()->getCoords()->speedY;
+    if(Y > Variables::RES_HEIGHT-500)Variables::offsetY += getAllEntities()->getPlayer()->getCoords()->speedY;
 }
 
 void Session::save()

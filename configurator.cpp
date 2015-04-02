@@ -29,8 +29,8 @@ void configurator::config()
     float y = Variables::RES_HEIGHT;
     x /= 1024;
     y /= 768;
-    Variables::ScaleX = x;
-    Variables::ScaleY = y;
+    Variables::ScaleX = 0.5;
+    Variables::ScaleY = 0.5;
     srand(time(NULL));
     al_start_timer(Variables::timer);
     Variables::MouseCoursor = al_load_bitmap("images/coursor.png");

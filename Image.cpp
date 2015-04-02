@@ -69,8 +69,12 @@ void Image::display(Coordinates* coords){
 
 void Image::displayCut(Coordinates* coords)
 {    
+    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX;
+    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY;
     ALLEGRO_BITMAP *cutImage = al_create_sub_bitmap(images[currentImage], 0, 0, coords->width, coords->height);
-    al_draw_bitmap(cutImage, coords->X - Variables::offsetX, coords->Y - Variables::offsetY, 0);
+    double angle = (coords->angle *M_PI)/ 180;
+    al_draw_scaled_rotated_bitmap(images[currentImage], imageCenterX[currentImage], 
+            imageCenterY[currentImage], X, Y, Variables::ScaleX, Variables::ScaleY, angle, 0);
     al_destroy_bitmap(cutImage);
 }
 
@@ -78,11 +82,12 @@ void Image::displayMultiples(Coordinates* coords)
 {
     
     //calculate now so that it wont be necessary later
-    int rowCount = floor(coords->height/(imageCenterY[currentImage] *2 * Variables::ScaleX));
-    int colCount = floor(coords->width/(imageCenterX[currentImage]*2* Variables::ScaleX));
+    int rowCount = floor(coords->height/(imageCenterY[currentImage]));
+    int colCount = floor(coords->width/(imageCenterX[currentImage]));
     
     //initialiaze cutCoordinates
     Coordinates *temp = new Coordinates();
+    temp->angle = 0;
     temp->X = coords->X;
     temp->Y = coords->Y;
     temp->height = imageCenterY[currentImage] * 2;
@@ -95,7 +100,7 @@ void Image::displayMultiples(Coordinates* coords)
         temp->X = coords->X;
         for(int j = 0; j < colCount; j++)
         {
-            displayBasic(temp);
+            displayNormal(temp);
             temp->X += temp->width;
         }
         temp->width = coords->width - (temp->width * colCount);
@@ -126,11 +131,11 @@ void Image::displayBasic(Coordinates* coords)
 
 void Image::displayNormal(Coordinates* coords)
 {
+    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX;
+    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY;
     double angle = (coords->angle *M_PI)/ 180;
-    al_draw_scaled_rotated_bitmap(images[currentImage], 
-            imageCenterX[currentImage], imageCenterY[currentImage], 
-            coords->X + (coords->width/2) - Variables::offsetX, coords->Y + (coords->height/2) - Variables::offsetY, 
-            Variables::ScaleX, Variables::ScaleY, angle, 0);
+    al_draw_scaled_rotated_bitmap(images[currentImage], imageCenterX[currentImage], 
+            imageCenterY[currentImage], X, Y, Variables::ScaleX, Variables::ScaleY, angle, 0);
 }
 
 void Image::displayUI(Coordinates* coords)

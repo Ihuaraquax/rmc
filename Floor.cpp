@@ -6,7 +6,7 @@
  */
 
 #include "Floor.h"
-
+#include "globalVariables.h"
 Floor::Floor() {
 }
 
@@ -24,6 +24,9 @@ void Floor::display()
 void Floor::setCoords(Coordinates* coords)
 {
     this->coords = coords;
+    this->coords->angle = 0;
+    this->coords->width *= Variables::ScaleX;
+    this->coords->height *= Variables::ScaleY;
 }
 
 void Floor::setImage(Image* image)

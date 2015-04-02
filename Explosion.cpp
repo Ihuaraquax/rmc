@@ -46,7 +46,9 @@ void Explosion::update()
 
 void Explosion::display()
 {
-    al_draw_circle(coords->X - Variables::offsetX, coords->Y - Variables::offsetY, radius - health/10, al_map_rgb(200,200,200), 25 - health/10);
+    double X = (coords->X - Variables::offsetX) * Variables::ScaleX;
+    double Y = (coords->Y - Variables::offsetY) * Variables::ScaleY;
+    al_draw_circle(X, Y, (radius - health/10)  * Variables::ScaleX, al_map_rgb(200,200,200), (25 - health/10) * Variables::ScaleX);
 }
 
 void Explosion::dealDamageInSmallArea()

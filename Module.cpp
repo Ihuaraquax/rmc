@@ -16,6 +16,15 @@ Module::Module() {
     allDecals = new AllDecals;
     modificatorsTable = new double[100];
     for(int i = 0; i < 100; i++)modificatorsTable[i] = 0;
+    std::string paths[] = {"images/stoneFloor3.jpg"};
+    image = new Image(1, paths, false);
+    image->state = REPEATING;
+    coords = new Coordinates();
+    coords->X = 0;
+    coords->Y = 0;
+    coords->width = Variables::tileSize * Variables::tilesPerRoom;
+    coords->height = Variables::tileSize * Variables::tilesPerRoom;
+    coords->angle = 0;
 }
 
 Module::~Module()
@@ -49,8 +58,9 @@ void Module::display()
     for(std::list<Floor*>::iterator i = floorTiles.begin(); i != floorTiles.end(); ++i)
     {
         Floor *temp = *i;
-        temp->display();
+//        temp->display();
     }
+    image->display(coords);
     for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
     {
         Wall *temp = *i;

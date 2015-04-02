@@ -51,6 +51,8 @@ private:
     std::list<Floor*> floorTiles;
     std::list<Chest*> chests;
     ModuleTile **moduleTiles;
+    Image *image;
+    Coordinates *coords;
     
     int getModuleIndex(int X, int Y);
     void displayBuffs();

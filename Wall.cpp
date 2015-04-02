@@ -22,8 +22,8 @@ Wall::~Wall()
 
 void Wall::display()
 {
-    double X = coords->X - Variables::offsetX;
-    double Y = coords->Y - Variables::offsetY;
+    double X = (coords->X - Variables::offsetX) * Variables::ScaleX;
+    double Y = (coords->Y - Variables::offsetY) * Variables::ScaleY;
     al_draw_filled_rectangle(X, Y, X + coords->width, Y + coords->height,
             al_map_rgb(health *2.55,0,0));
 }
