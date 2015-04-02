@@ -9,35 +9,26 @@
 #include "globalVariables.h"
 #include "Explosion.h"
 
-Explosives::Explosives(double X, double Y) {
-    this->coords = new Coordinates();
+void Explosives::setCoords(double X, double Y) {
     this->coords->X = X;
     this->coords->Y = Y;
-    this->coords->angle = 0;
-    this->coords->height = Variables::tileSize;
-    this->coords->width = Variables::tileSize;
-    this->coords->speedX = 0;
-    this->coords->speedY = 0;
-    std::string paths[] = {"images/dynamite.png"};
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
-    health = 450;
     teamId = 0;
-    Variables::session->getMap()
-            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
-    maximumHealth = health;
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
 }
 
-Explosives::Explosives(bool isLoad)
+Explosives::Explosives()
 {
     this->coords = new Coordinates();
     this->coords->width = Variables::tileSize;
     this->coords->height = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
+    this->coords->angle = 0;
     std::string paths[] = {"images/dynamite.png"};
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
+    health = 450;
+    maximumHealth = health;
 }
 
 void Explosives::update()
@@ -67,4 +58,11 @@ void Explosives::save(std::fstream& file)
 void Explosives::load(std::fstream& file)
 {
     loadGeneric(file);
+}
+
+Entity *Explosives::CreateExplosives(double X, double Y)
+{
+    Entity *explosives = new Explosives();
+    if(X != -1 && Y != -1)explosives->setCoords(X,Y);
+    return explosives;
 }

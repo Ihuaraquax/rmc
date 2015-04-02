@@ -11,14 +11,16 @@
 
 class RemoteCharges : public Entity {
 public:
-    RemoteCharges(bool isLoad);
-    RemoteCharges(double X, double Y);
+    RemoteCharges();
+    void setCoords(double X, double Y);
     void update();
     void executeAgony();
     void setSignalId(int signalId);
     int getSignalId() const;
     void save(std::fstream &file);
     void load(std::fstream &file);
+    
+    static Entity *CreateCharges(double X, double Y);
 private:
     int signalId;
 };

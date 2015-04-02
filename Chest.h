@@ -16,7 +16,6 @@
 class Chest : public Entity, public UsableObject {
 public:
     Chest();
-    Chest(bool isLoad);
     virtual ~Chest();
     
     void update();
@@ -24,17 +23,21 @@ public:
     void displayContent();
     void loadContent(int index, int type, int value);
     void use();
+    void setRandom();
     
     int getSelectedField();
     int getContentType(int index);
     int getContentValue(int index);
     bool isOpen() const;
     int getSelectedContent() const;
+    void setStartingTile();
     
     bool isFieldNotEmpty(int index);
     void swapContent(int firstContentIndex, int secondContentIndex);
     void save(std::fstream &file);
     void load(std::fstream &file);
+    
+    static Entity *CreateChest(double X, double Y);
 private:
     Coordinates *backgroundCoords;
     Coordinates **contentCoords;

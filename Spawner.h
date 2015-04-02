@@ -12,10 +12,13 @@
 class Spawner : public Entity{
 public:
     Spawner();
-    Spawner(bool isLoad);
+    void setRandomCoords();
     void update();
     void save(std::fstream &file);
     void load(std::fstream &file);
+    void setStartingTile();
+    
+    static Entity *CreateSpawner(double X, double Y);
 private:
     void spawnMonster();
     int monsterType;

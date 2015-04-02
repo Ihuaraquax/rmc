@@ -10,50 +10,33 @@
 
 Obstacle::Obstacle()
 {
-    bleeds = false;
-}
-
-Obstacle::Obstacle(bool isLoad)
-{
-    this->coords = new Coordinates();
-    this->coords->width = Variables::tileSize;
-    this->coords->height = Variables::tileSize;
-    this->coords->angle = 0;
-    this->coords->speedX = 0;
-    this->coords->speedY = 0;
-    std::string paths[] = {"images/table.png"};
-    std::string paths2[] = {"images/tableDamaged1.png"};
-    std::string paths3[] = {"images/tableDamaged2.png"};
-    this->image = new Image(1, paths, true);
-    this->damagedImage = new Image(1, paths2, true);
-    this->damagedImage2 = new Image(1, paths3, true);
-    isWall = false;
-    bleeds = false;
-}
-
-Obstacle::Obstacle(double X, double Y) {
-    this->coords = new Coordinates();
     this->health = 1000;
     this->maximumHealth = health;
-    this->armor = 1;
-    this->coords->height = Variables::tileSize;
+    this->coords = new Coordinates();
     this->coords->width = Variables::tileSize;
-    this->coords->X = X;
-    this->coords->Y = Y;
+    this->coords->height = Variables::tileSize;
     this->coords->angle = 0;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
     std::string paths[] = {"images/table.png"};
     std::string paths2[] = {"images/tableDamaged1.png"};
     std::string paths3[] = {"images/tableDamaged2.png"};
     this->image = new Image(1, paths, true);
     this->damagedImage = new Image(1, paths2, true);
     this->damagedImage2 = new Image(1, paths3, true);
-    this->image->state = NORMAL;
-    maximumHealth = health;
+    image->state = NORMAL;
+    damagedImage->state = NORMAL;
+    damagedImage2->state = NORMAL;
     isWall = false;
     bleeds = false;
+    this->armor = 1;
+    for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
+}
+
+void Obstacle::setCoords(double X, double Y) {
+    this->coords->X = X;
+    this->coords->Y = Y;
+    maximumHealth = health;
 }
 
 void Obstacle::setAsWall()
@@ -67,8 +50,11 @@ void Obstacle::setAsWall()
     std::string paths3[] = {"images/wall/stoneWall1Damaged2.jpg"};
     
     this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
     this->damagedImage = new Image(1, paths2, true);
+    this->damagedImage->state = NORMAL;
     this->damagedImage2 = new Image(1, paths3, true);
+    this->damagedImage2->state = NORMAL;
     isWall = true;
 }
 
@@ -132,4 +118,11 @@ void Obstacle::load(std::fstream& file)
 {
     loadGeneric(file);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
+}
+
+Entity *Obstacle::CreateObstacle(double X, double Y)
+{
+    Entity *obstacle = new Obstacle();
+    if(X != -1 && Y != -1)obstacle->setCoords(X,Y);
+    return obstacle;
 }

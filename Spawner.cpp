@@ -12,6 +12,24 @@
 
 Spawner::Spawner() {
     this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->angle = 0;
+    this->coords->speedX = 0;
+    this->coords->speedY = 0;
+    std::string paths[] = {"images/spawner.png"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
+    health = 2000;
+    teamId = 0;
+    this->threatLevel = 15;
+    maximumHealth = health;
+    spawnTimer = 5;
+    spawnCountdown = 5;
+}
+
+void Spawner::setRandomCoords()
+{
     int X, Y;
     bool isViableTile = false;
     do
@@ -26,36 +44,7 @@ Spawner::Spawner() {
     } while(!isViableTile);
     coords->X = X;
     coords->Y = Y;
-    this->coords->angle = 0;
-    this->coords->height = Variables::tileSize;
-    this->coords->width = Variables::tileSize;
-    this->coords->speedX = 0;
-    this->coords->speedY = 0;
-    std::string paths[] = {"images/spawner.png"};
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
-    health = 2000;
-    teamId = 0;
-    this->threatLevel = 15;
-    Variables::session->getMap()
-            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
-    this->setStartingTile();
-    maximumHealth = health;
     monsterType = rand()%3;
-    spawnTimer = 5;
-    spawnCountdown = 5;
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
-}
-Spawner::Spawner(bool isLoad)
-{
-    this->coords = new Coordinates();
-    this->coords->width = Variables::tileSize;
-    this->coords->height = Variables::tileSize;
-    this->coords->speedX = 0;
-    this->coords->speedY = 0;
-    std::string paths[] = {"images/spawner.png"};
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
 }
 
 void Spawner::update()
@@ -93,13 +82,18 @@ void Spawner::spawnMonster()
     {
         spawnCoords->X = X;
         spawnCoords->Y = Y;
-        Entity *monster = new Monster(spawnCoords->X, spawnCoords->Y);  
+        Entity *monster = Monster::CreateMonster(spawnCoords->X, spawnCoords->Y);  
         MonsterLoader::loadMonster(monster, monsterType, rand()%7);
         Variables::session->getAllEntities()->addEntity(monster);
     }
         delete spawnCoords;
 }
 
+void Spawner::setStartingTile()
+{
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToEntityList(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
+}
 
 void Spawner::save(std::fstream& file)
 {
@@ -115,4 +109,11 @@ void Spawner::load(std::fstream& file)
     file >> monsterType >> spawnCountdown >> spawnTimer;
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
+}
+
+Entity *Spawner::CreateSpawner(double X, double Y)
+{
+    Entity *spawner = new Spawner();
+    if(X == 0 && Y == 0)dynamic_cast<Spawner*>(spawner)->setRandomCoords();
+    return spawner;
 }

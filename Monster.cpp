@@ -12,58 +12,56 @@
 #include "Player.h"
 #include "WeaponLoader.h"
 
-Monster::Monster() {
+Monster::Monster()
+{
+    std::string paths[] = {"images/monster1.png"};
+    this->image = new Image(1, paths, true);
+    this->image->state = NORMAL;
+    health = 500;
+    teamId = 2;
+    this->coords = new Coordinates();
+    this->coords->width = Variables::tileSize;
+    this->coords->height = Variables::tileSize;
+    this->coords->speedX = 1.7;
+    this->coords->speedY = 1.7;
+    this->coords->angle = 0;
+    this->coords->height = 25;
+    this->coords->width = 25;
+    bleeds = true;
+    this->weapons = new Weapon*[2];
+    this->weapons[0] = new Weapon();
+    this->weapons[1] = new Weapon();
+    WeaponLoader::loadWeapon(weapons[0], 0);
+    WeaponLoader::loadWeapon(weapons[1], 0);
+    possessedWeapons = 2;
+    expirience = 100;
+    maximumHealth = health;
+    bleeds = true;
+    this->threatLevel = 10;
+}
+
+void Monster::setCoords(double X, double Y)
+{
+    this->coords->X = X;
+    this->coords->Y = Y;
+}
+
+void Monster::setRandomCoords()
+{
     this->coords = new Coordinates();
     do
     {
         this->coords->X = ((rand()%(Variables::tilesPerRoom - 2)) * Variables::tileSize) + Variables::tileSize;
         this->coords->Y = ((rand()%(Variables::tilesPerRoom - 2)) * Variables::tileSize) + Variables::tileSize;
     }while(isBadSpawningPoint());
-    this->coords->angle = 0;
-    this->coords->height = 25;
-    this->coords->width = 25;
-    this->coords->speedX = 1.7;
-    this->coords->speedY = 1.7;
-    std::string paths[] = {"images/monster1.png"};
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
-    health = 500;
-    teamId = 0;
-    this->weapons = new Weapon*[2];
-    this->weapons[0] = new Weapon();
-    this->weapons[1] = new Weapon();
-    WeaponLoader::loadWeapon(weapons[0], 0);
-    WeaponLoader::loadWeapon(weapons[1], 0);
-    this->threatLevel = 10;
+}
+
+void Monster::setStartingTile()
+{
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToEntityList(this);
     Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
-    this->setStartingTile();
-    expirience = 100;
-    maximumHealth = health;
-    bleeds = true;
 }
-
-Monster::Monster(bool isLoad)
-{
-    this->coords = new Coordinates();
-    this->coords->width = Variables::tileSize;
-    this->coords->height = Variables::tileSize;
-    this->coords->speedX = 1.25;
-    this->coords->speedY = 1.25;
-    bleeds = true;
-}
-
-Monster::Monster(double X, double Y)
-{
-    this->coords = new Coordinates();
-    this->coords->X = X;
-    this->coords->Y = Y;
-    this->weapons = new Weapon*[2];
-    this->weapons[0] = new Weapon();
-    this->weapons[1] = new Weapon();
-    bleeds = true;
-}
-
 
 Monster::~Monster() {
 }
@@ -191,4 +189,12 @@ void Monster::load(std::fstream& file)
     file >> expirience >> paths[0];
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
+}
+
+Entity *Monster::CreateMonster(double X, double Y)
+{
+    Entity *monster = new Monster();
+    if(X != -1 && Y != -1)monster->setCoords(X,Y);
+    else if(X == 0 && Y == 0)dynamic_cast<Monster*>(monster)->setRandomCoords();
+    return monster;
 }

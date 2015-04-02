@@ -8,45 +8,32 @@
 #include "ObstacleDoor.h"
 #include "globalVariables.h"
 
-ObstacleDoor::ObstacleDoor(double X, double Y) {
-    coords = new Coordinates();
-    coords->X = X;
-    coords->Y = Y;
-    this->health = 1000;
-    this->maximumHealth = health;
-    this->armor = 1;
-    this->coords->height = Variables::tileSize;
-    this->coords->width = Variables::tileSize;
-    this->coords->angle = 0;
-    this->coords->speedX = 0;
-    this->coords->speedY = 0;
-    for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
-    std::string paths[] = {"images/blastDoorClosed.jpg"};
-    std::string paths2[] = {"images/blastDoorOpen.jpg"};
-    this->closedImage = new Image(1, paths, true);
-    this->openImage = new Image(1, paths2, true);
-    this->closedImage->state = NORMAL;
-    this->openImage->state = NORMAL;
-    maximumHealth = health;
-    closed = true;
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,Y)->setObstacle(this);
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,Y)->addToEntityList(this);
-    image = NULL;
-}
 
-ObstacleDoor::ObstacleDoor(bool isLoad)
+ObstacleDoor::ObstacleDoor()
 {
     coords = new Coordinates();
     this->coords->width = Variables::tileSize;
     this->coords->height = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
+    this->coords->angle = 0;
+    image = NULL;
     std::string paths[] = {"images/blastDoorClosed.jpg"};
     std::string paths2[] = {"images/blastDoorOpen.jpg"};
     this->closedImage = new Image(1, paths, true);
     this->openImage = new Image(1, paths2, true);
     this->closedImage->state = NORMAL;
     this->openImage->state = NORMAL;
+    this->health = 1000;
+    this->maximumHealth = health;
+    closed = true;
+    this->armor = 1;
+    for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
+}
+
+void ObstacleDoor::setCoords(double X, double Y) {
+    coords->X = X;
+    coords->Y = Y;
 }
 
 ObstacleDoor::~ObstacleDoor() {
@@ -145,4 +132,11 @@ void ObstacleDoor::load(std::fstream& file)
     this->setAngle(vertical);
     if(vertical)this->coords->X -= Variables::tileSize/2;
     else this->coords->Y -= Variables::tileSize/2;
+}
+
+Entity *ObstacleDoor::CreateObstacleDoor(double X, double Y)
+{
+    Entity *obstacleDoor = new ObstacleDoor();
+    if(X != -1 && Y != -1)obstacleDoor->setCoords(X,Y);
+    return obstacleDoor;
 }

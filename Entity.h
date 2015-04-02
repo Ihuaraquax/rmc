@@ -46,7 +46,7 @@ public:
     double getValueOfBuffer(int type);
     void updateBuffers();
     void addBuffer(GenericBuffer *buffer);
-    void setCoords(double X, double Y);
+    void virtual setCoords(double X, double Y);
     EntityShape getShape() const;
     
     void adaptToModificators();

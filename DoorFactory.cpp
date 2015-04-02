@@ -25,7 +25,7 @@ void DoorFactory::createDoors()
                     
                     tile->deleteFromEntityList(tile->getObstacle());
                     tile->getAdjacentTiles()[3]->deleteFromEntityList(tile->getAdjacentTiles()[3]->getObstacle());
-                    Entity *door = new ObstacleDoor(i * Variables::tileSize, j * Variables::tileSize);
+                    Entity *door = ObstacleDoor::CreateObstacleDoor(i * Variables::tileSize, j * Variables::tileSize);
                     Variables::session->getAllEntities()->addEntity(door);
                     dynamic_cast<ObstacleDoor*>(door)->setAngle(true);
                 }
@@ -37,7 +37,7 @@ void DoorFactory::createDoors()
                     
                     tile->deleteFromEntityList(tile->getObstacle());
                     tile->getAdjacentTiles()[5]->deleteFromEntityList(tile->getAdjacentTiles()[5]->getObstacle());
-                    Entity *door = new ObstacleDoor(i * Variables::tileSize, j * Variables::tileSize);
+                    Entity *door = ObstacleDoor::CreateObstacleDoor(i * Variables::tileSize, j * Variables::tileSize);
                     Variables::session->getAllEntities()->addEntity(door);
                     dynamic_cast<ObstacleDoor*>(door)->setAngle(false);
                 }

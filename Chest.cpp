@@ -17,19 +17,18 @@
 
 Chest::Chest() {
     open = false;
-    std::string paths[] = {"images/chest.png"};
-    this->image = new Image(1, paths, true);    
     
     this->coords = new Coordinates();
-    do{
-    this->coords->X = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
-    this->coords->Y = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
-    }while(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(this->coords->X, this->coords->Y)->getObstacle() != NULL);
     this->coords->width = Variables::tileSize;
     this->coords->height = Variables::tileSize;
     this->coords->angle = 0;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
+    
+    std::string paths[] = {"images/chest.png"};
+    this->image = new Image(1, paths, true);    
+    this->image->state = NORMAL;
+    
     std::string backgroundPaths[] = {"images/chestBackground.png"};
     this->backgroundImage = new Image(1, backgroundPaths, false);
     this->backgroundImage->state = UI;    
@@ -37,6 +36,12 @@ Chest::Chest() {
     this->backgroundCoords->X = 800;
     this->backgroundCoords->Y = 0;
     
+    health = 10000;
+    maximumHealth = health;
+}
+
+void Chest::setRandom()
+{
     this->chestSize = rand()%5 + 1;
     this->contentType = new int[chestSize];
     this->contentValue = new int[chestSize];
@@ -79,7 +84,18 @@ Chest::Chest() {
         }
         contentCoords[i]->Y = 100 + 150*i;
     }
-    health = 10000;
+    
+    
+    do{
+    this->coords->X = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
+    this->coords->Y = (5+ (rand()%(Variables::tilesPerRoom - 10))) * Variables::tileSize;
+    }while(Variables::session->getMap()->getCurrentModule()->getModuleTileAt(this->coords->X, this->coords->Y)->getObstacle() != NULL);
+    
+    setStartingTile();
+}
+
+void Chest::setStartingTile()
+{
     
     ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
     tile->setObstacle(this);
@@ -90,26 +106,6 @@ Chest::Chest() {
             tile->getAdjacentTiles()[i*2 +1]->setUsableObject(this);
     }
 }
-
-Chest::Chest(bool isLoad)
-{
-    open = false;
-    std::string paths[] = {"images/chest.png"};
-    this->image = new Image(1, paths, true);   
-    this->coords = new Coordinates();
-    this->coords->width = Variables::tileSize;
-    this->coords->height = Variables::tileSize;
-    this->coords->speedX = 0;
-    this->coords->speedY = 0;
-    std::string backgroundPaths[] = {"images/chestBackground.png"};
-    this->backgroundImage = new Image(1, backgroundPaths, false);
-    this->backgroundImage->state = UI;    
-    this->backgroundCoords = new Coordinates();
-    this->backgroundCoords->X = 800;
-    this->backgroundCoords->Y = 0;
-    health = 10000;    
-}
-
 Chest::~Chest() {
     for(int i = 0; i < chestSize; i++)
     {
@@ -317,4 +313,11 @@ void Chest::load(std::fstream& file)
         if(tile->getAiTile()->getRoomId() == tile->getAdjacentTiles()[i*2 +1]->getAiTile()->getRoomId())
             tile->getAdjacentTiles()[i*2 +1]->setUsableObject(this);
     }
+}
+
+Entity *Chest::CreateChest(double X, double Y)
+{
+    Entity *chest = new Chest();
+    if(X == 0 && Y == 0)dynamic_cast<Chest*>(chest)->setRandom();
+    return chest;
 }

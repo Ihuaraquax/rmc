@@ -9,23 +9,14 @@
 #include "globalVariables.h"
 #include "DistanceBuffer.h"
 
-BuffRod::BuffRod(GenericBuffer * buff) {
-    buffer = buff;
-    coords = new Coordinates();
-    coords->width = 50;
-    coords->height = 50;
-    std::string paths[] = {"images/bufferRod.png"};
-    image = new Image(1, paths, true);
-    this->health = 10;
-}
-
-BuffRod::BuffRod(bool isLoad)
+BuffRod::BuffRod()
 {
     coords = new Coordinates();
     coords->width = Variables::tileSize;
     coords->height = Variables::tileSize;
     std::string paths[] = {"images/bufferRod.png"};
     image = new Image(1, paths, true);
+    this->health = 10;
 }
 void BuffRod::update()
 {
@@ -71,4 +62,23 @@ void BuffRod::load(std::fstream& file)
     file >> type >> value >> distance;
     GenericBuffer *buff = new DistanceBuffer(type, value, distance);
     buffer = buff;
+}
+
+void BuffRod::setBuffer(GenericBuffer* buffer) {
+    this->buffer = buffer;
+}
+
+Entity *BuffRod::CreateBuffRod(double X, double Y)
+{
+    Entity *buffRod = new BuffRod();
+    if(X != -1 && Y != -1)buffRod->setCoords(X,Y);
+    return buffRod;
+}
+
+Entity *BuffRod::CreateBuffRod(double X, double Y, GenericBuffer* buff)
+{
+    Entity *buffRod = new BuffRod();
+    if(X != -1 && Y != -1)buffRod->setCoords(X,Y);
+    dynamic_cast<BuffRod*>(buffRod)->setBuffer(buff);
+    return buffRod;
 }

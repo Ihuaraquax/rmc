@@ -9,7 +9,7 @@
 #include "Explosion.h"
 #include "globalVariables.h"
 
-RemoteCharges::RemoteCharges(bool isLoad)
+RemoteCharges::RemoteCharges()
 {
     this->coords = new Coordinates();
     this->coords->width = Variables::tileSize;
@@ -20,25 +20,15 @@ RemoteCharges::RemoteCharges(bool isLoad)
     std::string paths[] = {"images/remoteCharge.jpg"};
     this->image = new Image(1, paths, true);
     this->image->state = NORMAL;
+    health = 450;
+    maximumHealth = health;
 }
 
-RemoteCharges::RemoteCharges(double X, double Y) {
-    this->coords = new Coordinates();
+void RemoteCharges::setCoords(double X, double Y) {
     this->coords->X = X;
     this->coords->Y = Y;
-    this->coords->angle = 0;
-    this->coords->width = Variables::tileSize;
-    this->coords->height = Variables::tileSize;
-    this->coords->speedX = 0;
-    this->coords->speedY = 0;
-    std::string paths[] = {"images/remoteCharge.jpg"};
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
-    health = 450;
     teamId = 0;
-    Variables::session->getMap()
-            ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
-    maximumHealth = health;
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToThreatLevel(threatLevel);
     signalId = 1;
 }
 
@@ -78,4 +68,11 @@ void RemoteCharges::load(std::fstream& file)
 {
     loadGeneric(file);
     file >> signalId;
+}
+
+Entity *RemoteCharges::CreateCharges(double X, double Y)
+{
+    Entity *charge = new RemoteCharges();
+    if(X != -1 && Y != -1)charge->setCoords(X,Y);
+    return charge;
 }

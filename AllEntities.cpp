@@ -38,17 +38,20 @@ void AllEntities::init()
     createObstacles();
     for(int i = 0; i < 1; i++)
     {
-        Entity *monster = new Monster();
+        Entity *monster = Monster::CreateMonster(0,0);
+        monster->setStartingTile();
         entityList.push_back(monster);
     }
     for(int i = 0; i < 5; i++)
     {
-        Entity *spawner = new Spawner();
+        Entity *spawner = Spawner::CreateSpawner(0,0);
+        spawner->setStartingTile();
         entityList.push_back(spawner);
     }
     for(int i = 0; i < 5; i++)
     {
-        Entity *chest = new Chest();
+        Entity *chest = Chest::CreateChest(0,0);
+        chest->setStartingTile();
         entityList.push_back(chest);
     }
 }
@@ -146,8 +149,8 @@ void AllEntities::createObstacles()
             if(isObstacle && Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * Variables::tileSize, j * Variables::tileSize)->getObstacle() == NULL)
             {
                 Entity *obstacle;
-                if(rand()%5 == 0)obstacle = new ExplosiveBarrel(i * Variables::tileSize, j * Variables::tileSize, 0);
-                else obstacle = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
+                if(rand()%5 == 0)obstacle = ExplosiveBarrel::CreateBarrel(i * Variables::tileSize, j * Variables::tileSize);
+                else obstacle = Obstacle::CreateObstacle(i * Variables::tileSize, j * Variables::tileSize);
                 Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * Variables::tileSize, j * Variables::tileSize)->setObstacle(obstacle);
                 this->addEntity(obstacle);
             }
@@ -227,24 +230,28 @@ void AllEntities::load(std::fstream& file)
     do{
         file >> fileInput;
         Entity *newEntity = NULL;
-        if(fileInput == "CH")newEntity = new Chest(true);
-        if(fileInput == "TU")newEntity = new Turret(true);
-        if(fileInput == "RC")newEntity = new RemoteCharges(true);
-        if(fileInput == "OD")newEntity = new ObstacleDoor(true);
-        if(fileInput == "WA")newEntity = new Obstacle(true);
-        if(fileInput == "CW")newEntity = new Obstacle(true);
-        if(fileInput == "EB")newEntity = new ExplosiveBarrel(true);
-        if(fileInput == "SP")newEntity = new Spawner(true);
-        if(fileInput == "MO")newEntity = new Monster(true);
-        if(fileInput == "BR")newEntity = new BuffRod(true);
-        if(fileInput == "EX")newEntity = new Explosives(true);
-        if(fileInput == "OB")newEntity = new Obstacle(true);
+        if(fileInput == "CH")newEntity = Chest::CreateChest(-1, -1);
+        if(fileInput == "TU")newEntity = Turret::CreateTurret(-1, -1);
+        if(fileInput == "RC")newEntity = RemoteCharges::CreateCharges(-1, -1);
+        if(fileInput == "OD")newEntity = ObstacleDoor::CreateObstacleDoor(-1, -1);
+        if(fileInput == "WA")newEntity = Obstacle::CreateObstacle(-1, -1);
+        if(fileInput == "CW")newEntity = Obstacle::CreateObstacle(-1, -1);
+        if(fileInput == "EB")newEntity = ExplosiveBarrel::CreateBarrel(-1, -1);
+        if(fileInput == "SP")newEntity = Spawner::CreateSpawner(-1, -1);
+        if(fileInput == "MO")newEntity = Monster::CreateMonster(-1, -1);
+        if(fileInput == "BR")newEntity = BuffRod::CreateBuffRod(-1, -1);
+        if(fileInput == "EX")newEntity = Explosives::CreateExplosives(-1, -1);
+        if(fileInput == "OB")newEntity = Obstacle::CreateObstacle(-1, -1);
         
         if(newEntity != NULL)newEntity->load(file);
         if(fileInput == "RC")addRemoteCharge(newEntity);
         if(fileInput == "WA")dynamic_cast<Obstacle*>(newEntity)->setAsWall();
         if(fileInput == "CW")dynamic_cast<Obstacle*>(newEntity)->setAsCornerWall((newEntity->getCoords()->angle/90) + 2);
         
-        if(newEntity != NULL)addEntity(newEntity);
+        if(newEntity != NULL)
+        {
+            newEntity->setStartingTile();
+            addEntity(newEntity);
+        }
     }while(fileInput != "END");
 }

@@ -40,7 +40,7 @@ void UsableItem::activate()
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
             if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
-                Entity *turret = new Turret(X, Y);
+                Entity *turret = Turret::CreateTurret(X,Y);
                 Variables::session->getAllEntities()->addEntity(turret);
             } else charges++;
             break;
@@ -49,8 +49,7 @@ void UsableItem::activate()
             if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
                 GenericBuffer *buff = new DistanceBuffer(0, 1, 200);
-                BuffRod *rod = new BuffRod(buff);
-                rod->setCoords(X,Y);
+                Entity *rod = BuffRod::CreateBuffRod(X, Y, buff);
                 Variables::session->getAllEntities()->addEntity(rod);
             } else charges++;
             break;
@@ -58,7 +57,7 @@ void UsableItem::activate()
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
             if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
-                Entity *explosive = new Explosives(X, Y);
+                Entity *explosive = Explosives::CreateExplosives(X, Y);
                 Variables::session->getAllEntities()->addEntity(explosive);
             } else charges++;
             break;
@@ -66,7 +65,7 @@ void UsableItem::activate()
             tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
             if(isTileNearToPlayer(X,Y) && acceptableCoords && tile->getEntityList() == NULL)
             {
-                Entity *explosive = new RemoteCharges(X, Y);
+                Entity *explosive = RemoteCharges::CreateCharges(X, Y);
                 Variables::session->getAllEntities()->addRemoteCharge(explosive);
                 dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->changeItem(100);
                 this->additionalData = dynamic_cast<RemoteCharges*>(explosive)->getSignalId();

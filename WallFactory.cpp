@@ -179,13 +179,13 @@ void WallFactory::generateWalls(int **temp)
         {
             if(temp[i][j] == 1)
             {
-                Entity *wall = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
+                Entity *wall = Obstacle::CreateObstacle(i * Variables::tileSize, j * Variables::tileSize);
                 dynamic_cast<Obstacle*>(wall)->setAsWall();
                 Variables::session->getAllEntities()->addEntity(wall);
             }
             else if(temp[i][j] > 1)
             {
-                Entity *wall = new Obstacle(i * Variables::tileSize, j * Variables::tileSize);
+                Entity *wall = Obstacle::CreateObstacle(i * Variables::tileSize, j * Variables::tileSize);
                 dynamic_cast<Obstacle*>(wall)->setAsCornerWall(temp[i][j]);
                 Variables::session->getAllEntities()->addEntity(wall);
             }

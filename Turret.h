@@ -12,8 +12,8 @@
 class Turret : public Entity{
 public:
     Turret();
-    Turret(double X, double Y);
-    Turret(bool isLoad);
+    void setTestValues();
+    void setCoords(double X, double Y);
     void update();
     void display();
     void setRange(int range);
@@ -28,6 +28,7 @@ public:
     
     void save(std::fstream& file);
     void load(std::fstream& file);
+    static Entity *CreateTurret(double X, double Y);
 private:
     Image *upperPart;
     Image *lowerPart;

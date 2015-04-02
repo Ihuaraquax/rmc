@@ -12,8 +12,7 @@
 class Obstacle : public Entity {
 public:
     Obstacle();
-    Obstacle(bool isLoad);
-    Obstacle(double X, double Y);
+    void setCoords(double X, double Y);
     void setAsWall();
     void setAsCornerWall(int corner);
     bool isBarricade();
@@ -21,6 +20,8 @@ public:
     void setStartingTile();
     void save(std::fstream &file);
     void load(std::fstream &file);
+    
+    static Entity *CreateObstacle(double X, double Y);
 protected:
     Image *damagedImage;
     Image *damagedImage2;
