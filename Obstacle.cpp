@@ -18,12 +18,9 @@ Obstacle::Obstacle()
     this->coords->angle = 0;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    std::string paths[] = {"images/table.png"};
-    std::string paths2[] = {"images/tableDamaged1.png"};
-    std::string paths3[] = {"images/tableDamaged2.png"};
-    this->image = new Image(1, paths, true);
-    this->damagedImage = new Image(1, paths2, true);
-    this->damagedImage2 = new Image(1, paths3, true);
+    this->image = Variables::images->getTable();
+    this->damagedImage = Variables::images->getDamagedTable();
+    this->damagedImage2 = Variables::images->getDamagedTable2();
     image->state = NORMAL;
     damagedImage->state = NORMAL;
     damagedImage2->state = NORMAL;
@@ -41,20 +38,9 @@ void Obstacle::setCoords(double X, double Y) {
 
 void Obstacle::setAsWall()
 {
-    delete image;
-    delete damagedImage;
-    delete damagedImage2;
-    
-    std::string paths[] = {"images/wall/stoneWall1.jpg"};
-    std::string paths2[] = {"images/wall/stoneWall1Damaged.jpg"};
-    std::string paths3[] = {"images/wall/stoneWall1Damaged2.jpg"};
-    
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
-    this->damagedImage = new Image(1, paths2, true);
-    this->damagedImage->state = NORMAL;
-    this->damagedImage2 = new Image(1, paths3, true);
-    this->damagedImage2->state = NORMAL;
+    this->image = Variables::images->getWall();
+    this->damagedImage = Variables::images->getDamagedWall();
+    this->damagedImage2 = Variables::images->getDamagedWall2();
     isWall = true;
 }
 
@@ -64,20 +50,10 @@ void Obstacle::setAsCornerWall(int corner)
     isWall = true;
     this->coords->angle = 0;
     for(int i = 0; i < corner-2; i++)coords->angle += 90;
-    delete image;
-    delete damagedImage;
-    delete damagedImage2;
     
-    std::string paths[] = {"images/wall/cornerWall1.png"};
-    std::string paths2[] = {"images/wall/cornerWallDamaged.png"};
-    std::string paths3[] = {"images/wall/cornerWallDamaged2.png"};
-    
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
-    this->damagedImage = new Image(1, paths2, true);
-    this->damagedImage->state = NORMAL;
-    this->damagedImage2 = new Image(1, paths3, true);
-    this->damagedImage2->state = NORMAL;
+    this->image = Variables::images->getCornerWall();
+    this->damagedImage = Variables::images->getDamagedCornerWall();
+    this->damagedImage2 = Variables::images->getDamagedCornerWall2();
 }
 
 

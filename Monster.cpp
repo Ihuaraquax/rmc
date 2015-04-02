@@ -14,9 +14,7 @@
 
 Monster::Monster()
 {
-    std::string paths[] = {"images/monster1.png"};
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
+    image = Variables::images->getMonster1();
     health = 500;
     teamId = 2;
     this->coords = new Coordinates();

@@ -14,6 +14,7 @@
 
 Session::Session() {
     configurator::config();
+    Variables::images = new GlobalImages();
 }
 
 Map* Session::getMap() const {
@@ -27,8 +28,8 @@ void Session::create()
     mouse = new MouseControl();
     hud = new HUD();
     map = new Map();
-    map->createLevels();
-//    this->loadSave();
+//    map->createLevels();
+    this->loadSave();
 }
 
 AllEntities* Session::getAllEntities() const {

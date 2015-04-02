@@ -14,7 +14,7 @@
 Map::Map() {
     moduleX = 0;
     moduleY = 0;
-    init(1);
+    init(3);
 }
 
 void Map::init(int size)

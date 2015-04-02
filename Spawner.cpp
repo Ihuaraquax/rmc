@@ -17,9 +17,7 @@ Spawner::Spawner() {
     this->coords->angle = 0;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    std::string paths[] = {"images/spawner.png"};
-    this->image = new Image(1, paths, true);
-    this->image->state = NORMAL;
+    this->image = Variables::images->getSpawner();
     health = 2000;
     teamId = 0;
     this->threatLevel = 15;

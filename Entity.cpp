@@ -42,7 +42,7 @@ Entity::Entity() {
 
 Entity::~Entity() {
     delete coords;
-    if(image != NULL)delete image;
+    image = NULL;
 }
 
 void Entity::display(){

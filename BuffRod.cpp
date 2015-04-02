@@ -14,10 +14,15 @@ BuffRod::BuffRod()
     coords = new Coordinates();
     coords->width = Variables::tileSize;
     coords->height = Variables::tileSize;
-    std::string paths[] = {"images/bufferRod.png"};
-    image = new Image(1, paths, true);
+    image = Variables::images->getBuffRod();
     this->health = 10;
 }
+
+BuffRod::~BuffRod()
+{
+    image = NULL;
+}   
+
 void BuffRod::update()
 {
     

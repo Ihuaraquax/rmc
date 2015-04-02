@@ -4,7 +4,8 @@ build/Debug/MinGW-Windows/Floor.o: Floor.cpp Floor.h Image.h \
  Inventory.h Chest.h UsableObject.h Obstacle.h Entity.h Wall.h Door.h \
  templateList.h GenericBuffer.h EntityShape.h AllEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Room.h ModuleTile.h \
- AiTile.h AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h
+ AiTile.h AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h \
+ GlobalImages.h
 
 Floor.h:
 
@@ -75,3 +76,5 @@ Decal.h:
 GameSubstateEnum.h:
 
 LogLevels.h:
+
+GlobalImages.h:

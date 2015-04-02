@@ -54,6 +54,7 @@ int const Variables::tileSize = 50;
 int Variables::currentFrame = 0;
 
 LogLevel Variables::log = none;
+GlobalImages *Variables::images;
 
 int main(int argc, char** argv) {
     Variables::session = new Session();

@@ -60,6 +60,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Explosives.o \
 	${OBJECTDIR}/Floor.o \
 	${OBJECTDIR}/GenericBuffer.o \
+	${OBJECTDIR}/GlobalImages.o \
 	${OBJECTDIR}/Greaves.o \
 	${OBJECTDIR}/Grenade.o \
 	${OBJECTDIR}/HUD.o \
@@ -251,6 +252,11 @@ ${OBJECTDIR}/GenericBuffer.o: GenericBuffer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/GenericBuffer.o GenericBuffer.cpp
+
+${OBJECTDIR}/GlobalImages.o: GlobalImages.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/GlobalImages.o GlobalImages.cpp
 
 ${OBJECTDIR}/Greaves.o: Greaves.cpp 
 	${MKDIR} -p ${OBJECTDIR}

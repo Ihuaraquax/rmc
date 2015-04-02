@@ -21,6 +21,7 @@
 #include "Session.h"
 #include "GameSubstateEnum.h"
 #include "LogLevels.h"
+#include "GlobalImages.h"
 
 enum GAME_STATE
 {
@@ -60,6 +61,8 @@ struct Variables
     static LogLevel log;
     
     static GAME_SUBSTATE substate;
+    
+    static GlobalImages *images;
     
     void static giveFactors(double angle, double &x_factor, double &y_factor)
      {

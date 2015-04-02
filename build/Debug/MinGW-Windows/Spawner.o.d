@@ -5,7 +5,7 @@ build/Debug/MinGW-Windows/Spawner.o: Spawner.cpp Spawner.h Entity.h \
  Equipment.h UsableItem.h Inventory.h Chest.h Obstacle.h AllEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h \
- Monster.h MonsterLoader.h
+ GlobalImages.h Monster.h MonsterLoader.h
 
 Spawner.h:
 
@@ -78,6 +78,8 @@ Decal.h:
 GameSubstateEnum.h:
 
 LogLevels.h:
+
+GlobalImages.h:
 
 Monster.h:
 

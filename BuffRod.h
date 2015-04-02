@@ -13,6 +13,7 @@
 class BuffRod : public Entity {
 public:
     BuffRod();
+    ~BuffRod();
     void update();
     void display();
     void setCoords(double X, double Y);

@@ -23,9 +23,7 @@ void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
             monster->coords->width = 25;
             monster->coords->speedX = 1.7;
             monster->coords->speedY = 1.7;
-            paths[0] = "images/monster1.png";
-            monster->image = new Image(1, paths, true);
-            monster->image->state = NORMAL;
+            monster->image = Variables::images->getMonster1();
             monster->health = 500;
             monster->teamId = 0;
             WeaponLoader::loadWeapon(monster->weapons[0], 0);
@@ -42,9 +40,7 @@ void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
             monster->coords->width = 25;
             monster->coords->speedX = 1.7;
             monster->coords->speedY = 1.7;
-            paths[0] = "images/monster2.png";
-            monster->image = new Image(1, paths, true);
-            monster->image->state = NORMAL;
+            monster->image = Variables::images->getMonster2();
             monster->health = 500;
             monster->teamId = 0;
             WeaponLoader::loadWeapon(monster->weapons[0], 0);
@@ -61,9 +57,7 @@ void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
             monster->coords->width = 25;
             monster->coords->speedX = 1.7;
             monster->coords->speedY = 1.7;
-            paths[0] = "images/monster3.png";
-            monster->image = new Image(1, paths, true);
-            monster->image->state = NORMAL;
+            monster->image = Variables::images->getMonster3();
             monster->health = 500;
             monster->teamId = 0;
             WeaponLoader::loadWeapon(monster->weapons[0], 0);
