@@ -32,6 +32,7 @@ public:
     Image* getBloodSplatter1() const;
     Image* getBuffRod() const;
     Image* getSpawner() const;
+    Image* getProjectile() const;
     
 private:
     Image *table;
@@ -59,6 +60,7 @@ private:
     Image *bloodSplatter5;
     
     Image *spawner;
+    Image *projectile;
 };
 
 #endif	/* GLOBALIMAGES_H */

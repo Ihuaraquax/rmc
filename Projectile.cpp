@@ -14,8 +14,7 @@ Projectile::Projectile() {
     this->coords = new Coordinates();
     this->coords->height = 16;
     this->coords->width = 16;
-    std::string paths[] = {"images/bullet.png"};
-    this->image = new Image(1, paths, true);
+    this->image = Variables::images->getProjectile();
     health = 1;
     image->state = NORMAL;
     threatLevel = 0;

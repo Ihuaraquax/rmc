@@ -7,15 +7,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Module.h</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/GlobalImages.h</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Image.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/configurator.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Obstacle.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Map.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/Monster.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/Session.cpp</file>
+            <file>file:/D:/lothar/c++/gitRepo/rmc/GlobalImages.cpp</file>
             <file>file:/D:/lothar/c++/gitRepo/rmc/main.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Player.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/UsableItem.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Wall.cpp</file>
-            <file>file:/D:/lothar/c++/gitRepo/rmc/Module.cpp</file>
         </group>
     </open-files>
 </project-private>

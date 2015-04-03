@@ -73,6 +73,10 @@ GlobalImages::GlobalImages() {
     paths[0] = "images/wall/cornerWallDamaged2.png";
     damagedCornerWall2 = new Image(1, paths, true);
     damagedCornerWall2->state = NORMAL;
+    
+    paths[0] = "images/bullet.png";
+    projectile = new Image(1, paths, true);
+    projectile->state = NORMAL;
 }
 
 GlobalImages::~GlobalImages()
@@ -102,6 +106,7 @@ GlobalImages::~GlobalImages()
     delete bloodSplatter5;
     
     delete spawner;
+    delete projectile;
 }
 
 Image* GlobalImages::getMonster3() const {
@@ -178,4 +183,8 @@ Image* GlobalImages::getBuffRod() const {
 
 Image* GlobalImages::getSpawner() const {
     return spawner;
+}
+
+Image* GlobalImages::getProjectile() const {
+    return projectile;
 }

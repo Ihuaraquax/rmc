@@ -91,12 +91,12 @@ void Player::setTestValues()
     this->image->state = NORMAL;
     health = 10000;
     maximumHealth = health + 100;
-    WeaponLoader::loadWeapon(weapons[0], 7);
-    WeaponLoader::loadWeapon(weapons[1], 8);
-    WeaponLoader::loadWeapon(weapons[2], 10);
-    WeaponLoader::loadWeapon(weapons[3], 11);
-    WeaponLoader::loadWeapon(weapons[4], 13);
-    WeaponLoader::loadWeapon(weapons[5], 14);
+    WeaponLoader::loadWeapon(weapons[0], 15);
+    WeaponLoader::loadWeapon(weapons[1], 16);
+    WeaponLoader::loadWeapon(weapons[2], 17);
+    WeaponLoader::loadWeapon(weapons[3], 18);
+    WeaponLoader::loadWeapon(weapons[4], 19);
+    WeaponLoader::loadWeapon(weapons[5], 20);
     this->changeHelmet(0);
     this->changeChestplate(0);
     this->changeGreaves(0);
