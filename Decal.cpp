@@ -13,7 +13,7 @@ Decal::Decal() {
 }
 
 Decal::~Decal() {
-    if(image != NULL)delete image;
+    image = NULL;
     if(coords != NULL)delete coords;    
 }
 
