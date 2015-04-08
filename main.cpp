@@ -52,6 +52,7 @@ int const Variables::damageTypeCount = 6;
 int const Variables::tilesPerRoom = 40;
 int const Variables::tileSize = 50;
 int Variables::currentFrame = 0;
+bool Variables::isMonsterShoot = true;
 
 LogLevel Variables::log = none;
 GlobalImages *Variables::images;

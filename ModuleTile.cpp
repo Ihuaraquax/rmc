@@ -57,7 +57,6 @@ void ModuleTile::update()
         }
         turrets = turrets->next;
     }
-    aiTile->resetAIValue();
 }
 
 Door **ModuleTile::getDoorList() const {

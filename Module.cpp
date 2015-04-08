@@ -181,9 +181,12 @@ void Module::update()
 
 void Module::updateTileAiTarget(int X, int Y)
 {
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+            moduleTiles[getModuleIndex(i,j)]->getAiTile()->resetAIValue();
     int index = getModuleIndex(X / Variables::tileSize, Y / Variables::tileSize);
-    moduleTiles[index]->getAiTile()->getTarget()->X = X;
-    moduleTiles[index]->getAiTile()->getTarget()->Y = Y;
+    moduleTiles[index]->getAiTile()->getTarget()->X = X - Variables::offsetX;
+    moduleTiles[index]->getAiTile()->getTarget()->Y = Y - Variables::offsetY;
 }
 
 bool Module::isObstructed(int X, int Y)

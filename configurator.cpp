@@ -38,4 +38,5 @@ void configurator::config()
     ALLEGRO_MOUSE_CURSOR *temp = al_create_mouse_cursor(Variables::MouseCoursor, 16, 16);
     al_set_mouse_cursor(Variables::display, temp);
     Variables::basicFont = al_load_ttf_font("pirulen.ttf",14,0 );
+    Variables::isMonsterShoot = false;
 }

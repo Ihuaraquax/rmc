@@ -73,6 +73,7 @@ private:
     int *ammo;
     
     Attributes *attributes;
+    int keyValue;
 };
 
 #endif	/* PLAYER_H */

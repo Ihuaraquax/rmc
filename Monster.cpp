@@ -87,7 +87,7 @@ void Monster::update()
         Variables::giveFactors(coords->angle, x,y);
         this->move(x,y);
     }
-    checkForAttack();
+    if(Variables::isMonsterShoot)checkForAttack();
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
     this->updateBuffers();
 }
@@ -128,7 +128,7 @@ void Monster::checkForAttack()
     if(tile->getAiTile()->getTarget()->X >= 0)
     {
         this->targetCoords = tile->getAiTile()->getTarget();
-        this->attack(true);
+        for(int i = 0; i < possessedWeapons; i++)this->attack(i);
     }
     else
     {
@@ -137,7 +137,7 @@ void Monster::checkForAttack()
             if(tile->getAdjacentTiles()[i]->getAiTile()->getTarget()->X >= 0)
             {
                 this->targetCoords = tile->getAdjacentTiles()[i]->getAiTile()->getTarget();
-                this->attack(0);
+                for(int i = 0; i < possessedWeapons; i++)this->attack(i);
                 break;
             }
     }

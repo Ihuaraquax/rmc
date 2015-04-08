@@ -18,6 +18,7 @@
 #include "TimedBuffer.h"
 
 Player::Player() {
+    keyValue = -1;
     targetCoords = new Coordinates();
     this->threatLevel = 0;
     this->coords = new Coordinates();
@@ -117,8 +118,7 @@ void Player::setTestValues()
 void Player::playerMove(double X, double Y)
 {
     move(X,Y);
-    Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
-        (coords->X + coords->width/2, coords->Y + coords->height/2);
+    Variables::session->getMap()->getCurrentModule()->updateTileAiTarget(coords->X + coords->width/2, coords->Y + coords->height/2);
     int side = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->getTransferDirection();
     if(side != -1)
     {
@@ -302,7 +302,7 @@ void Player::save(std::fstream& file)
 {
     file << "PL" << std::endl;
     saveGeneric(file);
-    file << ' ' << expirience << ' ' << selecetedWeaponSet << ' ';
+    file << ' ' << expirience << ' ' << selecetedWeaponSet << ' ' << keyValue << ' ';
     for(int i = 0; i < 10; i++)file << ammo[i] << ' ';
     attributes->save(file);
     this->helmet->save(file);
@@ -316,7 +316,7 @@ void Player::save(std::fstream& file)
 void Player::load(std::fstream& file)
 {
     loadGeneric(file);
-    file >> expirience >> selecetedWeaponSet;
+    file >> expirience >> selecetedWeaponSet >> keyValue;
     for(int i = 0; i < 10; i++)file >> ammo[i];
     attributes->load(file);
     this->helmet->load(file);
