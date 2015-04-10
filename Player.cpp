@@ -350,6 +350,14 @@ void Player::loadGeneric(std::fstream& file)
     }
 }
 
+void Player::setKeyValue(int keyValue) {
+    this->keyValue = keyValue;
+}
+
+int Player::getKeyValue() const {
+    return keyValue;
+}
+
 void Player::setTransferCoords(int side)
 {
     double totalSize = Variables::tileSize * Variables::tilesPerRoom;

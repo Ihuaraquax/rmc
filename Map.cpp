@@ -10,6 +10,7 @@
 #include "Map.h"
 #include "ModuleFactory.h"
 #include "Player.h"
+#include "Key.h"
 
 Map::Map() {
     moduleX = 0;
@@ -53,9 +54,9 @@ Map::~Map()
 }
 
 void Map::createLevels()
-{
-    
+{    
     ModuleFactory factory;
+    int keyX = rand()%modulesTableSize, keyY = rand()%modulesTableSize;
     
     for(int i = 0; i < modulesTableSize; i++)
     {
@@ -67,6 +68,12 @@ void Map::createLevels()
             currentModule = modules[i][j];
             allEntities[i][j]->init();
             allEntities[i][j]->applyModifiers();
+            if(i == keyX && j == keyY)
+            {
+                Entity *keyHolder = KeyHolder::CreateKeyHolder(50, 50);
+                allEntities[i][j]->addEntity(keyHolder);
+                modules[i][j]->getModuleTileAt(50, 50)->setObstacle(keyHolder);
+            }
         }
     }
     

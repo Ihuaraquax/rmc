@@ -20,6 +20,7 @@
 #include "ObstacleDoor.h"
 #include "DoorFactory.h"
 #include "Explosives.h"
+#include "Key.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -126,7 +127,7 @@ void AllEntities::deleteDead()
     while (i != entityList.end())
     {
         Entity *toDelete = *i;
-        if (toDelete->getHealth() <= 0)
+        if(toDelete != NULL)if(toDelete->getHealth() <= 0)
         {
             toDelete->executeAgony();
             if(toDelete == player)Variables::status = END;
@@ -242,6 +243,7 @@ void AllEntities::load(std::fstream& file)
         if(fileInput == "BR")newEntity = BuffRod::CreateBuffRod(-1, -1);
         if(fileInput == "EX")newEntity = Explosives::CreateExplosives(-1, -1);
         if(fileInput == "OB")newEntity = Obstacle::CreateObstacle(-1, -1);
+        if(fileInput == "KH")newEntity = KeyHolder::CreateKeyHolder(-1, -1);
         
         if(newEntity != NULL)newEntity->load(file);
         if(fileInput == "RC")addRemoteCharge(newEntity);

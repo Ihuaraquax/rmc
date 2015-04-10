@@ -28,8 +28,8 @@ Entity::Entity() {
     bufferList = NULL;
     bleeds= false;
     shape = rectangle;
-    health = 0;
-    maximumHealth = 0;
+    health = 1;
+    maximumHealth = 1;
     aiValue = 0;
     criticalChance = 0;
     criticalDamage = 0;

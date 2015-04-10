@@ -29,7 +29,7 @@ public:
     void virtual attack(int weapon);
     
     void virtual setStartingTile();
-    void getHit(int damage, int damageType);
+    void virtual getHit(int damage, int damageType);
     
     Coordinates* getCoords() const;
     int getHealth() const;

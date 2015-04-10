@@ -63,7 +63,7 @@ struct Variables
     static GAME_SUBSTATE substate;
     
     static GlobalImages *images;
-    
+    static bool isMonsterShoot;
     void static giveFactors(double angle, double &x_factor, double &y_factor)
      {
      x_factor = cos(((angle - 90)* M_PI) / 180 );

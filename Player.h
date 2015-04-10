@@ -58,6 +58,8 @@ public:
     void save(std::fstream &file);
     void load(std::fstream &file);
     void loadGeneric(std::fstream &file);
+    void setKeyValue(int keyValue);
+    int getKeyValue() const;
 private:
     void setTransferCoords(int side);
     void setTestValues();
