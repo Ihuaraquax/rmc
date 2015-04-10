@@ -112,6 +112,7 @@ void ModuleTile::addToEntityList(Entity* toAdd)
 
 void ModuleTile::deleteFromEntityList(Entity* toDelete)
 {
+    if(toDelete == NULL)return;
     if(toDelete->isBarricade())
     {
         this->obstacle = NULL;

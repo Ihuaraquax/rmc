@@ -46,7 +46,6 @@ void Monster::setCoords(double X, double Y)
 
 void Monster::setRandomCoords()
 {
-    this->coords = new Coordinates();
     do
     {
         this->coords->X = ((rand()%(Variables::tilesPerRoom - 2)) * Variables::tileSize) + Variables::tileSize;
@@ -193,6 +192,5 @@ Entity *Monster::CreateMonster(double X, double Y)
 {
     Entity *monster = new Monster();
     if(X != -1 && Y != -1)monster->setCoords(X,Y);
-    else if(X == 0 && Y == 0)dynamic_cast<Monster*>(monster)->setRandomCoords();
     return monster;
 }
