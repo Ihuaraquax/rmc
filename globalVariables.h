@@ -25,7 +25,7 @@
 
 enum GAME_STATE
 {
-    MENU, GAME_START, GAME, END
+    MENU, GAME_START, GAME, END, WIN
 };
 
 struct Variables

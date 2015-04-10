@@ -27,7 +27,6 @@ enum MainGameState
 class Session {
 public:
     Session();
-    Session(const Session& orig);
     virtual ~Session();
     void display();
     void create();
@@ -52,6 +51,8 @@ private:
     KeyboardControl *keyboard;
     Map *map;
     HUD *hud;
+    Image *winImage;
+    Coordinates *coords;
 };
 
 #endif	/* SESSION_H */

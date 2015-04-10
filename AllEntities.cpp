@@ -21,6 +21,7 @@
 #include "DoorFactory.h"
 #include "Explosives.h"
 #include "Key.h"
+#include "Lock.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -244,6 +245,7 @@ void AllEntities::load(std::fstream& file)
         if(fileInput == "EX")newEntity = Explosives::CreateExplosives(-1, -1);
         if(fileInput == "OB")newEntity = Obstacle::CreateObstacle(-1, -1);
         if(fileInput == "KH")newEntity = KeyHolder::CreateKeyHolder(-1, -1);
+        if(fileInput == "LO")newEntity = Lock::CreateLock(-1, -1);
         
         if(newEntity != NULL)newEntity->load(file);
         if(fileInput == "RC")addRemoteCharge(newEntity);

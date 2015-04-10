@@ -15,6 +15,12 @@
 Session::Session() {
     configurator::config();
     Variables::images = new GlobalImages();
+    std::string paths[] = {"images/GameWin.png"};
+    winImage = new Image(1,paths,false);
+    winImage->state = UI;
+    coords = new Coordinates();
+    coords->X = 0;
+    coords->Y = 0;
 }
 
 Map* Session::getMap() const {
@@ -28,8 +34,8 @@ void Session::create()
     mouse = new MouseControl();
     hud = new HUD();
     map = new Map();
-//    map->createLevels();
-    this->loadSave();
+    map->createLevels();
+//    this->loadSave();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -44,14 +50,13 @@ HUD* Session::getHud() const {
     return hud;
 }
 
-Session::Session(const Session& orig) {
-}
-
 Session::~Session() {
     delete mainMenu;
     delete keyboard;
     delete mouse;
     delete map;
+    delete winImage;
+    delete coords;
 }
 
 void Session::display()
@@ -70,6 +75,11 @@ void Session::display()
         }
         al_flip_display();
         }
+    if(Variables::status == WIN)
+    {
+        winImage->display(coords);
+        al_flip_display();
+    }
 }
 
 void Session::update()

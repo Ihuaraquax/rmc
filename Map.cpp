@@ -11,6 +11,7 @@
 #include "ModuleFactory.h"
 #include "Player.h"
 #include "Key.h"
+#include "Lock.h"
 
 Map::Map() {
     moduleX = 0;
@@ -57,6 +58,12 @@ void Map::createLevels()
 {    
     ModuleFactory factory;
     int keyX = rand()%modulesTableSize, keyY = rand()%modulesTableSize;
+    int lockX, lockY;
+    do
+    {
+        lockX = rand()%modulesTableSize;
+        lockY = rand()%modulesTableSize;
+    }while(lockX == keyX && lockY == keyY);
     
     for(int i = 0; i < modulesTableSize; i++)
     {
@@ -72,7 +79,11 @@ void Map::createLevels()
             {
                 Entity *keyHolder = KeyHolder::CreateKeyHolder(50, 50);
                 allEntities[i][j]->addEntity(keyHolder);
-                modules[i][j]->getModuleTileAt(50, 50)->setObstacle(keyHolder);
+            }
+            if(i == lockX && j == lockY)
+            {
+                Entity *lock = Lock::CreateLock(500, 500);
+                allEntities[i][j]->addEntity(lock);
             }
         }
     }
