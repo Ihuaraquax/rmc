@@ -321,3 +321,12 @@ Entity *Chest::CreateChest(double X, double Y)
     if(X == 0 && Y == 0)dynamic_cast<Chest*>(chest)->setRandom();
     return chest;
 }
+
+void Chest::executeAgony()
+{
+    for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
+    {
+        Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteUsableObject(this);
+        Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteFromEntityList(this);
+    }
+}

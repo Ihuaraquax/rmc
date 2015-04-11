@@ -140,3 +140,12 @@ Entity *ObstacleDoor::CreateObstacleDoor(double X, double Y)
     if(X != -1 && Y != -1)obstacleDoor->setCoords(X,Y);
     return obstacleDoor;
 }
+
+void ObstacleDoor::executeAgony()
+{
+    for(int i = 0; i < Variables::tilesPerRoom * Variables::tilesPerRoom; i++)
+    {
+        Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteUsableObject(this);
+        Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteFromEntityList(this);
+    }
+}

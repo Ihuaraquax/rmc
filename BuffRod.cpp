@@ -83,7 +83,7 @@ Entity *BuffRod::CreateBuffRod(double X, double Y)
 Entity *BuffRod::CreateBuffRod(double X, double Y, GenericBuffer* buff)
 {
     Entity *buffRod = new BuffRod();
-    if(X != -1 && Y != -1)buffRod->setCoords(X,Y);
     dynamic_cast<BuffRod*>(buffRod)->setBuffer(buff);
+    if(X != -1 && Y != -1)buffRod->setCoords(X,Y);
     return buffRod;
 }

@@ -53,6 +53,7 @@ public:
     int getCenterY() const;
     int getCenterX() const;
     bool setUsableObject(UsableObject *object);
+    void deleteUsableObject(UsableObject *toDelete);
     
     AiTile *getAiTileAt(double X, double Y);
     void useObject();
@@ -79,7 +80,6 @@ private:
     templateList<GenericBuffer> *bufferList;
     
     void deleteFromTurretList(Entity *toDelete);
-    void useDoor(int direction);
     
     int transferDirection;
 };

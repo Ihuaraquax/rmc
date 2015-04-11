@@ -38,14 +38,14 @@ void AllEntities::init()
     player = NULL;
     DoorFactory::createDoors();
     createObstacles();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 0; i++)
     {
         Entity *monster = Monster::CreateMonster(-1,-1);
         dynamic_cast<Monster*>(monster)->setRandomCoords();
         monster->setStartingTile();
         this->addEntity(monster);
     }
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 0; i++)
     {
         Entity *spawner = Spawner::CreateSpawner(0,0);
         spawner->setStartingTile();

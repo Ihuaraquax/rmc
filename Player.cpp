@@ -92,7 +92,7 @@ void Player::setTestValues()
     this->image->state = NORMAL;
     health = 10000;
     maximumHealth = health + 100;
-    WeaponLoader::loadWeapon(weapons[0], 15);
+    WeaponLoader::loadWeapon(weapons[0], 0);
     WeaponLoader::loadWeapon(weapons[1], 16);
     WeaponLoader::loadWeapon(weapons[2], 17);
     WeaponLoader::loadWeapon(weapons[3], 18);
@@ -101,7 +101,7 @@ void Player::setTestValues()
     this->changeHelmet(0);
     this->changeChestplate(0);
     this->changeGreaves(0);
-    this->changeItem(5);
+    this->changeItem(3);
     teamId = 1;
     possessedWeapons = 6;
     aiValue = 100;

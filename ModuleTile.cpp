@@ -112,13 +112,16 @@ void ModuleTile::addToEntityList(Entity* toAdd)
 
 void ModuleTile::deleteFromEntityList(Entity* toDelete)
 {
-    if(toDelete == NULL)return;
-    if(toDelete->isBarricade())
+    if(toDelete == NULL)
+    {
+    std::cout << "  a ";
+        return;
+    }
+    if(toDelete == this->obstacle)
     {
         this->obstacle = NULL;
         this->aiTile->setObstructed(false);
         this->aiTile->setBaseAIValue(0);
-        for(int i = 0; i < 4; i++)if(adjacentTiles[i*2 +1] != NULL)this->setUsableObject(adjacentTiles[i*2 +1]->object);
     }
     if(entityList != NULL && entityList->find(toDelete) != NULL)
     {
@@ -236,25 +239,6 @@ void ModuleTile::deleteDoor(Door* toDelete)
     }
 }
 
-void ModuleTile::useDoor(int direction)
-{
-    if(doorList[direction] != NULL)
-    {
-        bool newValue = doorList[direction]->isOpen();
-        switch(direction)
-        {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-    }
-}
-
 int ModuleTile::getCenterY() const {
     return centerY;
 }
@@ -298,7 +282,7 @@ void ModuleTile::deleteFromTurretList(Entity* toDelete)
 bool ModuleTile::setUsableObject(UsableObject* object)
 {
     bool result = false;
-    if(this->object == NULL && this->obstacle == NULL)
+    if(this->object == NULL)
     {
         this->object = object;
         result = true;
@@ -311,10 +295,6 @@ void ModuleTile::useObject()
     if(object != NULL)
     {
         object->use();
-        for(int i = 0; i < 4; i++)
-        {
-            this->useDoor(i);
-        }
     }
 }
 
@@ -367,4 +347,9 @@ void ModuleTile::setTransferDirection(int transferDirection) {
 
 int ModuleTile::getTransferDirection() const {
     return transferDirection;
+}
+
+void ModuleTile::deleteUsableObject(UsableObject *toDelete)
+{
+    if(toDelete == this->object)object = NULL;
 }

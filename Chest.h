@@ -36,6 +36,7 @@ public:
     void swapContent(int firstContentIndex, int secondContentIndex);
     void save(std::fstream &file);
     void load(std::fstream &file);
+    void executeAgony();
     
     static Entity *CreateChest(double X, double Y);
 private:

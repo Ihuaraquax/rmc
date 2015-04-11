@@ -22,6 +22,7 @@ public:
     bool isBarricade();
     void save(std::fstream &file);
     void load(std::fstream &file);
+    void executeAgony();
     
     static Entity *CreateObstacleDoor(double X, double Y);
 private:
