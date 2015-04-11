@@ -82,8 +82,8 @@ void Image::displayMultiples(Coordinates* coords)
 {
     
     //calculate now so that it wont be necessary later
-    int rowCount = floor(coords->height/(imageCenterY[currentImage]));
-    int colCount = floor(coords->width/(imageCenterX[currentImage]));
+    int rowCount = floor(coords->height/(imageCenterY[currentImage])) /2;
+    int colCount = floor(coords->width/(imageCenterX[currentImage])) /2;
     
     //initialiaze cutCoordinates
     Coordinates *temp = new Coordinates();

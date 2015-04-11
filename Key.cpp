@@ -20,8 +20,10 @@ KeyHolder::KeyHolder() {
     coords->speedY = 0;
     std::string paths[] = {"images/KeyHolder.jpg"};
     this->image = new Image(1, paths, true);
+    image->state = NORMAL;
     paths[0] = "images/Holder.jpg";
     emptyImage = new Image(1, paths, true);
+    emptyImage->state = NORMAL;
 }
 
 void KeyHolder::update()

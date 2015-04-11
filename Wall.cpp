@@ -24,8 +24,7 @@ void Wall::display()
 {
     double X = (coords->X - Variables::offsetX) * Variables::ScaleX;
     double Y = (coords->Y - Variables::offsetY) * Variables::ScaleY;
-    al_draw_filled_rectangle(X, Y, X + coords->width, Y + coords->height,
-            al_map_rgb(health *2.55,0,0));
+    al_draw_filled_rectangle(X, Y, X + coords->width * Variables::ScaleX, Y + coords->height * Variables::ScaleY, al_map_rgb(255,0,0));
 }
 
 void Wall::update()
@@ -50,9 +49,7 @@ Coordinates* Wall::getCoords() const {
 
 void Wall::getHit(int damage, int damageType)
 {
-    int damageInflicted = (damage - armor) * (1-elementalResists[damageType]);
-    if(damageInflicted < 0)damageInflicted = 0;
-    health -= damageInflicted;
+    //indestructible object
 }
 
 int Wall::getWallSize() const {

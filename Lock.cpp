@@ -19,6 +19,7 @@ Lock::Lock() {
     coords->speedY = 0;
     std::string paths[] = {"images/Lock.jpg"};
     this->image = new Image(1, paths, true);
+    image->state = NORMAL;
 }
 
 void Lock::update()
