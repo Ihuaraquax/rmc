@@ -24,7 +24,6 @@ void configurator::config()
     Variables::event_queue = al_create_event_queue();
 //    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
     Variables::display = al_create_display(Variables::RES_WIDTH, Variables::RES_HEIGHT);
-    al_register_event_source(Variables::event_queue, al_get_timer_event_source(Variables::timer));
     float x = Variables::RES_WIDTH;
     float y = Variables::RES_HEIGHT;
     x /= 1024;

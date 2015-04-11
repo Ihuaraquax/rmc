@@ -36,6 +36,7 @@ void Session::create()
     map = new Map();
     map->createLevels();
 //    this->loadSave();
+    al_register_event_source(Variables::event_queue, al_get_timer_event_source(Variables::timer));
 }
 
 AllEntities* Session::getAllEntities() const {
