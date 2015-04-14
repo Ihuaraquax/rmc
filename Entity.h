@@ -26,6 +26,7 @@ public:
     
     void virtual update();
     void virtual display();
+    void virtual displayPlan();
     void virtual attack(int weapon);
     
     void virtual setStartingTile();
@@ -54,6 +55,7 @@ public:
     void virtual load(std::fstream &savefile);
     void saveGeneric(std::fstream &file);
     void virtual loadGeneric(std::fstream &file);
+    void setPlanCoords(int X, int Y);
 protected:
     void move(double X, double Y);
     Entity *isCollision();
@@ -61,6 +63,7 @@ protected:
     
     Image *image;
     Coordinates *coords;
+    Coordinates *planCoords;
     Weapon **weapons;
     int possessedWeapons;
     int health;

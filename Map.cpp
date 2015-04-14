@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Key.h"
 #include "Lock.h"
+#include "globalVariables.h"
 
 Map::Map() {
     moduleX = 0;
@@ -135,8 +136,22 @@ void Map::loadLevels()
 
 void Map::display()
 {
-    currentModule->display();
-    currentAllEntities->display();
+    if(Variables::substate == plan)
+    {
+        for(int i = 0; i < modulesTableSize; i++)
+        {
+            for(int j = 0; j < modulesTableSize; j++)
+            {
+                modules[i][j]->displayPlan();
+                allEntities[i][j]->displayPlan();
+            }
+        }
+    }
+    else 
+    {
+        currentModule->display();
+        currentAllEntities->display();
+    }
 }
 
 void Map::update()
@@ -213,4 +228,28 @@ void Map::load(std::fstream& file)
     player->load(file);
     this->getCurrentAllEntities()->setPlayer(player);
     setTransferBlocks();
+}
+
+void Map::setPlanCoords()
+{
+    for(int i = 0; i < this->modulesTableSize; i++)
+    {
+        for(int j = 0; j < this->modulesTableSize; j++)
+        {
+            allEntities[i][j]->setPlanCoords(i,j);
+            modules[i][j]->setPlanCoords(i,j);
+        }
+    }
+}
+
+void Map::setOffest()
+{
+    if(Variables::substate == plan)
+    {
+        Variables::offsetX = (moduleX * Variables::tileSize * Variables::tilesPerRoom / 2) - Variables::RES_WIDTH/2;
+        Variables::offsetY = (moduleY * Variables::tileSize * Variables::tilesPerRoom / 2) - Variables::RES_HEIGHT/2;
+    } else {
+        Variables::offsetX = currentAllEntities->getPlayer()->getCoords()->X - Variables::RES_WIDTH/2;
+        Variables::offsetY = currentAllEntities->getPlayer()->getCoords()->Y - Variables::RES_HEIGHT/2;
+    }
 }

@@ -24,7 +24,6 @@ ModuleFactory::ModuleFactory() {
 
 void ModuleFactory::setModuleBasics(Module* module)
 {    
-    setModuleBasicFloor(module);
     setModuleRooms(module);
 }
 
@@ -41,13 +40,12 @@ void ModuleFactory::setModuleBasicFloor(Module* module)
     Image *image = new Image(1, paths, false);
     image->state = REPEATING;
     floor->setImage(image);
-    module->floorTiles.push_back(floor);
 }
 
 void ModuleFactory::setModuleRooms(Module* module)
 {
     int **tiles = createTiles();
-    int roomCount = 5;
+    int roomCount = rand()%5 + 3;
     
     Room **rooms = RoomFactory::createRooms(roomCount, tiles);    
     

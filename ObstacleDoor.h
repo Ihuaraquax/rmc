@@ -19,6 +19,7 @@ public:
     void use();
     void update();
     void display();
+    void displayPlan();
     bool isBarricade();
     void save(std::fstream &file);
     void load(std::fstream &file);

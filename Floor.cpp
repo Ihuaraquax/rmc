@@ -39,3 +39,14 @@ void Floor::update()
     
 }
 
+void Floor::displayPlan()
+{
+    floorPattern->display(planCoords);
+}
+
+
+void Floor::setPlanCoords(int X, int Y)
+{
+    planCoords->X = (coords->X + X * (Variables::tileSize * Variables::tilesPerRoom + 100));
+    planCoords->Y = (coords->Y + Y * (Variables::tileSize * Variables::tilesPerRoom + 100));
+}

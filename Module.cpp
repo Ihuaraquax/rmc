@@ -17,8 +17,8 @@ Module::Module() {
     modificatorsTable = new double[100];
     for(int i = 0; i < 100; i++)modificatorsTable[i] = 0;
     std::string paths[] = {"images/stoneFloor3.jpg"};
-    image = new Image(1, paths, false);
-    image->state = REPEATING;
+    floorImage = new Image(1, paths, false);
+    floorImage->state = REPEATING;
     coords = new Coordinates();
     coords->X = 0;
     coords->Y = 0;
@@ -29,11 +29,6 @@ Module::Module() {
 
 Module::~Module()
 {
-    for(std::list<Floor*>::iterator i = floorTiles.begin(); i != floorTiles.end(); ++i)
-    {
-        Floor *temp = *i;
-        delete temp;
-    }
     for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
     {
         Wall *temp = *i;
@@ -55,12 +50,7 @@ Module::~Module()
 
 void Module::display()
 {
-    for(std::list<Floor*>::iterator i = floorTiles.begin(); i != floorTiles.end(); ++i)
-    {
-        Floor *temp = *i;
-//        temp->display();
-    }
-    image->display(coords);
+    floorImage->display(coords);
     for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
     {
         Wall *temp = *i;
@@ -146,12 +136,6 @@ void Module::displayObstacles()
 }
 void Module::update()
 {
-    if(Variables::log == full)std::cout << " Module Update Floor ";
-    for(std::list<Floor*>::iterator i = floorTiles.begin(); i != floorTiles.end(); ++i)
-    {
-        Floor *temp = *i;
-        temp->update();
-    }
     if(Variables::log == full)std::cout << " Module Update wall ";
     for(std::list<Wall*>::iterator i = walls.begin(); i != walls.end(); ++i)
     {
@@ -343,7 +327,20 @@ void Module::load(std::fstream& file)
     Image *image = new Image(1, paths, false);
     image->state = REPEATING;
     floor->setImage(image);
-    this->floorTiles.push_back(floor);
     WallFactory::setModuleBasicWalls(this);
     TileFactory::defineTilesSides(this);
+}
+
+void Module::setPlanCoords(int X, int Y)
+{
+    floorPlanCoords = new Coordinates();
+    floorPlanCoords->X = (coords->X + X * (Variables::tileSize * Variables::tilesPerRoom + 100));
+    floorPlanCoords->Y = (coords->Y + Y * (Variables::tileSize * Variables::tilesPerRoom + 100));
+    floorPlanCoords->width = coords->width;
+    floorPlanCoords->height = coords->height;
+}
+
+void Module::displayPlan()
+{
+    floorImage->display(floorPlanCoords);
 }

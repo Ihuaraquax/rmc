@@ -102,3 +102,10 @@ Entity *Obstacle::CreateObstacle(double X, double Y)
     if(X != -1 && Y != -1)obstacle->setCoords(X,Y);
     return obstacle;
 }
+
+void Obstacle::displayPlan()
+{
+    if(health >= maximumHealth * 0.75)image->display(planCoords);
+    else if(health >= maximumHealth * 0.45)damagedImage->display(planCoords);
+    else damagedImage2->display(planCoords);
+}

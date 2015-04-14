@@ -40,6 +40,11 @@ Chest::Chest() {
     maximumHealth = health;
 }
 
+bool Chest::isBarricade()
+{
+    return true;
+}
+
 void Chest::setRandom()
 {
     this->chestSize = rand()%5 + 1;
@@ -329,4 +334,9 @@ void Chest::executeAgony()
         Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteUsableObject(this);
         Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteFromEntityList(this);
     }
+}
+
+void Chest::displayPlan()
+{
+    image->display(planCoords);
 }

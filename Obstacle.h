@@ -17,6 +17,7 @@ public:
     void setAsCornerWall(int corner);
     bool isBarricade();
     void display();
+    void displayPlan();
     void setStartingTile();
     void save(std::fstream &file);
     void load(std::fstream &file);

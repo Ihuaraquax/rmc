@@ -38,6 +38,7 @@ Entity::Entity() {
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0;
     possessedWeapons = 0;
     image = NULL;
+    planCoords = new Coordinates();
 }
 
 Entity::~Entity() {
@@ -297,4 +298,18 @@ void Entity::loadGeneric(std::fstream& file)
         weapons[i]->setAmmoCurrent(weaponsAmmos[i]);
     }
     this->setStartingTile();
+}
+
+void Entity::displayPlan()
+{
+    
+}
+
+void Entity::setPlanCoords(int X, int Y)
+{
+    planCoords->X = coords->X + X * (Variables::tileSize * Variables::tilesPerRoom + 100);
+    planCoords->Y = coords->Y + Y * (Variables::tileSize * Variables::tilesPerRoom + 100);
+    planCoords->angle = coords->angle;
+    planCoords->width = coords->width;
+    planCoords->height = coords->height;
 }

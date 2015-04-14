@@ -37,6 +37,7 @@ void Session::create()
     map->createLevels();
 //    this->loadSave();
     al_register_event_source(Variables::event_queue, al_get_timer_event_source(Variables::timer));
+    map->setOffest();
 }
 
 AllEntities* Session::getAllEntities() const {
@@ -90,7 +91,7 @@ void Session::update()
     mouse->mouseActions();
     if(Variables::status == GAME)
         {
-        updateOffset();
+        if(Variables::substate != plan)updateOffset();
         map->update();
         hud->update();
         if(Variables::substate == chest)hud->getOpenChest()->update();

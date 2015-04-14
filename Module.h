@@ -23,6 +23,8 @@ public:
     Module();
     ~Module();
     void display();
+    void displayPlan();
+    void setPlanCoords(int X, int Y);
     void update();
     void updateTileAiTarget(int X, int Y);
     bool isObstructed(int X, int Y);
@@ -48,11 +50,11 @@ private:
     void displayTransferBlocks();
     std::list<Wall*> walls;
     std::list<Door*> doors;
-    std::list<Floor*> floorTiles;
     std::list<Chest*> chests;
     ModuleTile **moduleTiles;
-    Image *image;
+    Image *floorImage;
     Coordinates *coords;
+    Coordinates *floorPlanCoords;
     
     int getModuleIndex(int X, int Y);
     void displayBuffs();

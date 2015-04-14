@@ -149,3 +149,9 @@ void ObstacleDoor::executeAgony()
         Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteFromEntityList(this);
     }
 }
+
+void ObstacleDoor::displayPlan()
+{
+    if(closed)closedImage->display(planCoords);
+    else openImage->display(planCoords);
+}

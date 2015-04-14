@@ -21,6 +21,8 @@ public:
     void loadLevels();
     
     void display();
+    void displayPlan();
+    void setPlanCoords();
     void update();
     Module* getCurrentModule() const;
     void switchModule(int side);
@@ -28,6 +30,7 @@ public:
     
     void save(std::fstream &file);
     void load(std::fstream &file);
+    void setOffest();
 private:
     Module ***modules;
     AllEntities ***allEntities;

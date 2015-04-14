@@ -76,7 +76,7 @@ void AllEntities::display()
         Entity *temp = *i;
         temp->display();
     }
-    player->display();
+    if(player != NULL)player->display();
 }
 
 void AllEntities::update()
@@ -259,4 +259,22 @@ void AllEntities::load(std::fstream& file)
             addEntity(newEntity);
         }
     }while(fileInput != "END");
+}
+
+void AllEntities::displayPlan()
+{
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
+    {
+        Entity *temp = *i;
+        if(temp->isBarricade() == true)temp->displayPlan();
+    }
+}
+
+void AllEntities::setPlanCoords(int X, int Y)
+{
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
+    {
+        Entity *temp = *i;
+        temp->setPlanCoords(X,Y);
+    }
 }

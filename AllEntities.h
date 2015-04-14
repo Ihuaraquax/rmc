@@ -17,6 +17,7 @@ public:
     void init();
     void update();
     void display();
+    void displayPlan();
     void loadFile();
     void loadNew();
     void addEntity(Entity *newEntity);
@@ -31,6 +32,7 @@ public:
     void save(std::fstream &file);
     void load(std::fstream &file);
     bool isOnList(Entity *entity);
+    void setPlanCoords(int X, int Y);
 private:
     void deleteDead();
     void createObstacles();

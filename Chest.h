@@ -20,6 +20,7 @@ public:
     
     void update();
     void display();
+    void displayPlan();
     void displayContent();
     void loadContent(int index, int type, int value);
     void use();
@@ -37,6 +38,7 @@ public:
     void save(std::fstream &file);
     void load(std::fstream &file);
     void executeAgony();
+    bool isBarricade();
     
     static Entity *CreateChest(double X, double Y);
 private:

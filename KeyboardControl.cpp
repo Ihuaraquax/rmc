@@ -27,7 +27,7 @@ void KeyboardControl::gameKeyboardActions()
 {
      Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
     
-     if(Variables::substate == game)
+     if(Variables::substate == game || Variables::substate == plan)
      {
          if(al_key_down(&Variables::key_state, ALLEGRO_KEY_UP))Variables::offsetY-=5;
          if(al_key_down(&Variables::key_state, ALLEGRO_KEY_DOWN))Variables::offsetY+=5;
@@ -63,6 +63,24 @@ void KeyboardControl::gameKeyboardActions()
              Variables::substate = inventory;
          }
          else if(Variables::substate == inventory)Variables::substate = game;
+     }
+     if(isPressed(ALLEGRO_KEY_M))
+     {
+         if(Variables::substate == game)
+         {
+             Variables::substate = plan;
+             Variables::ScaleX *= 0.15;
+             Variables::ScaleY *= 0.15;
+             Variables::session->getMap()->setPlanCoords();
+             Variables::session->getMap()->setOffest();
+         }
+         else if(Variables::substate == plan)
+         {
+             Variables::substate = game;
+             Variables::ScaleX *= (1/0.15);
+             Variables::ScaleY *= (1/0.15);
+            Variables::session->getMap()->setOffest();
+         }
      }
 }
 
