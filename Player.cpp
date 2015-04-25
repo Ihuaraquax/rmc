@@ -16,6 +16,7 @@
 #include "EquipmentLoader.h"
 #include "UsableItemLoader.h"
 #include "TimedBuffer.h"
+#include "CollisionDetector.h"
 
 Player::Player() {
     keyValue = -1;
@@ -140,6 +141,11 @@ void Player::update()
     chestplate->update();
     greaves->update();
     this->updateBuffers();
+    if(Variables::session->getAllPlans()->getCurrentPlan()->getCurrentStep() != NULL)
+    {
+        if(CollisionDetector::isBasicCollision(coords, Variables::session->getAllPlans()->getCurrentPlan()->getCurrentStep()->getCoords()))
+            Variables::session->getAllPlans()->getCurrentPlan()->changeCurrentStep(true);
+    }
     if(Variables::log == full)std::cout << " player Update End ";
 }
 

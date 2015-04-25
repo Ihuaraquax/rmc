@@ -4,7 +4,8 @@ build/Debug/MinGW-Windows/Room.o: Room.cpp Room.h globalVariables.h \
  Chest.h UsableObject.h Obstacle.h Entity.h Wall.h Door.h templateList.h \
  GenericBuffer.h EntityShape.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h ModuleTile.h AiTile.h \
- AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h GlobalImages.h
+ AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h \
+ LogLevels.h GlobalImages.h
 
 Room.h:
 
@@ -71,6 +72,12 @@ AiTile.h:
 AllDecals.h:
 
 Decal.h:
+
+AllPlans.h:
+
+Plan.h:
+
+PlanStep.h:
 
 GameSubstateEnum.h:
 

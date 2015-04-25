@@ -33,6 +33,8 @@ public:
     Image* getBuffRod() const;
     Image* getSpawner() const;
     Image* getProjectile() const;
+    Image* getPlanStepArrow() const;
+    Image* getPlanStepSpaceMarker() const;
     
 private:
     Image *table;
@@ -61,6 +63,9 @@ private:
     
     Image *spawner;
     Image *projectile;
+    
+    Image *planStepSpaceMarker;
+    Image *planStepArrow;
 };
 
 #endif	/* GLOBALIMAGES_H */

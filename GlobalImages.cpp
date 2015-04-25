@@ -77,6 +77,13 @@ GlobalImages::GlobalImages() {
     paths[0] = "images/bullet.png";
     projectile = new Image(1, paths, true);
     projectile->state = NORMAL;
+    
+    paths[0] = "images/spaceMarker.png";
+    planStepSpaceMarker = new Image(1, paths, true);
+    planStepSpaceMarker->state = NORMAL;
+    paths[0] = "images/arrow.png";
+    planStepArrow = new Image(1, paths, true);
+    planStepArrow->state = NORMAL;
 }
 
 GlobalImages::~GlobalImages()
@@ -107,6 +114,9 @@ GlobalImages::~GlobalImages()
     
     delete spawner;
     delete projectile;
+    
+    delete planStepSpaceMarker;
+    delete planStepArrow;
 }
 
 Image* GlobalImages::getMonster3() const {
@@ -187,4 +197,12 @@ Image* GlobalImages::getSpawner() const {
 
 Image* GlobalImages::getProjectile() const {
     return projectile;
+}
+
+Image* GlobalImages::getPlanStepArrow() const {
+    return planStepArrow;
+}
+
+Image* GlobalImages::getPlanStepSpaceMarker() const {
+    return planStepSpaceMarker;
 }

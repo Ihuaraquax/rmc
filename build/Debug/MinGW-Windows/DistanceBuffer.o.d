@@ -5,7 +5,8 @@ build/Debug/MinGW-Windows/DistanceBuffer.o: DistanceBuffer.cpp \
  UsableObject.h Obstacle.h Entity.h Wall.h Door.h templateList.h \
  EntityShape.h AllEntities.h MouseControl.h KeyboardControl.h Map.h \
  Module.h Floor.h Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h \
- GameSubstateEnum.h LogLevels.h GlobalImages.h
+ AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h LogLevels.h \
+ GlobalImages.h
 
 DistanceBuffer.h:
 
@@ -74,6 +75,12 @@ AiTile.h:
 AllDecals.h:
 
 Decal.h:
+
+AllPlans.h:
+
+Plan.h:
+
+PlanStep.h:
 
 GameSubstateEnum.h:
 

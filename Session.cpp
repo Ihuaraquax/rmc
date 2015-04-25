@@ -19,6 +19,7 @@ Session::Session() {
     winImage = new Image(1,paths,false);
     winImage->state = UI;
     coords = new Coordinates();
+    allPlans = new AllPlans();
     coords->X = 0;
     coords->Y = 0;
 }
@@ -52,6 +53,10 @@ HUD* Session::getHud() const {
     return hud;
 }
 
+AllPlans* Session::getAllPlans() const {
+    return allPlans;
+}
+
 Session::~Session() {
     delete mainMenu;
     delete keyboard;
@@ -75,6 +80,8 @@ void Session::display()
             hud->getPlayerInventory()->display();
             hud->getOpenChest()->displayContent();
         }
+        if(Variables::substate == game)allPlans->getCurrentPlan()->displayCurrent();
+        if(Variables::substate == plan)allPlans->getCurrentPlan()->displayAll();
         al_flip_display();
         }
     if(Variables::status == WIN)

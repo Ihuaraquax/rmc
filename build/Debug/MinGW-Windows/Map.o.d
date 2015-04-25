@@ -5,7 +5,8 @@ build/Debug/MinGW-Windows/Map.o: Map.cpp Map.h Module.h Wall.h \
  AllEntities.h ModuleFactory.h Player.h Equipment.h Attributes.h \
  UsableItem.h Inventory.h Key.h Lock.h globalVariables.h Session.h Menu.h \
  HUD.h WeaponUI.h EquipmentUI.h MouseControl.h KeyboardControl.h \
- GameSubstateEnum.h LogLevels.h GlobalImages.h
+ AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h LogLevels.h \
+ GlobalImages.h
 
 Map.h:
 
@@ -82,6 +83,12 @@ EquipmentUI.h:
 MouseControl.h:
 
 KeyboardControl.h:
+
+AllPlans.h:
+
+Plan.h:
+
+PlanStep.h:
 
 GameSubstateEnum.h:
 

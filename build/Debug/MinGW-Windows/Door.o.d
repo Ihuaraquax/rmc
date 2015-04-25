@@ -4,8 +4,8 @@ build/Debug/MinGW-Windows/Door.o: Door.cpp Door.h Coordinates.h \
  UsableItem.h Inventory.h Chest.h Obstacle.h Entity.h Wall.h \
  templateList.h GenericBuffer.h EntityShape.h AllEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
- ModuleTile.h AiTile.h AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h
+ ModuleTile.h AiTile.h AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h \
+ GameSubstateEnum.h LogLevels.h GlobalImages.h
 
 Door.h:
 
@@ -72,6 +72,12 @@ AiTile.h:
 AllDecals.h:
 
 Decal.h:
+
+AllPlans.h:
+
+Plan.h:
+
+PlanStep.h:
 
 GameSubstateEnum.h:
 

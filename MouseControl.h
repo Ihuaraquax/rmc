@@ -13,6 +13,8 @@ public:
     MouseControl();
     void mouseActions();
 private:
+    bool onPress(int mosueKey);
+    bool keyPressed[2];
 };
 
 #endif	/* MOUSECONTROL_H */

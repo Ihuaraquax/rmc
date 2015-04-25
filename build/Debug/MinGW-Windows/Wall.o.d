@@ -4,7 +4,8 @@ build/Debug/MinGW-Windows/Wall.o: Wall.cpp Wall.h Coordinates.h \
  Chest.h UsableObject.h Obstacle.h Entity.h Door.h templateList.h \
  GenericBuffer.h EntityShape.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
- AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h GlobalImages.h
+ AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h \
+ LogLevels.h GlobalImages.h
 
 Wall.h:
 
@@ -71,6 +72,12 @@ AiTile.h:
 AllDecals.h:
 
 Decal.h:
+
+AllPlans.h:
+
+Plan.h:
+
+PlanStep.h:
 
 GameSubstateEnum.h:
 

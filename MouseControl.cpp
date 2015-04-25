@@ -10,6 +10,8 @@
 #include "Player.h"
 
 MouseControl::MouseControl() {
+    keyPressed[0] = false;
+    keyPressed[1] = false;
 }
 
 void MouseControl::mouseActions()
@@ -24,6 +26,25 @@ void MouseControl::mouseActions()
          if(Variables::mouse_state.buttons & 1)player->attack(0 + player->getSelecetedWeaponSet()*2);     
          if(Variables::mouse_state.buttons & 2)player->attack(1 + player->getSelecetedWeaponSet()*2);
      }
+     else if(Variables::substate == plan)
+     {
+         if(onPress(0))Variables::session->getAllPlans()->getCurrentPlan()->createStepAtMouse();
+         if(Variables::mouse_state.buttons & 2)Variables::session->getAllPlans()->getCurrentPlan()->destroyStepAtMouse();
+     }
      if(Variables::substate == chest)Variables::session->getHud()->mouseChestControls();
      if(Variables::substate == inventory)Variables::session->getHud()->mouseInventoryControls();
+}
+
+bool MouseControl::onPress(int mosueKey)
+{
+    if(!keyPressed[mosueKey] && Variables::mouse_state.buttons & mosueKey+1)
+    {
+        keyPressed[mosueKey] = true;
+        return true;
+    }
+    if(keyPressed[mosueKey] && !Variables::mouse_state.buttons & mosueKey+1)
+    {
+        keyPressed[mosueKey] = false;
+    }
+    return false;
 }

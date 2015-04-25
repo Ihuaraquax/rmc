@@ -4,8 +4,9 @@ build/Debug/MinGW-Windows/Monster.o: Monster.cpp Monster.h Entity.h \
  globalVariables.h Session.h Menu.h HUD.h WeaponUI.h EquipmentUI.h \
  Equipment.h UsableItem.h Inventory.h Chest.h Obstacle.h AllEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
- ModuleTile.h AiTile.h AllDecals.h Decal.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h CollisionDetector.h Player.h Attributes.h WeaponLoader.h
+ ModuleTile.h AiTile.h AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h \
+ GameSubstateEnum.h LogLevels.h GlobalImages.h CollisionDetector.h \
+ Player.h Attributes.h WeaponLoader.h
 
 Monster.h:
 
@@ -74,6 +75,12 @@ AiTile.h:
 AllDecals.h:
 
 Decal.h:
+
+AllPlans.h:
+
+Plan.h:
+
+PlanStep.h:
 
 GameSubstateEnum.h:
 
