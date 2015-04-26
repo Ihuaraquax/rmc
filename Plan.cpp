@@ -76,11 +76,11 @@ void Plan::deleteStep(PlanStep* step)
 {
     if(step == currentStep)
     {
-        this->changeCurrentStep(false);
+        this->changeCurrentStep(true);
         if(currentStep == NULL)
         {
             currentStep = step;
-            this->changeCurrentStep(true);
+            this->changeCurrentStep(false);
         }
     }
     if(stepList->data == step)
@@ -96,6 +96,7 @@ void Plan::deleteStep(PlanStep* step)
         temp->next = listToDelete->next;
         delete listToDelete;
     }
+    if(stepList == NULL)currentStep = NULL;
 }
 
 void Plan::changeCurrentStep(bool next)
