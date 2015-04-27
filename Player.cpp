@@ -141,12 +141,23 @@ void Player::update()
     chestplate->update();
     greaves->update();
     this->updateBuffers();
+    updatePlanStep();
+    if(Variables::log == full)std::cout << " player Update End ";
+}
+
+void Player::updatePlanStep()
+{
     if(Variables::session->getAllPlans()->getCurrentPlan()->getCurrentStep() != NULL)
     {
-        if(CollisionDetector::isBasicCollision(coords, Variables::session->getAllPlans()->getCurrentPlan()->getCurrentStep()->getCoords()))
+        Coordinates *tempCoords = new Coordinates();
+        PlanStep *step = Variables::session->getAllPlans()->getCurrentPlan()->getCurrentStep();
+        tempCoords->X = step->getCoords()->X - (step->getModuleX() * Variables::tileSize * Variables::tilesPerRoom);
+        tempCoords->Y = step->getCoords()->Y - (step->getModuleY() * Variables::tileSize * Variables::tilesPerRoom);
+        tempCoords->width = step->getCoords()->width;
+        tempCoords->height = step->getCoords()->height;
+        if(CollisionDetector::isBasicCollision(coords, tempCoords))
             Variables::session->getAllPlans()->getCurrentPlan()->changeCurrentStep(true);
     }
-    if(Variables::log == full)std::cout << " player Update End ";
 }
 
 void Player::display()

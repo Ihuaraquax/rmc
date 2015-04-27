@@ -19,6 +19,8 @@ public:
     void displayPathToNext(Coordinates *nextCoords);
     Coordinates* getCoords() const;
     void setCoords(double X, double Y, int moduleX, int moduleY);
+    int getModuleY() const;
+    int getModuleX() const;
 private:
     Coordinates *coords;
     int moduleX, moduleY;

@@ -38,11 +38,19 @@ void Plan::displayAll()
 
 void Plan::createStepAtMouse()
 {
-    PlanStep *step = new PlanStep();
-    step->setCoords((Variables::mouse_x) * (1/Variables::ScaleX) + Variables::offsetX - Variables::tileSize/2,
-            (Variables::mouse_y) * (1/Variables::ScaleX) + Variables::offsetY - Variables::tileSize/2,
-            0, 0);
-    this->addStep(step);
+    double mouseX = Variables::mouse_x * (1/Variables::ScaleX) + Variables::offsetX - Variables::tileSize/2;
+    double mouseY = Variables::mouse_y * (1/Variables::ScaleY) + Variables::offsetY - Variables::tileSize/2;
+    if(mouseX >= 0 && mouseY >= 0)
+    {
+        int moduleX = mouseX / (Variables::tileSize * Variables::tilesPerRoom);
+        int moduleY = mouseY / (Variables::tileSize * Variables::tilesPerRoom);
+        if(moduleX >= 0 && moduleY >= 0 && moduleX < Variables::session->getMap()->getModulesTableSize() && moduleY < Variables::session->getMap()->getModulesTableSize())
+        {
+            PlanStep *step = new PlanStep();
+            step->setCoords(mouseX, mouseY, moduleX, moduleY);
+            this->addStep(step);
+        }
+    }
 }
 
 void Plan::destroyStepAtMouse()

@@ -30,20 +30,35 @@ void PlanStep::display()
     if(Variables::substate == game)
     {
         Coordinates *displayCoords = new Coordinates();
-        displayCoords->X = coords->X;
-        displayCoords->Y = coords->Y;
-        displayCoords->width = coords->width;
-        displayCoords->height = coords->height;
-        if(coords->X - Variables::offsetX < Variables::RES_WIDTH && coords->X + coords->width - Variables::offsetX > 0 &&
-           coords->Y - Variables::offsetY < Variables::RES_HEIGHT - 170 && coords->Y + coords->height - Variables::offsetY > 0)
-            spaceMarkerImage->display(displayCoords);
+        if(moduleX == Variables::session->getMap()->getModuleX() && moduleY == Variables::session->getMap()->getModuleY())
+        {
+            displayCoords->X = coords->X - (moduleX * Variables::tileSize * Variables::tilesPerRoom);
+            displayCoords->Y = coords->Y - (moduleY * Variables::tileSize * Variables::tilesPerRoom);
+            displayCoords->width = coords->width;
+            displayCoords->height = coords->height;
+            if(displayCoords->X - Variables::offsetX < Variables::RES_WIDTH && displayCoords->X + displayCoords->width - Variables::offsetX > 0 &&
+               displayCoords->Y - Variables::offsetY < Variables::RES_HEIGHT - 170 && displayCoords->Y + displayCoords->height - Variables::offsetY > 0)
+                spaceMarkerImage->display(displayCoords);
+            else
+            {
+                if(displayCoords->X - Variables::offsetX > Variables::RES_WIDTH)displayCoords->X = Variables::RES_WIDTH + Variables::offsetX - 50;
+                if(displayCoords->X - Variables::offsetX < 0)displayCoords->X = Variables::offsetX;
+                if(displayCoords->Y - Variables::offsetY > Variables::RES_HEIGHT - 170)displayCoords->Y = Variables::RES_HEIGHT + Variables::offsetY - 170;
+                if(displayCoords->Y - Variables::offsetY < 0)displayCoords->Y = Variables::offsetY;
+                displayCoords->angle = Variables::getAngle(displayCoords->X, displayCoords->Y, coords->X, coords->Y);
+                arrowImage->display(displayCoords);
+            }
+        }
         else
         {
+            displayCoords->X = (Variables::tileSize * Variables::tilesPerRoom * 0.5) * (moduleX+1);
+            displayCoords->Y = (Variables::tileSize * Variables::tilesPerRoom * 0.5) * (moduleY+1);
             if(displayCoords->X - Variables::offsetX > Variables::RES_WIDTH)displayCoords->X = Variables::RES_WIDTH + Variables::offsetX - 50;
             if(displayCoords->X - Variables::offsetX < 0)displayCoords->X = Variables::offsetX;
             if(displayCoords->Y - Variables::offsetY > Variables::RES_HEIGHT - 170)displayCoords->Y = Variables::RES_HEIGHT + Variables::offsetY - 170;
             if(displayCoords->Y - Variables::offsetY < 0)displayCoords->Y = Variables::offsetY;
-            displayCoords->angle = Variables::getAngle(displayCoords->X, displayCoords->Y, coords->X, coords->Y);
+            displayCoords->angle = Variables::getAngle(displayCoords->X, displayCoords->Y,  Variables::tileSize * Variables::tilesPerRoom * 0.5 * Variables::session->getMap()->getModuleX(),  
+                    Variables::tileSize * Variables::tilesPerRoom * 0.5 * Variables::session->getMap()->getModuleY());
             arrowImage->display(displayCoords);
         }
         delete displayCoords;
@@ -72,4 +87,12 @@ void PlanStep::setCoords(double X, double Y, int moduleX, int moduleY)
     coords->Y = Y;
     this->moduleX = moduleX;
     this->moduleY = moduleY;
+}
+
+int PlanStep::getModuleY() const {
+    return moduleY;
+}
+
+int PlanStep::getModuleX() const {
+    return moduleX;
 }

@@ -236,8 +236,8 @@ void Map::setPlanCoords()
     {
         for(int j = 0; j < this->modulesTableSize; j++)
         {
-            allEntities[i][j]->setPlanCoords(i,j);
-            modules[i][j]->setPlanCoords(i,j);
+            allEntities[i][j]->setPlanCoords(j,i);
+            modules[i][j]->setPlanCoords(j,i);
         }
     }
 }
@@ -252,4 +252,16 @@ void Map::setOffest()
         Variables::offsetX = currentAllEntities->getPlayer()->getCoords()->X - Variables::RES_WIDTH/2;
         Variables::offsetY = currentAllEntities->getPlayer()->getCoords()->Y - Variables::RES_HEIGHT/2;
     }
+}
+
+int Map::getModuleY() const {
+    return moduleY;
+}
+
+int Map::getModuleX() const {
+    return moduleX;
+}
+
+int Map::getModulesTableSize() const {
+    return modulesTableSize;
 }

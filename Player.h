@@ -25,6 +25,7 @@ public:
     virtual ~Player();
     void playerMove(double X, double Y);
     void update();
+    void updatePlanStep();
     void display();
     void interact();
     void selectWeaponSet(int set);

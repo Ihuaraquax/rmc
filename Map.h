@@ -31,6 +31,9 @@ public:
     void save(std::fstream &file);
     void load(std::fstream &file);
     void setOffest();
+    int getModuleY() const;
+    int getModuleX() const;
+    int getModulesTableSize() const;
 private:
     Module ***modules;
     AllEntities ***allEntities;
