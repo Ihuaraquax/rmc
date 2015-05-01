@@ -5,7 +5,8 @@ build/Debug/MinGW-Windows/Module.o: Module.cpp Module.h Wall.h \
  WallFactory.h globalVariables.h Session.h Menu.h HUD.h WeaponUI.h \
  EquipmentUI.h Equipment.h UsableItem.h Inventory.h AllEntities.h \
  MouseControl.h KeyboardControl.h Map.h AllPlans.h Plan.h PlanStep.h \
- GameSubstateEnum.h LogLevels.h GlobalImages.h TileFactory.h
+ GameSubstateEnum.h LogLevels.h GlobalImages.h TileFactory.h \
+ TextDisplayer.h ModuleModificatorNames.h
 
 Module.h:
 
@@ -88,3 +89,7 @@ LogLevels.h:
 GlobalImages.h:
 
 TileFactory.h:
+
+TextDisplayer.h:
+
+ModuleModificatorNames.h:

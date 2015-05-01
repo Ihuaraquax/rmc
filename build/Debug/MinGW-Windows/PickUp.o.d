@@ -5,7 +5,7 @@ build/Debug/MinGW-Windows/PickUp.o: PickUp.cpp PickUp.h Entity.h Image.h \
  Inventory.h Chest.h Obstacle.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h Player.h Attributes.h
+ LogLevels.h GlobalImages.h Player.h Attributes.h TimedBuffer.h
 
 PickUp.h:
 
@@ -90,3 +90,5 @@ GlobalImages.h:
 Player.h:
 
 Attributes.h:
+
+TimedBuffer.h:

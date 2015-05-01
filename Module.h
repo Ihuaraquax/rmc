@@ -24,6 +24,7 @@ public:
     ~Module();
     void display();
     void displayPlan();
+    void displayMods();
     void setPlanCoords(int X, int Y);
     void update();
     void updateTileAiTarget(int X, int Y);

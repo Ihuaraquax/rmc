@@ -1,0 +1,223 @@
+/* 
+ * File:   ModuleModificatorNames.h
+ * Author: Qb
+ *
+ * Created on 1 maj 2015, 21:43
+ */
+
+#ifndef MODULEMODIFICATORNAMES_H
+#define	MODULEMODIFICATORNAMES_H
+#include <iostream>
+
+std::string getCode(int type)
+{
+    switch(type)
+    {
+        case 0: return "Eksplozje leczą +";
+        break;
+        case 1: return "Friendly fire +";
+        break;
+        case 2: return "Friendly fire heals +";
+        break;
+        case 3: return "Pół życia +";
+        break;
+        case 4: return "Dwa razy więcej życia +";
+        break;
+        case 5: return "Duża szybkość +";
+        break;
+        case 6: return "Mała szybkość +";
+        break;
+        case 7: return "Wszystkie bronie zadają dodatkowe obrażenia od ognia (+ 20%) +";
+        break;
+        case 8: return "Wszystkie bronie zadają dodatkowe obrażenia od prądu (+ 20%) +";
+        break;
+        case 9: return "Wszystkie bronie zadają dodatkowe obrażenia od trucizny (+ 20%) +";
+        break;
+        case 10: return "Wszystkie bronie zadają dodatkowe obrażenia od zimna (+ 20%) +";
+        break;
+        case 11: return "Bronie zadają dwa razy większe obrażenia +";
+        break;
+        case 12: return "Fazujące ściany";
+        break;
+        case 13: return "Trupy wybuchają (10% max health)";
+        break;
+        case 14: return "Natychmiastowe przeładowanie (20%)";
+        break;
+        case 15: return "Długie przeładowanie (180%)";
+        break;
+        case 16: return "Przeładowanie nie zmniejsza amunicji";
+        break;
+        case 17: return "Strefy nieśmiertelności";
+        break;
+        case 18: return "Leczenie boli +";
+        break;
+        case 19: return "Regeneracja";
+        break;
+        case 20: return "Brak niewidzialności";
+        break;
+        case 21: return "Totalna ciemność";
+        break;
+        case 22: return "One shot weapons";
+        break;
+        case 23: return "Całkowita niecelność";
+        break;
+        case 24: return "Supercelność";
+        break;
+        case 25: return "Każdy strzał to krytyk";
+        break;
+        case 26: return "Zero szans na krytyka";
+        break;
+        case 27: return "Zero odporności na ogień";
+        break;
+        case 28: return "Zero odporności na zimno";
+        break;
+        case 29: return "Zero odporności na truciznę";
+        break;
+        case 30: return "Zero odporności na prąd";
+        break;
+        case 31: return "Losowa teleportacja";
+        break;
+        case 32: return "Strzały zadają splasha (explozje)";
+        break;
+        case 33: return "Sniper shoty";
+        break;
+        case 34: return "Kradzież życia";
+        break;
+        case 35: return "Nieskończona energia do butów";
+        break;
+        case 36: return "Nieskończona energia do pancerza";
+        break;
+        case 37: return "Nieskończona energia do hełmu";
+        break;
+        case 38: return "Więcej wrogów";
+        break;
+        case 39: return "Więksi (rozmiarowo) wrogowie";
+        break;
+        case 40: return "Regeneracja amunicji";
+        break;
+        case 41: return "Wrogowie niewrażliwi na obrażenia zwykłe";
+        break;
+        case 42: return "Wrogowie niewrażliwi na obrażenia od ognia";
+        break;
+        case 43: return "Wrogowie niewrażliwi na obrażenia od prądu";
+        break;
+        case 44: return "Wrogowie niewrażliwi na obrażenia od trucizny";
+        break;
+        case 45: return "Wrogowie niewrażliwi na obrażenia od zimna";
+        break;
+        case 46: return "Wrogowie przechodzą przez ściany";
+        break;
+        case 47: return "Pomieszane wyjścia";
+        break;
+        case 48: return "Losowe unieruchomienia";
+        break;
+        case 49: return "Double shots";
+        break;
+        case 50: return "Zamienione sterowanie";
+        break;
+        case 51: return "Minimalny zasięg strzału";
+        break;
+        case 52: return "Anty regeneracja życia + kradzież życia za zabicie";
+        break;
+        case 53: return "Niewidzialne ściany";
+        break;
+        case 54: return " Ślizganie się";
+        break;
+        case 55: return "BUAHAHAHAHAHAHHAHAHAH (dodatkowe dwa losowe modyfikatory)";
+        break;
+        case 56: return "Wolne pociski +";
+        break;
+        case 57: return "Slow Motion";
+        break;
+        case 58: return "Ogień truje +";
+        break;
+        case 59: return "Trucizna zamraża +";
+        break;
+        case 60: return "Zimno razi +";
+        break;
+        case 61: return "Prąd pali +";
+        break;
+        case 62: return "Odrzut";
+        break;
+        case 63: return "Liczy się tylko najmniejszy współczynnik odporności +";
+        break;
+        case 64: return "Rykoszet";
+        break;
+        case 65: return "Ciągły ruch (w stronę celownika)";
+        break;
+        case 66: return "Bez barykad";
+        break;
+        case 67: return "Bardzo wytrzymałe barykady";
+        break;
+        case 68: return "Nieśmiertelne wieżyczki";
+        break;
+        case 69: return "Szansa na strzelenie ślepakiem +";
+        break;
+        case 70: return "Szansa na odbicie kul (10%) +";
+        break;
+        case 71: return "Bezużyteczne eksplozje (obrażenia 20%)";
+        break;
+        case 72: return "Widzenie przez ściany";
+        break;
+        case 73: return "Zoom bardzo";
+        break;
+        case 74: return "Zoom mało";
+        break;
+        case 75: return "Tylko minibossowie";
+        break;
+        case 76: return "Tylko zwykłe moby";
+        break;
+        case 77: return "Leczenie jest dużo skuteczniejsze";
+        break;
+        case 78: return "Gracz się świeci";
+        break;
+        case 79: return "Ściana po zniszczeniu zmienia się we wroga";
+        break;
+        case 80: return "Wszystko ma drugie życie";
+        break;
+        case 81: return "Brak kolizji z wrogami";
+        break;
+        case 82: return "Inspiracja (lub nagana)";
+        break;
+        case 83: return "Jedna z płci ma bonusy, druga ma minusy";
+        break;
+        case 84: return "Gracze wybuchają co minute raniąc tylko wrogów";
+        break;
+        case 85: return "10% szans że atak będzie leczyć";
+        break;
+        case 86: return "Losowe pola magmy";
+        break;
+        case 87: return "Losowe pola lodu";
+        break;
+        case 88: return "Losowe pola trucizny";
+        break;
+        case 89: return "Losowe pola prądu";
+        break;
+        case 90: return "FUNZERKERZZZ!!!!";
+        break;
+        case 91: return "Wszystkie moby wyglądają tak samo";
+        break;
+        case 92: return "Halucynacje";
+        break;
+        case 93: return "StimPack effect";
+        break;
+        case 94: return "Im dłużej stoisz tym więcej obrażeń";
+        break;
+        case 95: return "Im dłużej strzelasz tym więcej obrażeń";
+        break;
+        case 96: return "Pierwszy i ostatni gracz dostają boosta";
+        break;
+        case 97: return "Gracze wyglądają tak samo (startrek redshirts)";
+        break;
+        case 98: return "Skillswap";
+        break;
+        case 99: return "Jeden mob jest nieśmiertelny";
+        break;
+        case 100: return "";
+        break;
+
+    }
+}
+
+#endif	/* MODULEMODIFICATORNAMES_H */
+

@@ -12,6 +12,7 @@
 class TextDisplayer {
 public:
     void static displayText(double X, double Y, std::string text);
+    void static displayTextToLeft(double X, double Y, std::string text);
     void static displayInt(double X, double Y, int toDisplay);
 private:
 

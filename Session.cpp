@@ -80,7 +80,11 @@ void Session::display()
             hud->getPlayerInventory()->display();
             hud->getOpenChest()->displayContent();
         }
-        if(Variables::substate == game)allPlans->getCurrentPlan()->displayCurrent();
+        if(Variables::substate == game)
+        {
+            allPlans->getCurrentPlan()->displayCurrent();
+            map->getCurrentModule()->displayMods();
+        }
         if(Variables::substate == plan)allPlans->getCurrentPlan()->displayAll();
         al_flip_display();
         }
