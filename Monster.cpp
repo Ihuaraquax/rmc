@@ -11,6 +11,7 @@
 #include "CollisionDetector.h"
 #include "Player.h"
 #include "WeaponLoader.h"
+#include "PickUp.h"
 
 Monster::Monster()
 {
@@ -156,6 +157,13 @@ void Monster::executeAgony()
     ModuleTile *tile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     if(tile != NULL)tile->addToThreatLevel(-threatLevel);
+    if(rand()%1 == 0)
+    {
+        Entity *pickUp = new PickUp();
+        pickUp->setCoords(coords->X, coords->Y);
+        Variables::session->getAllEntities()->addEntity(pickUp);
+        Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToPickUpList(pickUp);
+    }
 }
 
 bool Monster::turnRight(double targetAngle)

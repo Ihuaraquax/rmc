@@ -142,6 +142,7 @@ void Player::update()
     greaves->update();
     this->updateBuffers();
     updatePlanStep();
+    updatePickUps();
     if(Variables::log == full)std::cout << " player Update End ";
 }
 
@@ -388,5 +389,15 @@ void Player::setTransferCoords(int side)
             break;
         case 3: coords->X = totalSize - Variables::tileSize - coords->X;
             break;
+    }
+}
+
+void Player::updatePickUps()
+{
+    templateList<Entity> *pickUps = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->getPickUpList();
+    while(pickUps != NULL)
+    {
+        if(CollisionDetector::isBasicCollision(coords, pickUps->data->getCoords()))pickUps->data->getHit(200000, 1);
+        pickUps = pickUps->next;
     }
 }

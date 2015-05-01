@@ -30,6 +30,7 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
         aiTiles[i] = new AiTile(obstructed, roomId, base);
     }
     this->bufferList = NULL;
+    this->pickUpList = NULL;
     transferDirection = -1;
 }
 
@@ -57,6 +58,10 @@ void ModuleTile::update()
         }
         turrets = turrets->next;
     }
+}
+
+templateList<Entity>* ModuleTile::getPickUpList() const {
+    return pickUpList;
 }
 
 Door **ModuleTile::getDoorList() const {
@@ -114,7 +119,6 @@ void ModuleTile::deleteFromEntityList(Entity* toDelete)
 {
     if(toDelete == NULL)
     {
-    std::cout << "  a ";
         return;
     }
     if(toDelete == this->obstacle)
@@ -138,8 +142,9 @@ void ModuleTile::deleteFromEntityList(Entity* toDelete)
             temp->next = listToDelete->next;
             delete listToDelete;
         }
-    }
     this->aiTile->changeEntitiesAiValue(-toDelete->getAiValue());
+    }
+    else if(pickUpList->find(toDelete) != NULL)this->deleteFromPickUpList(toDelete);
 }
 
 templateList<Entity>* ModuleTile::getEntityList() const {
@@ -352,4 +357,35 @@ int ModuleTile::getTransferDirection() const {
 void ModuleTile::deleteUsableObject(UsableObject *toDelete)
 {
     if(toDelete == this->object)object = NULL;
+}
+
+void ModuleTile::addToPickUpList(Entity* toAdd)
+{
+    templateList<Entity> *temp = pickUpList;
+    while(temp != NULL)
+    {
+        if(temp->data == toAdd)return;
+        temp = temp->next;
+    }
+    templateList<Entity> *newEntity = new templateList<Entity>();
+    newEntity->data = toAdd;
+    newEntity->next = pickUpList;
+    pickUpList = newEntity;
+}
+
+void ModuleTile::deleteFromPickUpList(Entity* toDelete)
+{
+    if(pickUpList->data == toDelete)
+    {
+        templateList<Entity> *temp = pickUpList;
+        pickUpList = pickUpList -> next;
+        delete temp;
+    }
+    else
+    {
+        templateList<Entity> *temp = pickUpList->findPrevious(toDelete);
+        templateList<Entity> *listToDelete = temp->next;
+        temp->next = listToDelete->next;
+        delete listToDelete;
+    }
 }

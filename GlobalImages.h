@@ -35,6 +35,7 @@ public:
     Image* getProjectile() const;
     Image* getPlanStepArrow() const;
     Image* getPlanStepSpaceMarker() const;
+    Image* getPickUp() const;
     
 private:
     Image *table;
@@ -66,6 +67,8 @@ private:
     
     Image *planStepSpaceMarker;
     Image *planStepArrow;
+    
+    Image *pickUp;
 };
 
 #endif	/* GLOBALIMAGES_H */

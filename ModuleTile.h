@@ -65,6 +65,10 @@ public:
     
     void setTransferDirection(int transferDirection);
     int getTransferDirection() const;
+    
+    void addToPickUpList(Entity *toAdd);
+    void deleteFromPickUpList(Entity *toDelete);
+    templateList<Entity>* getPickUpList() const;
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
@@ -78,6 +82,7 @@ private:
     int centerX, centerY;        
     UsableObject *object;
     templateList<GenericBuffer> *bufferList;
+    templateList<Entity> *pickUpList;
     
     void deleteFromTurretList(Entity *toDelete);
     

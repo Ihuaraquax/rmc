@@ -26,6 +26,7 @@ public:
     void playerMove(double X, double Y);
     void update();
     void updatePlanStep();
+    void updatePickUps();
     void display();
     void interact();
     void selectWeaponSet(int set);
