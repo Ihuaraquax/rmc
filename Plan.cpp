@@ -111,8 +111,12 @@ void Plan::changeCurrentStep(bool next)
 {
     if(next)
     {
-        if(stepList->findPrevious(currentStep) != NULL)currentStep = stepList->findPrevious(currentStep)->data;
-        else currentStep = NULL;
+        if(stepList->data == currentStep)currentStep = NULL;
+        else
+        {
+            if(stepList->findPrevious(currentStep) != NULL || stepList->findPrevious(currentStep) != stepList)currentStep = stepList->findPrevious(currentStep)->data;
+            else currentStep = NULL;
+        }
     }
     else 
     {
