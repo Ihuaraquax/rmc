@@ -8,6 +8,7 @@
 #include "PickUp.h"
 #include "globalVariables.h"
 #include "Player.h"
+#include "TimedBuffer.h"
 
 PickUp::PickUp() {
     image = Variables::images->getPickUp();
@@ -54,8 +55,8 @@ void PickUp::executeAgony()
             case 10: player->addAmmo(100, 9);
             break;
             case 11: 
-//                GenericBuffer *buff new TimedBuffer();
-//                player->addBuffer()
+                GenericBuffer *buff = new TimedBuffer(0, 2, 1200);
+                player->addBuffer(buff);
             break;
         }
     }
