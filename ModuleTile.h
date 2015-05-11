@@ -69,6 +69,8 @@ public:
     void addToPickUpList(Entity *toAdd);
     void deleteFromPickUpList(Entity *toDelete);
     templateList<Entity>* getPickUpList() const;
+    void setRemoteAccessObject(Entity* remoteAccessObject);
+    Entity* getRemoteAccessObject() const;
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
@@ -83,6 +85,7 @@ private:
     UsableObject *object;
     templateList<GenericBuffer> *bufferList;
     templateList<Entity> *pickUpList;
+    Entity *remoteAccessObject;
     
     void deleteFromTurretList(Entity *toDelete);
     

@@ -17,6 +17,7 @@
 #include <allegro5/allegro_acodec.h>
 #include "globalVariables.h"
 #include "Session.h"
+#include "Console.h"
 using namespace std;
 
 
@@ -56,6 +57,12 @@ bool Variables::isMonsterShoot = true;
 
 LogLevel Variables::log = none;
 GlobalImages *Variables::images;
+
+double Console::scaleX = 0;
+double Console::scaleY = 0;
+
+double Console::offsetX = 0;
+double Console::offsetY = 0;
 
 int main(int argc, char** argv) {
     Variables::session = new Session();

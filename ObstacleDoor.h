@@ -26,6 +26,7 @@ public:
     void executeAgony();
     
     static Entity *CreateObstacleDoor(double X, double Y);
+    void RCUse();
 private:
     Image *closedImage;
     Image *openImage;

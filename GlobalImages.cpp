@@ -88,6 +88,10 @@ GlobalImages::GlobalImages() {
     paths[0] = "images/pickUp.png";
     pickUp = new Image(1, paths, true);
     pickUp->state = NORMAL;
+    
+    paths[0] = "images/console.png";
+    console = new Image(1, paths, true);
+    console->state = NORMAL;
 }
 
 GlobalImages::~GlobalImages()
@@ -123,6 +127,7 @@ GlobalImages::~GlobalImages()
     delete planStepArrow;
     
     delete pickUp;
+    delete console;
 }
 
 Image* GlobalImages::getMonster3() const {
@@ -215,4 +220,8 @@ Image* GlobalImages::getPlanStepSpaceMarker() const {
 
 Image* GlobalImages::getPickUp() const {
     return pickUp;
+}
+
+Image* GlobalImages::getConsole() const {
+    return console;
 }

@@ -5,7 +5,7 @@ build/Debug/MinGW-Windows/MouseControl.o: MouseControl.cpp MouseControl.h \
  Wall.h Door.h templateList.h GenericBuffer.h EntityShape.h AllEntities.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h Player.h Attributes.h
+ LogLevels.h GlobalImages.h Player.h Attributes.h Console.h
 
 MouseControl.h:
 
@@ -88,3 +88,5 @@ GlobalImages.h:
 Player.h:
 
 Attributes.h:
+
+Console.h:

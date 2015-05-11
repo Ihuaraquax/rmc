@@ -18,7 +18,7 @@ Module::Module() {
     allDecals = new AllDecals;
     modificatorsTable = new double[100];
     for(int i = 0; i < 100; i++)modificatorsTable[i] = 0;
-    for(int i = 0; i < rand()%5; i++)modificatorsTable[rand()%100] = 1;
+    for(int i = 0; i < 3; i++)modificatorsTable[rand()%100] = 1;
     std::string paths[] = {"images/stoneFloor3.jpg"};
     floorImage = new Image(1, paths, false);
     floorImage->state = REPEATING;

@@ -32,6 +32,7 @@ ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     this->bufferList = NULL;
     this->pickUpList = NULL;
     transferDirection = -1;
+    this->remoteAccessObject = NULL;
 }
 
 ModuleTile::~ModuleTile()
@@ -62,6 +63,14 @@ void ModuleTile::update()
 
 templateList<Entity>* ModuleTile::getPickUpList() const {
     return pickUpList;
+}
+
+void ModuleTile::setRemoteAccessObject(Entity* remoteAccessObject) {
+    this->remoteAccessObject = remoteAccessObject;
+}
+
+Entity* ModuleTile::getRemoteAccessObject() const {
+    return remoteAccessObject;
 }
 
 Door **ModuleTile::getDoorList() const {

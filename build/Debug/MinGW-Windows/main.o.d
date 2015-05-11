@@ -5,7 +5,7 @@ build/Debug/MinGW-Windows/main.o: main.cpp globalVariables.h Session.h \
  GenericBuffer.h EntityShape.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h
+ LogLevels.h GlobalImages.h Console.h
 
 globalVariables.h:
 
@@ -84,3 +84,5 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+Console.h:

@@ -26,6 +26,7 @@ Turret::Turret() {
     health = 200;
     maximumHealth = health;
     armor = 10;
+    active = false;
     
     possessedWeapons = 1;
     weapons = new Weapon*[1];
@@ -62,6 +63,7 @@ void Turret::setCoords(double X, double Y)
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->propagateTurret(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setObstacle(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToEntityList(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setRemoteAccessObject(this);
     currentThreatLevel = 0;
     targetAngle = -1;
 }
@@ -76,18 +78,21 @@ int Turret::getCurrentThreatLevel() const {
 
 void Turret::update()
 {
-    weapons[0]->update();
-    if(targetAngle != -1)
+    if(active)
     {
-        if(ceil(targetAngle) != ceil(coords->angle))
+        weapons[0]->update();
+        if(targetAngle != -1)
         {
-            if(!turnRight())coords->angle++;
-            else coords->angle--;
+            if(ceil(targetAngle) != ceil(coords->angle))
+            {
+                if(!turnRight())coords->angle++;
+                else coords->angle--;
+            }
+            this->attack(0);
+            targetAngle = -1;
         }
-        this->attack(0);
-        targetAngle = -1;
+        currentThreatLevel = 0;
     }
-    currentThreatLevel = 0;
     this->updateBuffers();
 }
 
@@ -139,6 +144,7 @@ double Turret::getTargetAngle() const {
 void Turret::executeAgony()
 {
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->deleteTurret(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setRemoteAccessObject(NULL);
 }
 
 void Turret::save(std::fstream& file)
@@ -162,4 +168,17 @@ Entity *Turret::CreateTurret(double X, double Y)
     Entity *turret = new Turret();
     if(X != -1 && Y != -1) dynamic_cast<Turret*>(turret)->setCoords(X,Y);
     return turret;
+}
+
+void Turret::setActive(bool active) {
+    this->active = active;
+}
+
+bool Turret::isActive() const {
+    return active;
+}
+
+void Turret::RCUse()
+{
+    active = !active;
 }

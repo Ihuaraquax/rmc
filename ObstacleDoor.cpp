@@ -129,6 +129,7 @@ void ObstacleDoor::load(std::fstream& file)
     else vertical = false;
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->setObstacle(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->addToEntityList(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setRemoteAccessObject(this);
     this->setAngle(vertical);
     if(vertical)this->coords->X -= Variables::tileSize/2;
     else this->coords->Y -= Variables::tileSize/2;
@@ -137,7 +138,11 @@ void ObstacleDoor::load(std::fstream& file)
 Entity *ObstacleDoor::CreateObstacleDoor(double X, double Y)
 {
     Entity *obstacleDoor = new ObstacleDoor();
-    if(X != -1 && Y != -1)obstacleDoor->setCoords(X,Y);
+    if(X != -1 && Y != -1)
+    {
+        obstacleDoor->setCoords(X,Y);
+        Variables::session->getMap()->getCurrentModule()->getModuleTileAt(obstacleDoor->getCoords()->X, obstacleDoor->getCoords()->Y)->setRemoteAccessObject(obstacleDoor);
+    }
     return obstacleDoor;
 }
 
@@ -147,6 +152,7 @@ void ObstacleDoor::executeAgony()
     {
         Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteUsableObject(this);
         Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteFromEntityList(this);
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->setRemoteAccessObject(NULL);
     }
 }
 
@@ -154,4 +160,9 @@ void ObstacleDoor::displayPlan()
 {
     if(closed)closedImage->display(planCoords);
     else openImage->display(planCoords);
+}
+
+void ObstacleDoor::RCUse()
+{
+    use();
 }

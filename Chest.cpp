@@ -101,7 +101,6 @@ void Chest::setRandom()
 
 void Chest::setStartingTile()
 {
-    
     ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
     tile->setObstacle(this);
     tile->addToEntityList(this);

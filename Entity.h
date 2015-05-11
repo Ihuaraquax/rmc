@@ -56,6 +56,8 @@ public:
     void saveGeneric(std::fstream &file);
     void virtual loadGeneric(std::fstream &file);
     void setPlanCoords(int X, int Y);
+    
+    void virtual RCUse();
 protected:
     void move(double X, double Y);
     Entity *isCollision();

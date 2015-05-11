@@ -29,12 +29,16 @@ public:
     void save(std::fstream& file);
     void load(std::fstream& file);
     static Entity *CreateTurret(double X, double Y);
+    void setActive(bool active);
+    bool isActive() const;
+    void RCUse();
 private:
     Image *upperPart;
     Image *lowerPart;
     int range;
     double targetAngle;
     int currentThreatLevel;
+    bool active;
     bool turnRight();
 };
 

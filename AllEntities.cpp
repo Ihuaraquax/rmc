@@ -22,6 +22,7 @@
 #include "Explosives.h"
 #include "Key.h"
 #include "Lock.h"
+#include "Console.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -56,6 +57,26 @@ void AllEntities::init()
         Entity *chest = Chest::CreateChest(0,0);
         chest->setStartingTile();
         entityList.push_back(chest);
+    }
+    for(int i = 0; i < 5; i++)
+    {
+        int X = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
+        int Y = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
+        X -= X%Variables::tileSize;
+        Y -= Y%Variables::tileSize;
+        Entity *turret = Turret::CreateTurret(X,Y);
+        turret->setStartingTile();
+        entityList.push_back(turret);
+    }
+    for(int i = 0; i < 1; i++)
+    {
+//        int X = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
+//        int Y = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
+//        X -= X%Variables::tileSize;
+//        Y -= Y%Variables::tileSize;
+        Entity *console = Console::CreateConsole(150,150);
+        console->setStartingTile();
+        entityList.push_back(console);
     }
 }
 AllEntities::~AllEntities()
@@ -247,6 +268,7 @@ void AllEntities::load(std::fstream& file)
         if(fileInput == "OB")newEntity = Obstacle::CreateObstacle(-1, -1);
         if(fileInput == "KH")newEntity = KeyHolder::CreateKeyHolder(-1, -1);
         if(fileInput == "LO")newEntity = Lock::CreateLock(-1, -1);
+        if(fileInput == "CO")newEntity = Console::CreateConsole(-1,-1);
         
         if(newEntity != NULL)newEntity->load(file);
         if(fileInput == "RC")addRemoteCharge(newEntity);

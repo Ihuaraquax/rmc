@@ -10,6 +10,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include "AttributeEnum.h"
+#include "Console.h"
 
 KeyboardControl::KeyboardControl() {
     pressedKeys = new bool[ALLEGRO_KEY_MAX];
@@ -19,7 +20,11 @@ KeyboardControl::KeyboardControl() {
 void KeyboardControl::keyboardActions()
 {
      al_get_keyboard_state(&Variables::key_state);
-     if(al_key_down(&Variables::key_state, ALLEGRO_KEY_ESCAPE))Variables::status = END;
+     if(isPressed(ALLEGRO_KEY_ESCAPE))
+     {
+         if(Variables::substate == console)Console::end();
+         else Variables::status = END;
+     }
      if(Variables::status == GAME)this->gameKeyboardActions();
 }
 
@@ -27,7 +32,7 @@ void KeyboardControl::gameKeyboardActions()
 {
      Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
     
-     if(Variables::substate == game || Variables::substate == plan)
+     if(Variables::substate == game || Variables::substate == plan || Variables::substate == console)
      {
          if(al_key_down(&Variables::key_state, ALLEGRO_KEY_UP))Variables::offsetY-=5;
          if(al_key_down(&Variables::key_state, ALLEGRO_KEY_DOWN))Variables::offsetY+=5;

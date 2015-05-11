@@ -113,5 +113,10 @@ Entity *Spawner::CreateSpawner(double X, double Y)
 {
     Entity *spawner = new Spawner();
     if(X == 0 && Y == 0)dynamic_cast<Spawner*>(spawner)->setRandomCoords();
+    else
+    {
+        spawner->getCoords()->X = X;
+        spawner->getCoords()->Y = Y;
+    }
     return spawner;
 }

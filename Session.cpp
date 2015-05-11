@@ -102,7 +102,7 @@ void Session::update()
     mouse->mouseActions();
     if(Variables::status == GAME)
         {
-        if(Variables::substate != plan)updateOffset();
+        if(Variables::substate == game)updateOffset();
         map->update();
         hud->update();
         if(Variables::substate == chest)hud->getOpenChest()->update();

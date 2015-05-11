@@ -8,6 +8,7 @@
 #include "MouseControl.h"
 #include "globalVariables.h"
 #include "Player.h"
+#include "Console.h"
 
 MouseControl::MouseControl() {
     keyPressed[0] = false;
@@ -33,6 +34,7 @@ void MouseControl::mouseActions()
      }
      if(Variables::substate == chest)Variables::session->getHud()->mouseChestControls();
      if(Variables::substate == inventory)Variables::session->getHud()->mouseInventoryControls();
+     if(Variables::substate == console)if(onPress(0))Console::mouseControl();
 }
 
 bool MouseControl::onPress(int mosueKey)

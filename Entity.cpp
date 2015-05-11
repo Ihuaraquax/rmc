@@ -313,3 +313,8 @@ void Entity::setPlanCoords(int X, int Y)
     planCoords->width = coords->width;
     planCoords->height = coords->height;
 }
+
+void Entity::RCUse()
+{
+    
+}
