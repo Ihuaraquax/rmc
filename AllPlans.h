@@ -8,6 +8,7 @@
 #ifndef ALLPLANS_H
 #define	ALLPLANS_H
 #include "Plan.h"
+#include <fstream>
 
 class AllPlans {
 public:
@@ -17,6 +18,8 @@ public:
     Plan *getCurrentPlan();
     void display();
     void update();
+    void save(std::fstream &savefile);
+    void load(std::fstream &savefile);
 private:
     Plan **plans;
     int currentPlanIndex;

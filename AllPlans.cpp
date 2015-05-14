@@ -37,3 +37,17 @@ Plan *AllPlans::getCurrentPlan()
 {
     return plans[currentPlanIndex];
 }
+
+void AllPlans::save(std::fstream& savefile)
+{
+    savefile << "AP" << ' ';
+    for(int i = 0; i < 10; i++)plans[i]->save(savefile);
+    savefile << std::endl;
+}
+
+void AllPlans::load(std::fstream& savefile)
+{
+    std::string temp;
+    savefile >> temp;
+    for(int i = 0; i < 10; i++)plans[i]->load(savefile);
+}

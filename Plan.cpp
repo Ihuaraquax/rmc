@@ -131,3 +131,29 @@ void Plan::changeCurrentStep(bool next)
 PlanStep* Plan::getCurrentStep() const {
     return currentStep;
 }
+
+
+void Plan::save(std::fstream& savefile)
+{
+    savefile << "PN" << ' ';    
+    templateList<PlanStep> *temp = stepList;
+    while(temp != NULL)
+    {
+        temp->data->save(savefile);
+        temp = temp -> next;
+    }
+    savefile << "END" << std::endl;
+}
+
+void Plan::load(std::fstream& savefile)
+{
+    std::string temp;
+    savefile >> temp;
+    while(temp != "END")
+    {
+        PlanStep *step = new PlanStep();
+        step->load(savefile);
+        this->addStep(step);
+        savefile >> temp;
+    }
+}

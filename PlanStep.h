@@ -9,6 +9,7 @@
 #define	PLANSTEP_H
 #include "Coordinates.h"
 #include "Image.h"
+#include <fstream>
 
 class PlanStep {
 public:
@@ -21,6 +22,8 @@ public:
     void setCoords(double X, double Y, int moduleX, int moduleY);
     int getModuleY() const;
     int getModuleX() const;
+    void save(std::fstream &savefile);
+    void load(std::fstream &savefile);
 private:
     Coordinates *coords;
     int moduleX, moduleY;

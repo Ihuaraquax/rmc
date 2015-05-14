@@ -114,6 +114,7 @@ void Session::loadSave()
     std::fstream file;
     file.open("saves/save01.txt", std::ios::in);
     map->load(file);
+    allPlans->load(file);
     file.close();
 }
 
@@ -153,5 +154,6 @@ void Session::save()
     std::fstream file;
     file.open("saves/save01.txt", std::ios::out);
     map->save(file);
+    this->allPlans->save(file);
     file.close();
 }

@@ -96,3 +96,16 @@ int PlanStep::getModuleY() const {
 int PlanStep::getModuleX() const {
     return moduleX;
 }
+
+void PlanStep::save(std::fstream& savefile)
+{
+    savefile << "PS" << ' ';
+    savefile << coords->X << ' ' << coords->Y << ' ' << moduleX << ' ' << moduleY << ' ';
+    savefile << std::endl;
+}
+
+void PlanStep::load(std::fstream& savefile)
+{
+    std::string temp;
+    savefile >> temp >> coords->X >> coords->Y >> moduleX >> moduleY;
+}

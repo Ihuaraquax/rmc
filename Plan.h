@@ -9,6 +9,7 @@
 #define	PLAN_H
 #include "PlanStep.h"
 #include "templateList.h"
+#include <fstream>
 
 class Plan {
 public:
@@ -24,6 +25,8 @@ public:
     void deleteStep(PlanStep *step);
     void changeCurrentStep(bool next);
     PlanStep* getCurrentStep() const;
+    void save(std::fstream &savefile);
+    void load(std::fstream &savefile);
 private:
     templateList<PlanStep> *stepList;
     PlanStep *currentStep;
