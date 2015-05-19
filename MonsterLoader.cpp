@@ -14,7 +14,6 @@
 void MonsterLoader::loadMonster(Entity* entity, int type, int modifier)
 {
     Monster *monster = dynamic_cast<Monster*>(entity);
-    std::string paths[] = {"images/monster1.png"};
     switch(type)
     {
         case 0:

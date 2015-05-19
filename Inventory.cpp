@@ -15,8 +15,8 @@
 #include "EquipmentLoader.h"
 
 Inventory::Inventory() {
-    std::string paths[] = {"images/inventoryBackground.png"};
-    backgroundImage = new Image(1, paths, false);
+    std::string path = "images/inventoryBackground.png";
+    backgroundImage = new Image(path, false);
     backgroundImage->state = UI;
     backgroundCoords = new Coordinates();
     backgroundCoords->X = 0;
@@ -170,24 +170,24 @@ void Inventory::init()
     Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());    
     for(int i = 0; i < 6; i++)
     {
-        std::string paths[] = {player->weapons[i]->getDisplayPaths()};
-        weaponImages[i] = new Image(1, paths, true);
+        std::string path = player->weapons[i]->getDisplayPaths();
+        weaponImages[i] = new Image(path, true);
         weaponImages[i]->state = UI;
     }
-    std::string equipmentPaths[] = {player->helmet->getImagePath()};
-    equipmentImages[0] = new Image(1, equipmentPaths, false);
+    std::string equipmentPaths = player->helmet->getImagePath();
+    equipmentImages[0] = new Image(equipmentPaths, false);
     equipmentImages[0]->state = UI;
     
-    equipmentPaths[0] = player->chestplate->getImagePath();
-    equipmentImages[1] = new Image(1, equipmentPaths, false);
+    equipmentPaths = player->chestplate->getImagePath();
+    equipmentImages[1] = new Image(equipmentPaths, false);
     equipmentImages[1]->state = UI;
     
-    equipmentPaths[0] = player->greaves->getImagePath();
-    equipmentImages[2] = new Image(1, equipmentPaths, false);
+    equipmentPaths = player->greaves->getImagePath();
+    equipmentImages[2] = new Image( equipmentPaths, false);
     equipmentImages[2]->state = UI;
     
-    equipmentPaths[0] = player->item->getImagePath();
-    equipmentImages[3] = new Image(1, equipmentPaths, false);
+    equipmentPaths = player->item->getImagePath();
+    equipmentImages[3] = new Image(equipmentPaths, false);
     equipmentImages[3]->state = UI;
 }
 

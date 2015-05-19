@@ -18,11 +18,11 @@ KeyHolder::KeyHolder() {
     coords->angle = 0;
     coords->speedX = 0;
     coords->speedY = 0;
-    std::string paths[] = {"images/KeyHolder.jpg"};
-    this->image = new Image(1, paths, true);
+    std::string path = "images/KeyHolder.jpg";
+    this->image = new Image(path, true);
     image->state = NORMAL;
-    paths[0] = "images/Holder.jpg";
-    emptyImage = new Image(1, paths, true);
+    path = "images/Holder.jpg";
+    emptyImage = new Image(path, true);
     emptyImage->state = NORMAL;
 }
 

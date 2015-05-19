@@ -15,8 +15,8 @@ Missle::Missle(bool isMIRV) {
     this->coords = new Coordinates();
     this->coords->height = 20;
     this->coords->width = 20;
-    std::string paths[] = {"images/missle.png"};
-    this->image = new Image(1, paths, true);
+    std::string path = "images/missle.png";
+    this->image = new Image(path, true);
     health = 1;
     image->state = NORMAL;
     threatLevel = 0;

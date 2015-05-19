@@ -204,9 +204,9 @@ void Monster::save(std::fstream& file)
 void Monster::load(std::fstream& file)
 {
     loadGeneric(file);
-    std::string paths[] = {"images/monster2.png"};
-    file >> expirience >> paths[0];
-    this->image = new Image(1, paths, true);
+    std::string path = "images/monster2.png";
+    file >> expirience >> path[0];
+    this->image = new Image(path, true);
     this->image->state = NORMAL;
 }
 

@@ -42,8 +42,8 @@ Player::Player() {
 
 Player::Player(bool isLoad)
 {
-    std::string paths[] = {"images/player.png"};
-    this->image = new Image(1, paths, true);
+    std::string path = "images/player.png";
+    this->image = new Image(path, true);
     this->image->state = NORMAL;
     targetCoords = new Coordinates();
     this->threatLevel = 0;
@@ -88,8 +88,8 @@ void Player::setTestValues()
     Variables::offsetY = (coords->Y * Variables::ScaleY * Variables::scale) -Variables::RES_HEIGHT/2;
     Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
         (coords->X + coords->width/2, coords->Y + coords->height/2);
-    std::string paths[] = {"images/player.png"};
-    this->image = new Image(1, paths, true);
+    std::string path = "images/player.png";
+    this->image = new Image(path, true);
     this->image->state = NORMAL;
     health = 10000;
     maximumHealth = health + 100;

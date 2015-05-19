@@ -15,8 +15,8 @@ HUD::HUD() {
     this->coords = new Coordinates();
     coords->X = 0;
     coords->Y = Variables::RES_HEIGHT - 120;
-    std::string path[] = {"images/HUDBackground.png"};
-    background = new Image(1, path, false);
+    std::string path = "images/HUDBackground.png";
+    background = new Image( path, false);
     mainWeaponUI = new WeaponUI(true);
     secondaryWeaponUI = new WeaponUI(false);
     equipmentUI = new EquipmentUI();

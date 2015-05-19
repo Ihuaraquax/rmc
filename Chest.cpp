@@ -25,12 +25,12 @@ Chest::Chest() {
     this->coords->speedX = 0;
     this->coords->speedY = 0;
     
-    std::string paths[] = {"images/chest.png"};
-    this->image = new Image(1, paths, true);    
+    std::string path = "images/chest.png";
+    this->image = new Image(path, true);    
     this->image->state = NORMAL;
     
-    std::string backgroundPaths[] = {"images/chestBackground.png"};
-    this->backgroundImage = new Image(1, backgroundPaths, false);
+    std::string backgroundPath = "images/chestBackground.png";
+    this->backgroundImage = new Image(backgroundPath, false);
     this->backgroundImage->state = UI;    
     this->backgroundCoords = new Coordinates();
     this->backgroundCoords->X = 800;
@@ -175,48 +175,48 @@ void Chest::loadContent(int index, int type, int value)
     if(contentImages[index] != NULL)delete contentImages[index];
     if(type == 0 || value == -1)
     {
-        std::string paths[] = {"images/noEquipmentInSlot.png"};
-        contentImages[index] = new Image(1, paths, false);
+        std::string path = "images/noEquipmentInSlot.png";
+        contentImages[index] = new Image(path, false);
         contentCoords[index]->X = 860;
         contentCoords[index]->width = 100;
         contentCoords[index]->height = 100;
     }
     else if(type == 1)
     {
-        std::string paths[] = {WeaponLoader::loadPath(value)};
-        contentImages[index] = new Image(1, paths, true);
+        std::string path = WeaponLoader::loadPath(value);
+        contentImages[index] = new Image(path, true);
         contentCoords[index]->X = 810;
         contentCoords[index]->width = 200;
         contentCoords[index]->height = 90;
     }
     else if(type == 2)
     {
-        std::string paths[] = {EquipmentLoader::loadEquipmentImagePath(value, "fixtures/helmets.txt")};
-        contentImages[index] = new Image(1, paths, true);
+        std::string path = EquipmentLoader::loadEquipmentImagePath(value, "fixtures/helmets.txt");
+        contentImages[index] = new Image(path, true);
         contentCoords[index]->X = 860;
         contentCoords[index]->width = 100;
         contentCoords[index]->height = 100;
     }
     else if(type == 3)
     {
-        std::string paths[] = {EquipmentLoader::loadEquipmentImagePath(value, "fixtures/chestplates.txt")};
-        contentImages[index] = new Image(1, paths, true);
+        std::string path = EquipmentLoader::loadEquipmentImagePath(value, "fixtures/chestplates.txt");
+        contentImages[index] = new Image(path, true);
         contentCoords[index]->X = 860;
         contentCoords[index]->width = 100;
         contentCoords[index]->height = 100;
     }
     else if(type == 4)
     {
-        std::string paths[] = {EquipmentLoader::loadEquipmentImagePath(value, "fixtures/greaves.txt")};
-        contentImages[index] = new Image(1, paths, true);
+        std::string path = EquipmentLoader::loadEquipmentImagePath(value, "fixtures/greaves.txt");
+        contentImages[index] = new Image(path, true);
         contentCoords[index]->X = 860;
         contentCoords[index]->width = 100;
         contentCoords[index]->height = 100;
     }
     else if(type == 5)
     {
-        std::string paths[] = {UsableItemLoader::loadItemPath(value)};
-        contentImages[index] = new Image(1, paths, true);
+        std::string path = UsableItemLoader::loadItemPath(value);
+        contentImages[index] = new Image(path, true);
         contentCoords[index]->X = 860;
         contentCoords[index]->width = 100;
         contentCoords[index]->height = 100;

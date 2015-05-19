@@ -18,10 +18,10 @@ ObstacleDoor::ObstacleDoor()
     this->coords->speedY = 0;
     this->coords->angle = 0;
     image = NULL;
-    std::string paths[] = {"images/blastDoorClosed.jpg"};
-    std::string paths2[] = {"images/blastDoorOpen.jpg"};
-    this->closedImage = new Image(1, paths, true);
-    this->openImage = new Image(1, paths2, true);
+    std::string path = "images/blastDoorClosed.jpg";
+    std::string path2 = "images/blastDoorOpen.jpg";
+    this->closedImage = new Image(path, true);
+    this->openImage = new Image(path2, true);
     this->closedImage->state = NORMAL;
     this->openImage->state = NORMAL;
     this->health = 1000;

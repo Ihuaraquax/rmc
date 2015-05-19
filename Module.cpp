@@ -19,8 +19,8 @@ Module::Module() {
     modificatorsTable = new double[100];
     for(int i = 0; i < 100; i++)modificatorsTable[i] = 0;
     for(int i = 0; i < 3; i++)modificatorsTable[rand()%100] = 1;
-    std::string paths[] = {"images/stoneFloor3.jpg"};
-    floorImage = new Image(1, paths, false);
+    std::string path = "images/stoneFloor3.jpg";
+    floorImage = new Image(path, false);
     floorImage->state = REPEATING;
     coords = new Coordinates();
     coords->X = 0;
@@ -348,8 +348,8 @@ void Module::load(std::fstream& file)
     coords->height = Variables::tileSize * Variables::tilesPerRoom;
     coords->width = Variables::tileSize * Variables::tilesPerRoom;
     floor->setCoords(coords);
-    std::string paths[1] = {"images/stoneFloor3.jpg"};
-    Image *image = new Image(1, paths, false);
+    std::string path = "images/stoneFloor3.jpg";
+    Image *image = new Image(path, false);
     image->state = REPEATING;
     floor->setImage(image);
     WallFactory::setModuleBasicWalls(this);

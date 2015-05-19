@@ -65,15 +65,15 @@ void EquipmentUI::reloadImages(Equipment *helmet, Equipment *chestplate, Equipme
     if(greavesImage != NULL)delete greavesImage;
     if(itemImage != NULL)delete itemImage;
     
-    std::string helmetPaths[] = {helmet->getImagePath()};
-    std::string chestplatePaths[] = {chestplate->getImagePath()};
-    std::string greavesPaths[] = {greaves->getImagePath()};
-    std::string itemPaths[] = {item->getImagePath()};
+    std::string helmetPaths = helmet->getImagePath();
+    std::string chestplatePaths = chestplate->getImagePath();
+    std::string greavesPaths = greaves->getImagePath();
+    std::string itemPaths = item->getImagePath();
     
-    helmetImage = new Image(1, helmetPaths, false);
-    chestplateImage = new Image(1, chestplatePaths, false);
-    greavesImage = new Image(1, greavesPaths, false);
-    itemImage = new Image(1, itemPaths, false);
+    helmetImage = new Image(helmetPaths, false);
+    chestplateImage = new Image(chestplatePaths, false);
+    greavesImage = new Image(greavesPaths, false);
+    itemImage = new Image(itemPaths, false);
     
     helmetImage->state = UI;
     chestplateImage->state = UI;

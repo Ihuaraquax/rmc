@@ -24,8 +24,8 @@ Explosives::Explosives()
     this->coords->speedX = 0;
     this->coords->speedY = 0;
     this->coords->angle = 0;
-    std::string paths[] = {"images/dynamite.png"};
-    this->image = new Image(1, paths, true);
+    std::string path = "images/dynamite.png";
+    this->image = new Image(path, true);
     this->image->state = NORMAL;
     health = 450;
     maximumHealth = health;

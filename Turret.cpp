@@ -15,10 +15,10 @@ Turret::Turret() {
     this->coords->height = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    std::string lowerPartsPaths[] = {"images/turretLower.png"};
-    std::string upperPartsPaths[] = {"images/turretUpper.png"};
-    this->lowerPart = new Image(1, lowerPartsPaths, true);
-    this->upperPart = new Image(1, upperPartsPaths, true);
+    std::string lowerPartsPath = "images/turretLower.png";
+    std::string upperPartsPath = "images/turretUpper.png";
+    this->lowerPart = new Image(lowerPartsPath, true);
+    this->upperPart = new Image(upperPartsPath, true);
     lowerPart->state = NORMAL;
     upperPart->state = NORMAL;
     image = NULL;

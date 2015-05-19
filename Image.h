@@ -18,25 +18,16 @@ enum DisplayState{
     BASIC, NORMAL, REPEATING, CUT, UI
 };
 
-enum ImageOrder{
-    SINGLE, LOOP, RANDOM
-};
-
 class Image {
 public:
-    Image(int count, std::string paths[], bool isMask);
+    Image(std::string path, bool isMask);
     ~Image();
     void display(Coordinates *coords);
-    void nextImage();
-    void specificImage(int imageNo);
     std::string getImagePath() const;
     DisplayState state;
-    ImageOrder order;
 private:
-    ALLEGRO_BITMAP **images;
-    int imageCount;
-    int currentImage;
-    int *imageCenterX, *imageCenterY;
+    ALLEGRO_BITMAP *image;
+    int imageCenterX, imageCenterY;
     std::string imagePath;
     void displayMultiples(Coordinates *coords);
     void displayCut(Coordinates *coords);

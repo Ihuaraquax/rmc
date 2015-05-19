@@ -15,8 +15,8 @@
 Session::Session() {
     configurator::config();
     Variables::images = new GlobalImages();
-    std::string paths[] = {"images/GameWin.png"};
-    winImage = new Image(1,paths,false);
+    std::string path = "images/GameWin.png";
+    winImage = new Image(path,false);
     winImage->state = UI;
     coords = new Coordinates();
     allPlans = new AllPlans();
