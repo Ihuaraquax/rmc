@@ -69,12 +69,12 @@ void Image::display(Coordinates* coords){
 
 void Image::displayCut(Coordinates* coords)
 {    
-    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX;
-    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY;
+    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX * Variables::scale;
+    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY * Variables::scale;
     ALLEGRO_BITMAP *cutImage = al_create_sub_bitmap(images[currentImage], 0, 0, coords->width, coords->height);
     double angle = (coords->angle *M_PI)/ 180;
     al_draw_scaled_rotated_bitmap(images[currentImage], imageCenterX[currentImage], 
-            imageCenterY[currentImage], X, Y, Variables::ScaleX, Variables::ScaleY, angle, 0);
+            imageCenterY[currentImage], X, Y, Variables::ScaleX * Variables::scale, Variables::ScaleY * Variables::scale, angle, 0);
     al_destroy_bitmap(cutImage);
 }
 
@@ -131,11 +131,11 @@ void Image::displayBasic(Coordinates* coords)
 
 void Image::displayNormal(Coordinates* coords)
 {
-    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX;
-    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY;
+    double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX * Variables::scale;
+    double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY * Variables::scale;
     double angle = (coords->angle *M_PI)/ 180;
     al_draw_scaled_rotated_bitmap(images[currentImage], imageCenterX[currentImage], 
-            imageCenterY[currentImage], X, Y, Variables::ScaleX, Variables::ScaleY, angle, 0);
+            imageCenterY[currentImage], X, Y, Variables::ScaleX * Variables::scale, Variables::ScaleY * Variables::scale, angle, 0);
 }
 
 void Image::displayUI(Coordinates* coords)

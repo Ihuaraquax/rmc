@@ -140,8 +140,8 @@ void Session::loop()
 
 void Session::updateOffset()
 {
-    double X = (getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX) * Variables::ScaleX;
-    double Y = (getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY) * Variables::ScaleY;
+    double X = (getAllEntities()->getPlayer()->getCoords()->X - Variables::offsetX) * Variables::ScaleX * Variables::scale;
+    double Y = (getAllEntities()->getPlayer()->getCoords()->Y - Variables::offsetY) * Variables::ScaleY * Variables::scale;
     
     if(X < 400)Variables::offsetX -= getAllEntities()->getPlayer()->getCoords()->speedX;
     if(X > Variables::RES_WIDTH-400)Variables::offsetX += getAllEntities()->getPlayer()->getCoords()->speedX;

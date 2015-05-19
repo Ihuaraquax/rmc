@@ -21,8 +21,8 @@
 using namespace std;
 
 
-int  Variables::RES_WIDTH = 1920;
-int  Variables::RES_HEIGHT = 1080;
+int  Variables::RES_WIDTH = 1024;
+int  Variables::RES_HEIGHT = 768;
 const float  Variables::fps = 120;
 
 double  Variables::offsetX = 0;
@@ -57,9 +57,7 @@ bool Variables::isMonsterShoot = true;
 
 LogLevel Variables::log = none;
 GlobalImages *Variables::images;
-
-double Console::scaleX = 0;
-double Console::scaleY = 0;
+double Variables::scale = 1;
 
 double Console::offsetX = 0;
 double Console::offsetY = 0;

@@ -41,6 +41,7 @@ struct Variables
     static double offsetY;
     static float ScaleX;
     static float ScaleY;
+    static double scale;
     
     static ALLEGRO_KEYBOARD_STATE key_state;
     static ALLEGRO_MOUSE_STATE mouse_state;

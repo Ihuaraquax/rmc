@@ -25,8 +25,8 @@ void Floor::setCoords(Coordinates* coords)
 {
     this->coords = coords;
     this->coords->angle = 0;
-    this->coords->width *= Variables::ScaleX;
-    this->coords->height *= Variables::ScaleY;
+    this->coords->width *= Variables::ScaleX * Variables::scale;
+    this->coords->height *= Variables::ScaleY * Variables::scale;
 }
 
 void Floor::setImage(Image* image)

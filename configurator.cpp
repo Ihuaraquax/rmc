@@ -22,14 +22,14 @@ void configurator::config()
     al_init_ttf_addon();
     Variables::timer = al_create_timer(1.0 / Variables::fps);
     Variables::event_queue = al_create_event_queue();
-    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
+//    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
     Variables::display = al_create_display(Variables::RES_WIDTH, Variables::RES_HEIGHT);
     float x = Variables::RES_WIDTH;
     float y = Variables::RES_HEIGHT;
     x /= 1024;
     y /= 768;
-    Variables::ScaleX = 3;
-    Variables::ScaleY = 3;
+    Variables::ScaleX = 1;
+    Variables::ScaleY = 1;
     srand(time(NULL));
     al_start_timer(Variables::timer);
     Variables::MouseCoursor = al_load_bitmap("images/coursor.png");

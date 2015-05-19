@@ -71,8 +71,8 @@ void PlanStep::display()
 
 void PlanStep::displayPathToNext(Coordinates* nextCoords)
 {
-    al_draw_line((coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX, (coords->Y + coords->height/2- Variables::offsetY) * Variables::ScaleX,
-                (nextCoords->X + nextCoords->width/2 - Variables::offsetX) * Variables::ScaleX, (nextCoords->Y + nextCoords->height/2- Variables::offsetY) * Variables::ScaleX,
+    al_draw_line((coords->X + coords->width/2 - Variables::offsetX)* Variables::scale, (coords->Y + coords->height/2- Variables::offsetY)* Variables::scale,
+                (nextCoords->X + nextCoords->width/2 - Variables::offsetX)* Variables::scale, (nextCoords->Y + nextCoords->height/2- Variables::offsetY)* Variables::scale,
                 al_map_rgb(0,255,0), 3);
 }
 

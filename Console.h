@@ -26,7 +26,6 @@ public:
     static void end();
     static void mouseControl();
 private:
-    static double scaleX, scaleY;
     static double offsetX, offsetY;
 };
 

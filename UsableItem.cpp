@@ -106,10 +106,10 @@ bool UsableItem::isTileNearToPlayer(double X, double Y)
 
 bool UsableItem::getPointedCoords(double& X, double& Y)
 {
-    int size = Variables::tileSize * Variables::ScaleX;
+    int size = Variables::tileSize * Variables::ScaleX * Variables::scale;
     int x,y;
-    x = (Variables::mouse_x ) * (1/Variables::ScaleX)+ Variables::offsetX;
-    y = (Variables::mouse_y ) * (1/Variables::ScaleY)+ Variables::offsetY;
+    x = (Variables::mouse_x ) * (1/(Variables::ScaleX * Variables::scale))+ Variables::offsetX;
+    y = (Variables::mouse_y ) * (1/(Variables::ScaleY * Variables::scale))+ Variables::offsetY;
     x -= x%size;
     y -= y%size;
     X = x;

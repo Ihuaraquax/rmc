@@ -22,9 +22,9 @@ Wall::~Wall()
 
 void Wall::display()
 {
-    double X = (coords->X - Variables::offsetX) * Variables::ScaleX;
-    double Y = (coords->Y - Variables::offsetY) * Variables::ScaleY;
-    al_draw_filled_rectangle(X, Y, X + coords->width * Variables::ScaleX, Y + coords->height * Variables::ScaleY, al_map_rgb(255,0,0));
+    double X = (coords->X - Variables::offsetX) * Variables::ScaleX * Variables::scale;
+    double Y = (coords->Y - Variables::offsetY) * Variables::ScaleY * Variables::scale;
+    al_draw_filled_rectangle(X, Y, X + coords->width * Variables::ScaleX * Variables::scale, Y + coords->height * Variables::ScaleY * Variables::scale, al_map_rgb(255,0,0));
 }
 
 void Wall::update()

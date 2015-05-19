@@ -13,8 +13,6 @@ Console::Console() {
     coords->height = Variables::tileSize;
     coords->width = Variables::tileSize;
     image = Variables::images->getConsole();
-    Console::scaleX = Variables::ScaleX;
-    Console::scaleY = Variables::ScaleY;
 }
 
 Console::Console(const Console& orig) {
@@ -26,13 +24,11 @@ Console::~Console() {
 void Console::use()
 {
     Variables::substate = console;
-    double width = Variables::RES_WIDTH;
     double height = Variables::RES_HEIGHT - 120;
-    Variables::ScaleX =  width/(Variables::tileSize * Variables::tilesPerRoom);
-    Variables::ScaleY =  height/(Variables::tileSize * Variables::tilesPerRoom);
+    Variables::scale =  height/(Variables::tileSize * Variables::tilesPerRoom);
     Console::offsetX = Variables::offsetX;
     Console::offsetY = Variables::offsetY;
-    Variables::offsetX = 0;
+    Variables::offsetX = -512;
     Variables::offsetY = 0;
 }
 
@@ -98,8 +94,7 @@ void Console::end()
     Variables::substate = game;
     Variables::offsetX = Console::offsetX;
     Variables::offsetY = Console::offsetY;
-    Variables::ScaleX = Console::scaleX;
-    Variables::ScaleY = Console::scaleY;
+    Variables::scale = 1;
 }
 
 void Console::mouseControl()
@@ -109,8 +104,8 @@ void Console::mouseControl()
     mosueCoords->Y = Variables::mouse_y;
     mosueCoords->width = 50;
     mosueCoords->height = 50;
-    
-    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(Variables::mouse_x * (1/Variables::ScaleX), Variables::mouse_y * (1/Variables::ScaleY));
+    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt
+            (Variables::mouse_x * (1/(Variables::ScaleX * Variables::scale)) + Variables::offsetX, Variables::mouse_y * (1/(Variables::ScaleY * Variables::scale)));
     if(tile != NULL)if(tile->getRemoteAccessObject() != NULL)
     {
         tile->getRemoteAccessObject()->RCUse();

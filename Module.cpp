@@ -109,9 +109,9 @@ void Module::displayTransferBlocks()
         {
             if(moduleTiles[getModuleIndex(i,j)]->getTransferDirection() != -1)
             {
-                int X = (i * Variables::tileSize + Variables::tileSize/2 - Variables::offsetX) * Variables::ScaleX;
-                int Y = (j * Variables::tileSize + Variables::tileSize/2 - Variables::offsetY) * Variables::ScaleY;
-                al_draw_circle(X, Y, (Variables::tileSize/5) * Variables::ScaleY, al_map_rgb(0, 255, 0),25 * Variables::ScaleY);
+                int X = (i * Variables::tileSize + Variables::tileSize/2 - Variables::offsetX) * Variables::ScaleX * Variables::scale;
+                int Y = (j * Variables::tileSize + Variables::tileSize/2 - Variables::offsetY) * Variables::ScaleY * Variables::scale;
+                al_draw_circle(X, Y, (Variables::tileSize/5) * Variables::scale, al_map_rgb(0, 255, 0),25 * Variables::scale);
             }
         }
 }
