@@ -36,6 +36,7 @@ public:
     void setDamageType(DAMAGE_TYPE damageType);
 private:
     void shootMIRV(Coordinates *shooterCoords, int team);
+    void decreaseAmmo();
     
     int weaponId;
     int ammoMax;

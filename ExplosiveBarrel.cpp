@@ -41,7 +41,7 @@ void ExplosiveBarrel::executeAgony()
     Entity *explosion = new Explosion();
     Explosion *temp = dynamic_cast<Explosion*>(explosion);
     temp->setCoords(coords->X + coords->width/2, coords->Y + coords->height/2);
-    temp->setDamageType(normal);
+    temp->setDamageType(explosive);
     temp->setRadius(100);
     temp->setDamage(3000);
     temp->dealDamage();

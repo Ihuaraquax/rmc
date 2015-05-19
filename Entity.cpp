@@ -158,6 +158,7 @@ int Entity::getArmor() const {
 
 void Entity::heal(int healAmount)
 {
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[77] == 1)healAmount *= 1.8;
     if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[18] != 0)this->getHit(healAmount, normal);
     else
     {

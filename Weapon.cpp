@@ -44,15 +44,7 @@ void Weapon::update()
     if(ammoCurrent == 0 && !reloading)reload();
     if(timeToShoot == 0 && reloading && reloadable)
     {
-        if(playerIsWielder)
-        {
-            Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
-            if(player->getAmmo(ammoType) > this->ammoMax) ammoCurrent = ammoMax;
-            else ammoCurrent = player->getAmmo(ammoType);
-            player->addAmmo(-ammoCurrent, ammoType);
-            if(player->getAmmo(ammoType) == 0)reloadable = false;
-        }
-        else ammoCurrent = ammoMax;
+        decreaseAmmo();
         reloading = false;
     }
     if(Variables::currentFrame % 3 == 0)if(currentTargetSize > defaultTargetSize)
@@ -62,8 +54,26 @@ void Weapon::update()
     }
 }
 
+void Weapon::decreaseAmmo()
+{
+    int ammoToLoad = ammoMax;
+    if(playerIsWielder && Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[16] == 0)
+    {
+        Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+        if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[22] == 1)ammoToLoad = 1;
+        if(player->getAmmo(ammoType) > ammoToLoad) ammoCurrent = ammoToLoad;
+        else ammoCurrent = player->getAmmo(ammoType);
+        player->addAmmo(-ammoCurrent, ammoType);
+        if(player->getAmmo(ammoType) == 0)reloadable = false;
+    }
+    else ammoCurrent = ammoToLoad;
+}
+
 void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int team, int shooterCriticalChance, double shooterCriticalDamage, double accuracy)
 {
+    double incrementModificator = 1;
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[23] == 1)incrementModificator = 3;
+    else if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[24] == 1)incrementModificator = 0.3;
     if(shooterCoords == targetCoords) this->shootMIRV(shooterCoords, team);
     else
     {
@@ -74,6 +84,8 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
             for(int i = 0; i < projectileCount; i++)
             {
                 bool critical = rand()%100 < criticalChance + shooterCriticalChance;
+                if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[25] == 1)critical = true;
+                else if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[26] == 1)critical = false;
                 Entity *bullet = ProjectileFactory::provideProjectile(weaponId, 0);
                 int angle = getAngle(shooterCoords, targetCoords);
                 if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
@@ -82,7 +94,7 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
                 Variables::session->getAllEntities()->addEntity(bullet);
             }
             double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
-            if(increment > 0)currentTargetSize += increment;
+            if(increment > 0)currentTargetSize += (increment * incrementModificator);
         }
     }
 }
@@ -130,7 +142,12 @@ void Weapon::shootMIRV(Coordinates *shooterCoords, int team)
 
 void Weapon::reload()
 {
-    if(reloadable)timeToShoot = reloadSpeed;
+    if(reloadable)
+    {
+        if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[14] == 1)timeToShoot = reloadSpeed *0.2;
+        else if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[15] == 1)timeToShoot = reloadSpeed *1.8;
+        else timeToShoot = reloadSpeed;
+    }
     reloading = true;
 }
 

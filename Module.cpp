@@ -316,6 +316,7 @@ void Module::save(std::fstream& file)
 {
     file << "MD" << std::endl;
     for(int i = 0; i < 100; i++)if(this->modificatorsTable[i] != 0)file << i << ' ';
+    file << -1;
     file << std::endl;
 }
 
@@ -323,6 +324,12 @@ void Module::load(std::fstream& file)
 { 
     std::string temp;
     file >> temp;
+    int mods = 0;
+    while(mods != -1)
+    {
+        file >> mods;
+        if(mods != -1)modificatorsTable[mods] = 1;
+    }
     this->moduleTiles = new ModuleTile*[Variables::tilesPerRoom * Variables::tilesPerRoom];
     for(int i = 0; i < Variables::tilesPerRoom; i++)
         for(int j = 0; j < Variables::tilesPerRoom; j++)

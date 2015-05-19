@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "WeaponLoader.h"
 #include "PickUp.h"
+#include "Explosion.h"
 
 Monster::Monster()
 {
@@ -87,6 +88,10 @@ void Monster::update()
         Variables::giveFactors(coords->angle, x,y);
         this->move(x,y);
     }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[19] == 1)if(Variables::currentFrame%30 == 0)
+    {
+        heal(1);
+    }
     if(Variables::isMonsterShoot)checkForAttack();
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
     this->updateBuffers();
@@ -157,12 +162,21 @@ void Monster::executeAgony()
     ModuleTile *tile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     if(tile != NULL)tile->addToThreatLevel(-threatLevel);
-    if(rand()%1 == 0)
+    if(rand()%100 <= 7)
     {
         Entity *pickUp = new PickUp();
         pickUp->setCoords(coords->X, coords->Y);
         Variables::session->getAllEntities()->addEntity(pickUp);
         Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToPickUpList(pickUp);
+    }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[13] == 1)
+    {
+        Entity *explosion = new Explosion();
+        dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
+        dynamic_cast<Explosion*>(explosion)->setDamage(this->maximumHealth/10);
+        dynamic_cast<Explosion*>(explosion)->setDamageType(explosive);
+        dynamic_cast<Explosion*>(explosion)->dealDamage();
+        Variables::session->getAllEntities()->addEntity(explosion);
     }
 }
 

@@ -11,6 +11,7 @@
 Explosion::Explosion() {
     this->coords = new Coordinates();
     damage = 100;
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[71] == 1)damage *= 0.2;
     damageType = normal;
     radius = 20;
     health = 190;
@@ -33,6 +34,7 @@ void Explosion::setDamageType(DAMAGE_TYPE damageType) {
 
 void Explosion::setDamage(int damage) {
     this->damage = damage;
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[71] == 1)this->damage *= 0.2;
 }
 
 
