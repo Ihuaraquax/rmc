@@ -12,6 +12,7 @@
 #include "Attributes.h"
 #include "UsableItem.h"
 #include "Inventory.h"
+#include "Animation.h"
 
 class Player : public Entity{
     friend class Helmet;
@@ -78,6 +79,7 @@ private:
     
     Attributes *attributes;
     int keyValue;
+    Animation *animation;
 };
 
 #endif	/* PLAYER_H */

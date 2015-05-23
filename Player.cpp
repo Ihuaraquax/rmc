@@ -38,6 +38,9 @@ Player::Player() {
     }
     bleeds = true;
     setTestValues();
+    this->animation = new Animation();
+    animation->setAnimation("images/walking2.png", 88, 98);
+    this->animation->setDuration(1);
 }
 
 Player::Player(bool isLoad)
@@ -163,7 +166,8 @@ void Player::updatePlanStep()
 
 void Player::display()
 {
-    image->display(coords);
+//    image->display(coords);
+    animation->display(coords);
     al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize() * Variables::scale, al_map_rgb(255,0,0), 5);
     al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize() * Variables::scale, al_map_rgb(0,0,255), 3);
 //    this->displayIsInBuffRange();

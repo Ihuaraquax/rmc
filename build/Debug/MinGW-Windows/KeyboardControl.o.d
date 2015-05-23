@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/KeyboardControl.o: KeyboardControl.cpp \
  AllEntities.h MouseControl.h Map.h Module.h Floor.h Room.h ModuleTile.h \
  AiTile.h AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h \
  GameSubstateEnum.h LogLevels.h GlobalImages.h Player.h Attributes.h \
- AttributeEnum.h Console.h
+ Animation.h AttributeEnum.h Console.h
 
 KeyboardControl.h:
 
@@ -89,6 +89,8 @@ GlobalImages.h:
 Player.h:
 
 Attributes.h:
+
+Animation.h:
 
 AttributeEnum.h:
 

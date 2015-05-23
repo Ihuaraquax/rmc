@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Monster.o: Monster.cpp Monster.h Entity.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllPlans.h Plan.h PlanStep.h \
  GameSubstateEnum.h LogLevels.h GlobalImages.h CollisionDetector.h \
- Player.h Attributes.h WeaponLoader.h PickUp.h Explosion.h
+ Player.h Attributes.h Animation.h WeaponLoader.h PickUp.h Explosion.h
 
 Monster.h:
 
@@ -93,6 +93,8 @@ CollisionDetector.h:
 Player.h:
 
 Attributes.h:
+
+Animation.h:
 
 WeaponLoader.h:
 

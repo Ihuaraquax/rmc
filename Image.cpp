@@ -17,6 +17,14 @@ Image::Image(std::string path, bool isMask) {
     imagePath = path;
 }
 
+Image::Image(ALLEGRO_BITMAP *image, bool isMask) {
+    this->image = image;
+    if(isMask)al_convert_mask_to_alpha(this->image, al_map_rgb(255,0,255));
+    imageCenterX = al_get_bitmap_width(image)/2;
+    imageCenterY = al_get_bitmap_height(image)/2;
+    this->state = BASIC;
+}
+
 Image::~Image() {
     al_destroy_bitmap(image);
 }

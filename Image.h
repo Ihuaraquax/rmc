@@ -21,6 +21,7 @@ enum DisplayState{
 class Image {
 public:
     Image(std::string path, bool isMask);
+    Image(ALLEGRO_BITMAP *image, bool isMask);
     ~Image();
     void display(Coordinates *coords);
     std::string getImagePath() const;
