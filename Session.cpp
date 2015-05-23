@@ -84,6 +84,7 @@ void Session::display()
         {
             allPlans->getCurrentPlan()->displayCurrent();
             map->getCurrentModule()->displayMods();
+            map->displayLight();
         }
         if(Variables::substate == plan)allPlans->getCurrentPlan()->displayAll();
         al_flip_display();

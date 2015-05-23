@@ -9,6 +9,7 @@
 #define	MAP_H
 #include "Module.h"
 #include "AllEntities.h"
+#include "AllLightSources.h"
 #include <fstream>
 
 class Map {
@@ -34,6 +35,8 @@ public:
     int getModuleY() const;
     int getModuleX() const;
     int getModulesTableSize() const;
+    AllLightSources* getAllLightSources() const;
+    void displayLight();
 private:
     Module ***modules;
     AllEntities ***allEntities;
@@ -42,6 +45,7 @@ private:
     int modulesTableSize;
     int moduleX;
     int moduleY;
+    AllLightSources *allLightSources;
 };
 
 #endif	/* MAP_H */

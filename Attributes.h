@@ -30,6 +30,8 @@ private:
     int speed;
     int inteligence;
     int accuracy;
+    int pointsLeft;
+    int skillPointsLeft[4];
 };
 
 #endif	/* ATTRIBUTES_H */

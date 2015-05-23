@@ -7,6 +7,7 @@
 
 #include "Explosion.h"
 #include "globalVariables.h"
+#include "LightSource.h"
 
 Explosion::Explosion() {
     this->coords = new Coordinates();
@@ -22,6 +23,13 @@ void Explosion::setCoords(double X, double Y)
 {
     this->coords->X = X;
     this->coords->Y = Y;
+    
+    
+    LightSource *source = new LightSource("images/explosionLightSource.png");
+    source->getCoords()->X = coords->X;
+    source->getCoords()->Y = coords->Y;
+    source->setTime(55);
+    Variables::session->getMap()->getAllLightSources()->addSource(source);
 }
 
 void Explosion::setRadius(int radius) {
@@ -48,9 +56,6 @@ void Explosion::update()
 
 void Explosion::display()
 {
-    double X = (coords->X - Variables::offsetX) * Variables::ScaleX * Variables::scale;
-    double Y = (coords->Y - Variables::offsetY) * Variables::ScaleY * Variables::scale;
-    al_draw_circle(X, Y, (radius - health/10) * Variables::scale, al_map_rgb(200,200,200), (25 - health/10) * Variables::scale);
 }
 
 void Explosion::dealDamageInSmallArea()

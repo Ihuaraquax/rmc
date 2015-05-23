@@ -11,6 +11,7 @@
 #include "WeaponLoader.h"
 #include "Player.h"
 #include "ProjectileFactory.h"
+#include "LightSource.h"
 
 Weapon::Weapon() {
     weaponId = -1;
@@ -95,6 +96,7 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
             }
             double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
             if(increment > 0)currentTargetSize += (increment * incrementModificator);
+            createBlast(shooterCoords);
         }
     }
 }
@@ -118,6 +120,7 @@ void Weapon::shoot(Coordinates* shooterCoords, int team, int shooterCriticalChan
         }
         double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
         if(increment > 0)currentTargetSize += increment;
+        createBlast(shooterCoords);
     }
     shooterCoords->X -= shooterCoords->width/2;
     shooterCoords->Y -= shooterCoords->height/2;
@@ -214,4 +217,15 @@ void Weapon::setRange(int range) {
 
 void Weapon::setDamageType(DAMAGE_TYPE damageType) {
     this->damageType = damageType;
+}
+
+void Weapon::createBlast(Coordinates *shooterCoords)
+{
+    LightSource *source = new LightSource("images/lightSource.png");
+    double sX, sY;
+    Variables::giveFactors(shooterCoords->angle, sX, sY);
+    source->getCoords()->X = shooterCoords->X + (20 *sX);
+    source->getCoords()->Y = shooterCoords->Y + (20 *sY);
+    source->setTime(5);
+    Variables::session->getMap()->getAllLightSources()->addSource(source);
 }

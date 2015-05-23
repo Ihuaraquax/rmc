@@ -17,6 +17,7 @@
 Map::Map() {
     moduleX = 0;
     moduleY = 0;
+    this->allLightSources = new AllLightSources();
 }
 
 void Map::init(int size)
@@ -158,6 +159,7 @@ void Map::update()
 {
     currentModule->update();
     currentAllEntities->update();
+    allLightSources->update();
 }
 
 Module* Map::getCurrentModule() const {
@@ -264,4 +266,13 @@ int Map::getModuleX() const {
 
 int Map::getModulesTableSize() const {
     return modulesTableSize;
+}
+
+AllLightSources* Map::getAllLightSources() const {
+    return allLightSources;
+}
+
+void Map::displayLight()
+{
+    allLightSources->display();
 }

@@ -4,8 +4,9 @@ build/Debug/MinGW-Windows/WallFactory.o: WallFactory.cpp WallFactory.h \
  GenericBuffer.h EntityShape.h AiTile.h Chest.h Obstacle.h AllDecals.h \
  Decal.h globalVariables.h Session.h Menu.h HUD.h WeaponUI.h \
  EquipmentUI.h Equipment.h UsableItem.h Inventory.h AllEntities.h \
- MouseControl.h KeyboardControl.h Map.h AllPlans.h Plan.h PlanStep.h \
- GameSubstateEnum.h LogLevels.h GlobalImages.h
+ MouseControl.h KeyboardControl.h Map.h AllLightSources.h LightSource.h \
+ AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h LogLevels.h \
+ GlobalImages.h
 
 WallFactory.h:
 
@@ -74,6 +75,10 @@ MouseControl.h:
 KeyboardControl.h:
 
 Map.h:
+
+AllLightSources.h:
+
+LightSource.h:
 
 AllPlans.h:
 

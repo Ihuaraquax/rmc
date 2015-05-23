@@ -15,6 +15,8 @@ Attributes::Attributes() {
     this->inteligence = 1;
     this->speed = 1;
     this->strength = 1;
+    this->pointsLeft = 0;
+    for(int i = 0; i < 4; i++)skillPointsLeft[i] = 1;
 }
 
 Attributes::~Attributes() {

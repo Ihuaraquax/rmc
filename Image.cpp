@@ -46,8 +46,7 @@ void Image::display(Coordinates* coords){
             break;
         case UI:
             displayUI(coords);
-            break;
-            
+            break;           
     }
 }
 

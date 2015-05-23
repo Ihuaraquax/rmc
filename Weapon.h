@@ -34,6 +34,7 @@ public:
     int getWeaponId() const;
     void setRange(int range);
     void setDamageType(DAMAGE_TYPE damageType);
+    void createBlast(Coordinates *shooterCoords);
 private:
     void shootMIRV(Coordinates *shooterCoords, int team);
     void decreaseAmmo();

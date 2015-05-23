@@ -17,6 +17,7 @@
 #include "KeyboardControl.h"
 #include "Map.h"
 #include "AllPlans.h"
+#include "LightSource.h"
 
 enum MainGameState
 {
