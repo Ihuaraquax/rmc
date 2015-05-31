@@ -65,9 +65,14 @@ Inventory::Inventory() {
     ammoNames[7] = "ENRG";
     ammoNames[8] = "HEAVY";
     ammoNames[9] = "HCG";
+    
+    buttons = new Button*[8];
+    for(int i = 0; i < 8; i++)buttons[i] = new Button(i);
 }
 
 Inventory::~Inventory() {
+    for(int i = 0; i < 8; i++)delete buttons[i];
+    delete []buttons;
 }
 
 void Inventory::display()
@@ -78,6 +83,7 @@ void Inventory::display()
     displayAttributes();
     displayStats();
     displayAmmo();
+    for(int i = 0; i < 8; i++)buttons[i]->display();
 }
 
 void Inventory::displayWeapons()
@@ -339,4 +345,9 @@ bool Inventory::isCorrectEquipmentType(int chestIndex, int inventoryIndex)
     }
     result = result || Variables::session->getHud()->getOpenChest()->getContentType(chestIndex) == 0;
     return result;
+}
+
+void Inventory::onMousePressed()
+{
+    for(int i = 0; i < 8; i++)buttons[i]->execute();
 }

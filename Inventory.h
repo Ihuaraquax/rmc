@@ -9,6 +9,7 @@
 #define	INVENTORY_H
 #include "Image.h"
 #include "Coordinates.h"
+#include "Button.h"
 
 class Inventory {
 public:
@@ -22,6 +23,7 @@ public:
     
     int getWeaponIndex();
     int getEquipmentIndex();
+    void onMousePressed();
 private:
     void clearImages();
     bool isCorrectEquipmentType(int chestIndex, int inventoryIndex);
@@ -43,6 +45,7 @@ private:
     Coordinates **equipmentCoords;
     
     std::string *ammoNames;
+    Button **buttons;
 };
 
 #endif	/* INVENTORY_H */

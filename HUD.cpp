@@ -10,6 +10,7 @@
 #include "WeaponUI.h"
 #include "Player.h"
 #include "EquipmentUI.h"
+#include "Button.h"
 
 HUD::HUD() {
     this->coords = new Coordinates();

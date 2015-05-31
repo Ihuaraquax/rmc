@@ -239,6 +239,11 @@ void Player::useEquipment(int equipmentIndex)
 void Player::addExpirience(int exp)
 {
     expirience += exp;
+    while(this->expirience >= 1000)
+    {
+        this->expirience -= 1000;
+        this->attributes->addSkillPoints(1);
+    }
 }
 
 int Player::getExpirience() const {
@@ -378,6 +383,10 @@ void Player::setKeyValue(int keyValue) {
 
 int Player::getKeyValue() const {
     return keyValue;
+}
+
+Attributes* Player::getAttributes() const {
+    return attributes;
 }
 
 void Player::setTransferCoords(int side)

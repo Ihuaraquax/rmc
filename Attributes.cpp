@@ -15,7 +15,7 @@ Attributes::Attributes() {
     this->inteligence = 1;
     this->speed = 1;
     this->strength = 1;
-    this->pointsLeft = 0;
+    this->attributePointsLeft = 0;
     for(int i = 0; i < 4; i++)skillPointsLeft[i] = 1;
 }
 
@@ -40,30 +40,46 @@ int Attributes::getStrength() const {
 
 void Attributes::addAccuracy(int toAdd)
 {
-    this->accuracy += toAdd;
-    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateAccuracy();
+    if(toAdd > 0 && this->attributePointsLeft > toAdd)
+    {
+        this->accuracy += toAdd;
+        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateAccuracy();
+        attributePointsLeft -= toAdd;
+    }
 }
 
 void Attributes::addInteligence(int toAdd)
 {
-    this->inteligence += toAdd;
-    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateCritical();
+    if(toAdd > 0 && this->attributePointsLeft > toAdd)
+    {
+        this->inteligence += toAdd;
+        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateCritical();
+        attributePointsLeft -= toAdd;
+    }
 }
 
 void Attributes::addSpeed(int toAdd)
 {
-    this->speed += toAdd;
-    double temp = toAdd;
-    temp /= 100;
-    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedX += temp;
-    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedY += temp;
+    if(toAdd > 0 && this->attributePointsLeft > toAdd)
+    {
+        this->speed += toAdd;
+        double temp = toAdd;
+        temp /= 100;
+        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedX += temp;
+        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedY += temp;
+        attributePointsLeft -= toAdd;
+    }
 }
 
 void Attributes::addStrength(int toAdd)
 {
-    this->strength += toAdd;
-    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->health += toAdd;
-    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->maximumHealth += toAdd;
+    if(toAdd > 0 && this->attributePointsLeft > toAdd)
+    {
+        this->strength += toAdd;
+        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->health += toAdd;
+        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->maximumHealth += toAdd;
+        attributePointsLeft -= toAdd;
+    }
 }
 
 void Attributes::save(std::fstream& file)
@@ -74,4 +90,9 @@ void Attributes::save(std::fstream& file)
 void Attributes::load(std::fstream& file)
 {
     file >> strength >> speed >> inteligence >> accuracy;
+}
+
+void Attributes::addSkillPoints(int toAdd)
+{
+    this->attributePointsLeft += toAdd;
 }

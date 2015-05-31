@@ -63,6 +63,7 @@ public:
     void loadGeneric(std::fstream &file);
     void setKeyValue(int keyValue);
     int getKeyValue() const;
+    Attributes* getAttributes() const;
 private:
     void setTransferCoords(int side);
     void setTestValues();

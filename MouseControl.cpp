@@ -33,7 +33,11 @@ void MouseControl::mouseActions()
          if(Variables::mouse_state.buttons & 2)Variables::session->getAllPlans()->getCurrentPlan()->destroyStepAtMouse();
      }
      if(Variables::substate == chest)Variables::session->getHud()->mouseChestControls();
-     if(Variables::substate == inventory)Variables::session->getHud()->mouseInventoryControls();
+     if(Variables::substate == inventory)
+     {
+         Variables::session->getHud()->mouseInventoryControls();
+         if(onPress(0))Variables::session->getHud()->getPlayerInventory()->onMousePressed();
+     }
      if(Variables::substate == console)if(onPress(0))Console::mouseControl();
 }
 

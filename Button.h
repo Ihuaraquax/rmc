@@ -12,20 +12,16 @@
 
 class Button {
 public:
-    Button();
+    Button(int action);
     Button(const Button& orig);
     virtual ~Button();
-    bool isHover();
     void display();
     void update();
-    void changeCoordinates(Coordinates *panelCoords);
+    void execute();
 private:
     Coordinates * coords;
     Image *image;
-    bool active;
     int action;
-    bool pressed;
-    void execute();
     void makeAction();
 };
 

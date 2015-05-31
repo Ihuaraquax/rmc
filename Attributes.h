@@ -25,12 +25,13 @@ public:
     
     void save(std::fstream &file);
     void load(std::fstream &file);
+    void addSkillPoints(int toAdd);
 private:
     int strength;
     int speed;
     int inteligence;
     int accuracy;
-    int pointsLeft;
+    int attributePointsLeft;
     int skillPointsLeft[4];
 };
 
