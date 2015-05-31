@@ -20,11 +20,14 @@ public:
     void setTime(int time);
     int getTime() const;
     Coordinates* getCoords() const;
+    void setAsGlobal();
+    void setAsNegative();
 private:
     Image *image;
     Coordinates *coords;
     int time;
     int radius;
+    bool negative;
 };
 
 #endif	/* LIGHTSOURCE_H */

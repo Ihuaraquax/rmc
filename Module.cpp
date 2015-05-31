@@ -28,6 +28,8 @@ Module::Module() {
     coords->width = Variables::tileSize * Variables::tilesPerRoom;
     coords->height = Variables::tileSize * Variables::tilesPerRoom;
     coords->angle = 0;
+    this->allLightSources = new AllLightSources();
+    this->activateModificators();
 }
 
 Module::~Module()
@@ -368,4 +370,22 @@ void Module::setPlanCoords(int X, int Y)
 void Module::displayPlan()
 {
     floorImage->display(floorPlanCoords);
+}
+
+void Module::activateModificators()
+{
+    if(this->modificatorsTable[21] != 0)
+    {
+        LightSource *shadow = new LightSource("images/moduleShadow.png");
+        shadow->setTime(-1);
+        shadow->getCoords()->X = 0;
+        shadow->getCoords()->Y = 0;
+        shadow->setAsGlobal();
+        shadow->setAsNegative();
+        this->allLightSources->addSource(shadow);
+    }
+}
+
+AllLightSources* Module::getAllLightSources() const {
+    return allLightSources;
 }

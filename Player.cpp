@@ -102,7 +102,7 @@ void Player::setTestValues()
     WeaponLoader::loadWeapon(weapons[3], 18);
     WeaponLoader::loadWeapon(weapons[4], 19);
     WeaponLoader::loadWeapon(weapons[5], 20);
-    this->changeHelmet(0);
+    this->changeHelmet(6);
     this->changeChestplate(0);
     this->changeGreaves(0);
     this->changeItem(3);

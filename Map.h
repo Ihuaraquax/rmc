@@ -45,7 +45,6 @@ private:
     int modulesTableSize;
     int moduleX;
     int moduleY;
-    AllLightSources *allLightSources;
 };
 
 #endif	/* MAP_H */

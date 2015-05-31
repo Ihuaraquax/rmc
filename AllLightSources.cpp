@@ -8,6 +8,11 @@
 #include "AllLightSources.h"
 
 AllLightSources::AllLightSources() {
+    nightvision = new LightSource("images/nightvision.png");
+    nightvision->setTime(-1);
+    nightvision->getCoords()->X = 0;
+    nightvision->getCoords()->Y = 0;
+    nightvision->setAsGlobal();
 }
 
 AllLightSources::AllLightSources(const AllLightSources& orig) {
@@ -23,6 +28,7 @@ void AllLightSources::addSource(LightSource* source)
 
 void AllLightSources::display()
 {
+    if(useNightvision)nightvision->display();
     for(std::list<LightSource*>::iterator i = sources.begin(); i != sources.end(); ++i)
     {
         LightSource *temp = *i;
@@ -53,4 +59,8 @@ void AllLightSources::deleteDeadSources()
         }
         i++;
     }
+}
+
+void AllLightSources::setUseNightvision(bool useNightvision) {
+    this->useNightvision = useNightvision;
 }

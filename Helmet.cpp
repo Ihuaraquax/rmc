@@ -55,6 +55,7 @@ void Helmet::activate()
         case 5:
             break;
         case 6:
+            Variables::session->getMap()->getAllLightSources()->setUseNightvision(true);
             break;
         case 7:
             break;
@@ -79,6 +80,7 @@ void Helmet::deactivate()
         case 5:
             break;
         case 6:
+            Variables::session->getMap()->getAllLightSources()->setUseNightvision(false);
             break;
         case 7:
             break;

@@ -14,6 +14,7 @@ LightSource::LightSource(std::string path) {
     coords->X = 200;
     coords->Y = 200;
     time = -1;
+    negative = false;
 }
 
 void LightSource::setRadius(int radius) {
@@ -42,7 +43,8 @@ LightSource::~LightSource() {
 
 void LightSource::display()
 {
-    al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ONE);
+    if(negative)al_set_blender(ALLEGRO_DEST_MINUS_SRC, ALLEGRO_ONE, ALLEGRO_ONE);
+    else al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ONE);
     image->display(coords);
     al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_INVERSE_ALPHA);
 }
@@ -50,4 +52,14 @@ void LightSource::display()
 void LightSource::update()
 {
     if(time > 0)time--;
+}
+
+void LightSource::setAsGlobal()
+{
+    this->image->state = UI;
+}
+
+void LightSource::setAsNegative()
+{
+    negative = true;
 }

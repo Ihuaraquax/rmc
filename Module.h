@@ -14,6 +14,7 @@
 #include "ModuleTile.h"
 #include "Chest.h"
 #include "AllDecals.h"
+#include "AllLightSources.h"
 
 class Module {
 friend class ModuleFactory;
@@ -43,6 +44,8 @@ public:
     
     void save(std::fstream &savefile);
     void load(std::fstream &file);
+    void activateModificators();
+    AllLightSources* getAllLightSources() const;
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();
@@ -56,6 +59,7 @@ private:
     Image *floorImage;
     Coordinates *coords;
     Coordinates *floorPlanCoords;
+    AllLightSources *allLightSources;
     
     int getModuleIndex(int X, int Y);
     void displayBuffs();

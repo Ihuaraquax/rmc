@@ -19,8 +19,11 @@ public:
     void display();
     void addSource(LightSource *source);
     void deleteDeadSources();
+    void setUseNightvision(bool useNightvision);
 private:
     std::list<LightSource*> sources;
+    LightSource *nightvision;
+    bool useNightvision;
 };
 
 #endif	/* ALLLIGHTSOURCES_H */
