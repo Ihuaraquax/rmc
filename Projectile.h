@@ -23,6 +23,7 @@ public:
     void setAdditionalDamage(int additionalDamage, int additionalDamageType);
     int getDamage() const;
     void setDamage(int damage);
+    void setShooter(Entity* shooter);
 protected :
     int damage;
     int damageType;
@@ -30,6 +31,7 @@ protected :
     int additionalDamageType;
     int range;
     bool explode;
+    Entity *shooter;
 };
 
 #endif	/* PROJECTILE_H */

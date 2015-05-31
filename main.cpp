@@ -62,6 +62,8 @@ double Variables::scale = 1;
 double Console::offsetX = 0;
 double Console::offsetY = 0;
 
+Entity *Variables::currentProjectile = NULL;
+
 int main(int argc, char** argv) {
     Variables::session = new Session();
     Variables::session->create();

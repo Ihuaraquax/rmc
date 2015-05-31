@@ -22,6 +22,7 @@
 #include "GameSubstateEnum.h"
 #include "LogLevels.h"
 #include "GlobalImages.h"
+#include "Entity.h"
 
 enum GAME_STATE
 {
@@ -58,6 +59,7 @@ struct Variables
     
     static const int tilesPerRoom;
     static const int tileSize;
+    static Entity *currentProjectile;
     
     static LogLevel log;
     

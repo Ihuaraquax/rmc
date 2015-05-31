@@ -15,6 +15,7 @@
 #include "DistanceBuffer.h"
 #include "BloodSplatter.h"
 #include "WeaponLoader.h"
+#include "Projectile.h"
 
 Entity::Entity() {
     armor = 0;
@@ -121,6 +122,11 @@ void Entity::getHit(int damage, int damageType)
 void Entity::attack(int weapon)
 {
     if(weapons[weapon]->getWeaponId() != -1)weapons[weapon]->shoot(coords, targetCoords, teamId, criticalChance, criticalDamage, accuracy);
+    if(Variables::currentProjectile != NULL)
+    {
+        dynamic_cast<Projectile*>(Variables::currentProjectile)->setShooter(this);
+        Variables::currentProjectile = NULL;
+    }
 }
 
 int Entity::getTeamId() const {

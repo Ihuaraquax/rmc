@@ -50,11 +50,11 @@ void Projectile::update()
             {
                 if(targetEntity->getTeamId() == this->teamId)
                 {
-                    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[1] != 0)
+                    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[1] != 0 && targetEntity != this->shooter)
                     {
                         health--;
                         targetEntity->getHit(damage, damageType);
-                    } else if (Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[2] != 0)
+                    } else if (Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[2] != 0 && targetEntity != this->shooter)
                     {
                         health--;
                         targetEntity->heal(damage);
@@ -152,4 +152,8 @@ int Projectile::getDamage() const {
 
 void Projectile::setDamage(int damage) {
     this->damage = damage;
+}
+
+void Projectile::setShooter(Entity* shooter) {
+    this->shooter = shooter;
 }

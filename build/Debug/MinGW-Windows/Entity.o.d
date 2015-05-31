@@ -7,7 +7,7 @@ build/Debug/MinGW-Windows/Entity.o: Entity.cpp Entity.h Image.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
  CollisionDetector.h TimedBuffer.h DistanceBuffer.h BloodSplatter.h \
- WeaponLoader.h
+ WeaponLoader.h Projectile.h
 
 Entity.h:
 
@@ -102,3 +102,5 @@ DistanceBuffer.h:
 BloodSplatter.h:
 
 WeaponLoader.h:
+
+Projectile.h:
