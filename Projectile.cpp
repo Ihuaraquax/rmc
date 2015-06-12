@@ -14,7 +14,7 @@ Projectile::Projectile() {
     this->coords = new Coordinates();
     this->coords->height = 16;
     this->coords->width = 16;
-    this->image = Variables::images->getProjectile();
+    this->image = Variables::images->getByName("bullet");
     health = 1;
     image->state = NORMAL;
     threatLevel = 0;

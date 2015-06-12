@@ -17,7 +17,7 @@ Spawner::Spawner() {
     this->coords->angle = 0;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    this->image = Variables::images->getSpawner();
+    this->image = Variables::images->getByName("spawner");
     health = 2000;
     teamId = 0;
     this->threatLevel = 15;

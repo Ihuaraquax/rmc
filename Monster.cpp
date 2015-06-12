@@ -16,7 +16,7 @@
 
 Monster::Monster()
 {
-    image = Variables::images->getMonster1();
+    image = Variables::images->getByName("monster1");
     health = 500;
     teamId = 2;
     this->coords = new Coordinates();

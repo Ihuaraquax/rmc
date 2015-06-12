@@ -10,8 +10,8 @@
 #include "globalVariables.h"
 
 PlanStep::PlanStep() {
-    this->arrowImage = Variables::images->getPlanStepArrow();
-    this->spaceMarkerImage = Variables::images->getPlanStepSpaceMarker();
+    this->arrowImage = Variables::images->getByName("arrow");
+    this->spaceMarkerImage = Variables::images->getByName("spaceMarker");
     coords = new Coordinates();
     coords->width = 100;
     coords->height = 100;

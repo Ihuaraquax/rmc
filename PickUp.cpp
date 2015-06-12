@@ -11,7 +11,7 @@
 #include "TimedBuffer.h"
 
 PickUp::PickUp() {
-    image = Variables::images->getPickUp();
+    image = Variables::images->getByName("pickUp");
     type = rand()%12;
     health = 1200;
     coords = new Coordinates();

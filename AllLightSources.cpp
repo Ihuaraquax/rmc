@@ -8,6 +8,7 @@
 #include "AllLightSources.h"
 
 AllLightSources::AllLightSources() {
+    this->useNightvision = false;
     nightvision = new LightSource("images/nightvision.png");
     nightvision->setTime(-1);
     nightvision->getCoords()->X = 0;
@@ -23,7 +24,7 @@ AllLightSources::~AllLightSources() {
 
 void AllLightSources::addSource(LightSource* source)
 {
-    sources.push_back(source);
+    sources.push_front(source);
 }
 
 void AllLightSources::display()

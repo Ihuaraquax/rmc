@@ -22,8 +22,7 @@ ExplosiveBarrel::ExplosiveBarrel()
     this->coords->height = Variables::tileSize;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    std::string path = "images/barrel.png";
-    this->image = new Image(path, true);
+    this->image = Variables::images->getByName("barrel");
     this->image->state = NORMAL;
     this->barrelType = 0;
     health = 300;

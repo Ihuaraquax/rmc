@@ -18,9 +18,9 @@ Obstacle::Obstacle()
     this->coords->angle = 0;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    this->image = Variables::images->getTable();
-    this->damagedImage = Variables::images->getDamagedTable();
-    this->damagedImage2 = Variables::images->getDamagedTable2();
+    this->image = Variables::images->getByName("table");
+    this->damagedImage = Variables::images->getByName("tableDamaged1");
+    this->damagedImage2 = Variables::images->getByName("tableDamaged2");
     image->state = NORMAL;
     damagedImage->state = NORMAL;
     damagedImage2->state = NORMAL;
@@ -38,9 +38,9 @@ void Obstacle::setCoords(double X, double Y) {
 
 void Obstacle::setAsWall()
 {
-    this->image = Variables::images->getWall();
-    this->damagedImage = Variables::images->getDamagedWall();
-    this->damagedImage2 = Variables::images->getDamagedWall2();
+    this->image = Variables::images->getByName("stoneWall1");
+    this->damagedImage = Variables::images->getByName("stoneWall1Damaged");
+    this->damagedImage2 = Variables::images->getByName("stoneWall1Damaged2");
     isWall = true;
 }
 
@@ -51,9 +51,9 @@ void Obstacle::setAsCornerWall(int corner)
     this->coords->angle = 0;
     for(int i = 0; i < corner-2; i++)coords->angle += 90;
     
-    this->image = Variables::images->getCornerWall();
-    this->damagedImage = Variables::images->getDamagedCornerWall();
-    this->damagedImage2 = Variables::images->getDamagedCornerWall2();
+    this->image = Variables::images->getByName("cornerWall1");
+    this->damagedImage = Variables::images->getByName("cornerWallDamaged");
+    this->damagedImage2 = Variables::images->getByName("cornerWallDamaged2");
 }
 
 

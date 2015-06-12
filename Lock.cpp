@@ -17,8 +17,7 @@ Lock::Lock() {
     coords->angle = 0;
     coords->speedX = 0;
     coords->speedY = 0;
-    std::string path = "images/Lock.jpg";
-    this->image = new Image(path, true);
+    this->image = Variables::images->getByName("lock");
     image->state = NORMAL;
 }
 

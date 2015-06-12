@@ -45,9 +45,6 @@ Player::Player() {
 
 Player::Player(bool isLoad)
 {
-    std::string path = "images/player.png";
-    this->image = new Image(path, true);
-    this->image->state = NORMAL;
     targetCoords = new Coordinates();
     this->threatLevel = 0;
     this->coords = new Coordinates();
@@ -68,6 +65,9 @@ Player::Player(bool isLoad)
         weapons[i]->setPlayerIsWielder(true);
     }
     bleeds = true;
+    this->animation = new Animation();
+    animation->setAnimation("images/walking2.png", 88, 98);
+    this->animation->setDuration(1);
 }
 
 
@@ -91,9 +91,6 @@ void Player::setTestValues()
     Variables::offsetY = (coords->Y * Variables::ScaleY * Variables::scale) -Variables::RES_HEIGHT/2;
     Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
         (coords->X + coords->width/2, coords->Y + coords->height/2);
-    std::string path = "images/player.png";
-    this->image = new Image(path, true);
-    this->image->state = NORMAL;
     health = 10000;
     maximumHealth = health + 100;
     WeaponLoader::loadWeapon(weapons[0], 0);
@@ -166,11 +163,9 @@ void Player::updatePlanStep()
 
 void Player::display()
 {
-//    image->display(coords);
     animation->display(coords);
     al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize() * Variables::scale, al_map_rgb(255,0,0), 5);
     al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize() * Variables::scale, al_map_rgb(0,0,255), 3);
-//    this->displayIsInBuffRange();
 }
 
 void Player::interact()

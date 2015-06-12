@@ -223,7 +223,7 @@ void Weapon::setDamageType(DAMAGE_TYPE damageType) {
 
 void Weapon::createBlast(Coordinates *shooterCoords)
 {
-    LightSource *source = new LightSource("images/lightSource.png");
+    LightSource *source = new LightSource("images/bigLight.png");
     double sX, sY;
     Variables::giveFactors(shooterCoords->angle, sX, sY);
     source->getCoords()->X = shooterCoords->X + (20 *sX);

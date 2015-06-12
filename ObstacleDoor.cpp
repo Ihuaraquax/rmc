@@ -18,10 +18,8 @@ ObstacleDoor::ObstacleDoor()
     this->coords->speedY = 0;
     this->coords->angle = 0;
     image = NULL;
-    std::string path = "images/blastDoorClosed.jpg";
-    std::string path2 = "images/blastDoorOpen.jpg";
-    this->closedImage = new Image(path, true);
-    this->openImage = new Image(path2, true);
+    this->closedImage = Variables::images->getByName("blastDoorClosed");
+    this->openImage = Variables::images->getByName("blastDoorOpen");
     this->closedImage->state = NORMAL;
     this->openImage->state = NORMAL;
     this->health = 1000;
@@ -37,8 +35,6 @@ void ObstacleDoor::setCoords(double X, double Y) {
 }
 
 ObstacleDoor::~ObstacleDoor() {
-    delete closedImage;
-    delete openImage;
 }
 
 void ObstacleDoor::display()

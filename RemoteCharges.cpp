@@ -17,8 +17,7 @@ RemoteCharges::RemoteCharges()
     this->coords->angle = 0;
     this->coords->speedX = 0;
     this->coords->speedY = 0;
-    std::string path = "images/remoteCharge.jpg";
-    this->image = new Image(path, true);
+    this->image = Variables::images->getByName("remoteCharges");
     this->image->state = NORMAL;
     health = 450;
     maximumHealth = health;

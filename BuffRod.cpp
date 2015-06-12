@@ -14,7 +14,7 @@ BuffRod::BuffRod()
     coords = new Coordinates();
     coords->width = Variables::tileSize;
     coords->height = Variables::tileSize;
-    image = Variables::images->getBuffRod();
+    image = Variables::images->getByName("bufferRod");
     this->health = 10;
 }
 

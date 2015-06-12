@@ -14,8 +14,7 @@ Grenade::Grenade() {
     this->coords = new Coordinates();
     this->coords->height = 16;
     this->coords->width = 16;
-    std::string path = "images/grenade.png";
-    this->image = new Image( path, true);
+    this->image = Variables::images->getByName("grenade");
     health = 1;
     image->state = NORMAL;
     threatLevel = 0;

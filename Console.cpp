@@ -12,7 +12,7 @@ Console::Console() {
     coords = new Coordinates();
     coords->height = Variables::tileSize;
     coords->width = Variables::tileSize;
-    image = Variables::images->getConsole();
+    image = Variables::images->getByName("console");
 }
 
 Console::Console(const Console& orig) {
