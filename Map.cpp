@@ -78,7 +78,7 @@ void Map::createLevels()
             allEntities[i][j]->applyModifiers();
             if(i == keyX && j == keyY)
             {
-                Entity *keyHolder = KeyHolder::CreateKeyHolder(50, 50);
+                Entity *keyHolder = KeyHolder::CreateKeyHolder(Variables::tileSize, Variables::tileSize);
                 allEntities[i][j]->addEntity(keyHolder);
             }
             if(i == lockX && j == lockY)

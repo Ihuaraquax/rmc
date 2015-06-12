@@ -13,6 +13,7 @@
 #include "CollisionDetector.h"
 #include "TextDisplayer.h"
 #include "EquipmentLoader.h"
+#include "Skills.h"
 
 Inventory::Inventory() {
     std::string path = "images/inventoryBackground.png";
@@ -84,6 +85,7 @@ void Inventory::display()
     displayStats();
     displayAmmo();
     for(int i = 0; i < 8; i++)buttons[i]->display();
+    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->display();
 }
 
 void Inventory::displayWeapons()
@@ -350,4 +352,5 @@ bool Inventory::isCorrectEquipmentType(int chestIndex, int inventoryIndex)
 void Inventory::onMousePressed()
 {
     for(int i = 0; i < 8; i++)buttons[i]->execute();
+    dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->handleMouseAction();
 }

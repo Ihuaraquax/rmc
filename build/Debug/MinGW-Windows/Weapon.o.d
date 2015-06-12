@@ -6,7 +6,8 @@ build/Debug/MinGW-Windows/Weapon.o: Weapon.cpp Weapon.h Coordinates.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h GameSubstateEnum.h LogLevels.h GlobalImages.h Projectile.h \
- WeaponLoader.h Player.h Attributes.h Animation.h ProjectileFactory.h
+ WeaponLoader.h Player.h Attributes.h Animation.h Skills.h \
+ ProjectileFactory.h
 
 Weapon.h:
 
@@ -101,5 +102,7 @@ Player.h:
 Attributes.h:
 
 Animation.h:
+
+Skills.h:
 
 ProjectileFactory.h:

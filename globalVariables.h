@@ -64,6 +64,7 @@ struct Variables
     static LogLevel log;
     
     static GAME_SUBSTATE substate;
+    static bool skillRedistributionAviable;
     
     static GlobalImages *images;
     static bool isMonsterShoot;

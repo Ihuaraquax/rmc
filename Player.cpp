@@ -41,6 +41,7 @@ Player::Player() {
     this->animation = new Animation();
     animation->setAnimation("images/walking2.png", 88, 98);
     this->animation->setDuration(1);
+    skills = new Skills();
 }
 
 Player::Player(bool isLoad)
@@ -80,8 +81,8 @@ Player::~Player() {
 
 void Player::setTestValues()
 {
-    this->coords->X = 115;
-    this->coords->Y = 115;
+    this->coords->X = Variables::tileSize * 2.5;
+    this->coords->Y = Variables::tileSize * 2.5;
     this->coords->angle = 0;
     this->coords->height = 25;
     this->coords->width = 25;
@@ -382,6 +383,10 @@ int Player::getKeyValue() const {
 
 Attributes* Player::getAttributes() const {
     return attributes;
+}
+
+Skills* Player::getSkills() const {
+    return skills;
 }
 
 void Player::setTransferCoords(int side)

@@ -45,6 +45,7 @@ void Attributes::addAccuracy(int toAdd)
         this->accuracy += toAdd;
         dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateAccuracy();
         attributePointsLeft -= toAdd;
+        if(accuracy%10 == 0)dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->addSkillPoints(2, 1);
     }
 }
 
@@ -55,6 +56,7 @@ void Attributes::addInteligence(int toAdd)
         this->inteligence += toAdd;
         dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->recalculateCritical();
         attributePointsLeft -= toAdd;
+        if(inteligence%10 == 0)dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->addSkillPoints(1, 1);
     }
 }
 
@@ -68,6 +70,7 @@ void Attributes::addSpeed(int toAdd)
         dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedX += temp;
         dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedY += temp;
         attributePointsLeft -= toAdd;
+        if(speed%10 == 0)dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->addSkillPoints(3, 1);
     }
 }
 
@@ -79,6 +82,7 @@ void Attributes::addStrength(int toAdd)
         dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->health += toAdd;
         dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->maximumHealth += toAdd;
         attributePointsLeft -= toAdd;
+        if(strength%10 == 0)dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->addSkillPoints(0, 1);
     }
 }
 

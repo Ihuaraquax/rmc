@@ -13,6 +13,7 @@
 #include "UsableItem.h"
 #include "Inventory.h"
 #include "Animation.h"
+#include "Skills.h"
 
 class Player : public Entity{
     friend class Helmet;
@@ -64,6 +65,7 @@ public:
     void setKeyValue(int keyValue);
     int getKeyValue() const;
     Attributes* getAttributes() const;
+    Skills* getSkills() const;
 private:
     void setTransferCoords(int side);
     void setTestValues();
@@ -73,6 +75,7 @@ private:
     Equipment *helmet;
     Equipment *greaves;
     UsableItem *item;
+    Skills *skills;
     
     Weapon *shoulderGun;
     int expirience;

@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Key.o: Key.cpp Key.h UsableObject.h Entity.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h GameSubstateEnum.h LogLevels.h GlobalImages.h Player.h \
- Attributes.h Animation.h
+ Attributes.h Animation.h Skills.h
 
 Key.h:
 
@@ -99,3 +99,5 @@ Player.h:
 Attributes.h:
 
 Animation.h:
+
+Skills.h:

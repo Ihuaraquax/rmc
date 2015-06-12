@@ -58,6 +58,7 @@ bool Variables::isMonsterShoot = true;
 LogLevel Variables::log = none;
 GlobalImages *Variables::images;
 double Variables::scale = 1;
+bool Variables::skillRedistributionAviable = false;
 
 double Console::offsetX = 0;
 double Console::offsetY = 0;
