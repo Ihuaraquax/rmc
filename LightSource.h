@@ -22,6 +22,8 @@ public:
     Coordinates* getCoords() const;
     void setAsGlobal();
     void setAsNegative();
+    void increaseTileLightValue();
+    void decreaseTileLightValue();
 private:
     Image *image;
     Coordinates *coords;

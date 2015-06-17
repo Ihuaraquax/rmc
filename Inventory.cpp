@@ -16,8 +16,7 @@
 #include "Skills.h"
 
 Inventory::Inventory() {
-    std::string path = "images/inventoryBackground.png";
-    backgroundImage = new Image(path, false);
+    backgroundImage = Variables::images->getByName("inventroyBackground");
     backgroundImage->state = UI;
     backgroundCoords = new Coordinates();
     backgroundCoords->X = 0;

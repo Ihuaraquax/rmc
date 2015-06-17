@@ -36,3 +36,4 @@ images/Holder.jpg emptyKeyHolder
 images/Lock.jpg lock
 images/activeSkillButton.png activeSkillButton
 images/inactiveSkillButton.png inactiveSkillButton
+images/inventoryBackground.png inventroyBackground

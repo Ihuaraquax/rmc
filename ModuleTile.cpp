@@ -11,6 +11,7 @@
 #include "AiTileAdjacentSetter.h"
 
 ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
+    lightValue = 0;
     this->aiTile = new AiTile(obstructed, roomId, base);
     this->entityList = NULL;
     this->obstacle = NULL;
@@ -397,4 +398,9 @@ void ModuleTile::deleteFromPickUpList(Entity* toDelete)
         temp->next = listToDelete->next;
         delete listToDelete;
     }
+}
+
+void ModuleTile::addToLightValue(int value)
+{
+    lightValue += value;
 }

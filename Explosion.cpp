@@ -29,6 +29,7 @@ void Explosion::setCoords(double X, double Y)
     source->getCoords()->X = coords->X;
     source->getCoords()->Y = coords->Y;
     source->setTime(55);
+    source->increaseTileLightValue();
     Variables::session->getMap()->getAllLightSources()->addSource(source);
 }
 

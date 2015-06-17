@@ -71,6 +71,7 @@ public:
     templateList<Entity>* getPickUpList() const;
     void setRemoteAccessObject(Entity* remoteAccessObject);
     Entity* getRemoteAccessObject() const;
+    void addToLightValue(int value);
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;
@@ -86,6 +87,7 @@ private:
     templateList<GenericBuffer> *bufferList;
     templateList<Entity> *pickUpList;
     Entity *remoteAccessObject;
+    int lightValue;
     
     void deleteFromTurretList(Entity *toDelete);
     

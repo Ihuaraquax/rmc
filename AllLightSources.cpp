@@ -55,6 +55,7 @@ void AllLightSources::deleteDeadSources()
         LightSource *toDelete = *i;
         if(toDelete != NULL)if(toDelete->getTime() == 0)
         {
+            toDelete->decreaseTileLightValue();
             sources.erase(i++);
             delete toDelete;
         }

@@ -229,5 +229,6 @@ void Weapon::createBlast(Coordinates *shooterCoords)
     source->getCoords()->X = shooterCoords->X + (20 *sX);
     source->getCoords()->Y = shooterCoords->Y + (20 *sY);
     source->setTime(5);
+    source->increaseTileLightValue();
     Variables::session->getMap()->getAllLightSources()->addSource(source);
 }

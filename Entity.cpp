@@ -31,7 +31,6 @@ Entity::Entity() {
     shape = rectangle;
     health = 1;
     maximumHealth = 1;
-    aiValue = 0;
     criticalChance = 0;
     criticalDamage = 0;
     teamId = 0;

@@ -6,6 +6,7 @@
  */
 
 #include "LightSource.h"
+#include "globalVariables.h"
 
 LightSource::LightSource(std::string path) {
     image = new Image(path, false);
@@ -15,6 +16,7 @@ LightSource::LightSource(std::string path) {
     coords->Y = 200;
     time = -1;
     negative = false;
+    radius = 50;
 }
 
 void LightSource::setRadius(int radius) {
@@ -62,4 +64,14 @@ void LightSource::setAsGlobal()
 void LightSource::setAsNegative()
 {
     negative = true;
+}
+
+void LightSource::decreaseTileLightValue()
+{
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToLightValue(-radius);
+}
+
+void LightSource::increaseTileLightValue()
+{
+    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToLightValue(radius);
 }
