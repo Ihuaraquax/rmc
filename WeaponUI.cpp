@@ -14,12 +14,12 @@ WeaponUI::WeaponUI(bool left) {
     this->leftDisplay = left;
     
     coords = new Coordinates();
-    coords->X = Variables::RES_WIDTH - 205;
+    coords->X = 1024 - 205;
     if(leftDisplay)coords->X -= 200;
     coords->Y = Variables::RES_HEIGHT - 95;
     
     damageTypeCoords = new Coordinates();
-    damageTypeCoords->X = Variables::RES_WIDTH - 50;
+    damageTypeCoords->X = 1024 - 50;
     if(leftDisplay)damageTypeCoords->X -= 200;
     damageTypeCoords->Y = Variables::RES_HEIGHT - 90;
     
@@ -44,13 +44,13 @@ void WeaponUI::display()
 {
     if(image != NULL)
     {
-        if(leftDisplay)al_draw_filled_rectangle(Variables::RES_WIDTH - 405, Variables::RES_HEIGHT - 95, Variables::RES_WIDTH-5, Variables::RES_HEIGHT -5, al_map_rgb(75,75,75));
-        else al_draw_filled_rectangle(Variables::RES_WIDTH - 205, Variables::RES_HEIGHT - 95, Variables::RES_WIDTH-5, Variables::RES_HEIGHT -5, al_map_rgb(75,75,75));
+        if(leftDisplay)al_draw_filled_rectangle(1024 - 405, Variables::RES_HEIGHT - 95, 1024-5, Variables::RES_HEIGHT -5, al_map_rgb(75,75,75));
+        else al_draw_filled_rectangle(1024 - 205, Variables::RES_HEIGHT - 95, 1024-5, Variables::RES_HEIGHT -5, al_map_rgb(75,75,75));
         image->display(coords);
         damageTypeImage->display(damageTypeCoords);        
         Player * player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
         
-        double X = Variables::RES_WIDTH - 140;
+        double X = 1024 - 140;
         if(leftDisplay)X -= 200;
         double Y = Variables::RES_HEIGHT - 90;
         TextDisplayer::displayInt(X+25, Y, player->getAmmo(selectedWeapon->ammoType));

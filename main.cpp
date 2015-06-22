@@ -21,8 +21,8 @@
 using namespace std;
 
 
-int  Variables::RES_WIDTH = 1024;
-int  Variables::RES_HEIGHT = 768;
+int  Variables::RES_WIDTH = 1920;
+int  Variables::RES_HEIGHT = 1080;
 const float  Variables::fps = 120;
 
 double  Variables::offsetX = 0;

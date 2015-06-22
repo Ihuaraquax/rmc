@@ -33,10 +33,10 @@ void Grenade::update()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
     if(currentTile != NULL)
     {
-        Wall *targetWall = CollisionDetector::isWallCollisions(currentTile, this);
-        if(targetWall != NULL)
+        Entity *target = CollisionDetector::isEntityCollisions(currentTile, this);
+        if(target != NULL)
         {
-            if(targetWall->getCoords()->height > targetWall->getCoords()->width)this->coords->speedX *= -1;
+            if(target->getCoords()->height > target->getCoords()->width)this->coords->speedX *= -1;
             else this->coords->speedY *= -1;
             this->coords->speedX *= 0.7;
             this->coords->speedY *= 0.7;
@@ -46,7 +46,7 @@ void Grenade::update()
             Door *targetDoor = CollisionDetector::isDoorCollision(currentTile, this);
             if(targetDoor != NULL)
             {
-                if(targetWall->getCoords()->height > targetWall->getCoords()->width)this->coords->speedX *= -1;
+                if(target->getCoords()->height > target->getCoords()->width)this->coords->speedX *= -1;
                 else this->coords->speedY *= -1;
                 this->coords->speedX *= 0.7;
                 this->coords->speedY *= 0.7;

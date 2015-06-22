@@ -66,7 +66,7 @@ void Module::display()
         temp->display();
     }
     allDecals->display();
-    this->displayModuleTileAI();
+//    this->displayModuleTileAI();
 //    this->displayModuleThreatLevel();
 //    this->displayObstacles();
 //    this->displayBuffs();

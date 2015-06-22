@@ -89,7 +89,7 @@ void HUD::update()
 
 void HUD::displaySelectedSet()
 {
-    int X = Variables::RES_WIDTH-403, Y = Variables::RES_HEIGHT - 115;
+    int X = 1024-403, Y = Variables::RES_HEIGHT - 115;
     int set = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSelecetedWeaponSet();
     if(set == 0)
     {
