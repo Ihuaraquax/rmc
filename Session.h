@@ -18,6 +18,7 @@
 #include "Map.h"
 #include "AllPlans.h"
 #include "LightSource.h"
+#include "Tooltip.h"
 
 enum MainGameState
 {
@@ -42,6 +43,7 @@ public:
     Menu* getMainMenu() const;
     HUD* getHud() const;
     AllPlans* getAllPlans() const;
+    Tooltip* getTooltip() const;
     
     static MainGameState gameState;
 private:
@@ -55,6 +57,7 @@ private:
     Image *winImage;
     Coordinates *coords;
     AllPlans *allPlans;
+    Tooltip *tooltip;
 };
 
 #endif	/* SESSION_H */

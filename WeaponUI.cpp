@@ -9,6 +9,7 @@
 #include "globalVariables.h"
 #include "Player.h"
 #include "TextDisplayer.h"
+#include "CollisionDetector.h"
 
 WeaponUI::WeaponUI(bool left) {
     this->leftDisplay = left;
@@ -17,6 +18,8 @@ WeaponUI::WeaponUI(bool left) {
     coords->X = 1024 - 205;
     if(leftDisplay)coords->X -= 200;
     coords->Y = Variables::RES_HEIGHT - 95;
+    coords->width = 200;
+    coords->height = 150;
     
     damageTypeCoords = new Coordinates();
     damageTypeCoords->X = 1024 - 50;
@@ -63,6 +66,11 @@ void WeaponUI::display()
     {
         noWeapon->display(coords);
     }
+    Coordinates *mouseCoords = Variables::mouseCoords;
+    if(CollisionDetector::isBasicCollision(mouseCoords, coords))
+    {
+        this->setToolTip();
+    }
 }
 
 void WeaponUI::displayReloadIndicator(double X, double Y)
@@ -94,4 +102,23 @@ void WeaponUI::reloadImage()
         image = new Image(path, true);
         image->state = UI;
     }
+}
+
+void WeaponUI::setToolTip()
+{
+    Variables::session->getTooltip()->calculateCoords();
+    Variables::session->getTooltip()->setType(0);
+    Variables::session->getTooltip()->setName(selectedWeapon->getName());
+    Variables::session->getTooltip()->setImage(Variables::images->getByName("weaponTooltip"));
+    int baseValues[8];
+    baseValues[0] = selectedWeapon->damage;
+    baseValues[1] = selectedWeapon->cooldown;
+    baseValues[2] = selectedWeapon->targetSizeIncrement;
+    baseValues[3] = selectedWeapon->criticalChance;
+    baseValues[4] = selectedWeapon->criticalDamage;
+    baseValues[5] = selectedWeapon->reloadSpeed;
+    baseValues[6] = selectedWeapon->damageType;
+    baseValues[7] = 0;
+    Variables::session->getTooltip()->setBaseValues(baseValues);
+    Variables::session->getTooltip()->setDisplay(true);
 }

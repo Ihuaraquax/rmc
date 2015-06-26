@@ -21,7 +21,9 @@ public:
     int getAction() const;
     void save(std::fstream &file);
     void load(std::fstream &file);
+    std::string getName() const;
 private:
+    std::string name;
     bool getPointedCoords(double &X, double &Y);
     bool isTileNearToPlayer(double X, double Y);
     int action;

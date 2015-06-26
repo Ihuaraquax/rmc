@@ -18,8 +18,8 @@ MouseControl::MouseControl() {
 void MouseControl::mouseActions()
 {
      al_get_mouse_state(&Variables::mouse_state);
-     Variables::mouse_x = al_get_mouse_state_axis(&Variables::mouse_state, 0);
-     Variables::mouse_y = al_get_mouse_state_axis(&Variables::mouse_state, 1);
+     Variables::mouseCoords->X = al_get_mouse_state_axis(&Variables::mouse_state, 0);
+     Variables::mouseCoords->Y = al_get_mouse_state_axis(&Variables::mouse_state, 1);
      
      Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
      if(Variables::substate == game)

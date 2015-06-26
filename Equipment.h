@@ -29,6 +29,8 @@ public:
     
     void save(std::fstream &file);
     void load(std::fstream &file);
+    std::string getName() const;
+    int getEnergyConsumption() const;
 protected:
     void virtual activate();
     void virtual deactivate();

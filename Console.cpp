@@ -99,13 +99,9 @@ void Console::end()
 
 void Console::mouseControl()
 {
-    Coordinates *mosueCoords = new Coordinates();
-    mosueCoords->X = Variables::mouse_x;
-    mosueCoords->Y = Variables::mouse_y;
-    mosueCoords->width = 50;
-    mosueCoords->height = 50;
+    Coordinates *mosueCoords = Variables::mouseCoords;
     ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt
-            (Variables::mouse_x * (1/(Variables::ScaleX * Variables::scale)) + Variables::offsetX, Variables::mouse_y * (1/(Variables::ScaleY * Variables::scale)));
+            (Variables::mouseCoords->X * (1/(Variables::ScaleX * Variables::scale)) + Variables::offsetX, Variables::mouseCoords->Y * (1/(Variables::ScaleY * Variables::scale)));
     if(tile != NULL)if(tile->getRemoteAccessObject() != NULL)
     {
         tile->getRemoteAccessObject()->RCUse();

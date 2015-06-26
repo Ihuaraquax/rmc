@@ -38,8 +38,8 @@ void Plan::displayAll()
 
 void Plan::createStepAtMouse()
 {
-    double mouseX = Variables::mouse_x * (1/(Variables::ScaleX * Variables::scale)) + Variables::offsetX - Variables::tileSize/2;
-    double mouseY = Variables::mouse_y * (1/(Variables::ScaleY * Variables::scale)) + Variables::offsetY - Variables::tileSize/2;
+    double mouseX = Variables::mouseCoords->X * (1/(Variables::ScaleX * Variables::scale)) + Variables::offsetX - Variables::tileSize/2;
+    double mouseY = Variables::mouseCoords->Y * (1/(Variables::ScaleY * Variables::scale)) + Variables::offsetY - Variables::tileSize/2;
     if(mouseX >= 0 && mouseY >= 0)
     {
         int moduleX = mouseX / (Variables::tileSize * Variables::tilesPerRoom);
@@ -56,8 +56,8 @@ void Plan::createStepAtMouse()
 void Plan::destroyStepAtMouse()
 {
     Coordinates *coords = new Coordinates();
-    double mouseX = Variables::mouse_x * (1/(Variables::ScaleX * Variables::scale)) + Variables::offsetX - Variables::tileSize/2;
-    double mouseY = Variables::mouse_y * (1/(Variables::ScaleY * Variables::scale)) + Variables::offsetY - Variables::tileSize/2;
+    double mouseX = Variables::mouseCoords->X * (1/(Variables::ScaleX * Variables::scale)) + Variables::offsetX - Variables::tileSize/2;
+    double mouseY = Variables::mouseCoords->Y * (1/(Variables::ScaleY * Variables::scale)) + Variables::offsetY - Variables::tileSize/2;
     coords->width = 1;
     coords->height = 1;
     PlanStep *target = NULL;

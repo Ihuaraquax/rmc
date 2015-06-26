@@ -5,7 +5,7 @@ build/Debug/MinGW-Windows/BuffRod.o: BuffRod.cpp BuffRod.h Entity.h \
  Equipment.h UsableItem.h Inventory.h Button.h Chest.h Obstacle.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
- LightSource.h AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h \
+ LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
  LogLevels.h GlobalImages.h DistanceBuffer.h
 
 BuffRod.h:
@@ -87,6 +87,8 @@ AllPlans.h:
 Plan.h:
 
 PlanStep.h:
+
+Tooltip.h:
 
 GameSubstateEnum.h:
 

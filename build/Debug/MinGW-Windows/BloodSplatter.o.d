@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/BloodSplatter.o: BloodSplatter.cpp \
  GenericBuffer.h EntityShape.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h AllLightSources.h LightSource.h AllPlans.h Plan.h PlanStep.h \
- GameSubstateEnum.h LogLevels.h GlobalImages.h
+ Tooltip.h GameSubstateEnum.h LogLevels.h GlobalImages.h
 
 BloodSplatter.h:
 
@@ -87,6 +87,8 @@ AllPlans.h:
 Plan.h:
 
 PlanStep.h:
+
+Tooltip.h:
 
 GameSubstateEnum.h:
 

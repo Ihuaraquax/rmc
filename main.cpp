@@ -32,8 +32,7 @@ float  Variables::ScaleY = 1;
 
 ALLEGRO_KEYBOARD_STATE  Variables::key_state;
 ALLEGRO_MOUSE_STATE  Variables::mouse_state;
-double  Variables::mouse_x;
-double  Variables::mouse_y;
+Coordinates *Variables::mouseCoords;
 
 GAME_STATE  Variables::status = GAME;
 Session *Variables::session;
@@ -66,6 +65,9 @@ double Console::offsetY = 0;
 Entity *Variables::currentProjectile = NULL;
 
 int main(int argc, char** argv) {
+    Variables::mouseCoords = new Coordinates();
+    Variables::mouseCoords->width = 10;
+    Variables::mouseCoords->height = 10;
     Variables::session = new Session();
     Variables::session->create();
     
@@ -74,5 +76,6 @@ int main(int argc, char** argv) {
     Variables::session->loop();
     
     delete Variables::session;
+    delete Variables::mouseCoords;
     return 0;
 }

@@ -157,8 +157,8 @@ int Chest::getSelectedField()
 {
     int result = -1;
     Coordinates *mouseCoords = new Coordinates();
-    mouseCoords->X = Variables::mouse_x;
-    mouseCoords->Y = Variables::mouse_y;
+    mouseCoords->X = Variables::mouseCoords->X;
+    mouseCoords->Y = Variables::mouseCoords->Y;
     for(int i = 0; i < chestSize; i++)
     {
         if(CollisionDetector::isBasicCollision(mouseCoords, contentCoords[i]))

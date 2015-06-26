@@ -20,6 +20,7 @@ UsableItem::UsableItem() {
     charges = 0;
     action = 0;
     imagePath = "images/noEquipmentInSlot.png";
+    name = "PLACEHOLDER";
 }
 UsableItem::~UsableItem() {
 }
@@ -108,8 +109,8 @@ bool UsableItem::getPointedCoords(double& X, double& Y)
 {
     int size = Variables::tileSize * Variables::ScaleX * Variables::scale;
     int x,y;
-    x = (Variables::mouse_x ) * (1/(Variables::ScaleX * Variables::scale))+ Variables::offsetX;
-    y = (Variables::mouse_y ) * (1/(Variables::ScaleY * Variables::scale))+ Variables::offsetY;
+    x = (Variables::mouseCoords->X ) * (1/(Variables::ScaleX * Variables::scale))+ Variables::offsetX;
+    y = (Variables::mouseCoords->Y ) * (1/(Variables::ScaleY * Variables::scale))+ Variables::offsetY;
     x -= x%size;
     y -= y%size;
     X = x;
@@ -128,4 +129,8 @@ void UsableItem::load(std::fstream& file)
 {
     file >>action >> charges >> additionalData;
     this->imagePath = UsableItemLoader::loadItemPath(action);
+}
+
+std::string UsableItem::getName() const {
+    return name;
 }

@@ -43,11 +43,7 @@ void Button::update()
 
 void Button::execute()
 {
-    Coordinates *mouseCoords = new Coordinates();
-    mouseCoords->X = Variables::mouse_x;
-    mouseCoords->Y = Variables::mouse_y;
-    mouseCoords->width = 10;
-    mouseCoords->height = 10;
+    Coordinates *mouseCoords = Variables::mouseCoords;
     if(CollisionDetector::isBasicCollision(coords, mouseCoords))
     {
         makeAction();

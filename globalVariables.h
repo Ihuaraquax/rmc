@@ -23,6 +23,7 @@
 #include "LogLevels.h"
 #include "GlobalImages.h"
 #include "Entity.h"
+#include "Coordinates.h"
 
 enum GAME_STATE
 {
@@ -46,8 +47,7 @@ struct Variables
     
     static ALLEGRO_KEYBOARD_STATE key_state;
     static ALLEGRO_MOUSE_STATE mouse_state;
-    static double mouse_x;
-    static double mouse_y;
+    static Coordinates *mouseCoords;
     
     static ALLEGRO_EVENT_QUEUE *event_queue;
     static ALLEGRO_TIMER *timer;

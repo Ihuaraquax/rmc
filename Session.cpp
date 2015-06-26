@@ -22,6 +22,7 @@ Session::Session() {
     allPlans = new AllPlans();
     coords->X = 0;
     coords->Y = 0;
+    tooltip = new Tooltip();
 }
 
 Map* Session::getMap() const {
@@ -57,6 +58,10 @@ AllPlans* Session::getAllPlans() const {
     return allPlans;
 }
 
+Tooltip* Session::getTooltip() const {
+    return tooltip;
+}
+
 Session::~Session() {
     delete mainMenu;
     delete keyboard;
@@ -87,6 +92,7 @@ void Session::display()
             map->displayLight();
         }
         if(Variables::substate == plan)allPlans->getCurrentPlan()->displayAll();
+        tooltip->display();
         al_flip_display();
         }
     if(Variables::status == WIN)

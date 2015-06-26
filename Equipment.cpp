@@ -111,3 +111,11 @@ void Equipment::load(std::fstream& file)
     else active = false;
     for(int i = 0; i < Variables::damageTypeCount; i++)file >> resistance[i];
 }
+
+std::string Equipment::getName() const {
+    return name;
+}
+
+int Equipment::getEnergyConsumption() const {
+    return energyConsumption;
+}

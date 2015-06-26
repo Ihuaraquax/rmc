@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/MonsterLoader.o: MonsterLoader.cpp \
  Inventory.h Button.h Chest.h Obstacle.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
- PlanStep.h GameSubstateEnum.h LogLevels.h GlobalImages.h
+ PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h GlobalImages.h
 
 MonsterLoader.h:
 
@@ -91,6 +91,8 @@ AllPlans.h:
 Plan.h:
 
 PlanStep.h:
+
+Tooltip.h:
 
 GameSubstateEnum.h:
 

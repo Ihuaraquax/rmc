@@ -134,8 +134,8 @@ void Player::update()
     if(Variables::log == full)std::cout << " player Update Begin ";
     double X = (coords->X + coords->width/2 - Variables::offsetX) * Variables::ScaleX * Variables::scale;
     double Y = (coords->Y + coords->height/2 - Variables::offsetY) * Variables::ScaleY * Variables::scale;
-    targetCoords->X = Variables::mouse_x * ((1/Variables::ScaleX * Variables::scale));
-    targetCoords->Y = Variables::mouse_y * ((1/Variables::ScaleY * Variables::scale));
+    targetCoords->X = Variables::mouseCoords->X * ((1/Variables::ScaleX * Variables::scale));
+    targetCoords->Y = Variables::mouseCoords->Y * ((1/Variables::ScaleY * Variables::scale));
     coords->angle = Variables::getAngle(X, Y, targetCoords->X, targetCoords->Y);
     for(int i = 0; i < possessedWeapons; i++)weapons[i]->update();
     helmet->update();
@@ -165,8 +165,8 @@ void Player::updatePlanStep()
 void Player::display()
 {
     animation->display(coords);
-    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize() * Variables::scale, al_map_rgb(255,0,0), 5);
-    al_draw_circle(Variables::mouse_x, Variables::mouse_y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize() * Variables::scale, al_map_rgb(0,0,255), 3);
+    al_draw_circle(Variables::mouseCoords->X, Variables::mouseCoords->Y, weapons[selecetedWeaponSet*2 + 0]->getCurrentTargetSize() * Variables::scale, al_map_rgb(255,0,0), 5);
+    al_draw_circle(Variables::mouseCoords->X, Variables::mouseCoords->Y, weapons[selecetedWeaponSet*2 + 1]->getCurrentTargetSize() * Variables::scale, al_map_rgb(0,0,255), 3);
 }
 
 void Player::interact()

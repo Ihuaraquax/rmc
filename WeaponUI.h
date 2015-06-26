@@ -28,6 +28,7 @@ private:
     Image *noWeapon;
     Coordinates *coords;
     Coordinates *damageTypeCoords;
+    void setToolTip();
 };
 
 #endif	/* WEAPONUI_H */

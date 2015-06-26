@@ -10,6 +10,7 @@
 #include "Equipment.h"
 #include "UsableItem.h"
 #include "TextDisplayer.h"
+#include "CollisionDetector.h"
 
 EquipmentUI::EquipmentUI() {
     selectedHelmet = NULL;
@@ -25,15 +26,23 @@ EquipmentUI::EquipmentUI() {
     helmetCoords = new Coordinates();
     helmetCoords->X = 150;
     helmetCoords->Y = Variables::RES_HEIGHT - 110;
+    helmetCoords->width = 100;
+    helmetCoords->height = 100;
     chestplateCoords = new Coordinates();
     chestplateCoords->X = 260;
     chestplateCoords->Y = Variables::RES_HEIGHT - 110;
+    chestplateCoords->width = 100;
+    chestplateCoords->height = 100;
     greavesCoords = new Coordinates();
     greavesCoords->X = 370;
     greavesCoords->Y = Variables::RES_HEIGHT - 110;
+    greavesCoords->width = 100;
+    greavesCoords->height = 100;
     itemCoords = new Coordinates();
     itemCoords->X = 480;
     itemCoords->Y = Variables::RES_HEIGHT - 110;
+    itemCoords->width = 100;
+    itemCoords->height = 100;
 }
 
 EquipmentUI::~EquipmentUI() {
@@ -129,7 +138,59 @@ void EquipmentUI::display()
             al_map_rgb(70,70,255), 4);
     
     itemImage->display(itemCoords);    
-    TextDisplayer::displayInt(itemCoords->X + 80, itemCoords->Y + 80, selectedItem->getCharges());    
+    TextDisplayer::displayInt(itemCoords->X + 80, itemCoords->Y + 80, selectedItem->getCharges());
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, helmetCoords))
+    {
+        Variables::session->getTooltip()->calculateCoords();
+        Variables::session->getTooltip()->setType(1);
+        Variables::session->getTooltip()->setName(selectedHelmet->getName());
+        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
+        int baseValues[3];
+        baseValues[0] = selectedHelmet->getArmor();
+        baseValues[1] = selectedHelmet->getEnergyConsumption();
+        baseValues[2] = 0;
+        Variables::session->getTooltip()->setBaseValues(baseValues);
+        Variables::session->getTooltip()->setDisplay(true);
+    }
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, chestplateCoords))
+    {
+        Variables::session->getTooltip()->calculateCoords();
+        Variables::session->getTooltip()->setType(1);
+        Variables::session->getTooltip()->setName(selectedChestplate->getName());
+        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
+        int baseValues[3];
+        baseValues[0] = selectedChestplate->getArmor();
+        baseValues[1] = selectedChestplate->getEnergyConsumption();
+        baseValues[2] = 0;
+        Variables::session->getTooltip()->setBaseValues(baseValues);
+        Variables::session->getTooltip()->setDisplay(true);
+    }
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, greavesCoords))
+    {
+        Variables::session->getTooltip()->calculateCoords();
+        Variables::session->getTooltip()->setType(1);
+        Variables::session->getTooltip()->setName(selectedGreaves->getName());
+        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
+        int baseValues[3];
+        baseValues[0] = selectedGreaves->getArmor();
+        baseValues[1] = selectedGreaves->getEnergyConsumption();
+        baseValues[2] = 0;
+        Variables::session->getTooltip()->setBaseValues(baseValues);
+        Variables::session->getTooltip()->setDisplay(true);
+    }
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, itemCoords))
+    {
+        Variables::session->getTooltip()->calculateCoords();
+        Variables::session->getTooltip()->setType(1);
+        Variables::session->getTooltip()->setName(selectedItem->getName());
+        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
+        int baseValues[3];
+        baseValues[0] = 0;
+        baseValues[1] = 0;
+        baseValues[2] = 0;
+        Variables::session->getTooltip()->setBaseValues(baseValues);
+        Variables::session->getTooltip()->setDisplay(true);
+    }
 }
 
 void EquipmentUI::update()

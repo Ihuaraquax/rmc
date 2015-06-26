@@ -245,9 +245,7 @@ void Inventory::swapWeapons(bool inventory, int index)
 int Inventory::getEquipmentIndex()
 {
     int result = -1;
-    Coordinates *mouseCoords = new Coordinates();
-    mouseCoords->X = Variables::mouse_x;
-    mouseCoords->Y = Variables::mouse_y;
+    Coordinates *mouseCoords = Variables::mouseCoords;
     for(int i = 0; i < 4; i++)
     {
         if(CollisionDetector::isBasicCollision(mouseCoords, equipmentCoords[i]))
@@ -262,11 +260,7 @@ int Inventory::getEquipmentIndex()
 int Inventory::getWeaponIndex()
 {
     int result = -1;
-    Coordinates *mouseCoords = new Coordinates();
-    mouseCoords->X = Variables::mouse_x;
-    mouseCoords->Y = Variables::mouse_y;
-    mouseCoords->width = 1;
-    mouseCoords->height = 1;
+    Coordinates *mouseCoords = Variables::mouseCoords;
     for(int i = 0; i < 6; i++)
     {
         if(CollisionDetector::isBasicCollision(mouseCoords, weaponCoords[i]))

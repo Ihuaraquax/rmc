@@ -65,8 +65,8 @@ void Skills::display()
 void Skills::handleMouseAction()
 {
     Coordinates *mouseCoords = new Coordinates();
-    mouseCoords->X = Variables::mouse_x;
-    mouseCoords->Y = Variables::mouse_y;
+    mouseCoords->X = Variables::mouseCoords->X;
+    mouseCoords->Y = Variables::mouseCoords->Y;
     mouseCoords->width = 5;
     mouseCoords->height = 5;
     Coordinates *coords = new Coordinates();
