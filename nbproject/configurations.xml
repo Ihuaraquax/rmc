@@ -4,6 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="f10" displayName="Console Classes" projectFiles="true">
+        <itemPath>Console.cpp</itemPath>
+        <itemPath>Console.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f6" displayName="Decal Classes" projectFiles="true">
         <itemPath>AllDecals.cpp</itemPath>
         <itemPath>AllDecals.h</itemPath>
@@ -60,6 +64,8 @@
           <itemPath>Player.h</itemPath>
           <itemPath>RemoteCharges.cpp</itemPath>
           <itemPath>RemoteCharges.h</itemPath>
+          <itemPath>Skills.cpp</itemPath>
+          <itemPath>Skills.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="Projectile Classes" projectFiles="true">
           <itemPath>Explosion.cpp</itemPath>
@@ -72,8 +78,6 @@
           <itemPath>Projectile.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="Utils" projectFiles="true">
-          <itemPath>CollisionDetector.cpp</itemPath>
-          <itemPath>CollisionDetector.h</itemPath>
           <itemPath>EquipmentLoader.cpp</itemPath>
           <itemPath>EquipmentLoader.h</itemPath>
           <itemPath>MonsterLoader.cpp</itemPath>
@@ -99,7 +103,12 @@
           <itemPath>EntityShape.h</itemPath>
           <itemPath>GameSubstateEnum.h</itemPath>
           <itemPath>LogLevels.h</itemPath>
+          <itemPath>ModuleModificatorNames.h</itemPath>
         </logicalFolder>
+        <itemPath>Animation.cpp</itemPath>
+        <itemPath>Animation.h</itemPath>
+        <itemPath>CollisionDetector.cpp</itemPath>
+        <itemPath>CollisionDetector.h</itemPath>
         <itemPath>Coordinates.cpp</itemPath>
         <itemPath>Coordinates.h</itemPath>
         <itemPath>GlobalImages.cpp</itemPath>
@@ -110,7 +119,21 @@
         <itemPath>KeyboardControl.h</itemPath>
         <itemPath>MouseControl.cpp</itemPath>
         <itemPath>MouseControl.h</itemPath>
+        <itemPath>TextDisplayer.cpp</itemPath>
+        <itemPath>TextDisplayer.h</itemPath>
         <itemPath>globalVariables.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f7" displayName="Goal Classes" projectFiles="true">
+        <itemPath>Key.cpp</itemPath>
+        <itemPath>Key.h</itemPath>
+        <itemPath>Lock.cpp</itemPath>
+        <itemPath>Lock.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f11" displayName="LightSource Classes" projectFiles="true">
+        <itemPath>AllLightSources.cpp</itemPath>
+        <itemPath>AllLightSources.h</itemPath>
+        <itemPath>LightSource.cpp</itemPath>
+        <itemPath>LightSource.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Map Classes" projectFiles="true">
         <logicalFolder name="f3" displayName="Factory Classes" projectFiles="true">
@@ -158,6 +181,18 @@
         <itemPath>configurator.cpp</itemPath>
         <itemPath>configurator.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="f9" displayName="PickUps" projectFiles="true">
+        <itemPath>PickUp.cpp</itemPath>
+        <itemPath>PickUp.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f8" displayName="Plan Classes" projectFiles="true">
+        <itemPath>AllPlans.cpp</itemPath>
+        <itemPath>AllPlans.h</itemPath>
+        <itemPath>Plan.cpp</itemPath>
+        <itemPath>Plan.h</itemPath>
+        <itemPath>PlanStep.cpp</itemPath>
+        <itemPath>PlanStep.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2" displayName="UI classes" projectFiles="true">
         <itemPath>Button.cpp</itemPath>
         <itemPath>Button.h</itemPath>
@@ -169,8 +204,8 @@
         <itemPath>Inventory.h</itemPath>
         <itemPath>Menu.cpp</itemPath>
         <itemPath>Menu.h</itemPath>
-        <itemPath>TextDisplayer.cpp</itemPath>
-        <itemPath>TextDisplayer.h</itemPath>
+        <itemPath>Tooltip.cpp</itemPath>
+        <itemPath>Tooltip.h</itemPath>
         <itemPath>WeaponUI.cpp</itemPath>
         <itemPath>WeaponUI.h</itemPath>
       </logicalFolder>
@@ -244,6 +279,18 @@
       </item>
       <item path="AllEntities.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="AllLightSources.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllLightSources.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AllPlans.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllPlans.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Animation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Animation.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Attributes.h" ex="false" tool="3" flavor2="0">
@@ -271,6 +318,10 @@
       <item path="CollisionDetector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CollisionDetector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Console.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Console.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Coordinates.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -362,9 +413,21 @@
       </item>
       <item path="Inventory.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Key.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Key.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="KeyboardControl.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="KeyboardControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LightSource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LightSource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Lock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Lock.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LogLevels.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -387,6 +450,8 @@
       <item path="ModuleFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleModificatorNames.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ModuleTile.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -411,6 +476,18 @@
       <item path="ObstacleDoor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ObstacleDoor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PickUp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PickUp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Plan.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Plan.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PlanStep.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PlanStep.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -444,6 +521,10 @@
       </item>
       <item path="Session.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Skills.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Skills.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Spawner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Spawner.h" ex="false" tool="3" flavor2="0">
@@ -459,6 +540,10 @@
       <item path="TimedBuffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TimedBuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tooltip.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Tooltip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Turret.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -546,6 +631,18 @@
       </item>
       <item path="AllEntities.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="AllLightSources.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllLightSources.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AllPlans.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllPlans.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Animation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Animation.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Attributes.h" ex="false" tool="3" flavor2="0">
@@ -573,6 +670,10 @@
       <item path="CollisionDetector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CollisionDetector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Console.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Console.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Coordinates.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -664,9 +765,21 @@
       </item>
       <item path="Inventory.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Key.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Key.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="KeyboardControl.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="KeyboardControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LightSource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LightSource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Lock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Lock.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LogLevels.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -689,6 +802,8 @@
       <item path="ModuleFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleFactory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleModificatorNames.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ModuleTile.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -713,6 +828,18 @@
       <item path="ObstacleDoor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ObstacleDoor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PickUp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PickUp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Plan.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Plan.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PlanStep.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PlanStep.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -746,6 +873,10 @@
       </item>
       <item path="Session.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Skills.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Skills.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Spawner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Spawner.h" ex="false" tool="3" flavor2="0">
@@ -761,6 +892,10 @@
       <item path="TimedBuffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TimedBuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tooltip.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Tooltip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Turret.cpp" ex="false" tool="1" flavor2="0">
       </item>

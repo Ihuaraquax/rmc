@@ -11,26 +11,25 @@
 RoomFactory::RoomFactory() {
 }
 
-Room **RoomFactory::createRooms(int roomCount, int **tiles)
+Room **RoomFactory::createRooms(int roomCount, int **tiles, int roomId)
 {
     Room **rooms = new Room*[roomCount];
-    for(int i = 1; i < roomCount; i++)
+    for(int i = 0; i < roomCount; i++)
     {
         int X, Y;
-        getRoomSeedCoords(X,Y, tiles, 0);
-        tiles[X][Y] = i;
-        rooms[i] = new Room(X,Y,BASIC_ROOM, 0, i);
+        getRoomSeedCoords(X,Y, tiles, roomId);
+        tiles[X][Y] = roomId+i;
+        rooms[i] = new Room(X,Y,BASIC_ROOM, roomId, roomId+i+1);
     }
     while(!roomsAreMaxed(rooms, roomCount))
     {
-        for(int i = 1; i < roomCount; i++)rooms[i]->grow(tiles);
+        for(int i = 0; i < roomCount; i++)rooms[i]->grow(tiles);
     }
-    addZeroToRooms(tiles, rooms);
+//    addZeroToRooms(tiles, rooms);
     return rooms;
 }
 
-void RoomFactory::getRoomSeedCoords(int& X, int& Y, int **tileTable, 
-        int roomBaseTile)
+void RoomFactory::getRoomSeedCoords(int& X, int& Y, int **tileTable, int roomBaseTile)
 {
     bool isInvalid = true;
     do
@@ -44,7 +43,7 @@ void RoomFactory::getRoomSeedCoords(int& X, int& Y, int **tileTable,
 bool RoomFactory::roomsAreMaxed(Room** rooms, int roomCount)
 {
     bool value = false;
-    for(int i = 1; i < roomCount; i++)
+    for(int i = 0; i < roomCount; i++)
     {
         if(rooms[i]->isMaxed())
         {

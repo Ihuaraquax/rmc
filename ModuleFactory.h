@@ -19,6 +19,7 @@ private:
     void setModuleBasicFloor(Module * module);
     void setModuleRooms(Module *module);
     int **createTiles();
+    int *roomCount;
 };
 
 #endif	/* MODULEFACTORY_H */

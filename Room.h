@@ -23,11 +23,11 @@ public:
     Room(const Room& orig);
     virtual ~Room();
     void grow(int **tileTable);
-    void display(int green);
     bool isValidTile(int X, int Y, int **tileTable);
     bool isMaxed() const;
     void setTiles(int **tilesTable);
     void addToTiles(int X, int Y);
+    bool tryToGrow(int X, int Y, int **tileTable);
 private:
     int baseTile;
     int *tilesX;

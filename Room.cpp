@@ -30,96 +30,63 @@ Room::Room(const Room& orig) {
 Room::~Room() {
 }
 
-void Room::display(int green)
-{
-    for(int i = 0; i < tileTableSize; i++)
-    {
-        int X = (tilesX[i] * Variables::tileSize) - Variables::offsetX;
-        int Y = (tilesY[i] * Variables::tileSize) - Variables::offsetY;
-        switch(green){
-            case 1:al_draw_filled_rectangle(X+5, Y+5, X+45, Y+45, al_map_rgb(255,0,255));
-                break;
-            case 2:al_draw_filled_rectangle(X+5, Y+5, X+45, Y+45, al_map_rgb(0,255,255));
-                break;
-            case 3:al_draw_filled_rectangle(X+5, Y+5, X+45, Y+45, al_map_rgb(30,30,30));
-                break;
-            case 4:al_draw_filled_rectangle(X+5, Y+5, X+45, Y+45, al_map_rgb(255,255,255));
-                break;
-            case 5:al_draw_filled_rectangle(X+5, Y+5, X+45, Y+45, al_map_rgb(255,255,0));
-                break;
-        }
-    }
-}
-
 void Room::grow(int **tileTable)
 {
     if(!maxed)
-       {
-        bool tileTaken = false;
-        int tile = rand()%tileTableSize;
-        int repetitionCheck = tile;
-        
-        while(tileTaken == false)
+    {
+        maxed = true;
+        int tileId = rand()%tileTableSize;
+        for(int i = 0; i < tileTableSize; i++)
         {
-            int X = tilesX[tile];
-            int Y = tilesY[tile];
-            if(isValidTile(X,Y, tileTable))tileTaken = true;
-            else
+            bool roomGrew = tryToGrow(tilesX[tileId],tilesY[tileId], tileTable);
+            if(roomGrew)
             {
-                tile++;
-                tile %= tileTableSize;
-                if(tile == repetitionCheck || tileTableSize == 1)
-                {
-                    tileTaken = true;
-                    maxed = true;
-                }
+                maxed = false;
+                break;
             }
+            tileId++;
+            tileId %= tileTableSize;
         }
     }
 }
 
 bool Room::isValidTile(int X, int Y, int **tileTable)
 {
+    bool value = true;
+    if(X < 0)value = false;
+    if(Y < 0)value = false;
+    if(X > Variables::tilesPerRoom-1)value = false;
+    if(Y > Variables::tilesPerRoom-1)value = false;
+    if(value == true)if(tileTable[X][Y] != baseTile)value = false;
+    return value;
+}
+
+bool Room::tryToGrow(int X, int Y, int **tileTable)
+{
     bool value = false;
-    
-    int const MAX_FIELD_SIZE = Variables::tilesPerRoom-1;
-    
-    if(value == false && X > 0)
+    if(value == false)if(isValidTile(X-1, Y, tileTable))
     {
-        if(tileTable[X-1][Y] == this->baseTile) 
-        {
-            tileTable[X-1][Y] = this->roomTile;
-            value = true;
-            addToTiles(X-1,Y);
-        }
+        addToTiles(X-1,Y);
+        tileTable[X-1][Y] = this->roomTile;
+        value = true;
     }
-    
-    if(value == false && X < MAX_FIELD_SIZE)
+    if(value == false)if(isValidTile(X, Y-1, tileTable))
     {
-        if(tileTable[X+1][Y] == this->baseTile) 
-        {
-            tileTable[X+1][Y] = this->roomTile;
-            value = true;
-            addToTiles(X+1,Y);
-        }
+        addToTiles(X,Y-1);
+        tileTable[X][Y-1] = this->roomTile;
+        value = true;
     }
-    if(value == false && Y > 0)
+    if(value == false)if(isValidTile(X+1, Y, tileTable))
     {
-        if(tileTable[X][Y-1] == this->baseTile) 
-        {
-            tileTable[X][Y-1] = this->roomTile;
-            value = true;
-            addToTiles(X,Y-1);
-        }
+        addToTiles(X+1,Y);
+        tileTable[X+1][Y] = this->roomTile;
+        value = true;
     }
-    if(value == false && Y < MAX_FIELD_SIZE)
+    if(value == false)if(isValidTile(X, Y+1, tileTable))
     {
-        if(tileTable[X][Y+1] == this->baseTile) 
-        {
-            tileTable[X][Y+1] = this->roomTile;
-            value = true;
-            addToTiles(X,Y+1);
-        }
+        addToTiles(X,Y+1);
+        tileTable[X][Y+1] = this->roomTile;
+        value = true;
     }
     return value;
 }

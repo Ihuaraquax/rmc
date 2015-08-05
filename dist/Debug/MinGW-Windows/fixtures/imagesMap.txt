@@ -37,3 +37,5 @@ images/Lock.jpg lock
 images/activeSkillButton.png activeSkillButton
 images/inactiveSkillButton.png inactiveSkillButton
 images/inventoryBackground.png inventroyBackground
+images/weaponTooltip.png weaponTooltip
+images/equipmentTooltip.png equipmentTooltip

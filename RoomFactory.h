@@ -12,7 +12,7 @@
 class RoomFactory {
 public:
     RoomFactory();
-    static Room **createRooms(int roomCount, int **tiles);
+    static Room **createRooms(int roomCount, int **tiles, int roomId);
 private:
     static void getRoomSeedCoords(int &X, int &Y, int **tileTable, int roomBaseTile);
     static bool roomsAreMaxed(Room **rooms, int roomCount);

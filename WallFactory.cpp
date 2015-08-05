@@ -81,7 +81,7 @@ void WallFactory::setObstacleWalls(Module* module, int roomCount, Room** rooms, 
         temp[i] = new int[Variables::tilesPerRoom];
         for(int j = 0; j < Variables::tilesPerRoom; j++)temp[i][j] = 0;
     }
-    for(int j = 1; j < roomCount; j++)
+    for(int j = 0; j < roomCount; j++)
     {
         Room *room = rooms[j];
         for(int i = 0; i < room->tileTableSize; i++)

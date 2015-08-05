@@ -8,6 +8,7 @@
 #include <list>
 
 #include <iostream>
+#include <fstream>
 #include "ModuleFactory.h"
 #include "WallFactory.h"
 #include "Door.h"
@@ -45,30 +46,47 @@ void ModuleFactory::setModuleBasicFloor(Module* module)
 void ModuleFactory::setModuleRooms(Module* module)
 {
     int **tiles = createTiles();
-    int roomCount = rand()%5 + 3;
-    
-    Room **rooms = RoomFactory::createRooms(roomCount, tiles);    
-    
-//    factory.OLDsetTileBarriers(module, roomCount, rooms, tiles);
-    WallFactory::setObstacleWalls(module, roomCount, rooms, tiles);
-    
-    TileFactory::createModuleTiles(module, tiles);
-    for(int i = 1; i < roomCount; i++)
+    Room ***rooms;
+    rooms = new Room**[10];
+    for(int i = 0; i < 10; i++)
     {
-        delete rooms[i];
+       rooms[i] = RoomFactory::createRooms(roomCount[i], tiles, i*10);    
     }
-    delete []rooms;
+//    
+////    factory.OLDsetTileBarriers(module, roomCount, rooms, tiles);
+    for(int i = 0; i < 10; i++)
+    {
+        WallFactory::setObstacleWalls(module, roomCount[i], rooms[i], tiles);
+    }
+//    
+    TileFactory::createModuleTiles(module, tiles);
+//    for(int j = 0; j < 10; j++)
+//    {
+//        for(int i = 0; i < roomCount[i]; i++)
+//        {
+//            delete rooms[j][i];
+//        }
+//        delete []rooms[j];
+//    }
+//    delete []rooms;
 }
 
 int **ModuleFactory::createTiles()
 {
     int **tiles;
+    std::fstream file;
+    file.open("mapTemplates/template1.txt", std::ios::in);
     tiles = new int*[Variables::tilesPerRoom];
     for(int i = 0; i < Variables::tilesPerRoom; i++)
     {
         tiles[i] = new int[Variables::tilesPerRoom];
-        for(int j = 0; j < Variables::tilesPerRoom; j++)tiles[i][j] = 0;
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+        {
+            file >> tiles[i][j];
+        }
     }
+    roomCount = new int[10];
+    for(int i = 0; i < 10; i++) file >> roomCount[9-i];
     return tiles;
 }
 
