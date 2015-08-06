@@ -106,19 +106,5 @@ void WeaponUI::reloadImage()
 
 void WeaponUI::setToolTip()
 {
-    Variables::session->getTooltip()->calculateCoords();
-    Variables::session->getTooltip()->setType(0);
-    Variables::session->getTooltip()->setName(selectedWeapon->getName());
-    Variables::session->getTooltip()->setImage(Variables::images->getByName("weaponTooltip"));
-    int baseValues[8];
-    baseValues[0] = selectedWeapon->damage;
-    baseValues[1] = selectedWeapon->cooldown;
-    baseValues[2] = selectedWeapon->targetSizeIncrement;
-    baseValues[3] = selectedWeapon->criticalChance;
-    baseValues[4] = selectedWeapon->criticalDamage;
-    baseValues[5] = selectedWeapon->reloadSpeed;
-    baseValues[6] = selectedWeapon->damageType;
-    baseValues[7] = 0;
-    Variables::session->getTooltip()->setBaseValues(baseValues);
-    Variables::session->getTooltip()->setDisplay(true);
+    Variables::session->getTooltip()->setWeapon(selectedWeapon);
 }

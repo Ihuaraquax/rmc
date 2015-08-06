@@ -141,3 +141,49 @@ void Tooltip::setType(int type)
 void Tooltip::setName(std::string name) {
     this->name = name;
 }
+
+void Tooltip::setWeapon(Weapon* weapon)
+{
+    Variables::session->getTooltip()->calculateCoords();
+    Variables::session->getTooltip()->setType(0);
+    Variables::session->getTooltip()->setName(weapon->getName());
+    Variables::session->getTooltip()->setImage(Variables::images->getByName("weaponTooltip"));
+    int baseValues[8];
+    baseValues[0] = weapon->damage;
+    baseValues[1] = weapon->cooldown;
+    baseValues[2] = weapon->targetSizeIncrement;
+    baseValues[3] = weapon->criticalChance;
+    baseValues[4] = weapon->criticalDamage;
+    baseValues[5] = weapon->reloadSpeed;
+    baseValues[6] = weapon->damageType;
+    baseValues[7] = 0;
+    Variables::session->getTooltip()->setBaseValues(baseValues);
+    Variables::session->getTooltip()->setDisplay(true);
+}
+
+void Tooltip::setEquipment(Equipment* equipment)
+{
+    Variables::session->getTooltip()->calculateCoords();
+    Variables::session->getTooltip()->setType(1);
+    Variables::session->getTooltip()->setName(equipment->getName());
+    Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
+    int baseValues[3];
+    baseValues[0] = equipment->getArmor();
+    baseValues[1] = equipment->getEnergyConsumption();
+    baseValues[2] = 0;
+    Variables::session->getTooltip()->setBaseValues(baseValues);
+    Variables::session->getTooltip()->setDisplay(true);
+}
+void Tooltip::setUsableItem(UsableItem* usableItem)
+{
+    Variables::session->getTooltip()->calculateCoords();
+    Variables::session->getTooltip()->setType(1);
+    Variables::session->getTooltip()->setName(usableItem->getName());
+    Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
+    int baseValues[3];
+    baseValues[0] = 0;
+    baseValues[1] = 0;
+    baseValues[2] = 0;
+    Variables::session->getTooltip()->setBaseValues(baseValues);
+    Variables::session->getTooltip()->setDisplay(true);
+}

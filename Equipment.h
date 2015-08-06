@@ -12,6 +12,7 @@
 
 class Equipment {
     friend class EquipmentLoader;
+    friend class Tooltip;
 public:
     Equipment();
     virtual ~Equipment();

@@ -12,6 +12,7 @@
 
 class UsableItem {
     friend class UsableItemLoader;
+    friend class Tooltip;
 public:
     UsableItem();
     virtual ~UsableItem();

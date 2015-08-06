@@ -141,55 +141,19 @@ void EquipmentUI::display()
     TextDisplayer::displayInt(itemCoords->X + 80, itemCoords->Y + 80, selectedItem->getCharges());
     if(CollisionDetector::isBasicCollision(Variables::mouseCoords, helmetCoords))
     {
-        Variables::session->getTooltip()->calculateCoords();
-        Variables::session->getTooltip()->setType(1);
-        Variables::session->getTooltip()->setName(selectedHelmet->getName());
-        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
-        int baseValues[3];
-        baseValues[0] = selectedHelmet->getArmor();
-        baseValues[1] = selectedHelmet->getEnergyConsumption();
-        baseValues[2] = 0;
-        Variables::session->getTooltip()->setBaseValues(baseValues);
-        Variables::session->getTooltip()->setDisplay(true);
+        Variables::session->getTooltip()->setEquipment(selectedHelmet);
     }
     if(CollisionDetector::isBasicCollision(Variables::mouseCoords, chestplateCoords))
     {
-        Variables::session->getTooltip()->calculateCoords();
-        Variables::session->getTooltip()->setType(1);
-        Variables::session->getTooltip()->setName(selectedChestplate->getName());
-        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
-        int baseValues[3];
-        baseValues[0] = selectedChestplate->getArmor();
-        baseValues[1] = selectedChestplate->getEnergyConsumption();
-        baseValues[2] = 0;
-        Variables::session->getTooltip()->setBaseValues(baseValues);
-        Variables::session->getTooltip()->setDisplay(true);
+        Variables::session->getTooltip()->setEquipment(selectedChestplate);
     }
     if(CollisionDetector::isBasicCollision(Variables::mouseCoords, greavesCoords))
     {
-        Variables::session->getTooltip()->calculateCoords();
-        Variables::session->getTooltip()->setType(1);
-        Variables::session->getTooltip()->setName(selectedGreaves->getName());
-        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
-        int baseValues[3];
-        baseValues[0] = selectedGreaves->getArmor();
-        baseValues[1] = selectedGreaves->getEnergyConsumption();
-        baseValues[2] = 0;
-        Variables::session->getTooltip()->setBaseValues(baseValues);
-        Variables::session->getTooltip()->setDisplay(true);
+        Variables::session->getTooltip()->setEquipment(selectedGreaves);
     }
     if(CollisionDetector::isBasicCollision(Variables::mouseCoords, itemCoords))
     {
-        Variables::session->getTooltip()->calculateCoords();
-        Variables::session->getTooltip()->setType(1);
-        Variables::session->getTooltip()->setName(selectedItem->getName());
-        Variables::session->getTooltip()->setImage(Variables::images->getByName("equipmentTooltip"));
-        int baseValues[3];
-        baseValues[0] = 0;
-        baseValues[1] = 0;
-        baseValues[2] = 0;
-        Variables::session->getTooltip()->setBaseValues(baseValues);
-        Variables::session->getTooltip()->setDisplay(true);
+        Variables::session->getTooltip()->setUsableItem(selectedItem);
     }
 }
 

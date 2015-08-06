@@ -10,6 +10,9 @@
 #include <iostream>
 #include "Coordinates.h"
 #include "Image.h"
+#include "Weapon.h"
+#include "UsableItem.h"
+#include "Equipment.h"
 
 class Tooltip {
 public:
@@ -36,6 +39,9 @@ public:
      */
     void setType(int type);
     void setName(std::string name);
+    void setWeapon(Weapon *weapon);
+    void setEquipment(Equipment *equipment);
+    void setUsableItem(UsableItem *usableItem);
 private:
     Coordinates *coords;
     Image *image;

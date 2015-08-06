@@ -15,16 +15,17 @@
 class WallFactory {
 public:
     WallFactory();
-    void static setObstacleWalls(Module *module, int roomCount, Room **rooms, int **tiles);
-    void static setModuleBasicWalls(Module * module);
+    void  setObstacleWalls(Module *module, int roomCount, Room **rooms, int **tiles);
+    void  setModuleBasicWalls(Module * module);
+    void  deleteSingleWalls();
+    void  addHoleWalls();
+    void  generateCorners();
+    void  generateWalls();
 private:
-    bool static isValidTile(int X,int Y, int **fieldTable, int roomTileID);
-    std::list<Wall*> static getRoomWall(Room *room, int **fieldTable);
-    std::list<Door*> static getDoors();
-    void static deleteSingleWalls(int **temp);
-    void static addHoleWalls(int **temp);
-    void static generateCorners(int **temp);
-    void static generateWalls(int **temp);
+    bool  isValidTile(int X,int Y, int **fieldTable, int roomTileID);
+    std::list<Wall*>  getRoomWall(Room *room, int **fieldTable);
+    std::list<Door*>  getDoors();
+    int **temp;
 };
 
 #endif	/* WALLFACTORY_H */

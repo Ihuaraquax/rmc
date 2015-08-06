@@ -83,6 +83,7 @@ void Inventory::display()
     displayAttributes();
     displayStats();
     displayAmmo();
+    displayTooltips();
     for(int i = 0; i < 8; i++)buttons[i]->display();
     dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->display();
 }
@@ -168,6 +169,31 @@ void Inventory::displayAmmo()
         al_draw_text(Variables::basicFont, al_map_rgb(255,255,255), X+60, Y, ALLEGRO_ALIGN_RIGHT, ammo);
         Y += 32;
     }
+}
+
+void Inventory::displayTooltips()
+{
+    Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
+    for(int i = 0; i < 6; i++)
+    {
+        if(player->weapons[i]->getWeaponId() != -1)
+            if(CollisionDetector::isBasicCollision(Variables::mouseCoords, weaponCoords[i]))
+            {
+                Variables::session->getTooltip()->setWeapon(player->weapons[i]);
+            }
+    }
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, equipmentCoords[0]))
+        if(player->helmet->getAction() != 0)
+            Variables::session->getTooltip()->setEquipment(player->helmet);
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, equipmentCoords[1]))
+        if(player->chestplate->getAction() != 0)
+            Variables::session->getTooltip()->setEquipment(player->chestplate);
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, equipmentCoords[2]))
+        if(player->greaves->getAction() != 0)
+            Variables::session->getTooltip()->setEquipment(player->greaves);
+    if(CollisionDetector::isBasicCollision(Variables::mouseCoords, equipmentCoords[3]))
+        if(player->item->getAction() != 0)
+            Variables::session->getTooltip()->setUsableItem(player->item);
 }
 
 void Inventory::init()
@@ -344,6 +370,6 @@ bool Inventory::isCorrectEquipmentType(int chestIndex, int inventoryIndex)
 
 void Inventory::onMousePressed()
 {
-    for(int i = 0; i < 8; i++)buttons[i]->execute();
+//    for(int i = 0; i < 8; i++)buttons[i]->execute();
     dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->handleMouseAction();
 }

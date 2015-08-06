@@ -95,7 +95,7 @@ void Player::setTestValues()
     health = 10000;
     maximumHealth = health + 100;
     WeaponLoader::loadWeapon(weapons[0], 0);
-    WeaponLoader::loadWeapon(weapons[1], 16);
+    WeaponLoader::loadWeapon(weapons[1], -1);
     WeaponLoader::loadWeapon(weapons[2], 17);
     WeaponLoader::loadWeapon(weapons[3], 18);
     WeaponLoader::loadWeapon(weapons[4], 19);

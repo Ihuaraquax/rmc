@@ -14,6 +14,7 @@
 class Weapon {
     friend class WeaponLoader;
     friend class WeaponUI;
+    friend class Tooltip;
 public:
     Weapon();
     void update();

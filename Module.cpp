@@ -353,7 +353,9 @@ void Module::load(std::fstream& file)
     Image *image = new Image(path, false);
     image->state = REPEATING;
     floor->setImage(image);
-    WallFactory::setModuleBasicWalls(this);
+    WallFactory *wallFactory = new WallFactory();
+    wallFactory->setModuleBasicWalls(this);
+    delete wallFactory;
     TileFactory::defineTilesSides(this);
 }
 

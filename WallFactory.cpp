@@ -13,6 +13,12 @@
 #include "Obstacle.h"
 
 WallFactory::WallFactory() {
+    temp = new int*[Variables::tilesPerRoom];
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+    {
+        temp[i] = new int[Variables::tilesPerRoom];
+        for(int j = 0; j < Variables::tilesPerRoom; j++)temp[i][j] = 0;
+    }
 }
 
 
@@ -74,13 +80,6 @@ void WallFactory::setModuleBasicWalls(Module* module)
 
 void WallFactory::setObstacleWalls(Module* module, int roomCount, Room** rooms, int** tiles)
 {
-    setModuleBasicWalls(module);
-    int **temp = new int*[Variables::tilesPerRoom];
-    for(int i = 0; i < Variables::tilesPerRoom; i++)
-    {
-        temp[i] = new int[Variables::tilesPerRoom];
-        for(int j = 0; j < Variables::tilesPerRoom; j++)temp[i][j] = 0;
-    }
     for(int j = 0; j < roomCount; j++)
     {
         Room *room = rooms[j];
@@ -98,13 +97,9 @@ void WallFactory::setObstacleWalls(Module* module, int roomCount, Room** rooms, 
             }
         }
     }
-    WallFactory::deleteSingleWalls(temp);
-    WallFactory::addHoleWalls(temp);
-    WallFactory::generateCorners(temp);
-    WallFactory::generateWalls(temp);
 }
 
-void WallFactory::generateCorners(int** temp)
+void WallFactory::generateCorners()
 {
     for(int i = 1; i < Variables::tilesPerRoom-1; i++)
     {
@@ -130,7 +125,7 @@ void WallFactory::generateCorners(int** temp)
     }
 }
 
-void WallFactory::deleteSingleWalls(int **temp)
+void WallFactory::deleteSingleWalls()
 {
     for(int i = 0; i < Variables::tilesPerRoom; i++)
     {
@@ -151,7 +146,7 @@ void WallFactory::deleteSingleWalls(int **temp)
 }
 
 
-void WallFactory::addHoleWalls(int **temp)
+void WallFactory::addHoleWalls()
 {
     for(int i = 1; i < Variables::tilesPerRoom-1; i++)
     {
@@ -171,7 +166,7 @@ void WallFactory::addHoleWalls(int **temp)
     }
 }
 
-void WallFactory::generateWalls(int **temp)
+void WallFactory::generateWalls()
 {
     for(int i = 0; i < Variables::tilesPerRoom; i++)
     {

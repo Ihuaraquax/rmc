@@ -33,6 +33,7 @@ private:
     void displayAttributes();
     void displayStats();
     void displayAmmo();
+    void displayTooltips();
     
     
     Image *backgroundImage;

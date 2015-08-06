@@ -52,12 +52,17 @@ void ModuleFactory::setModuleRooms(Module* module)
     {
        rooms[i] = RoomFactory::createRooms(roomCount[i], tiles, i*10);    
     }
-//    
-////    factory.OLDsetTileBarriers(module, roomCount, rooms, tiles);
+    WallFactory *wallFactory = new WallFactory();
+    wallFactory->setModuleBasicWalls(module);
     for(int i = 0; i < 10; i++)
     {
-        WallFactory::setObstacleWalls(module, roomCount[i], rooms[i], tiles);
+        wallFactory->setObstacleWalls(module, roomCount[i], rooms[i], tiles);
     }
+    wallFactory->deleteSingleWalls();
+    wallFactory->addHoleWalls();
+    wallFactory->generateCorners();
+    wallFactory->generateWalls();
+    delete wallFactory;
 //    
     TileFactory::createModuleTiles(module, tiles);
 //    for(int j = 0; j < 10; j++)
