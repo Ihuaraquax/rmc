@@ -54,6 +54,7 @@ void Projectile::update()
                     {
                         health--;
                         targetEntity->getHit(damage, damageType);
+                        if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[34] != 0)shooter->heal(damage/10);
                     } else if (Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[2] != 0 && targetEntity != this->shooter)
                     {
                         health--;
@@ -132,6 +133,16 @@ void Projectile::executeAgony()
     {
         Entity *explosion = new Explosion();
         dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
+        dynamic_cast<Explosion*>(explosion)->setShooter(shooter);
+        dynamic_cast<Explosion*>(explosion)->dealDamage();
+        Variables::session->getAllEntities()->addEntity(explosion);
+    }
+    else if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[32] != 0)
+    {
+        Entity *explosion = new Explosion();
+        dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
+        dynamic_cast<Explosion*>(explosion)->setDamage(damage *0.2);
+        dynamic_cast<Explosion*>(explosion)->setShooter(shooter);
         dynamic_cast<Explosion*>(explosion)->dealDamage();
         Variables::session->getAllEntities()->addEntity(explosion);
     }

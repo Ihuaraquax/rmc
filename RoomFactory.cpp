@@ -23,9 +23,12 @@ Room **RoomFactory::createRooms(int roomCount, int **tiles, int roomId)
     }
     while(!roomsAreMaxed(rooms, roomCount))
     {
+        al_clear_to_color(al_map_rgb(0,0,0));
         for(int i = 0; i < roomCount; i++)rooms[i]->grow(tiles);
+        for(int i = 0; i < roomCount; i++)rooms[i]->display();
+        al_flip_display();
+        Sleep(3);
     }
-//    addZeroToRooms(tiles, rooms);
     return rooms;
 }
 
@@ -43,6 +46,7 @@ void RoomFactory::getRoomSeedCoords(int& X, int& Y, int **tileTable, int roomBas
 bool RoomFactory::roomsAreMaxed(Room** rooms, int roomCount)
 {
     bool value = false;
+    if(roomCount == 0)value = true;
     for(int i = 0; i < roomCount; i++)
     {
         if(rooms[i]->isMaxed())

@@ -109,3 +109,14 @@ void Room::addToTiles(int X, int Y)
     tilesY[tileTableSize] = Y;
     tileTableSize++;
 }
+
+void Room::display()
+{
+    int color = (roomTile%10 + 1) *50;
+    for(int i = 0; i < tileTableSize; i++)
+    {
+        double X = tilesX[i] * 30;
+        double Y = tilesY[i] * 30;
+        al_draw_filled_rectangle(X, Y, X+50, Y + 50, al_map_rgb(color,color,color));
+    }
+}

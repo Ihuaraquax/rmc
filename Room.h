@@ -28,6 +28,7 @@ public:
     void setTiles(int **tilesTable);
     void addToTiles(int X, int Y);
     bool tryToGrow(int X, int Y, int **tileTable);
+    void display();
 private:
     int baseTile;
     int *tilesX;

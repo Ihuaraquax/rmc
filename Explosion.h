@@ -25,10 +25,12 @@ public:
     void setRadius(int radius);
     void setDamageType(DAMAGE_TYPE damageType);
     void setDamage(int damage);
+    void setShooter(Entity* shooter);
 private:
     int damage;
     DAMAGE_TYPE damageType;
     int radius;
+    Entity *shooter;
 };
 
 #endif	/* EXPLOSION_H */

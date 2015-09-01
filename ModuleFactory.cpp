@@ -91,7 +91,12 @@ int **ModuleFactory::createTiles()
         }
     }
     roomCount = new int[10];
-    for(int i = 0; i < 10; i++) file >> roomCount[9-i];
+    int a;
+    for(int i = 0; i < 10; i++)
+    {
+        file >> a;
+        roomCount[i] = a;
+    }
     return tiles;
 }
 

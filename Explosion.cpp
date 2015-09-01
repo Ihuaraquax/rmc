@@ -46,6 +46,10 @@ void Explosion::setDamage(int damage) {
     if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[71] == 1)this->damage *= 0.2;
 }
 
+void Explosion::setShooter(Entity* shooter) {
+    this->shooter = shooter;
+}
+
 
 Explosion::~Explosion() {
 }
@@ -97,7 +101,11 @@ void Explosion::dealDamageInTile(templateList<Entity>* entityList, Wall** walls,
 {
     while(entityList != NULL)
     {
-        if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[0] == 0)entityList->data->getHit(damage, damageType);
+        if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[0] == 0)
+        {
+            entityList->data->getHit(damage, damageType);
+            if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[34] != 0)shooter->heal(damage/10);
+        }
         else entityList->data->heal(damage);
         entityList = entityList->next;
     }

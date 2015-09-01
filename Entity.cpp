@@ -108,6 +108,7 @@ void Entity::getHit(int damage, int damageType)
     if(table[61] != 0 && damageType == 2)damageType = 1;
     double resist = 1-elementalResists[damageType];
     if(table[63] != 0)resist = this->getSmallestResistance();
+    if(table[27+damageType] != 0)resist = 1;
     int damageInflicted = (damage - armor) * resist;
     if(damageInflicted < 0)damageInflicted = 0;
     else if (bleeds)
