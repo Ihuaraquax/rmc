@@ -39,9 +39,9 @@ void Session::create()
     map = new Map();
     map->createLevels();
 //    this->loadSave();
-    al_register_event_source(Variables::event_queue, al_get_timer_event_source(Variables::timer));
     map->setOffest();
     setStartingValues();
+    al_register_event_source(Variables::event_queue, al_get_timer_event_source(Variables::timer));
 }
 
 void Session::setStartingValues()
@@ -64,6 +64,7 @@ void Session::setStartingValues()
         file >> item;
         player->setEquipment(i,item);
     }
+    player->reloadUIImages();
     file >>temp;
     int mod;
     for(int a = 0; a < 3; a++)
@@ -73,6 +74,8 @@ void Session::setStartingValues()
             for(int j = 0; j < map->getModulesTableSize(); j++)
                 map->getModules()[i][j]->setModificator(mod);
     }
+    map->applyModificators();
+    player->adaptToModificators();
 }
 
 AllEntities* Session::getAllEntities() const {

@@ -68,6 +68,7 @@ public:
     Skills* getSkills() const;
     void setWeapon(int weaponId, int newWeaponNo);
     void setEquipment(int equipmentType, int newEquipmentNo);
+    void reloadUIImages();
 private:
     void setTransferCoords(int side);
     void setTestValues();

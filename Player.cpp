@@ -108,13 +108,18 @@ void Player::setTestValues()
     possessedWeapons = 6;
     aiValue = 100;
     expirience = 0;
-    Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[0]);
-    Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
-    Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves, item);
+    reloadUIImages();
     selecetedWeaponSet = 0;
     shoulderGun = new Weapon();
     WeaponLoader::loadWeapon(shoulderGun, 3);
     this->setStartingTile();
+}
+
+void Player::reloadUIImages()
+{
+    Variables::session->getHud()->getMainWeaponUI()->selectWeapon(weapons[0]);
+    Variables::session->getHud()->getSecondaryWeaponUI()->selectWeapon(weapons[1]);
+    Variables::session->getHud()->getEquipmentUI()->reloadImages(helmet, chestplate, greaves, item);
 }
 
 void Player::playerMove(double X, double Y)
