@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/LightSource.o: LightSource.cpp LightSource.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h
+ GlobalImages.h ValueReader.h
 
 LightSource.h:
 
@@ -93,3 +93,5 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:

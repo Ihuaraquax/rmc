@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Floor.o: Floor.cpp Floor.h Image.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Room.h ModuleTile.h \
  AiTile.h AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h \
  Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h
+ GlobalImages.h ValueReader.h
 
 Floor.h:
 
@@ -93,3 +93,5 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:

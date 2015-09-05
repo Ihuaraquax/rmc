@@ -7,8 +7,9 @@ build/Debug/MinGW-Windows/AllEntities.o: AllEntities.cpp AllEntities.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
- Spawner.h DistanceBuffer.h BuffRod.h ExplosiveBarrel.h RemoteCharges.h \
- ObstacleDoor.h DoorFactory.h Explosives.h Key.h Lock.h Console.h
+ ValueReader.h Spawner.h DistanceBuffer.h BuffRod.h ExplosiveBarrel.h \
+ RemoteCharges.h ObstacleDoor.h DoorFactory.h Explosives.h Key.h Lock.h \
+ Console.h
 
 AllEntities.h:
 
@@ -107,6 +108,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 Spawner.h:
 

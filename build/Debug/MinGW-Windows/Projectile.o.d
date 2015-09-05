@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Projectile.o: Projectile.cpp Projectile.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h CollisionDetector.h Explosion.h
+ LogLevels.h GlobalImages.h ValueReader.h CollisionDetector.h Explosion.h
 
 Projectile.h:
 
@@ -95,6 +95,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 CollisionDetector.h:
 

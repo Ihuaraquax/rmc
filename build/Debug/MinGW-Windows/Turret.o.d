@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Turret.o: Turret.cpp Turret.h Entity.h Image.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
- WeaponLoader.h
+ ValueReader.h WeaponLoader.h
 
 Turret.h:
 
@@ -95,5 +95,7 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 WeaponLoader.h:

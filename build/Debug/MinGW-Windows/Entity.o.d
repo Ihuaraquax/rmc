@@ -6,8 +6,8 @@ build/Debug/MinGW-Windows/Entity.o: Entity.cpp Entity.h Image.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
- CollisionDetector.h TimedBuffer.h DistanceBuffer.h BloodSplatter.h \
- WeaponLoader.h Projectile.h
+ ValueReader.h CollisionDetector.h TimedBuffer.h DistanceBuffer.h \
+ BloodSplatter.h WeaponLoader.h Projectile.h
 
 Entity.h:
 
@@ -94,6 +94,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 CollisionDetector.h:
 

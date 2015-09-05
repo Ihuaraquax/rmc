@@ -24,6 +24,7 @@
 #include "GlobalImages.h"
 #include "Entity.h"
 #include "Coordinates.h"
+#include "ValueReader.h"
 
 enum GAME_STATE
 {
@@ -66,6 +67,7 @@ struct Variables
     static GAME_SUBSTATE substate;
     static bool skillRedistributionAviable;
     
+    static ValueReader *valueReader;
     static GlobalImages *images;
     static bool isMonsterShoot;
     void static giveFactors(double angle, double &x_factor, double &y_factor)

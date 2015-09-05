@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Door.o: Door.cpp Door.h Coordinates.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h
+ LogLevels.h GlobalImages.h ValueReader.h
 
 Door.h:
 
@@ -93,3 +93,5 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:

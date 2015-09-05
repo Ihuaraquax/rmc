@@ -6,7 +6,8 @@ build/Debug/MinGW-Windows/EquipmentUI.o: EquipmentUI.cpp EquipmentUI.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h TextDisplayer.h CollisionDetector.h
+ LogLevels.h GlobalImages.h ValueReader.h TextDisplayer.h \
+ CollisionDetector.h
 
 EquipmentUI.h:
 
@@ -93,6 +94,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 TextDisplayer.h:
 

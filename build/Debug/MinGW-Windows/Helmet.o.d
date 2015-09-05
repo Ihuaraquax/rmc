@@ -6,7 +6,8 @@ build/Debug/MinGW-Windows/Helmet.o: Helmet.cpp Helmet.h Equipment.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h Player.h Attributes.h Animation.h Skills.h
+ LogLevels.h GlobalImages.h ValueReader.h Player.h Attributes.h \
+ Animation.h Skills.h
 
 Helmet.h:
 
@@ -95,6 +96,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 Player.h:
 

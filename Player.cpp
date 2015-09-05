@@ -86,14 +86,14 @@ void Player::setTestValues()
     this->coords->angle = 0;
     this->coords->height = 25;
     this->coords->width = 25;
-    this->coords->speedX = 1.5;
-    this->coords->speedY = 1.5;
+    this->coords->speedX = Variables::valueReader->getByName("PlayerSpeed");
+    this->coords->speedY = Variables::valueReader->getByName("PlayerSpeed");
     Variables::offsetX = (coords->X * Variables::ScaleX * Variables::scale) -Variables::RES_WIDTH/2;
     Variables::offsetY = (coords->Y * Variables::ScaleY * Variables::scale) -Variables::RES_HEIGHT/2;
     Variables::session->getMap()->getCurrentModule()->updateTileAiTarget
         (coords->X + coords->width/2, coords->Y + coords->height/2);
-    health = 10000;
-    maximumHealth = health + 100;
+    health = Variables::valueReader->getByName("PlayerHealth");
+    maximumHealth = Variables::valueReader->getByName("PlayerMaximumHealth");
     WeaponLoader::loadWeapon(weapons[0], 0);
     WeaponLoader::loadWeapon(weapons[1], -1);
     WeaponLoader::loadWeapon(weapons[2], 17);
@@ -106,7 +106,7 @@ void Player::setTestValues()
     this->changeItem(3);
     teamId = 1;
     possessedWeapons = 6;
-    aiValue = 100;
+    aiValue = Variables::valueReader->getByName("PlayerAiValue");
     expirience = 0;
     reloadUIImages();
     selecetedWeaponSet = 0;

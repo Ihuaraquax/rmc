@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/ModuleTile.o: ModuleTile.cpp ModuleTile.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h \
  Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h Turret.h AiTileAdjacentSetter.h
+ GlobalImages.h ValueReader.h Turret.h AiTileAdjacentSetter.h
 
 ModuleTile.h:
 
@@ -93,6 +93,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 Turret.h:
 

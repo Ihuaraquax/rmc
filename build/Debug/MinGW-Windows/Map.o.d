@@ -7,7 +7,7 @@ build/Debug/MinGW-Windows/Map.o: Map.cpp Map.h Module.h Wall.h \
  Skills.h Key.h Lock.h globalVariables.h Session.h Menu.h HUD.h \
  WeaponUI.h EquipmentUI.h MouseControl.h KeyboardControl.h AllPlans.h \
  Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h
+ GlobalImages.h ValueReader.h
 
 Map.h:
 
@@ -108,3 +108,5 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:

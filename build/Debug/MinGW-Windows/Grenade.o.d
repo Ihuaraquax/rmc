@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Grenade.o: Grenade.cpp Grenade.h Projectile.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h Explosion.h CollisionDetector.h
+ LogLevels.h GlobalImages.h ValueReader.h Explosion.h CollisionDetector.h
 
 Grenade.h:
 
@@ -97,6 +97,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 Explosion.h:
 

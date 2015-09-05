@@ -107,6 +107,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/UsableItem.o \
 	${OBJECTDIR}/UsableItemLoader.o \
 	${OBJECTDIR}/UsableObject.o \
+	${OBJECTDIR}/ValueReader.o \
 	${OBJECTDIR}/Wall.o \
 	${OBJECTDIR}/WallFactory.o \
 	${OBJECTDIR}/Weapon.o \
@@ -499,6 +500,11 @@ ${OBJECTDIR}/UsableObject.o: UsableObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/UsableObject.o UsableObject.cpp
+
+${OBJECTDIR}/ValueReader.o: ValueReader.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ValueReader.o ValueReader.cpp
 
 ${OBJECTDIR}/Wall.o: Wall.cpp 
 	${MKDIR} -p ${OBJECTDIR}

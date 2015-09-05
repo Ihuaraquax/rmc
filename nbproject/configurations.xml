@@ -121,6 +121,8 @@
         <itemPath>MouseControl.h</itemPath>
         <itemPath>TextDisplayer.cpp</itemPath>
         <itemPath>TextDisplayer.h</itemPath>
+        <itemPath>ValueReader.cpp</itemPath>
+        <itemPath>ValueReader.h</itemPath>
         <itemPath>globalVariables.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f7" displayName="Goal Classes" projectFiles="true">
@@ -561,6 +563,10 @@
       </item>
       <item path="UsableObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ValueReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ValueReader.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Wall.h" ex="false" tool="3" flavor2="0">
@@ -912,6 +918,10 @@
       <item path="UsableObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UsableObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ValueReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ValueReader.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Wall.cpp" ex="false" tool="1" flavor2="0">
       </item>

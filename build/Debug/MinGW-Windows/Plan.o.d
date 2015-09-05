@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Plan.o: Plan.cpp Plan.h PlanStep.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Tooltip.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h CollisionDetector.h
+ GlobalImages.h ValueReader.h CollisionDetector.h
 
 Plan.h:
 
@@ -93,5 +93,7 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 CollisionDetector.h:

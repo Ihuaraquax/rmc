@@ -6,7 +6,8 @@ build/Debug/MinGW-Windows/Skills.o: Skills.cpp Skills.h Image.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h TextDisplayer.h CollisionDetector.h
+ LogLevels.h GlobalImages.h ValueReader.h TextDisplayer.h \
+ CollisionDetector.h
 
 Skills.h:
 
@@ -95,6 +96,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 TextDisplayer.h:
 

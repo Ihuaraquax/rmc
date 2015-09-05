@@ -11,11 +11,13 @@
 #include "globalVariables.h"
 #include "configurator.h"
 #include "Player.h"
+#include "ValueReader.h"
 #include <fstream>
 
 Session::Session() {
     configurator::config();
     Variables::images = new GlobalImages();
+    Variables::valueReader = new ValueReader();
     std::string path = "images/GameWin.png";
     winImage = new Image(path,false);
     winImage->state = UI;

@@ -6,8 +6,8 @@ build/Debug/MinGW-Windows/Inventory.o: Inventory.cpp Inventory.h Image.h \
  Chest.h Obstacle.h AllEntities.h MouseControl.h KeyboardControl.h Map.h \
  Module.h Floor.h Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h \
  AllLightSources.h LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
- GameSubstateEnum.h LogLevels.h GlobalImages.h WeaponLoader.h \
- CollisionDetector.h TextDisplayer.h EquipmentLoader.h
+ GameSubstateEnum.h LogLevels.h GlobalImages.h ValueReader.h \
+ WeaponLoader.h CollisionDetector.h TextDisplayer.h EquipmentLoader.h
 
 Inventory.h:
 
@@ -102,6 +102,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 WeaponLoader.h:
 

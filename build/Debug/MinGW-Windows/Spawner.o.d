@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Spawner.o: Spawner.cpp Spawner.h Entity.h \
  AllEntities.h MouseControl.h KeyboardControl.h Map.h Module.h Floor.h \
  Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h Monster.h MonsterLoader.h
+ LogLevels.h GlobalImages.h ValueReader.h Monster.h MonsterLoader.h
 
 Spawner.h:
 
@@ -95,6 +95,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 Monster.h:
 

@@ -55,6 +55,7 @@ int Variables::currentFrame = 0;
 bool Variables::isMonsterShoot = true;
 
 LogLevel Variables::log = none;
+ValueReader *Variables::valueReader;
 GlobalImages *Variables::images;
 double Variables::scale = 1;
 bool Variables::skillRedistributionAviable = false;

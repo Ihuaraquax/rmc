@@ -6,7 +6,8 @@ build/Debug/MinGW-Windows/Button.o: Button.cpp Button.h Coordinates.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
- CollisionDetector.h Player.h Attributes.h Animation.h Skills.h
+ ValueReader.h CollisionDetector.h Player.h Attributes.h Animation.h \
+ Skills.h
 
 Button.h:
 
@@ -93,6 +94,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 CollisionDetector.h:
 

@@ -7,7 +7,7 @@ build/Debug/MinGW-Windows/Attributes.o: Attributes.cpp Attributes.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h Player.h \
  Animation.h Skills.h globalVariables.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h
+ GlobalImages.h ValueReader.h
 
 Attributes.h:
 
@@ -102,3 +102,5 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:

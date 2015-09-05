@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/HUD.o: HUD.cpp HUD.h Image.h Coordinates.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h \
  AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h Plan.h \
  PlanStep.h Tooltip.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
- Player.h Attributes.h Animation.h Skills.h
+ ValueReader.h Player.h Attributes.h Animation.h Skills.h
 
 HUD.h:
 
@@ -93,6 +93,8 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
 
 Player.h:
 

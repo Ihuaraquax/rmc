@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/CollisionDetector.o: CollisionDetector.cpp \
  Button.h Chest.h Obstacle.h AllEntities.h MouseControl.h \
  KeyboardControl.h Map.h Module.h Floor.h Room.h AllDecals.h Decal.h \
  AllLightSources.h LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
- GameSubstateEnum.h LogLevels.h GlobalImages.h
+ GameSubstateEnum.h LogLevels.h GlobalImages.h ValueReader.h
 
 CollisionDetector.h:
 
@@ -95,3 +95,5 @@ GameSubstateEnum.h:
 LogLevels.h:
 
 GlobalImages.h:
+
+ValueReader.h:
