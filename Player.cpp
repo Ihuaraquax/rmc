@@ -414,3 +414,27 @@ void Player::updatePickUps()
         pickUps = pickUps->next;
     }
 }
+
+void Player::setWeapon(int weaponId, int newWeaponNo)
+{
+    WeaponLoader::loadWeapon(weapons[weaponId], newWeaponNo);
+}
+
+void Player::setEquipment(int equipmentType, int newEquipmentNo)
+{
+    switch(equipmentType)
+    {
+        case 0:
+            changeHelmet(newEquipmentNo);
+            break;
+        case 1:
+            changeChestplate(newEquipmentNo);
+            break;
+        case 2:
+            changeGreaves(newEquipmentNo);
+            break;
+        case 3:
+            changeItem(newEquipmentNo);
+            break;
+    }
+}

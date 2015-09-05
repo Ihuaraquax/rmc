@@ -46,6 +46,7 @@ public:
     void load(std::fstream &file);
     void activateModificators();
     AllLightSources* getAllLightSources() const;
+    void setModificator(int modId);
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();

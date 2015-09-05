@@ -6,7 +6,7 @@ build/Debug/MinGW-Windows/Session.o: Session.cpp Session.h Menu.h HUD.h \
  Module.h Floor.h Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h \
  AllLightSources.h LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
  globalVariables.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
- configurator.h
+ configurator.h Player.h Attributes.h Animation.h Skills.h
 
 Session.h:
 
@@ -95,3 +95,11 @@ LogLevels.h:
 GlobalImages.h:
 
 configurator.h:
+
+Player.h:
+
+Attributes.h:
+
+Animation.h:
+
+Skills.h:

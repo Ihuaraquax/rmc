@@ -37,6 +37,7 @@ public:
     int getModulesTableSize() const;
     AllLightSources* getAllLightSources() const;
     void displayLight();
+    Module*** getModules() const;
 private:
     Module ***modules;
     AllEntities ***allEntities;

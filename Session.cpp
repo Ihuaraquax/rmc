@@ -10,6 +10,7 @@
 #include "MouseControl.h"
 #include "globalVariables.h"
 #include "configurator.h"
+#include "Player.h"
 #include <fstream>
 
 Session::Session() {
@@ -40,6 +41,38 @@ void Session::create()
 //    this->loadSave();
     al_register_event_source(Variables::event_queue, al_get_timer_event_source(Variables::timer));
     map->setOffest();
+    setStartingValues();
+}
+
+void Session::setStartingValues()
+{
+    std::fstream file;
+    file.open("fixtures/startingValues.txt", std::ios::in);
+    std::string temp;
+    file >> temp;
+    int weapon;
+    Player *player = dynamic_cast<Player*>(this->map->getCurrentAllEntities()->getPlayer());
+    for(int i = 0; i < 6; i++)
+    {
+        file >> weapon;
+        player->setWeapon(i,weapon);
+    }
+    file >> temp;
+    int item;
+    for(int i = 0; i < 4; i++)
+    {
+        file >> item;
+        player->setEquipment(i,item);
+    }
+    file >>temp;
+    int mod;
+    for(int a = 0; a < 3; a++)
+    {
+        file >> mod;
+        for(int i = 0; i < map->getModulesTableSize(); i++)
+            for(int j = 0; j < map->getModulesTableSize(); j++)
+                map->getModules()[i][j]->setModificator(mod);
+    }
 }
 
 AllEntities* Session::getAllEntities() const {

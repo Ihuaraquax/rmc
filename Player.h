@@ -66,6 +66,8 @@ public:
     int getKeyValue() const;
     Attributes* getAttributes() const;
     Skills* getSkills() const;
+    void setWeapon(int weaponId, int newWeaponNo);
+    void setEquipment(int equipmentType, int newEquipmentNo);
 private:
     void setTransferCoords(int side);
     void setTestValues();

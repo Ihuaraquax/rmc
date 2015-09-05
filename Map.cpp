@@ -275,3 +275,7 @@ void Map::displayLight()
 {
     currentModule->getAllLightSources()->display();
 }
+
+Module*** Map::getModules() const {
+    return modules;
+}

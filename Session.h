@@ -48,6 +48,7 @@ public:
     static MainGameState gameState;
 private:
     void updateOffset();
+    void setStartingValues();
     
     Menu *mainMenu;
     MouseControl *mouse;
