@@ -97,7 +97,7 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
             }
             double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
             if(increment > 0)currentTargetSize += (increment * incrementModificator);
-            createBlast(shooterCoords);
+//            createBlast(shooterCoords);
         }
     }
 }
@@ -122,7 +122,7 @@ void Weapon::shoot(Coordinates* shooterCoords, int team, int shooterCriticalChan
         }
         double increment = (targetSizeIncrement - accuracy) - (currentTargetSize / targetSizeIncrementSlowDownPoint);
         if(increment > 0)currentTargetSize += increment;
-        createBlast(shooterCoords);
+//        createBlast(shooterCoords);
     }
     shooterCoords->X -= shooterCoords->width/2;
     shooterCoords->Y -= shooterCoords->height/2;
