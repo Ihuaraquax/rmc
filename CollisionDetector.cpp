@@ -32,11 +32,14 @@ Entity *CollisionDetector::isEntityCollisions(ModuleTile *tile, Entity* target)
     Entity *result = NULL;
     
     result = checkCollisions(tile->getEntityList(), target);
-    if(result == NULL)for(int i = 0; i < 8; i++)
+    if(result == NULL)
     {
-        if(tile->getAdjacentTiles()[i] != NULL)
-            result =checkCollisions(tile->getAdjacentTiles()[i]->getEntityList(), target);
-        if(result != NULL)break;
+        for(int i = 0; i < 8; i++)
+        {
+            if(tile->getAdjacentTiles()[i] != NULL)
+                result =checkCollisions(tile->getAdjacentTiles()[i]->getEntityList(), target);
+            if(result != NULL)break;
+        }
     }
     
     return result;
@@ -60,6 +63,7 @@ Entity* CollisionDetector::checkCollisions(templateList<Entity> *otherEntities, 
                 value = temp->data;
             }
         }
+        if(value == target->getIgnoreCollisionEntity())value = NULL;
         if(value != NULL)break;
         temp = temp -> next;
     }

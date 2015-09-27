@@ -16,6 +16,7 @@ public:
     void update();
     bool isProjectile();
     void setRange(int range);
+    int getProjectileType();
 private:
     bool MIRV;
 };

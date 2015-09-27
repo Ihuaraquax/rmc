@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "ProjectileFactory.h"
 #include "LightSource.h"
+#include "Grenade.h"
 
 Weapon::Weapon() {
     weaponId = -1;
@@ -92,6 +93,11 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
                 if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
                 else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
                 if(weaponId == 33)dynamic_cast<Projectile*>(bullet)->setRange(Variables::proximity(shooterCoords->X - Variables::offsetX, shooterCoords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y) - 30);
+                if(dynamic_cast<Projectile*>(bullet)->getProjectileType() == 1)
+                {
+                    double proximity = Variables::squaredProximity(shooterCoords->X - Variables::offsetX, shooterCoords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y);
+                    (dynamic_cast<Grenade*>(bullet)->multiplySpeed(proximity));
+                }
                 Variables::session->getAllEntities()->addEntity(bullet);
                 Variables::currentProjectile = bullet;
             }

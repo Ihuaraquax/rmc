@@ -97,3 +97,8 @@ void Missle::setRange(int range)
         weapons[0]->setRange(range / 2);
     }
 }
+
+int Missle::getProjectileType()
+{
+    return 2;
+}

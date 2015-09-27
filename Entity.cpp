@@ -325,3 +325,11 @@ void Entity::RCUse()
 {
     
 }
+
+Entity* Entity::getIgnoreCollisionEntity() const {
+    return ignoreCollisionEntity;
+}
+
+void Entity::setIgnoreCollisionEntity(Entity* ignoreCollisionEntity) {
+    this->ignoreCollisionEntity = ignoreCollisionEntity;
+}

@@ -58,6 +58,8 @@ public:
     void setPlanCoords(int X, int Y);
     
     void virtual RCUse();
+    Entity* getIgnoreCollisionEntity() const;
+    void setIgnoreCollisionEntity(Entity* ignoreCollisionEntity);
 protected:
     void move(double X, double Y);
     Entity *isCollision();
@@ -84,6 +86,7 @@ protected:
     templateList<GenericBuffer> *bufferList;
     bool bleeds;
     EntityShape shape;
+    Entity *ignoreCollisionEntity;
 };
 
 #endif	/* ENTITY_H */

@@ -209,10 +209,15 @@ bool Module::isObstructed(int X, int Y)
 ModuleTile *Module::getModuleTileAt(int coorX, int coorY)
 {
     ModuleTile *result;
-    int tileIndex = getModuleIndex(coorX / Variables::tileSize, coorY / Variables::tileSize);
-    if(tileIndex >= 0 && tileIndex < Variables::tilesPerRoom * Variables::tilesPerRoom)
-        result = this->moduleTiles[tileIndex];
-    else result = NULL;
+    if(coorY < 0 || coorY > Variables::tilesPerRoom * Variables::tileSize)result = NULL;
+    else if (coorX < 0 || coorX > Variables::tilesPerRoom * Variables::tileSize)result = NULL;
+    else
+    {
+        int tileIndex = getModuleIndex(coorX / Variables::tileSize, coorY / Variables::tileSize);
+        if(tileIndex >= 0 && tileIndex < Variables::tilesPerRoom * Variables::tilesPerRoom)
+            result = this->moduleTiles[tileIndex];
+        else result = NULL;
+    }
     return result;
 }
 

@@ -24,6 +24,7 @@ public:
     int getDamage() const;
     void setDamage(int damage);
     void setShooter(Entity* shooter);
+    int virtual getProjectileType();
 protected :
     int damage;
     int damageType;

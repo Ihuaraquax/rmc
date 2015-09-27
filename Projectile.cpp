@@ -167,4 +167,11 @@ void Projectile::setDamage(int damage) {
 
 void Projectile::setShooter(Entity* shooter) {
     this->shooter = shooter;
+    this->ignoreCollisionEntity = shooter;
+}
+
+
+int Projectile::getProjectileType()
+{
+    return 0;
 }

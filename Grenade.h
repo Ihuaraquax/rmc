@@ -15,6 +15,10 @@ public:
     void executeAgony();
     void update();
     bool isProjectile();
+    void bounce(bool horizontal);
+    void floorBounce();
+    int getProjectileType();
+    void multiplySpeed(double multiplier);
 private:
 
 };
