@@ -41,7 +41,7 @@ void AllEntities::init()
     createObstacles();
     for(int i = 0; i < 100; i++)
     {
-        Entity *monster = Monster::CreateMonster(-1,-1);
+        Entity *monster = Monster::CreateMonster(-1,-1, 1);
         dynamic_cast<Monster*>(monster)->setRandomCoords();
         monster->setStartingTile();
         this->addEntity(monster);
@@ -262,7 +262,7 @@ void AllEntities::load(std::fstream& file)
         if(fileInput == "CW")newEntity = Obstacle::CreateObstacle(-1, -1);
         if(fileInput == "EB")newEntity = ExplosiveBarrel::CreateBarrel(-1, -1);
         if(fileInput == "SP")newEntity = Spawner::CreateSpawner(-1, -1);
-        if(fileInput == "MO")newEntity = Monster::CreateMonster(-1, -1);
+        if(fileInput == "MO")newEntity = Monster::CreateMonster(-1, -1, 0);
         if(fileInput == "BR")newEntity = BuffRod::CreateBuffRod(-1, -1);
         if(fileInput == "EX")newEntity = Explosives::CreateExplosives(-1, -1);
         if(fileInput == "OB")newEntity = Obstacle::CreateObstacle(-1, -1);

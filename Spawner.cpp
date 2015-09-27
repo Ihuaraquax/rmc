@@ -24,6 +24,7 @@ Spawner::Spawner() {
     maximumHealth = health;
     spawnTimer = 5;
     spawnCountdown = 5;
+    monsterType = rand()%3;
 }
 
 void Spawner::setRandomCoords()
@@ -80,8 +81,8 @@ void Spawner::spawnMonster()
     {
         spawnCoords->X = X;
         spawnCoords->Y = Y;
-        Entity *monster = Monster::CreateMonster(spawnCoords->X, spawnCoords->Y);  
-        MonsterLoader::loadMonster(monster, monsterType, rand()%7);
+        Entity *monster = Monster::CreateMonster(spawnCoords->X, spawnCoords->Y, monsterType);  
+        MonsterLoader::loadMonster(monster, monsterType, 0);
         Variables::session->getAllEntities()->addEntity(monster);
     }
         delete spawnCoords;

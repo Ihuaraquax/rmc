@@ -14,30 +14,26 @@
 #include "PickUp.h"
 #include "Explosion.h"
 
-Monster::Monster()
+Monster::Monster(int monsterType)
 {
-    image = Variables::images->getByName("monster1");
-    health = 500;
-    teamId = 2;
     this->coords = new Coordinates();
     this->coords->width = Variables::tileSize;
     this->coords->height = Variables::tileSize;
-    this->coords->speedX = 1.7;
-    this->coords->speedY = 1.7;
     this->coords->angle = 0;
     this->coords->height = 25;
     this->coords->width = 25;
-    bleeds = true;
-    this->weapons = new Weapon*[2];
-    this->weapons[0] = new Weapon();
-    this->weapons[1] = new Weapon();
-    WeaponLoader::loadWeapon(weapons[0], 0);
-    WeaponLoader::loadWeapon(weapons[1], 0);
     possessedWeapons = 2;
-    expirience = 100;
-    maximumHealth = health;
+    this->weapons = new Weapon*[possessedWeapons];
+    for(int i = 0; i < possessedWeapons; i++)
+    {
+        this->weapons[i] = new Weapon();
+    }
+    teamId = 2;
     bleeds = true;
-    this->threatLevel = 10;
+    expirience = 100;
+    bleeds = true;
+    this->monsterType = monsterType;
+    getValuesFromFile();
 }
 
 void Monster::setCoords(double X, double Y)
@@ -210,9 +206,40 @@ void Monster::load(std::fstream& file)
     this->image->state = NORMAL;
 }
 
-Entity *Monster::CreateMonster(double X, double Y)
+Entity *Monster::CreateMonster(double X, double Y, int monsterType)
 {
-    Entity *monster = new Monster();
+    Entity *monster = new Monster(monsterType);
     if(X != -1 && Y != -1)monster->setCoords(X,Y);
     return monster;
+}
+
+void Monster::getValuesFromFile()
+{
+    std::fstream file;
+    file.open("fixtures/monsters.txt", std::ios::in);
+    int type;
+    file >> type;
+    std::string temp;
+    while(type != monsterType)
+    {
+        for(int i = 0; i < 18; i++)file >> temp;
+        file >> type;
+    }
+    std::string imageName;
+    file >> maximumHealth >> armor >> threatLevel >> coords->speedX 
+            >> criticalChance >> criticalDamage >> accuracy 
+            >> aiType >> expirience;
+    for(int i = 0; i < Variables::damageTypeCount; i++)
+    {
+        file >> elementalResists[i];
+    }
+    int weapons[2];
+    file >> weapons[0] >> weapons[1];
+    WeaponLoader::loadWeapon(this->weapons[0], weapons[0]);
+    WeaponLoader::loadWeapon(this->weapons[1], weapons[1]);
+    file >> imageName;
+    this->image = Variables::images->getByName(imageName);
+    coords->speedY = coords->speedX;
+    health = maximumHealth;
+    file.close();
 }
