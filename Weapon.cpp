@@ -90,7 +90,10 @@ void Weapon::shoot(Coordinates *shooterCoords, Coordinates *targetCoords, int te
                 else if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[26] == 1)critical = false;
                 Entity *bullet = ProjectileFactory::provideProjectile(weaponId, 0);
                 int angle = getAngle(shooterCoords, targetCoords);
-                if(critical)dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
+                if(critical)
+                {
+                    dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage * (criticalDamage + shooterCriticalDamage), damageType, angle, team, range);
+                }
                 else dynamic_cast<Projectile*>(bullet)->setValues(shooterCoords, damage, damageType, angle, team, range);
                 if(weaponId == 33)dynamic_cast<Projectile*>(bullet)->setRange(Variables::proximity(shooterCoords->X - Variables::offsetX, shooterCoords->Y - Variables::offsetY, targetCoords->X, targetCoords->Y) - 30);
                 if(dynamic_cast<Projectile*>(bullet)->getProjectileType() == 1)

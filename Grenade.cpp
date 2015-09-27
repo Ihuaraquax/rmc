@@ -16,6 +16,7 @@ Grenade::Grenade() {
     this->coords->width = 16;
     this->image = Variables::images->getByName("grenade");
     health = 1;
+    radius = 300;
     image->state = NORMAL;
     threatLevel = 0;
 }
@@ -84,8 +85,11 @@ void Grenade::floorBounce()
 void Grenade::executeAgony()
 {
     Entity *explosion = new Explosion();
-    dynamic_cast<Explosion*>(explosion)->setCoords(coords->X, coords->Y);
-    dynamic_cast<Explosion*>(explosion)->dealDamage();
+    Explosion *expl = dynamic_cast<Explosion*>(explosion);
+    expl->setCoords(coords->X, coords->Y);
+    expl->setDamage(damage);
+    expl->setRadius(radius);
+    expl->dealDamage();
     Variables::session->getAllEntities()->addEntity(explosion);
 }
 

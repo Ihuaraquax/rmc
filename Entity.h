@@ -80,7 +80,7 @@ protected:
     int maximumHealth;
     
     int criticalChance;
-    int criticalDamage;
+    double criticalDamage;
     double accuracy;
     
     templateList<GenericBuffer> *bufferList;

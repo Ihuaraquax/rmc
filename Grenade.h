@@ -20,7 +20,7 @@ public:
     int getProjectileType();
     void multiplySpeed(double multiplier);
 private:
-
+    int radius;
 };
 
 #endif	/* GRENADE_H */

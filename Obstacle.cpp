@@ -28,6 +28,7 @@ Obstacle::Obstacle()
     bleeds = false;
     this->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
+    elementalResists[explosive] = 0;
 }
 
 void Obstacle::setCoords(double X, double Y) {

@@ -1,7 +1,7 @@
 0 Pistol 10000 20 0 140 35 0 20 30 3 10 1 images/pistol.png
 1 HeavyPistol 350 10 0 200 60 0 35 50 2 10 1 images/heavyPistol.jpg
-2 Revolver 600 6 0 700 100 0 50 70 3 6 1 images/revolver.png
-3 GrenadeRevolver 900 60 5 1000 120 1 40 15 2 10 1 images/grenadeRevolver.jpg
+2 Revolver 300 6 0 700 100 0 50 70 3 6 1 images/revolver.png
+3 GrenadeRevolver 1800 60 5 1000 120 1 40 15 2 10 1 images/grenadeRevolver.jpg
 4 LaserPistol 120 15 2 140 20 2 20 15 2 10 1 images/laserPistol.jpg
 5 Ingram 50 60 1 150 5 0 35 15 2 10 1 images/ingram.jpg
 6 Thompson 40 100 1 300 3 0 45 15 2 10 1 images/thompson.jpg

@@ -121,15 +121,5 @@ void Explosion::dealDamageInTile(templateList<Entity>* entityList, Wall** walls,
                 Variables::session->getMap()->getCurrentModule()->deleteWall(toDelete);
             }
         }
-        if(doors[j] != NULL)
-        {
-            doors[j]->getHit(damage, damageType);
-            if(doors[j]->getHealth() <= 0)
-            {
-                Door *toDelete = doors[j];
-                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->deleteDoor(toDelete);
-                Variables::session->getMap()->getCurrentModule()->deleteDoor(toDelete);
-            }
-        }
     }
 }

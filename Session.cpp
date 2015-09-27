@@ -72,12 +72,12 @@ void Session::setStartingValues()
     for(int a = 0; a < 3; a++)
     {
         file >> mod;
-        for(int i = 0; i < map->getModulesTableSize(); i++)
-            for(int j = 0; j < map->getModulesTableSize(); j++)
-                map->getModules()[i][j]->setModificator(mod);
+//        for(int i = 0; i < map->getModulesTableSize(); i++)
+//            for(int j = 0; j < map->getModulesTableSize(); j++)
+//                map->getModules()[i][j]->setModificator(mod);
     }
-    map->applyModificators();
-    player->adaptToModificators();
+//    map->applyModificators();
+//    player->adaptToModificators();
 }
 
 AllEntities* Session::getAllEntities() const {
