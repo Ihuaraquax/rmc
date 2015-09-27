@@ -39,7 +39,7 @@ void AllEntities::init()
     player = NULL;
     DoorFactory::createDoors();
     createObstacles();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 0; i++)
     {
         Entity *monster = Monster::CreateMonster(-1,-1, 1);
         dynamic_cast<Monster*>(monster)->setRandomCoords();
@@ -52,13 +52,13 @@ void AllEntities::init()
         spawner->setStartingTile();
         entityList.push_back(spawner);
     }
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 0; i++)
     {
         Entity *chest = Chest::CreateChest(0,0);
         chest->setStartingTile();
         entityList.push_back(chest);
     }
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 0; i++)
     {
         int X = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
         int Y = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
@@ -154,9 +154,14 @@ void AllEntities::deleteDead()
         {
             toDelete->executeAgony();
             if(toDelete == player)Variables::status = END;
-            if(toDelete->isProjectile() == false)Variables::session->getMap()->getCurrentModule()
-                ->getModuleTileAt(toDelete->getCoords()->X,toDelete->getCoords()->Y)
-                ->deleteFromEntityList(toDelete);
+            if(toDelete->isProjectile() == false)
+            {
+                ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(toDelete->getCoords()->X,toDelete->getCoords()->Y);
+                if(tile != NULL)
+                {
+                        tile->deleteFromEntityList(toDelete);
+                }
+            }
             entityList.erase(i++);
             delete toDelete;
         }

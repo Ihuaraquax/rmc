@@ -68,10 +68,18 @@ void LightSource::setAsNegative()
 
 void LightSource::decreaseTileLightValue()
 {
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToLightValue(-radius);
+    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
+    if(tile != NULL)
+    {
+        tile->addToLightValue(-radius);
+    }
 }
 
 void LightSource::increaseTileLightValue()
 {
-    Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->addToLightValue(radius);
+    ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
+    if(tile != NULL)
+    {
+        tile->addToLightValue(radius);
+    }
 }
