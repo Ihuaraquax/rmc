@@ -5,8 +5,9 @@ build/Debug/MinGW-Windows/Tooltip.o: Tooltip.cpp Tooltip.h Coordinates.h \
  Door.h templateList.h GenericBuffer.h EntityShape.h AllEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
  ModuleTile.h AiTile.h AllDecals.h Decal.h AllLightSources.h \
- LightSource.h AllPlans.h Plan.h PlanStep.h GameSubstateEnum.h \
- LogLevels.h GlobalImages.h ValueReader.h TextDisplayer.h
+ LightSource.h AllPlans.h Plan.h PlanStep.h AllAllowanceObjects.h \
+ AllowanceObject.h GameSubstateEnum.h LogLevels.h GlobalImages.h \
+ ValueReader.h TextDisplayer.h
 
 Tooltip.h:
 
@@ -87,6 +88,10 @@ AllPlans.h:
 Plan.h:
 
 PlanStep.h:
+
+AllAllowanceObjects.h:
+
+AllowanceObject.h:
 
 GameSubstateEnum.h:
 

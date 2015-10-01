@@ -39,3 +39,6 @@ images/inactiveSkillButton.png inactiveSkillButton
 images/inventoryBackground.png inventroyBackground
 images/weaponTooltip.png weaponTooltip
 images/equipmentTooltip.png equipmentTooltip
+images/powerIdle.png powerIdle
+images/powerStartup.png powerStartup
+images/powerWorking.png powerWorking

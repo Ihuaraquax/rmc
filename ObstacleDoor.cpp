@@ -27,6 +27,7 @@ ObstacleDoor::ObstacleDoor()
     closed = true;
     this->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
+    this->allowanceObjects.push_back(Variables::session->getAllAllowanceObjects()->getRandomObject());
 }
 
 void ObstacleDoor::setCoords(double X, double Y) {
@@ -50,29 +51,32 @@ void ObstacleDoor::update()
 
 void ObstacleDoor::use()
 {
-    if(closed)
+    if(canBeUsed())
     {
-        if(vertical)
+        if(closed)
         {
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->deleteFromEntityList(this);
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + Variables::tileSize,coords->Y)->deleteFromEntityList(this);
-        } else 
-        {
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->deleteFromEntityList(this);
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y+ Variables::tileSize)->deleteFromEntityList(this);
+            if(vertical)
+            {
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->deleteFromEntityList(this);
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + Variables::tileSize,coords->Y)->deleteFromEntityList(this);
+            } else 
+            {
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->deleteFromEntityList(this);
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y+ Variables::tileSize)->deleteFromEntityList(this);
+            }
+            closed = false;
+        } else {
+            if(vertical)
+            {
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + Variables::tileSize,coords->Y)->setObstacle(this);
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + Variables::tileSize,coords->Y)->addToEntityList(this);
+            } else 
+            {
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y + Variables::tileSize)->setObstacle(this);
+                Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y + Variables::tileSize)->addToEntityList(this);
+            }
+            closed = true;
         }
-        closed = false;
-    } else {
-        if(vertical)
-        {
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + Variables::tileSize,coords->Y)->setObstacle(this);
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + Variables::tileSize,coords->Y)->addToEntityList(this);
-        } else 
-        {
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y + Variables::tileSize)->setObstacle(this);
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y + Variables::tileSize)->addToEntityList(this);
-        }
-        closed = true;
     }
 }
 
@@ -161,4 +165,16 @@ void ObstacleDoor::displayPlan()
 void ObstacleDoor::RCUse()
 {
     use();
+}
+
+bool ObstacleDoor::canBeUsed()
+{
+    bool result = true;
+    
+    for(std::list<AllowanceObject*>::iterator i = allowanceObjects.begin(); i != allowanceObjects.end(); ++i)
+    {
+        AllowanceObject *temp = *i;
+        if(temp->isAllow() == false)result = false;
+    }
+    return result;
 }

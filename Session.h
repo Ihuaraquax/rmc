@@ -19,6 +19,7 @@
 #include "AllPlans.h"
 #include "LightSource.h"
 #include "Tooltip.h"
+#include "AllAllowanceObjects.h"
 
 enum MainGameState
 {
@@ -44,6 +45,7 @@ public:
     HUD* getHud() const;
     AllPlans* getAllPlans() const;
     Tooltip* getTooltip() const;
+    AllAllowanceObjects* getAllAllowanceObjects() const;
     
     static MainGameState gameState;
 private:
@@ -59,6 +61,7 @@ private:
     Coordinates *coords;
     AllPlans *allPlans;
     Tooltip *tooltip;
+    AllAllowanceObjects *allAllowanceObjects;
 };
 
 #endif	/* SESSION_H */

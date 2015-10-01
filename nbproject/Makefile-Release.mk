@@ -37,10 +37,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/AiTile.o \
 	${OBJECTDIR}/AiTileAdjacentSetter.o \
+	${OBJECTDIR}/AllAllowanceObjects.o \
 	${OBJECTDIR}/AllDecals.o \
 	${OBJECTDIR}/AllEntities.o \
 	${OBJECTDIR}/AllLightSources.o \
 	${OBJECTDIR}/AllPlans.o \
+	${OBJECTDIR}/AllowanceObject.o \
 	${OBJECTDIR}/Animation.o \
 	${OBJECTDIR}/Attributes.o \
 	${OBJECTDIR}/BloodSplatter.o \
@@ -151,6 +153,11 @@ ${OBJECTDIR}/AiTileAdjacentSetter.o: AiTileAdjacentSetter.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AiTileAdjacentSetter.o AiTileAdjacentSetter.cpp
 
+${OBJECTDIR}/AllAllowanceObjects.o: AllAllowanceObjects.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AllAllowanceObjects.o AllAllowanceObjects.cpp
+
 ${OBJECTDIR}/AllDecals.o: AllDecals.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -170,6 +177,11 @@ ${OBJECTDIR}/AllPlans.o: AllPlans.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AllPlans.o AllPlans.cpp
+
+${OBJECTDIR}/AllowanceObject.o: AllowanceObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AllowanceObject.o AllowanceObject.cpp
 
 ${OBJECTDIR}/Animation.o: Animation.cpp 
 	${MKDIR} -p ${OBJECTDIR}

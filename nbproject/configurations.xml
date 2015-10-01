@@ -150,6 +150,10 @@
           <itemPath>WallFactory.cpp</itemPath>
           <itemPath>WallFactory.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="f4" displayName="MapPieces" projectFiles="true">
+          <itemPath>AllowanceObject.cpp</itemPath>
+          <itemPath>AllowanceObject.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="f1" displayName="Tile" projectFiles="true">
           <itemPath>AiTile.cpp</itemPath>
           <itemPath>AiTile.h</itemPath>
@@ -174,6 +178,8 @@
         <itemPath>Wall.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Overseer Classes" projectFiles="true">
+        <itemPath>AllAllowanceObjects.cpp</itemPath>
+        <itemPath>AllAllowanceObjects.h</itemPath>
         <itemPath>AllEntities.cpp</itemPath>
         <itemPath>AllEntities.h</itemPath>
         <itemPath>Map.cpp</itemPath>
@@ -273,6 +279,10 @@
       </item>
       <item path="AiTileAdjacentSetter.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="AllAllowanceObjects.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllAllowanceObjects.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="AllDecals.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="AllDecals.h" ex="false" tool="3" flavor2="0">
@@ -288,6 +298,10 @@
       <item path="AllPlans.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="AllPlans.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AllowanceObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllowanceObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Animation.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -629,6 +643,10 @@
       </item>
       <item path="AiTileAdjacentSetter.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="AllAllowanceObjects.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllAllowanceObjects.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="AllDecals.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="AllDecals.h" ex="false" tool="3" flavor2="0">
@@ -644,6 +662,10 @@
       <item path="AllPlans.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="AllPlans.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AllowanceObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AllowanceObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Animation.cpp" ex="false" tool="1" flavor2="0">
       </item>

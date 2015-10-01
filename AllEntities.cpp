@@ -37,9 +37,15 @@ void AllEntities::init()
         temp->setStartingTile();
     }
     player = NULL;
+    for(int i = 0; i < 1; i++)
+    {
+        Entity *object = AllowanceObject::createObject(400, 400, 0);
+        object->setStartingTile();
+        this->addEntity(object);
+    }
     DoorFactory::createDoors();
     createObstacles();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 0; i++)
     {
         Entity *monster = Monster::CreateMonster(-1,-1, 0);
         dynamic_cast<Monster*>(monster)->setRandomCoords();
@@ -74,6 +80,11 @@ void AllEntities::init()
 //        int Y = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
 //        X -= X%Variables::tileSize;
 //        Y -= Y%Variables::tileSize;
+        Entity *door = ObstacleDoor::CreateObstacleDoor(300, 300);
+        door->setStartingTile();
+        dynamic_cast<ObstacleDoor*>(door)->setAngle(true);
+        entityList.push_back(door);
+        
         Entity *console = Console::CreateConsole(150,150);
         console->setStartingTile();
         entityList.push_back(console);
@@ -159,7 +170,7 @@ void AllEntities::deleteDead()
                 ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(toDelete->getCoords()->X,toDelete->getCoords()->Y);
                 if(tile != NULL)
                 {
-                        tile->deleteFromEntityList(toDelete);
+                    tile->deleteFromEntityList(toDelete);
                 }
             }
             entityList.erase(i++);

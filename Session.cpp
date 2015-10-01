@@ -39,6 +39,7 @@ void Session::create()
     mouse = new MouseControl();
     hud = new HUD();
     map = new Map();
+    allAllowanceObjects = new AllAllowanceObjects();
     map->createLevels();
 //    this->loadSave();
     map->setOffest();
@@ -98,6 +99,10 @@ AllPlans* Session::getAllPlans() const {
 
 Tooltip* Session::getTooltip() const {
     return tooltip;
+}
+
+AllAllowanceObjects* Session::getAllAllowanceObjects() const {
+    return allAllowanceObjects;
 }
 
 Session::~Session() {
