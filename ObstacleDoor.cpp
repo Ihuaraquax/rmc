@@ -42,6 +42,7 @@ void ObstacleDoor::display()
 {
     if(closed)closedImage->display(coords);
     else openImage->display(coords);
+    if(Variables::substate == console)displayConnections();
 }
 
 void ObstacleDoor::update()
@@ -160,6 +161,7 @@ void ObstacleDoor::displayPlan()
 {
     if(closed)closedImage->display(planCoords);
     else openImage->display(planCoords);
+//    displayConnections();
 }
 
 void ObstacleDoor::RCUse()
@@ -177,4 +179,59 @@ bool ObstacleDoor::canBeUsed()
         if(temp->isAllow() == false)result = false;
     }
     return result;
+}
+
+void ObstacleDoor::displayConnections()
+{
+    double maxDistanceX = Variables::tileSize * Variables::tilesPerRoom * Variables::ScaleX * Variables::scale;
+    double maxDistanceY = Variables::tileSize * Variables::tilesPerRoom * Variables::ScaleY * Variables::scale;
+    for(std::list<AllowanceObject*>::iterator i = allowanceObjects.begin(); i != allowanceObjects.end(); ++i)
+    {
+        AllowanceObject *temp = *i;
+        double X = ((coords->X + coords->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
+        double Y = ((coords->Y + coords->height/2) * Variables::ScaleX - Variables::offsetY) * Variables::scale;
+        double objectX = ((temp->getCoords()->X + temp->getCoords()->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
+        double objectY = ((temp->getCoords()->Y + temp->getCoords()->height/2) * Variables::ScaleY - Variables::offsetY) * Variables::scale;
+        if(objectX > maxDistanceX && objectY > maxDistanceY)
+        {
+            objectX = maxDistanceX;
+            objectY = maxDistanceY;
+        }
+        else if (objectX > maxDistanceX && objectY < 0)
+        {
+            objectX = maxDistanceX;
+            objectY = 0;
+        }
+        else if (objectX < 0 && objectY > maxDistanceY)
+        {
+            objectX = 0;
+            objectY = maxDistanceY;
+        }
+        else if(objectX < 0 && objectY < 0)
+        {
+            objectX = 0;
+            objectY = 0;
+        }
+        else if(objectX > maxDistanceX)
+        {
+            objectX = maxDistanceX;
+            objectY = Y;
+        }
+        else if(objectY > maxDistanceY)
+        {
+            objectX = X;
+            objectY = maxDistanceY;
+        }
+        else if(objectX < 0)
+        {
+            objectX = 0;
+            objectY = Y;
+        }
+        else if(objectY < 0)
+        {
+            objectX = X;
+            objectY = 0;
+        }
+        al_draw_line(X, Y, objectX, objectY, al_map_rgb(0,0,255), 5);
+    }
 }

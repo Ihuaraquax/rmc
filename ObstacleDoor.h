@@ -22,6 +22,7 @@ public:
     void update();
     void display();
     void displayPlan();
+    void displayConnections();
     bool isBarricade();
     void save(std::fstream &file);
     void load(std::fstream &file);
