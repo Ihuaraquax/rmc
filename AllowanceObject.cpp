@@ -41,6 +41,7 @@ void AllowanceObject::use()
     else
     {
         allow = false;
+        timer = 0;
     }
 }
 
