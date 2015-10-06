@@ -96,6 +96,7 @@ Entity *AllowanceObject::createObject(double X, double Y, int type)
 {
     Entity *object = new AllowanceObject();
     AllowanceObject *temp = dynamic_cast<AllowanceObject*>(object);
+    temp->type = type;
     temp->health = 1000;
     temp->maximumHealth = temp->health;
     temp->coords = new Coordinates();
@@ -121,6 +122,10 @@ Entity *AllowanceObject::createObject(double X, double Y, int type)
 bool AllowanceObject::isProjectile()
 {
     return false;
+}
+
+int AllowanceObject::getType() const {
+    return type;
 }
 
 void AllowanceObject::setUsableTiles()

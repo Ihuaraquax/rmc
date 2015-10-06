@@ -23,6 +23,7 @@ public:
     int getIntelligenceNeeded() const;
     static Entity *createObject(double X, double Y, int type);
     bool isProjectile();
+    int getType() const;
 private:
     Image *idleImage;
     Image *startingUpImage;
@@ -33,6 +34,13 @@ private:
     int worktime;
     int intelligenceNeeded;
     void setUsableTiles();
+    /**
+     * 0 - power
+     * 1 - hydraulics
+     * 2 - security
+     * 3 - pneumatics
+     */    
+    int type;
 };
 
 #endif	/* ALLOWANCEOBJECT_H */
