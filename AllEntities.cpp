@@ -36,13 +36,12 @@ void AllEntities::init()
         Entity *temp = *i;
         temp->setStartingTile();
     }
-    player = NULL;
-    for(int i = 0; i < 1; i++)
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
     {
-        Entity *object = AllowanceObject::createObject(400, 400, 0);
-        object->setStartingTile();
-        this->addEntity(object);
+        Entity *temp = *i;
+        dynamic_cast<AllowanceObject*>(temp)->setUsableTiles();
     }
+    player = NULL;
     DoorFactory::createDoors();
     createObstacles();
     for(int i = 0; i < 0; i++)
@@ -314,5 +313,15 @@ void AllEntities::setPlanCoords(int X, int Y)
     {
         Entity *temp = *i;
         temp->setPlanCoords(X,Y);
+    }
+}
+
+void AllEntities::createAllowanceObjects(int X, int Y)
+{
+    for(int i = 0; i < 1; i++)
+    {
+        Entity *object = AllowanceObject::createObject(400, 400, 0);
+        dynamic_cast<AllowanceObject*>(object)->setModuleCoords(X,Y);
+        this->addEntity(object);
     }
 }

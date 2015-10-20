@@ -70,6 +70,10 @@ void Module::display()
 //    this->displayObstacles();
 //    this->displayBuffs();
     this->displayTransferBlocks();
+    if(Variables::substate == game)
+    {
+        this->highlightTiles();
+    }
 }
 
 void Module::displayMods()
@@ -398,4 +402,11 @@ AllLightSources* Module::getAllLightSources() const {
 void Module::setModificator(int modId)
 {
     this->modificatorsTable[modId] = 1;
+}
+
+void Module::highlightTiles()
+{
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
+        for(int j = 0; j < Variables::tilesPerRoom; j++)
+            getModuleTileAt(i * Variables::tileSize,j * Variables::tileSize)->highlightTile();
 }

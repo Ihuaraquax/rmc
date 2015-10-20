@@ -28,9 +28,11 @@ public:
     void load(std::fstream &file);
     void executeAgony();
     bool canBeUsed();
+    void setRandomAllowanceObjects();
     
     static Entity *CreateObstacleDoor(double X, double Y);
     void RCUse();
+    void highlight();
 private:
     Image *closedImage;
     Image *openImage;

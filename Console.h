@@ -22,6 +22,7 @@ public:
     void save(std::fstream& file);
     void load(std::fstream& savefile);
     void executeAgony();
+    void highlight();
     
     static void end();
     static void mouseControl();

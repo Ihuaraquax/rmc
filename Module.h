@@ -47,6 +47,7 @@ public:
     void activateModificators();
     AllLightSources* getAllLightSources() const;
     void setModificator(int modId);
+    void highlightTiles();
 private:
     void resetTileAiValues(int X, int Y);
     void displayModuleTileAI();

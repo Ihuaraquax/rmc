@@ -11,6 +11,7 @@
 class UsableObject {
 public:
     void virtual use();
+    void virtual highlight();
 private:
 
 };

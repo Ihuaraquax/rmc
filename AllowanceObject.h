@@ -24,6 +24,11 @@ public:
     static Entity *createObject(double X, double Y, int type);
     bool isProjectile();
     int getType() const;
+    int getModuleY() const;
+    int getModuleX() const;
+    void setUsableTiles();
+    void setModuleCoords(int X, int Y);
+    void highlight();
 private:
     Image *idleImage;
     Image *startingUpImage;
@@ -33,7 +38,6 @@ private:
     int startUpTime;
     int worktime;
     int intelligenceNeeded;
-    void setUsableTiles();
     /**
      * 0 - power
      * 1 - hydraulics
@@ -41,6 +45,7 @@ private:
      * 3 - pneumatics
      */    
     int type;
+    int moduleX, moduleY;
 };
 
 #endif	/* ALLOWANCEOBJECT_H */

@@ -116,3 +116,13 @@ void Console::executeAgony()
         Variables::session->getMap()->getCurrentModule()->getModuleTiles()[i]->deleteFromEntityList(this);
     }
 }
+
+void Console::highlight()
+{
+    al_draw_filled_rectangle(
+            coords->X - Variables::offsetX, 
+            coords->Y - Variables::offsetY, 
+            coords->X + coords->width - Variables::offsetX, 
+            coords->Y + coords->height - Variables::offsetY,
+            al_map_rgb(0,255,0));
+}

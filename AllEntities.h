@@ -33,6 +33,8 @@ public:
     void load(std::fstream &file);
     bool isOnList(Entity *entity);
     void setPlanCoords(int X, int Y);
+    
+    void createAllowanceObjects(int X, int Y);
 private:
     void deleteDead();
     void createObstacles();

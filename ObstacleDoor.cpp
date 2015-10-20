@@ -27,7 +27,7 @@ ObstacleDoor::ObstacleDoor()
     closed = true;
     this->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
-    this->allowanceObjects.push_back(Variables::session->getAllAllowanceObjects()->getRandomObject());
+    setRandomAllowanceObjects();
 }
 
 void ObstacleDoor::setCoords(double X, double Y) {
@@ -192,6 +192,10 @@ void ObstacleDoor::displayConnections()
         double Y = ((coords->Y + coords->height/2) * Variables::ScaleX - Variables::offsetY) * Variables::scale;
         double objectX = ((temp->getCoords()->X + temp->getCoords()->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
         double objectY = ((temp->getCoords()->Y + temp->getCoords()->height/2) * Variables::ScaleY - Variables::offsetY) * Variables::scale;
+        int deltaX = Variables::session->getMap()->getModuleX() - temp->getModuleX();
+        int deltaY = Variables::session->getMap()->getModuleY() - temp->getModuleY();
+        objectX -= deltaX*maxDistanceX;
+        objectY -= deltaY*maxDistanceY;
         if(objectX > maxDistanceX && objectY > maxDistanceY)
         {
             objectX = maxDistanceX;
@@ -234,4 +238,22 @@ void ObstacleDoor::displayConnections()
         }
         al_draw_line(X, Y, objectX, objectY, al_map_rgb(0,0,255), 5);
     }
+}
+
+void ObstacleDoor::setRandomAllowanceObjects()
+{
+    AllowanceObject *object = Variables::session->getAllAllowanceObjects()->getRandomObject();
+    if(object != NULL)
+    {
+        this->allowanceObjects.push_back(object);
+    }
+}
+void ObstacleDoor::highlight()
+{
+    al_draw_filled_rectangle(
+            coords->X - Variables::offsetX, 
+            coords->Y - Variables::offsetY, 
+            coords->X + coords->width - Variables::offsetX, 
+            coords->Y + coords->height - Variables::offsetY,
+            al_map_rgb(0,255,0));
 }

@@ -11,3 +11,8 @@ void UsableObject::use()
 {
     
 }
+
+void UsableObject::highlight()
+{
+    
+}

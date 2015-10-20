@@ -59,3 +59,16 @@ AllowanceObject *AllAllowanceObjects::getRandomObject()
     }
     return result;
 }
+
+
+void AllAllowanceObjects::setUsableTiles()
+{
+    templateList<AllowanceObject> *temp = objects;
+    while(temp != NULL)
+    {
+        AllowanceObject * object = dynamic_cast<AllowanceObject*>(temp->data);
+        object->setStartingTile();
+        object->setUsableTiles();
+        temp = temp->next;
+    }
+}

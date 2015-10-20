@@ -18,6 +18,7 @@ public:
     void addObject(AllowanceObject *object);
     void deleteObject (AllowanceObject *toDelete);
     AllowanceObject *getRandomObject();
+    void setUsableTiles();
 private:
     templateList<AllowanceObject> *objects;
     int listSize;

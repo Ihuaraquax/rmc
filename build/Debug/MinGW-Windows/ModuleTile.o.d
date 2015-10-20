@@ -7,7 +7,7 @@ build/Debug/MinGW-Windows/ModuleTile.o: ModuleTile.cpp ModuleTile.h \
  Room.h AllDecals.h Decal.h AllLightSources.h LightSource.h AllPlans.h \
  Plan.h PlanStep.h Tooltip.h AllAllowanceObjects.h AllowanceObject.h \
  GameSubstateEnum.h LogLevels.h GlobalImages.h ValueReader.h Turret.h \
- AiTileAdjacentSetter.h
+ AiTileAdjacentSetter.h CollisionDetector.h
 
 ModuleTile.h:
 
@@ -104,3 +104,5 @@ ValueReader.h:
 Turret.h:
 
 AiTileAdjacentSetter.h:
+
+CollisionDetector.h:

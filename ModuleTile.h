@@ -72,6 +72,7 @@ public:
     void setRemoteAccessObject(Entity* remoteAccessObject);
     Entity* getRemoteAccessObject() const;
     void addToLightValue(int value);
+    void highlightTile();
 private:
     ModuleTile **adjacentTiles;
     templateList<Entity> *entityList;

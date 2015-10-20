@@ -115,7 +115,6 @@ Entity *AllowanceObject::createObject(double X, double Y, int type)
     temp->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)temp->elementalResists[i] = 0.5;
     temp->elementalResists[explosive] = 0;
-    temp->setUsableTiles();
     return object;
 }
 
@@ -128,6 +127,14 @@ int AllowanceObject::getType() const {
     return type;
 }
 
+int AllowanceObject::getModuleY() const {
+    return moduleY;
+}
+
+int AllowanceObject::getModuleX() const {
+    return moduleX;
+}
+
 void AllowanceObject::setUsableTiles()
 {
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X - Variables::tileSize,coords->Y)->setUsableObject(this);
@@ -135,4 +142,20 @@ void AllowanceObject::setUsableTiles()
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y - Variables::tileSize)->setUsableObject(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y + Variables::tileSize)->setUsableObject(this);
     Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,coords->Y)->setObstacle(this);
+}
+
+void AllowanceObject::setModuleCoords(int X, int Y)
+{
+    this->moduleX = X;
+    this->moduleY = Y;
+}
+
+void AllowanceObject::highlight()
+{
+    al_draw_filled_rectangle(
+            coords->X - Variables::offsetX, 
+            coords->Y - Variables::offsetY, 
+            coords->X + coords->width - Variables::offsetX, 
+            coords->Y + coords->height - Variables::offsetY,
+            al_map_rgb(0,255,0));
 }

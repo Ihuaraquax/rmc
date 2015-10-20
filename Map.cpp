@@ -70,6 +70,13 @@ void Map::createLevels()
     {
         for(int j = 0; j < modulesTableSize; j++)
         {
+            allEntities[i][j]->createAllowanceObjects(i,j);
+        }
+    }
+    for(int i = 0; i < modulesTableSize; i++)
+    {
+        for(int j = 0; j < modulesTableSize; j++)
+        {
             currentAllEntities = allEntities[i][j];
             modules[i][j] = new Module();
             factory.setModuleBasics(modules[i][j]);

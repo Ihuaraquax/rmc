@@ -9,6 +9,7 @@
 #include "globalVariables.h"
 #include "Turret.h"
 #include "AiTileAdjacentSetter.h"
+#include "CollisionDetector.h"
 
 ModuleTile::ModuleTile(bool obstructed, int roomId, int base) {
     lightValue = 0;
@@ -403,4 +404,24 @@ void ModuleTile::deleteFromPickUpList(Entity* toDelete)
 void ModuleTile::addToLightValue(int value)
 {
     lightValue += value;
+}
+
+void ModuleTile::highlightTile()
+{
+    if(this->object != NULL)
+    {
+        double startX = centerX - Variables::tileSize/2 - Variables::offsetX;
+        double startY = centerY - Variables::tileSize/2 - Variables::offsetY;
+        al_draw_rectangle(startX, startY, startX + Variables::tileSize, startY + Variables::tileSize, al_map_rgb(255,255,0), 3);
+        Coordinates * coords = new Coordinates();
+        coords->X = centerX - Variables::tileSize/2;
+        coords->Y = centerY - Variables::tileSize/2;
+        coords->width = Variables::tileSize;
+        coords->height = Variables::tileSize;
+        if(CollisionDetector::isBasicCollision(coords, Variables::session->getAllEntities()->getPlayer()->getCoords()))
+        {
+            object->highlight();
+        }
+        delete coords;
+    }
 }
