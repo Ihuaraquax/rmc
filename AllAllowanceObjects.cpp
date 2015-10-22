@@ -6,10 +6,18 @@
  */
 
 #include "AllAllowanceObjects.h"
+#include "globalVariables.h"
 
 AllAllowanceObjects::AllAllowanceObjects() {
     this->listSize = 0;
-    this->objects = NULL;
+    this->allAllowanceObjects = NULL;
+    this->typedAllowanceObjects = new templateList<AllowanceObject>*[Variables::allowancObjectMaxCount];
+    typedListSize = new int[Variables::allowancObjectMaxCount];
+    for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
+    {
+        typedAllowanceObjects[i] = NULL;
+        typedListSize[i] = 0;
+    }
 }
 
 AllAllowanceObjects::AllAllowanceObjects(const AllAllowanceObjects& orig) {
@@ -22,40 +30,67 @@ void AllAllowanceObjects::addObject(AllowanceObject* object)
 {
     templateList<AllowanceObject> *newObject= new templateList<AllowanceObject>();
     newObject->data = object;
-    newObject->next = objects;
-    objects = newObject;
+    newObject->next = allAllowanceObjects;
+    allAllowanceObjects = newObject;
     listSize++;
+    
+    int type = object->getType();
+    
+    templateList<AllowanceObject> *newTypedObject= new templateList<AllowanceObject>();
+    newTypedObject->data = object;
+    newTypedObject->next = typedAllowanceObjects[type];
+    typedAllowanceObjects[type] = newObject;
+    typedListSize[type]++;
 }
 
 void AllAllowanceObjects::deleteObject(AllowanceObject* object)
 {
-    templateList<AllowanceObject> *toDelete = objects->find(object);
-    if(toDelete == objects)
+    templateList<AllowanceObject> *toDelete = allAllowanceObjects->find(object);
+    if(toDelete == allAllowanceObjects)
     {
-        objects = objects->next;
+        allAllowanceObjects = allAllowanceObjects->next;
     }
     else
     {
-        templateList<AllowanceObject> *prev = objects->findPrevious(object);
+        templateList<AllowanceObject> *prev = allAllowanceObjects->findPrevious(object);
         prev->next = toDelete->next;
     }
     delete toDelete;
     listSize--;
+    
+    int type = object->getType();
+    
+    templateList<AllowanceObject> *typedToDelete = typedAllowanceObjects[type]->find(object);
+    if(typedToDelete == typedAllowanceObjects[type])
+    {
+        typedAllowanceObjects[type] = typedAllowanceObjects[type]->next;
+    }
+    else
+    {
+        templateList<AllowanceObject> *prev = typedAllowanceObjects[type]->findPrevious(object);
+        prev->next = typedToDelete->next;
+    }
+    delete typedToDelete;
+    typedListSize[type]--;
 }
 
-AllowanceObject *AllAllowanceObjects::getRandomObject()
+AllowanceObject *AllAllowanceObjects::getRandomObject(int type)
 {
     AllowanceObject *result = NULL;
-    if(listSize > 0)
+    int size = typedListSize[type];
+    if(size > 0)
     {
-        int index = rand()%listSize;
-        templateList<AllowanceObject> *iterator = objects;
+        int index = rand()%typedListSize[type];
+        templateList<AllowanceObject> *iterator = typedAllowanceObjects[type];
         while(index > 0)
         {
             iterator = iterator->next;
             index--;
         }
-        result = iterator->data;
+        if(iterator->data->getType() == type)
+        {
+            result = iterator->data;
+        }
     }
     return result;
 }
@@ -63,7 +98,7 @@ AllowanceObject *AllAllowanceObjects::getRandomObject()
 
 void AllAllowanceObjects::setUsableTiles()
 {
-    templateList<AllowanceObject> *temp = objects;
+    templateList<AllowanceObject> *temp = allAllowanceObjects;
     while(temp != NULL)
     {
         AllowanceObject * object = dynamic_cast<AllowanceObject*>(temp->data);

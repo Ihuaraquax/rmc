@@ -14,22 +14,9 @@ AllowanceObject::AllowanceObject() {
     startUpTime = 2 * Variables::fps;
     worktime = 10 * Variables::fps;
     intelligenceNeeded = 10;
-    Variables::session->getAllAllowanceObjects()->addObject(this);
 }
 
 AllowanceObject::~AllowanceObject() {
-//    if(idleImage != NULL)
-//    {
-//        delete idleImage;
-//    }
-//    if(workingImage != NULL)
-//    {
-//        delete workingImage;
-//    }
-//    if(startingUpImage != NULL)
-//    {
-//        delete startingUpImage;
-//    }
 }
 
 void AllowanceObject::use()
@@ -115,6 +102,7 @@ Entity *AllowanceObject::createObject(double X, double Y, int type)
     temp->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)temp->elementalResists[i] = 0.5;
     temp->elementalResists[explosive] = 0;
+    Variables::session->getAllAllowanceObjects()->addObject(temp);
     return object;
 }
 

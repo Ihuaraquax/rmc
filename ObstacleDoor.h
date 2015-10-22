@@ -33,12 +33,14 @@ public:
     static Entity *CreateObstacleDoor(double X, double Y);
     void RCUse();
     void highlight();
+    void setRequirements();
 private:
     Image *closedImage;
     Image *openImage;
     bool closed;
     bool vertical;
-    std::list<AllowanceObject*> allowanceObjects;
+    AllowanceObject **allowanceObjects;
+    bool *requiredAllowanceObjectTypes;    
 };
 
 #endif	/* OBSTACLEDOOR_H */

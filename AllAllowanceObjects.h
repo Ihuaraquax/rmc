@@ -17,11 +17,13 @@ public:
     virtual ~AllAllowanceObjects();
     void addObject(AllowanceObject *object);
     void deleteObject (AllowanceObject *toDelete);
-    AllowanceObject *getRandomObject();
+    AllowanceObject *getRandomObject(int type);
     void setUsableTiles();
 private:
-    templateList<AllowanceObject> *objects;
+    templateList<AllowanceObject> *allAllowanceObjects;
+    templateList<AllowanceObject> **typedAllowanceObjects;
     int listSize;
+    int *typedListSize;
 };
 
 #endif	/* ALLALLOWANCEOBJECTS_H */

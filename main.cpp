@@ -63,6 +63,8 @@ bool Variables::skillRedistributionAviable = false;
 double Console::offsetX = 0;
 double Console::offsetY = 0;
 
+const int Variables::allowancObjectMaxCount = 4;
+
 Entity *Variables::currentProjectile = NULL;
 
 int main(int argc, char** argv) {

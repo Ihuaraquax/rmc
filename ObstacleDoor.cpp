@@ -27,7 +27,7 @@ ObstacleDoor::ObstacleDoor()
     closed = true;
     this->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
-    setRandomAllowanceObjects();
+    setRequirements();
 }
 
 void ObstacleDoor::setCoords(double X, double Y) {
@@ -172,12 +172,14 @@ void ObstacleDoor::RCUse()
 bool ObstacleDoor::canBeUsed()
 {
     bool result = true;
-    
-    for(std::list<AllowanceObject*>::iterator i = allowanceObjects.begin(); i != allowanceObjects.end(); ++i)
+    for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
     {
-        AllowanceObject *temp = *i;
-        if(temp->isAllow() == false)result = false;
+        if(this->allowanceObjects[i] != NULL)
+        {
+            if(this->allowanceObjects[i]->isAllow() == false) result = false;
+        }
     }
+    
     return result;
 }
 
@@ -185,67 +187,78 @@ void ObstacleDoor::displayConnections()
 {
     double maxDistanceX = Variables::tileSize * Variables::tilesPerRoom * Variables::ScaleX * Variables::scale;
     double maxDistanceY = Variables::tileSize * Variables::tilesPerRoom * Variables::ScaleY * Variables::scale;
-    for(std::list<AllowanceObject*>::iterator i = allowanceObjects.begin(); i != allowanceObjects.end(); ++i)
+    for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
     {
-        AllowanceObject *temp = *i;
-        double X = ((coords->X + coords->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
-        double Y = ((coords->Y + coords->height/2) * Variables::ScaleX - Variables::offsetY) * Variables::scale;
-        double objectX = ((temp->getCoords()->X + temp->getCoords()->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
-        double objectY = ((temp->getCoords()->Y + temp->getCoords()->height/2) * Variables::ScaleY - Variables::offsetY) * Variables::scale;
-        int deltaX = Variables::session->getMap()->getModuleX() - temp->getModuleX();
-        int deltaY = Variables::session->getMap()->getModuleY() - temp->getModuleY();
-        objectX -= deltaX*maxDistanceX;
-        objectY -= deltaY*maxDistanceY;
-        if(objectX > maxDistanceX && objectY > maxDistanceY)
+        if(this->requiredAllowanceObjectTypes[i] && allowanceObjects[i] != NULL)
         {
-            objectX = maxDistanceX;
+            AllowanceObject *temp = allowanceObjects[i];
+            double X = ((coords->X + coords->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
+            double Y = ((coords->Y + coords->height/2) * Variables::ScaleX - Variables::offsetY) * Variables::scale;
+            double objectX = ((temp->getCoords()->X + temp->getCoords()->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
+            double objectY = ((temp->getCoords()->Y + temp->getCoords()->height/2) * Variables::ScaleY - Variables::offsetY) * Variables::scale;
+            int deltaX = Variables::session->getMap()->getModuleY() - temp->getModuleX();
+            int deltaY = Variables::session->getMap()->getModuleX() - temp->getModuleY();
+            objectX -= deltaX*maxDistanceX;
+            objectY -= deltaY*maxDistanceY;
+            if(objectX > maxDistanceX && objectY > maxDistanceY)
+            {
+                objectX = maxDistanceX;
+                objectY = maxDistanceY;
+            }
+            else if (objectX > maxDistanceX && objectY < 0)
+            {
+                objectX = maxDistanceX;
+                objectY = 0;
+            }
+            else if (objectX < 0 && objectY > maxDistanceY)
+            {
+                objectX = 0;
+                objectY = maxDistanceY;
+            }
+            else if(objectX < 0 && objectY < 0)
+            {
+                objectX = 0;
+                objectY = 0;
+            }
+            else if(objectX > maxDistanceX)
+            {
+                objectX = maxDistanceX;
+                objectY = Y;
+            }
+            else if(objectY > maxDistanceY)
+            {
+                objectX = X;
             objectY = maxDistanceY;
+            }
+            else if(objectX < 0)
+            {
+                objectX = 0;
+                objectY = Y;
+            }
+            if(temp->isAllow())al_draw_line(X, Y, objectX, objectY, al_map_rgb(0,255,0), 5);
+            else al_draw_line(X, Y, objectX, objectY, al_map_rgb(0,0,255), 5);
         }
-        else if (objectX > maxDistanceX && objectY < 0)
-        {
-            objectX = maxDistanceX;
-            objectY = 0;
-        }
-        else if (objectX < 0 && objectY > maxDistanceY)
-        {
-            objectX = 0;
-            objectY = maxDistanceY;
-        }
-        else if(objectX < 0 && objectY < 0)
-        {
-            objectX = 0;
-            objectY = 0;
-        }
-        else if(objectX > maxDistanceX)
-        {
-            objectX = maxDistanceX;
-            objectY = Y;
-        }
-        else if(objectY > maxDistanceY)
-        {
-            objectX = X;
-            objectY = maxDistanceY;
-        }
-        else if(objectX < 0)
-        {
-            objectX = 0;
-            objectY = Y;
-        }
-        else if(objectY < 0)
-        {
-            objectX = X;
-            objectY = 0;
-        }
-        al_draw_line(X, Y, objectX, objectY, al_map_rgb(0,0,255), 5);
     }
 }
 
 void ObstacleDoor::setRandomAllowanceObjects()
 {
-    AllowanceObject *object = Variables::session->getAllAllowanceObjects()->getRandomObject();
-    if(object != NULL)
+    int a = 0;
+    for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
     {
-        this->allowanceObjects.push_back(object);
+        if(this->requiredAllowanceObjectTypes[i])
+        {
+            AllowanceObject *object = Variables::session->getAllAllowanceObjects()->getRandomObject(i);
+            if(object != NULL)
+            {
+                this->allowanceObjects[i] = object;
+                a++;
+            }
+            else
+            {
+                requiredAllowanceObjectTypes[i] = false;
+            }
+        }
     }
 }
 void ObstacleDoor::highlight()
@@ -256,4 +269,17 @@ void ObstacleDoor::highlight()
             coords->X + coords->width - Variables::offsetX, 
             coords->Y + coords->height - Variables::offsetY,
             al_map_rgb(0,255,0));
+}
+
+void ObstacleDoor::setRequirements()
+{
+    requiredAllowanceObjectTypes = new bool[Variables::allowancObjectMaxCount];
+    allowanceObjects = new AllowanceObject*[Variables::allowancObjectMaxCount];
+    for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
+    {
+        allowanceObjects[i] = NULL;
+        if(rand()%2 == 0)requiredAllowanceObjectTypes[i] = true;
+        else requiredAllowanceObjectTypes[i] = false;
+    }
+    setRandomAllowanceObjects();
 }

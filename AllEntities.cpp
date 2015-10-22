@@ -320,7 +320,7 @@ void AllEntities::createAllowanceObjects(int X, int Y)
 {
     for(int i = 0; i < 1; i++)
     {
-        Entity *object = AllowanceObject::createObject(400, 400, 0);
+        Entity *object = AllowanceObject::createObject(400, 400, rand()%Variables::allowancObjectMaxCount);
         dynamic_cast<AllowanceObject*>(object)->setModuleCoords(X,Y);
         this->addEntity(object);
     }
