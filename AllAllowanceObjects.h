@@ -19,6 +19,7 @@ public:
     void deleteObject (AllowanceObject *toDelete);
     AllowanceObject *getRandomObject(int type);
     void setUsableTiles();
+    void update();
 private:
     templateList<AllowanceObject> *allAllowanceObjects;
     templateList<AllowanceObject> **typedAllowanceObjects;

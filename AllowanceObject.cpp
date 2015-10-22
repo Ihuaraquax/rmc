@@ -34,6 +34,10 @@ void AllowanceObject::use()
 
 void AllowanceObject::update()
 {
+}
+
+void AllowanceObject::specificUpdate()
+{
     if(timer > 0)
     {
         timer--;

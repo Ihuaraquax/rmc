@@ -107,3 +107,13 @@ void AllAllowanceObjects::setUsableTiles()
         temp = temp->next;
     }
 }
+
+void AllAllowanceObjects::update()
+{
+    templateList<AllowanceObject> *temp = this->allAllowanceObjects;
+    while(temp != NULL)
+    {
+        temp->data->specificUpdate();
+        temp = temp -> next;
+    }
+}

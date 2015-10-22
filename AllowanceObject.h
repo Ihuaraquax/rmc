@@ -29,6 +29,7 @@ public:
     void setUsableTiles();
     void setModuleCoords(int X, int Y);
     void highlight();
+    void specificUpdate();
 private:
     Image *idleImage;
     Image *startingUpImage;

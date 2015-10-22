@@ -154,6 +154,7 @@ void Session::update()
         {
         if(Variables::substate == game)updateOffset();
         map->update();
+        allAllowanceObjects->update();
         hud->update();
         if(Variables::substate == chest)hud->getOpenChest()->update();
     }
