@@ -333,3 +333,7 @@ Entity* Entity::getIgnoreCollisionEntity() const {
 void Entity::setIgnoreCollisionEntity(Entity* ignoreCollisionEntity) {
     this->ignoreCollisionEntity = ignoreCollisionEntity;
 }
+
+Coordinates* Entity::getPlanCoords() const {
+    return planCoords;
+}

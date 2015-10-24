@@ -1,4 +1,4 @@
 PlayerMaximumHealth 4100
 PlayerHealth 4000
-PlayerSpeed 3
+PlayerSpeed 5
 PlayerAiValue 500

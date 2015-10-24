@@ -12,7 +12,7 @@ AllowanceObject::AllowanceObject() {
     allow = false;
     timer = 0;
     startUpTime = 2 * Variables::fps;
-    worktime = 10 * Variables::fps;
+    worktime = 120 * Variables::fps;
     intelligenceNeeded = 10;
 }
 
@@ -150,4 +150,10 @@ void AllowanceObject::highlight()
             coords->X + coords->width - Variables::offsetX, 
             coords->Y + coords->height - Variables::offsetY,
             al_map_rgb(0,255,0));
+}
+
+
+bool AllowanceObject::isBarricade()
+{
+    return true;
 }

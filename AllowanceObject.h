@@ -30,6 +30,7 @@ public:
     void setModuleCoords(int X, int Y);
     void highlight();
     void specificUpdate();
+    bool isBarricade();
 private:
     Image *idleImage;
     Image *startingUpImage;

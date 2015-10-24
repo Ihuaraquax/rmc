@@ -161,7 +161,7 @@ void ObstacleDoor::displayPlan()
 {
     if(closed)closedImage->display(planCoords);
     else openImage->display(planCoords);
-//    displayConnections();
+    displayConnections();
 }
 
 void ObstacleDoor::RCUse()
@@ -185,58 +185,17 @@ bool ObstacleDoor::canBeUsed()
 
 void ObstacleDoor::displayConnections()
 {
-    double maxDistanceX = Variables::tileSize * Variables::tilesPerRoom * Variables::ScaleX * Variables::scale;
-    double maxDistanceY = Variables::tileSize * Variables::tilesPerRoom * Variables::ScaleY * Variables::scale;
     for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
     {
         if(this->requiredAllowanceObjectTypes[i] && allowanceObjects[i] != NULL)
         {
             AllowanceObject *temp = allowanceObjects[i];
-            double X = ((coords->X + coords->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
-            double Y = ((coords->Y + coords->height/2) * Variables::ScaleX - Variables::offsetY) * Variables::scale;
-            double objectX = ((temp->getCoords()->X + temp->getCoords()->width/2) * Variables::ScaleX - Variables::offsetX) * Variables::scale;
-            double objectY = ((temp->getCoords()->Y + temp->getCoords()->height/2) * Variables::ScaleY - Variables::offsetY) * Variables::scale;
-            int deltaX = Variables::session->getMap()->getModuleY() - temp->getModuleX();
-            int deltaY = Variables::session->getMap()->getModuleX() - temp->getModuleY();
-            objectX -= deltaX*maxDistanceX;
-            objectY -= deltaY*maxDistanceY;
-            if(objectX > maxDistanceX && objectY > maxDistanceY)
-            {
-                objectX = maxDistanceX;
-                objectY = maxDistanceY;
-            }
-            else if (objectX > maxDistanceX && objectY < 0)
-            {
-                objectX = maxDistanceX;
-                objectY = 0;
-            }
-            else if (objectX < 0 && objectY > maxDistanceY)
-            {
-                objectX = 0;
-                objectY = maxDistanceY;
-            }
-            else if(objectX < 0 && objectY < 0)
-            {
-                objectX = 0;
-                objectY = 0;
-            }
-            else if(objectX > maxDistanceX)
-            {
-                objectX = maxDistanceX;
-                objectY = Y;
-            }
-            else if(objectY > maxDistanceY)
-            {
-                objectX = X;
-            objectY = maxDistanceY;
-            }
-            else if(objectX < 0)
-            {
-                objectX = 0;
-                objectY = Y;
-            }
-            if(temp->isAllow())al_draw_line(X, Y, objectX, objectY, al_map_rgb(0,255,0), 5);
-            else al_draw_line(X, Y, objectX, objectY, al_map_rgb(0,0,255), 5);
+            double X = (this->planCoords->X - Variables::offsetX) * Variables::scale;
+            double Y = (this->planCoords->Y - Variables::offsetY) * Variables::scale;
+            double deltaX = (temp->getPlanCoords()->X - Variables::offsetX) * Variables::scale;
+            double deltaY = (temp->getPlanCoords()->Y - Variables::offsetY) * Variables::scale;
+            if(temp->isAllow())al_draw_line(X, Y, deltaX, deltaY, al_map_rgb(0,255,0), 5);
+            else al_draw_line(X, Y, deltaX, deltaY, al_map_rgb(0,0,255), 5);
         }
     }
 }

@@ -60,6 +60,7 @@ public:
     void virtual RCUse();
     Entity* getIgnoreCollisionEntity() const;
     void setIgnoreCollisionEntity(Entity* ignoreCollisionEntity);
+    Coordinates* getPlanCoords() const;
 protected:
     void move(double X, double Y);
     Entity *isCollision();

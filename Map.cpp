@@ -15,8 +15,8 @@
 #include "globalVariables.h"
 
 Map::Map() {
-    moduleX = 0;
-    moduleY = 0;
+    moduleX = 1;
+    moduleY = 1;
 }
 
 void Map::init(int size)
@@ -56,7 +56,7 @@ Map::~Map()
 
 void Map::createLevels()
 {    
-    init(2);
+    init(3);
     ModuleFactory factory;
     int keyX = rand()%modulesTableSize, keyY = rand()%modulesTableSize;
     int lockX, lockY;
@@ -102,6 +102,7 @@ void Map::createLevels()
     Entity *player = new Player();
     currentAllEntities->setPlayer(player);
     setTransferBlocks();
+    setPlanCoords();
 }
 
 void Map::setTransferBlocks()
@@ -150,9 +151,16 @@ void Map::display()
             for(int j = 0; j < modulesTableSize; j++)
             {
                 modules[i][j]->displayPlan();
+            }
+        }
+        for(int i = 0; i < modulesTableSize; i++)
+        {
+            for(int j = 0; j < modulesTableSize; j++)
+            {
                 allEntities[i][j]->displayPlan();
             }
         }
+        
     }
     else 
     {
