@@ -39,6 +39,7 @@ public:
     AllLightSources* getAllLightSources() const;
     void displayLight();
     Module*** getModules() const;
+    AllEntities*** getAllEntities() const;
 private:
     Module ***modules;
     AllEntities ***allEntities;

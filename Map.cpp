@@ -174,6 +174,11 @@ void Map::update()
     currentModule->update();
     currentAllEntities->update();
     currentModule->getAllLightSources()->update();
+    for(int i = 0; i < modulesTableSize; i++)
+        for(int j = 0; j < modulesTableSize; j++)
+        {
+            allEntities[i][j]->updateVirtualThreatLevel(i == moduleX && j == moduleY);
+        }
 }
 
 Module* Map::getCurrentModule() const {
@@ -293,6 +298,10 @@ void Map::displayLight()
 
 Module*** Map::getModules() const {
     return modules;
+}
+
+AllEntities*** Map::getAllEntities() const {
+    return allEntities;
 }
 
 void Map::applyModificators()

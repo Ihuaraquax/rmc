@@ -28,6 +28,9 @@
   
 AllEntities::AllEntities() {
     remoteCharges = NULL;
+    threatLevel = 0;
+    virtualThreatLevel = 100;
+    maxThreatLevel = 300;
 }
 
 void AllEntities::init()
@@ -56,13 +59,13 @@ void AllEntities::init()
     {
         Entity *spawner = Spawner::CreateSpawner(0,0);
         spawner->setStartingTile();
-        entityList.push_back(spawner);
+        this->addEntity(spawner);
     }
     for(int i = 0; i < 0; i++)
     {
         Entity *chest = Chest::CreateChest(0,0);
         chest->setStartingTile();
-        entityList.push_back(chest);
+        this->addEntity(chest);
     }
     for(int i = 0; i < 0; i++)
     {
@@ -72,7 +75,7 @@ void AllEntities::init()
         Y -= Y%Variables::tileSize;
         Entity *turret = Turret::CreateTurret(X,Y);
         turret->setStartingTile();
-        entityList.push_back(turret);
+        this->addEntity(turret);
     }
     for(int i = 0; i < 1; i++)
     {
@@ -145,6 +148,7 @@ void AllEntities::addEntity(Entity* newEntity)
 {
 //    newEntity->adaptToModificators();
     entityList.push_back(newEntity);
+    threatLevel += newEntity->getModuleThreatLevel();
 }
 
 void AllEntities::deleteEntity(Entity* toDelete)
@@ -345,4 +349,79 @@ void AllEntities::createModuleDoor()
     this->addEntity(doorRight);
     this->addEntity(doorUpper);
     this->addEntity(doorDown);
+}
+
+void AllEntities::updateVirtualThreatLevel(bool currentModule)
+{
+    if(Variables::currentFrame == 0)
+    {
+        if(currentModule)
+        {
+            getMonstersFromAdjacentModules();
+            spawnMonstersFromSpawners();
+        }
+        else
+        {
+            if(virtualThreatLevel < maxThreatLevel)virtualThreatLevel += 10;
+        }
+    }
+}
+
+void AllEntities::getMonstersFromAdjacentModules()
+{
+    int moduleX = Variables::session->getMap()->getModuleX();
+    int moduleY = Variables::session->getMap()->getModuleY();
+    AllEntities *temp;
+    if(moduleX > 0)
+    {
+        temp = Variables::session->getMap()->getAllEntities()[moduleX-1][moduleY];
+        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        {
+            Entity *monster = Monster::CreateMonster(Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), 0);
+            monster->setStartingTile();
+            this->addEntity(monster);
+        }
+    }
+    if(moduleX < Variables::session->getMap()->getModulesTableSize())
+    {
+        temp = Variables::session->getMap()->getAllEntities()[moduleX+1][moduleY];
+        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        {
+            Entity *monster = Monster::CreateMonster((Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), 0);
+            monster->setStartingTile();
+            this->addEntity(monster);
+        }
+    }
+    if(moduleY > 0)
+    {
+        temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY-1];
+        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        {
+            Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2), Variables::tileSize*2, 0);
+            monster->setStartingTile();
+            this->addEntity(monster);
+        }
+    }
+    if(moduleY < Variables::session->getMap()->getModulesTableSize())
+    {
+        temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY+1];
+        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        {
+            Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2),(Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, 0);
+            monster->setStartingTile();
+            this->addEntity(monster);
+        }
+    }
+}
+
+void AllEntities::spawnMonstersFromSpawners()
+{
+    Entity *monster = Monster::CreateMonster(-1,-1, 0);
+    dynamic_cast<Monster*>(monster)->setRandomCoords();
+    monster->setStartingTile();
+    this->addEntity(monster);
+}
+
+void AllEntities::getMonsterFromModule(AllEntities* temp)
+{
 }

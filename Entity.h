@@ -61,6 +61,7 @@ public:
     Entity* getIgnoreCollisionEntity() const;
     void setIgnoreCollisionEntity(Entity* ignoreCollisionEntity);
     Coordinates* getPlanCoords() const;
+    int getModuleThreatLevel() const;
 protected:
     void move(double X, double Y);
     Entity *isCollision();
@@ -88,6 +89,7 @@ protected:
     bool bleeds;
     EntityShape shape;
     Entity *ignoreCollisionEntity;
+    int moduleThreatLevel = 0;
 };
 
 #endif	/* ENTITY_H */

@@ -36,15 +36,23 @@ public:
     
     void createAllowanceObjects(int X, int Y);
     void createModuleDoor();
+    void updateVirtualThreatLevel(bool currentModule);
 private:
     void deleteDead();
     void createObstacles();
     void createDoors();
     void collisions();
     
+    void getMonstersFromAdjacentModules();
+    void spawnMonstersFromSpawners();
+    void getMonsterFromModule(AllEntities *temp);
+    
     std::list<Entity*> entityList;
     templateList<Entity> *remoteCharges;
     Entity *player;
+    double threatLevel;
+    double virtualThreatLevel;
+    double maxThreatLevel;
 };
 
 #endif	/* ALLENTITIES_H */

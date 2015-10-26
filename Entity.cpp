@@ -337,3 +337,7 @@ void Entity::setIgnoreCollisionEntity(Entity* ignoreCollisionEntity) {
 Coordinates* Entity::getPlanCoords() const {
     return planCoords;
 }
+
+int Entity::getModuleThreatLevel() const {
+    return moduleThreatLevel;
+}

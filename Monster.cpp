@@ -34,6 +34,7 @@ Monster::Monster(int monsterType)
     bleeds = true;
     this->monsterType = monsterType;
     getValuesFromFile();
+    moduleThreatLevel = 10;
 }
 
 void Monster::setCoords(double X, double Y)
