@@ -9,7 +9,8 @@ build/Debug/MinGW-Windows/AllEntities.o: AllEntities.cpp AllEntities.h \
  PlanStep.h Tooltip.h AllAllowanceObjects.h AllowanceObject.h \
  GameSubstateEnum.h LogLevels.h GlobalImages.h ValueReader.h Spawner.h \
  DistanceBuffer.h BuffRod.h ExplosiveBarrel.h RemoteCharges.h \
- ObstacleDoor.h DoorFactory.h Explosives.h Key.h Lock.h Console.h
+ ObstacleDoor.h DoorFactory.h Explosives.h Key.h Lock.h Console.h \
+ ModuleDoor.h
 
 AllEntities.h:
 
@@ -136,3 +137,5 @@ Key.h:
 Lock.h:
 
 Console.h:
+
+ModuleDoor.h:

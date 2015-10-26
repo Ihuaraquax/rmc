@@ -23,6 +23,7 @@
 #include "Key.h"
 #include "Lock.h"
 #include "Console.h"
+#include "ModuleDoor.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -88,6 +89,7 @@ void AllEntities::init()
         console->setStartingTile();
         entityList.push_back(console);
     }
+    createModuleDoor();
 }
 AllEntities::~AllEntities()
 {
@@ -324,4 +326,23 @@ void AllEntities::createAllowanceObjects(int X, int Y)
         dynamic_cast<AllowanceObject*>(object)->setModuleCoords(X,Y);
         this->addEntity(object);
     }
+}
+
+void AllEntities::createModuleDoor()
+{
+    double moduleSize = Variables::tileSize * (Variables::tilesPerRoom - 1);
+    Entity *doorLeft = ModuleDoor::CreateModuleDoor(0, Variables::tileSize * (Variables::tilesPerRoom/2 - 2), false);
+    Entity *doorRight = ModuleDoor::CreateModuleDoor(moduleSize, Variables::tileSize * (Variables::tilesPerRoom/2 - 2), false);
+    Entity *doorUpper = ModuleDoor::CreateModuleDoor(Variables::tileSize * (Variables::tilesPerRoom/2 - 2), 0, true);
+    Entity *doorDown = ModuleDoor::CreateModuleDoor(Variables::tileSize * (Variables::tilesPerRoom/2 - 2), moduleSize, true);
+    
+    doorLeft->setStartingTile();
+    doorRight->setStartingTile();
+    doorUpper->setStartingTile();
+    doorDown->setStartingTile();
+    
+    this->addEntity(doorLeft);
+    this->addEntity(doorRight);
+    this->addEntity(doorUpper);
+    this->addEntity(doorDown);
 }

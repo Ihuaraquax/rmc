@@ -22,7 +22,7 @@ void KeyboardControl::keyboardActions()
      al_get_keyboard_state(&Variables::key_state);
      if(isPressed(ALLEGRO_KEY_ESCAPE))
      {
-         if(Variables::substate == console)Console::end();
+         if(Variables::substate == console || Variables::substate == plan)Console::end();
          else Variables::status = END;
      }
      if(Variables::status == GAME)this->gameKeyboardActions();

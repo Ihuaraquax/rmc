@@ -35,6 +35,7 @@ public:
     void setPlanCoords(int X, int Y);
     
     void createAllowanceObjects(int X, int Y);
+    void createModuleDoor();
 private:
     void deleteDead();
     void createObstacles();

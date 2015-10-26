@@ -42,3 +42,5 @@ images/equipmentTooltip.png equipmentTooltip
 images/powerIdle.png powerIdle
 images/powerStartup.png powerStartup
 images/powerWorking.png powerWorking
+images/moduleDoor.png moduleDoor
+images/moduleDoorOpen.png moduleDoorOpen

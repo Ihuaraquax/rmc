@@ -425,3 +425,7 @@ void ModuleTile::highlightTile()
         delete coords;
     }
 }
+
+UsableObject* ModuleTile::getUsableObject() const {
+    return object;
+}

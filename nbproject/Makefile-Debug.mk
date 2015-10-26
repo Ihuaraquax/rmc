@@ -81,6 +81,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Menu.o \
 	${OBJECTDIR}/Missle.o \
 	${OBJECTDIR}/Module.o \
+	${OBJECTDIR}/ModuleDoor.o \
 	${OBJECTDIR}/ModuleFactory.o \
 	${OBJECTDIR}/ModuleTile.o \
 	${OBJECTDIR}/Monster.o \
@@ -372,6 +373,11 @@ ${OBJECTDIR}/Module.o: Module.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Module.o Module.cpp
+
+${OBJECTDIR}/ModuleDoor.o: ModuleDoor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleDoor.o ModuleDoor.cpp
 
 ${OBJECTDIR}/ModuleFactory.o: ModuleFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}
