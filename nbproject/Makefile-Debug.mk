@@ -82,6 +82,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Missle.o \
 	${OBJECTDIR}/Module.o \
 	${OBJECTDIR}/ModuleDoor.o \
+	${OBJECTDIR}/ModuleDoorEntities.o \
 	${OBJECTDIR}/ModuleFactory.o \
 	${OBJECTDIR}/ModuleTile.o \
 	${OBJECTDIR}/Monster.o \
@@ -378,6 +379,11 @@ ${OBJECTDIR}/ModuleDoor.o: ModuleDoor.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleDoor.o ModuleDoor.cpp
+
+${OBJECTDIR}/ModuleDoorEntities.o: ModuleDoorEntities.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleDoorEntities.o ModuleDoorEntities.cpp
 
 ${OBJECTDIR}/ModuleFactory.o: ModuleFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}

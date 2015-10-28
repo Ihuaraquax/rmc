@@ -24,6 +24,7 @@
 #include "Lock.h"
 #include "Console.h"
 #include "ModuleDoor.h"
+#include "ModuleDoorEntities.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -31,6 +32,7 @@ AllEntities::AllEntities() {
     threatLevel = 0;
     virtualThreatLevel = 100;
     maxThreatLevel = 300;
+    moduleDoors = new ModuleDoorEntities();
 }
 
 void AllEntities::init()
@@ -349,6 +351,11 @@ void AllEntities::createModuleDoor()
     this->addEntity(doorRight);
     this->addEntity(doorUpper);
     this->addEntity(doorDown);
+    
+    moduleDoors->SetUpDoor(doorUpper);
+    moduleDoors->SetDownDoor(doorDown);
+    moduleDoors->SetLeftDoor(doorLeft);
+    moduleDoors->SetRightDoor(doorRight);
 }
 
 void AllEntities::updateVirtualThreatLevel(bool currentModule)
@@ -377,9 +384,12 @@ void AllEntities::getMonstersFromAdjacentModules()
         temp = Variables::session->getMap()->getAllEntities()[moduleX-1][moduleY];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
-            Entity *monster = Monster::CreateMonster(Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), 0);
-            monster->setStartingTile();
-            this->addEntity(monster);
+            if(dynamic_cast<ModuleDoor*>(moduleDoors->GetLeftDoor())->isClosed() == false)
+            {
+                Entity *monster = Monster::CreateMonster(Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), 0);
+                monster->setStartingTile();
+                this->addEntity(monster);
+            }
         }
     }
     if(moduleX < Variables::session->getMap()->getModulesTableSize())
@@ -387,9 +397,12 @@ void AllEntities::getMonstersFromAdjacentModules()
         temp = Variables::session->getMap()->getAllEntities()[moduleX+1][moduleY];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
-            Entity *monster = Monster::CreateMonster((Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), 0);
-            monster->setStartingTile();
-            this->addEntity(monster);
+            if(dynamic_cast<ModuleDoor*>(moduleDoors->GetRightDoor())->isClosed() == false)
+            {
+                Entity *monster = Monster::CreateMonster((Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), 0);
+                monster->setStartingTile();
+                this->addEntity(monster);
+            }
         }
     }
     if(moduleY > 0)
@@ -397,9 +410,12 @@ void AllEntities::getMonstersFromAdjacentModules()
         temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY-1];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
-            Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2), Variables::tileSize*2, 0);
-            monster->setStartingTile();
-            this->addEntity(monster);
+            if(dynamic_cast<ModuleDoor*>(moduleDoors->GetUpDoor())->isClosed() == false)
+            {
+                Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2), Variables::tileSize*2, 0);
+                monster->setStartingTile();
+                this->addEntity(monster);
+            }
         }
     }
     if(moduleY < Variables::session->getMap()->getModulesTableSize())
@@ -407,9 +423,12 @@ void AllEntities::getMonstersFromAdjacentModules()
         temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY+1];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
-            Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2),(Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, 0);
-            monster->setStartingTile();
-            this->addEntity(monster);
+            if(dynamic_cast<ModuleDoor*>(moduleDoors->GetDownDoor())->isClosed() == false)
+            {
+                Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2),(Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, 0);
+                monster->setStartingTile();
+                this->addEntity(monster);
+            }
         }
     }
 }

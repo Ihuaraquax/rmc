@@ -222,6 +222,8 @@
       <logicalFolder name="f4" displayName="Utils" projectFiles="true">
         <itemPath>AiTileAdjacentSetter.cpp</itemPath>
         <itemPath>AiTileAdjacentSetter.h</itemPath>
+        <itemPath>ModuleDoorEntities.cpp</itemPath>
+        <itemPath>ModuleDoorEntities.h</itemPath>
       </logicalFolder>
       <itemPath>templateList.h</itemPath>
     </logicalFolder>
@@ -468,6 +470,10 @@
       <item path="ModuleDoor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleDoor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleDoorEntities.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModuleDoorEntities.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ModuleFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -836,6 +842,10 @@
       <item path="ModuleDoor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleDoor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ModuleDoorEntities.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModuleDoorEntities.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ModuleFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>

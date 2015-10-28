@@ -9,6 +9,7 @@
 #define	ALLENTITIES_H
 #include <list>
 #include "Entity.h"
+#include "ModuleDoorEntities.h"
 
 class AllEntities {
 public:
@@ -53,6 +54,7 @@ private:
     double threatLevel;
     double virtualThreatLevel;
     double maxThreatLevel;
+    ModuleDoorEntities *moduleDoors;
 };
 
 #endif	/* ALLENTITIES_H */

@@ -325,3 +325,7 @@ void ModuleDoor::useOtherSideDoor()
     ModuleDoor *otherDoor = dynamic_cast<ModuleDoor*>(tile->getUsableObject());
     otherDoor->changeDoorStatus(moduleX, moduleY);
 }
+
+bool ModuleDoor::isClosed() const {
+    return closed;
+}

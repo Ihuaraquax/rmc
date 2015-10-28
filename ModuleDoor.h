@@ -36,6 +36,7 @@ public:
     void highlight();
     void setRequirements();
     void useOtherSideDoor();
+    bool isClosed() const;
 private:
     void changeDoorStatus(int moduleX, int moduleY);
     Image *closedImage;
