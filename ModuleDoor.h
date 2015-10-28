@@ -37,6 +37,7 @@ public:
     void setRequirements();
     void useOtherSideDoor();
     bool isClosed() const;
+    void getHit(int damage, int damageType);
 private:
     void changeDoorStatus(int moduleX, int moduleY);
     Image *closedImage;

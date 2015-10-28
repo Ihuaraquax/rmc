@@ -329,3 +329,8 @@ void ModuleDoor::useOtherSideDoor()
 bool ModuleDoor::isClosed() const {
     return closed;
 }
+
+void ModuleDoor::getHit(int damage, int damageType)
+{
+    //indestructible object
+}
