@@ -272,7 +272,7 @@ void ModuleDoor::setStartingTile()
         for(int i = 0; i < 4; i++)
         {
             double X = coords->X + (Variables::tileSize*i);
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,coords->Y)->addToEntityList(this);
+            if(closed)Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,coords->Y)->addToEntityList(this);
             Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X,coords->Y)->setUsableObject(this);
         }
     }
@@ -281,7 +281,7 @@ void ModuleDoor::setStartingTile()
         for(int i = 0; i < 4; i++)
         {
             double Y = coords->Y + (Variables::tileSize*i);
-            Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,Y)->addToEntityList(this);
+            if(closed)Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,Y)->addToEntityList(this);
             Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X,Y)->setUsableObject(this);
         }
     }
@@ -295,14 +295,14 @@ void ModuleDoor::useOtherSideDoor()
     {
         if(coords->Y == 0)
         {
-            moduleX = Variables::session->getMap()->getModuleX();
-            moduleY = Variables::session->getMap()->getModuleY()-1;
+            moduleY = Variables::session->getMap()->getModuleX();
+            moduleX = Variables::session->getMap()->getModuleY()-1;
             tile = Variables::session->getMap()->getModules()[moduleX][moduleY]->getModuleTileAt(coords->X, Variables::tileSize * (Variables::tilesPerRoom-1));
         }
         else
         {
-            moduleX = Variables::session->getMap()->getModuleX();
-            moduleY = Variables::session->getMap()->getModuleY()+1;
+            moduleY = Variables::session->getMap()->getModuleX();
+            moduleX = Variables::session->getMap()->getModuleY()+1;
             tile = Variables::session->getMap()->getModules()[moduleX][moduleY]->getModuleTileAt(coords->X, 1);
         }
     }
@@ -310,18 +310,18 @@ void ModuleDoor::useOtherSideDoor()
     {
         if(coords->X == 0)
         {
-            moduleX = Variables::session->getMap()->getModuleX()-1;
-            moduleY = Variables::session->getMap()->getModuleY();
+            moduleY = Variables::session->getMap()->getModuleX()-1;
+            moduleX = Variables::session->getMap()->getModuleY();
             tile = Variables::session->getMap()->getModules()[moduleX][moduleY]->getModuleTileAt(Variables::tileSize * (Variables::tilesPerRoom-1), coords->Y );
         }
         else
         {
-            moduleX = Variables::session->getMap()->getModuleX()+1;
-            moduleY = Variables::session->getMap()->getModuleY();
+            moduleY = Variables::session->getMap()->getModuleX()+1;
+            moduleX = Variables::session->getMap()->getModuleY();
             tile = Variables::session->getMap()->getModules()[moduleX][moduleY]->getModuleTileAt(1, coords->Y);
         }
     }
     
     ModuleDoor *otherDoor = dynamic_cast<ModuleDoor*>(tile->getUsableObject());
-    otherDoor->changeDoorStatus(moduleY, moduleX);
+    otherDoor->changeDoorStatus(moduleX, moduleY);
 }
