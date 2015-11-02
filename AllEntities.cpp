@@ -94,7 +94,6 @@ void AllEntities::init()
         console->setStartingTile();
         entityList.push_back(console);
     }
-    createModuleDoor();
 }
 AllEntities::~AllEntities()
 {
@@ -334,28 +333,37 @@ void AllEntities::createAllowanceObjects(int X, int Y)
     }
 }
 
-void AllEntities::createModuleDoor()
+void AllEntities::createModuleDoor(int X, int Y)
 {
     double moduleSize = Variables::tileSize * (Variables::tilesPerRoom - 1);
-    Entity *doorLeft = ModuleDoor::CreateModuleDoor(0, Variables::tileSize * (Variables::tilesPerRoom/2 - 2), false);
-    Entity *doorRight = ModuleDoor::CreateModuleDoor(moduleSize, Variables::tileSize * (Variables::tilesPerRoom/2 - 2), false);
-    Entity *doorUpper = ModuleDoor::CreateModuleDoor(Variables::tileSize * (Variables::tilesPerRoom/2 - 2), 0, true);
-    Entity *doorDown = ModuleDoor::CreateModuleDoor(Variables::tileSize * (Variables::tilesPerRoom/2 - 2), moduleSize, true);
-    
-    doorLeft->setStartingTile();
-    doorRight->setStartingTile();
-    doorUpper->setStartingTile();
-    doorDown->setStartingTile();
-    
-    this->addEntity(doorLeft);
-    this->addEntity(doorRight);
-    this->addEntity(doorUpper);
-    this->addEntity(doorDown);
-    
-    moduleDoors->SetUpDoor(doorUpper);
-    moduleDoors->SetDownDoor(doorDown);
-    moduleDoors->SetLeftDoor(doorLeft);
-    moduleDoors->SetRightDoor(doorRight);
+    if(X > 0)
+    {
+        Entity *doorLeft = ModuleDoor::CreateModuleDoor(0, Variables::tileSize * (Variables::tilesPerRoom/2 - 2), false);
+        this->addEntity(doorLeft);
+        doorLeft->setStartingTile();
+        moduleDoors->SetLeftDoor(doorLeft);
+    }
+    if(X < Variables::session->getMap()->getModulesTableSize())
+    {
+        Entity *doorRight = ModuleDoor::CreateModuleDoor(moduleSize, Variables::tileSize * (Variables::tilesPerRoom/2 - 2), false);
+        doorRight->setStartingTile();
+        this->addEntity(doorRight);
+        moduleDoors->SetRightDoor(doorRight);
+    }
+    if(Y > 0)
+    {
+        Entity *doorUpper = ModuleDoor::CreateModuleDoor(Variables::tileSize * (Variables::tilesPerRoom/2 - 2), 0, true);
+        doorUpper->setStartingTile();
+        this->addEntity(doorUpper);
+        moduleDoors->SetUpDoor(doorUpper);
+    }
+    if(Y < Variables::session->getMap()->getModulesTableSize())
+    {
+        Entity *doorDown = ModuleDoor::CreateModuleDoor(Variables::tileSize * (Variables::tilesPerRoom/2 - 2), moduleSize, true);    
+        doorDown->setStartingTile();    
+        this->addEntity(doorDown);    
+        moduleDoors->SetDownDoor(doorDown);
+    }
 }
 
 void AllEntities::updateVirtualThreatLevel(bool currentModule)
@@ -379,7 +387,7 @@ void AllEntities::getMonstersFromAdjacentModules()
     int moduleX = Variables::session->getMap()->getModuleX();
     int moduleY = Variables::session->getMap()->getModuleY();
     AllEntities *temp;
-    if(moduleX > 0)
+    if(moduleX > 0 && moduleDoors->GetLeftDoor() != NULL)
     {
         temp = Variables::session->getMap()->getAllEntities()[moduleX-1][moduleY];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
@@ -392,7 +400,7 @@ void AllEntities::getMonstersFromAdjacentModules()
             }
         }
     }
-    if(moduleX < Variables::session->getMap()->getModulesTableSize())
+    if(moduleX < Variables::session->getMap()->getModulesTableSize() && moduleDoors->GetRightDoor() != NULL)
     {
         temp = Variables::session->getMap()->getAllEntities()[moduleX+1][moduleY];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
@@ -405,7 +413,7 @@ void AllEntities::getMonstersFromAdjacentModules()
             }
         }
     }
-    if(moduleY > 0)
+    if(moduleY > 0 && moduleDoors->GetUpDoor() != NULL)
     {
         temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY-1];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
@@ -418,7 +426,7 @@ void AllEntities::getMonstersFromAdjacentModules()
             }
         }
     }
-    if(moduleY < Variables::session->getMap()->getModulesTableSize())
+    if(moduleY < Variables::session->getMap()->getModulesTableSize() && moduleDoors->GetDownDoor() != NULL)
     {
         temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY+1];
         if(temp->virtualThreatLevel > temp->maxThreatLevel/2)

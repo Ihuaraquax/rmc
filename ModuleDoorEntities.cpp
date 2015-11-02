@@ -8,6 +8,10 @@
 #include "ModuleDoorEntities.h"
 
 ModuleDoorEntities::ModuleDoorEntities() {
+    downDoor = NULL;
+    leftDoor = NULL;
+    upDoor = NULL;
+    rightDoor = NULL;
 }
 
 void ModuleDoorEntities::SetDownDoor(Entity* downDoor) {

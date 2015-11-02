@@ -36,7 +36,7 @@ public:
     void setPlanCoords(int X, int Y);
     
     void createAllowanceObjects(int X, int Y);
-    void createModuleDoor();
+    void createModuleDoor(int X, int Y);
     void updateVirtualThreatLevel(bool currentModule);
 private:
     void deleteDead();

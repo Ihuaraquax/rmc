@@ -9,10 +9,15 @@
         <group>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Entity.h</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/AllEntities.h</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/Key.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Map.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/ModuleDoor.h</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/ModuleDoorEntities.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/ModuleDoor.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Session.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Monster.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Map.h</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/ModuleDoorEntities.h</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/AllEntities.cpp</file>
         </group>
     </open-files>

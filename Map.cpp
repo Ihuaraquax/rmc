@@ -82,6 +82,7 @@ void Map::createLevels()
             factory.setModuleBasics(modules[i][j]);
             currentModule = modules[i][j];
             allEntities[i][j]->init();
+            allEntities[i][j]->createModuleDoor(j,i);
 //            allEntities[i][j]->applyModifiers();
             if(i == keyX && j == keyY)
             {
