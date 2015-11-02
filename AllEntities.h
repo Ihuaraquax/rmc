@@ -8,6 +8,7 @@
 #ifndef ALLENTITIES_H
 #define	ALLENTITIES_H
 #include <list>
+#include <vector>
 #include "Entity.h"
 #include "ModuleDoorEntities.h"
 
@@ -55,6 +56,7 @@ private:
     double virtualThreatLevel;
     double maxThreatLevel;
     ModuleDoorEntities *moduleDoors;
+    std::vector<int> possibleMonsterTypes;
 };
 
 #endif	/* ALLENTITIES_H */
