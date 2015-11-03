@@ -352,7 +352,7 @@ void AllEntities::createModuleDoor(int X, int Y)
         doorLeft->setStartingTile();
         moduleDoors->SetLeftDoor(doorLeft);
     }
-    if(X < Variables::session->getMap()->getModulesTableSize())
+    if(X < Variables::session->getMap()->getModulesTableSize()-1)
     {
         Entity *doorRight = ModuleDoor::CreateModuleDoor(moduleSize, Variables::tileSize * (Variables::tilesPerRoom/2 - 2), false);
         doorRight->setStartingTile();
@@ -366,7 +366,7 @@ void AllEntities::createModuleDoor(int X, int Y)
         this->addEntity(doorUpper);
         moduleDoors->SetUpDoor(doorUpper);
     }
-    if(Y < Variables::session->getMap()->getModulesTableSize())
+    if(Y < Variables::session->getMap()->getModulesTableSize()-1)
     {
         Entity *doorDown = ModuleDoor::CreateModuleDoor(Variables::tileSize * (Variables::tilesPerRoom/2 - 2), moduleSize, true);    
         doorDown->setStartingTile();    
