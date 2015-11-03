@@ -40,6 +40,7 @@ public:
     void displayLight();
     Module*** getModules() const;
     AllEntities*** getAllEntities() const;
+    AllEntities* getAllEntities(int X, int Y) const;
 private:
     Module ***modules;
     AllEntities ***allEntities;

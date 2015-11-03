@@ -341,3 +341,8 @@ Coordinates* Entity::getPlanCoords() const {
 int Entity::getModuleThreatLevel() const {
     return moduleThreatLevel;
 }
+
+std::string Entity::getEntityType()
+{
+    return "BASIC_ENTITY";
+}

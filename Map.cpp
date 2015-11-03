@@ -178,7 +178,7 @@ void Map::update()
     for(int i = 0; i < modulesTableSize; i++)
         for(int j = 0; j < modulesTableSize; j++)
         {
-            allEntities[i][j]->updateVirtualThreatLevel(i == moduleX && j == moduleY);
+            allEntities[i][j]->updateVirtualThreatLevel(i == moduleY && j == moduleX);
         }
 }
 
@@ -299,6 +299,11 @@ void Map::displayLight()
 
 Module*** Map::getModules() const {
     return modules;
+}
+
+AllEntities* Map::getAllEntities(int X, int Y) const {
+    if(X >= this->modulesTableSize || Y >= this->modulesTableSize || X < 0 || Y < 0)return NULL;
+    return allEntities[X][Y];
 }
 
 AllEntities*** Map::getAllEntities() const {

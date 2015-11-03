@@ -9,7 +9,7 @@
 #include "globalVariables.h"
 #include "Monster.h"
 #include "MonsterLoader.h"
-
+#include <vector>
 Spawner::Spawner() {
     this->coords = new Coordinates();
     this->coords->width = Variables::tileSize;
@@ -24,7 +24,6 @@ Spawner::Spawner() {
     maximumHealth = health;
     spawnTimer = 5;
     spawnCountdown = 5;
-    monsterType = rand()%3;
 }
 
 void Spawner::setRandomCoords()
@@ -59,10 +58,6 @@ void Spawner::update()
 
 void Spawner::spawnMonster()
 {
-    Coordinates *spawnCoords = new Coordinates();
-    spawnCoords->X = coords->X;
-    spawnCoords->Y = coords->Y;
-    
     int X, Y;
     int tries = 0;
     bool isViableTile = false;
@@ -73,19 +68,29 @@ void Spawner::spawnMonster()
         X = coords->X + 70 * cos(angle * M_PI / 180);
         Y = coords->Y + 70 * sin(angle * M_PI / 180); 
         ModuleTile *tile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(X, Y);
-        if(tile->getObstacle() == NULL && tile->getEntityList() == NULL)isViableTile = true;
-        else isViableTile = false;
+        if(tile != NULL)
+        {
+            if(tile->getObstacle() == NULL && tile->getEntityList() == NULL)isViableTile = true;
+            else isViableTile = false;
+        }
         if(tries == 5)isViableTile = true;
     } while(!isViableTile);
     if(tries < 5)
     {
-        spawnCoords->X = X;
-        spawnCoords->Y = Y;
-        Entity *monster = Monster::CreateMonster(spawnCoords->X, spawnCoords->Y, monsterType);  
-        MonsterLoader::loadMonster(monster, monsterType, 0);
+        Entity *monster= getMonster(X,Y);
         Variables::session->getAllEntities()->addEntity(monster);
     }
-        delete spawnCoords;
+}
+
+int Spawner::getThreatLevel() const {
+    return threatLevel;
+}
+
+Entity *Spawner::getMonster(double X, double Y)
+{
+    Entity *monster = Monster::CreateMonster(X, Y, monsterType);  
+    MonsterLoader::loadMonster(monster, monsterType, 0);
+    return monster;
 }
 
 void Spawner::setStartingTile()
@@ -120,4 +125,17 @@ Entity *Spawner::CreateSpawner(double X, double Y)
         spawner->getCoords()->Y = Y;
     }
     return spawner;
+}
+
+void Spawner::setMonsterType(std::vector<int> typeList)
+{
+    int type = typeList[rand()%typeList.size()];
+    this->monsterType = type;
+    this->threatLevel = type * 5;
+}
+
+
+std::string Spawner::getEntityType()
+{
+    return "SPAWNER";
 }

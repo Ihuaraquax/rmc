@@ -35,6 +35,7 @@ AllEntities::AllEntities() {
     moduleDoors = new ModuleDoorEntities();
     possibleMonsterTypes.push_back(rand()%3);
     possibleMonsterTypes.push_back(rand()%3);
+    threatLevelIncrement = 0;
 }
 
 void AllEntities::init()
@@ -58,12 +59,6 @@ void AllEntities::init()
         dynamic_cast<Monster*>(monster)->setRandomCoords();
         monster->setStartingTile();
         this->addEntity(monster);
-    }
-    for(int i = 0; i < 0; i++)
-    {
-        Entity *spawner = Spawner::CreateSpawner(0,0);
-        spawner->setStartingTile();
-        this->addEntity(spawner);
     }
     for(int i = 0; i < 0; i++)
     {
@@ -96,6 +91,7 @@ void AllEntities::init()
         console->setStartingTile();
         entityList.push_back(console);
     }
+    recreateSpawners();
 }
 AllEntities::~AllEntities()
 {
@@ -149,13 +145,24 @@ void AllEntities::loadNew()
 
 void AllEntities::addEntity(Entity* newEntity)
 {
-//    newEntity->adaptToModificators();
     entityList.push_back(newEntity);
     threatLevel += newEntity->getModuleThreatLevel();
 }
 
 void AllEntities::deleteEntity(Entity* toDelete)
 {
+    this->threatLevel -= toDelete->getModuleThreatLevel();
+    if(toDelete->getEntityType() == "SPAWNER"){
+        for(std::vector<Entity*>::iterator i = spawnerList.begin(); i != spawnerList.end(); ++i)
+        {
+            Entity *temp = *i;
+            if(temp == toDelete){
+                spawnerList.erase(i);
+                this->virtualThreatLevel -= dynamic_cast<Spawner*>(temp)->getThreatLevel();
+                break;
+            }
+        }
+    }
     entityList.remove(toDelete);
 }
 
@@ -379,7 +386,7 @@ void AllEntities::updateVirtualThreatLevel(bool currentModule)
         }
         else
         {
-            if(virtualThreatLevel < maxThreatLevel)virtualThreatLevel += 10;
+            if(virtualThreatLevel < maxThreatLevel)virtualThreatLevel += threatLevelIncrement;
         }
     }
 }
@@ -391,13 +398,12 @@ void AllEntities::getMonstersFromAdjacentModules()
     AllEntities *temp;
     if(moduleX > 0 && moduleDoors->GetLeftDoor() != NULL)
     {
-        temp = Variables::session->getMap()->getAllEntities()[moduleX-1][moduleY];
-        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        temp = Variables::session->getMap()->getAllEntities(moduleX-1,moduleY);
+        if(temp != NULL && temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetLeftDoor())->isClosed() == false)
             {
-                int type = temp->possibleMonsterTypes[rand()%temp->possibleMonsterTypes.size()];
-                Entity *monster = Monster::CreateMonster(Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), type);
+                Entity *monster = temp->getMonsterFromModule(Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2));
                 monster->setStartingTile();
                 this->addEntity(monster);
             }
@@ -405,13 +411,12 @@ void AllEntities::getMonstersFromAdjacentModules()
     }
     if(moduleX < Variables::session->getMap()->getModulesTableSize() && moduleDoors->GetRightDoor() != NULL)
     {
-        temp = Variables::session->getMap()->getAllEntities()[moduleX+1][moduleY];
-        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        temp = Variables::session->getMap()->getAllEntities(moduleX+1,moduleY);
+        if(temp != NULL && temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetRightDoor())->isClosed() == false)
             {
-                int type = temp->possibleMonsterTypes[rand()%temp->possibleMonsterTypes.size()];
-                Entity *monster = Monster::CreateMonster((Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2), type);
+                Entity *monster = temp->getMonsterFromModule((Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2));
                 monster->setStartingTile();
                 this->addEntity(monster);
             }
@@ -419,13 +424,12 @@ void AllEntities::getMonstersFromAdjacentModules()
     }
     if(moduleY > 0 && moduleDoors->GetUpDoor() != NULL)
     {
-        temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY-1];
-        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        temp = Variables::session->getMap()->getAllEntities(moduleX,moduleY-1);
+        if(temp != NULL && temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetUpDoor())->isClosed() == false)
             {
-                int type = temp->possibleMonsterTypes[rand()%temp->possibleMonsterTypes.size()];
-                Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2), Variables::tileSize*2, type);
+                Entity *monster = temp->getMonsterFromModule(Variables::tileSize * (Variables::tilesPerRoom/2),Variables::tileSize*2);
                 monster->setStartingTile();
                 this->addEntity(monster);
             }
@@ -433,13 +437,12 @@ void AllEntities::getMonstersFromAdjacentModules()
     }
     if(moduleY < Variables::session->getMap()->getModulesTableSize() && moduleDoors->GetDownDoor() != NULL)
     {
-        temp = Variables::session->getMap()->getAllEntities()[moduleX][moduleY+1];
-        if(temp->virtualThreatLevel > temp->maxThreatLevel/2)
+        temp = Variables::session->getMap()->getAllEntities(moduleX,moduleY+1);
+        if(temp != NULL && temp->virtualThreatLevel > temp->maxThreatLevel/2)
         {
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetDownDoor())->isClosed() == false)
             {
-                int type = temp->possibleMonsterTypes[rand()%temp->possibleMonsterTypes.size()];
-                Entity *monster = Monster::CreateMonster(Variables::tileSize * (Variables::tilesPerRoom/2),(Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, type);
+                Entity *monster = temp->getMonsterFromModule(Variables::tileSize * (Variables::tilesPerRoom/2),(Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2);
                 monster->setStartingTile();
                 this->addEntity(monster);
             }
@@ -449,13 +452,31 @@ void AllEntities::getMonstersFromAdjacentModules()
 
 void AllEntities::spawnMonstersFromSpawners()
 {
-    int type = possibleMonsterTypes[rand()%possibleMonsterTypes.size()];
-    Entity *monster = Monster::CreateMonster(-1,-1, type);
-    dynamic_cast<Monster*>(monster)->setRandomCoords();
-    monster->setStartingTile();
-    this->addEntity(monster);
+    while(this->threatLevel < this->virtualThreatLevel)
+    {
+        for(int i = 0; i < this->spawnerList.size(); i++)
+        {
+            dynamic_cast<Spawner*>(spawnerList[i])->spawnMonster();
+        }
+    }
 }
 
-void AllEntities::getMonsterFromModule(AllEntities* temp)
+Entity* AllEntities::getMonsterFromModule(double X, double Y)
 {
+    Entity *result;
+    int index = rand()%spawnerList.size();
+    result = dynamic_cast<Spawner*>(spawnerList[index])->getMonster(X, Y);
+}
+
+void AllEntities::recreateSpawners()
+{
+    for(int i = 0; i < 5; i++)
+    {
+        Entity *spawner = Spawner::CreateSpawner(0,0);
+        spawner->setStartingTile();
+        dynamic_cast<Spawner*>(spawner)->setMonsterType(possibleMonsterTypes);
+        this->addEntity(spawner);
+        this->spawnerList.push_back(spawner);
+        this->virtualThreatLevel += dynamic_cast<Spawner*>(spawner)->getThreatLevel();
+    }
 }

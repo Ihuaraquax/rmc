@@ -62,6 +62,7 @@ public:
     void setIgnoreCollisionEntity(Entity* ignoreCollisionEntity);
     Coordinates* getPlanCoords() const;
     int getModuleThreatLevel() const;
+    std::string virtual getEntityType();
 protected:
     void move(double X, double Y);
     Entity *isCollision();
