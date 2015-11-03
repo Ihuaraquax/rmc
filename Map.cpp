@@ -204,6 +204,7 @@ void Map::switchModule(int side)
         allEntities[moduleY][moduleX]->setPlayer(currentAllEntities->getPlayer());
         currentModule = modules[moduleY][moduleX];
         currentAllEntities = allEntities[moduleY][moduleX];
+        currentAllEntities->spawnMonstersFromSpawners();
     }
 }
 

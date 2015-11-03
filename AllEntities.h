@@ -40,6 +40,7 @@ public:
     void createModuleDoor(int X, int Y);
     void updateVirtualThreatLevel(bool currentModule);
     void recreateSpawners();
+    void spawnMonstersFromSpawners();
 private:
     void deleteDead();
     void createObstacles();
@@ -50,7 +51,6 @@ private:
     void createConsoles();
     
     void getMonstersFromAdjacentModules();
-    void spawnMonstersFromSpawners();
     Entity* getMonsterFromModule(double X, double Y);
     
     std::list<Entity*> entityList;
