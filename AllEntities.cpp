@@ -52,20 +52,35 @@ void AllEntities::init()
     }
     player = NULL;
     DoorFactory::createDoors();
+    createChests();
+    createTurrets();
+    createConsoles();
+    recreateSpawners();
     createObstacles();
-    for(int i = 0; i < 0; i++)
+    spawnMonstersFromSpawners();
+}
+AllEntities::~AllEntities()
+{
+    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
     {
-        Entity *monster = Monster::CreateMonster(-1,-1, 0);
-        dynamic_cast<Monster*>(monster)->setRandomCoords();
-        monster->setStartingTile();
-        this->addEntity(monster);
+        Entity *temp = *i;
+        delete temp;
     }
+    player = NULL;
+}
+
+void AllEntities::createChests()
+{
     for(int i = 0; i < 0; i++)
     {
         Entity *chest = Chest::CreateChest(0,0);
         chest->setStartingTile();
         this->addEntity(chest);
     }
+}
+
+void AllEntities::createTurrets()
+{
     for(int i = 0; i < 0; i++)
     {
         int X = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
@@ -76,31 +91,20 @@ void AllEntities::init()
         turret->setStartingTile();
         this->addEntity(turret);
     }
+}
+
+void AllEntities::createConsoles()
+{
     for(int i = 0; i < 1; i++)
     {
-//        int X = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
-//        int Y = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
-//        X -= X%Variables::tileSize;
-//        Y -= Y%Variables::tileSize;
-        Entity *door = ObstacleDoor::CreateObstacleDoor(300, 300);
-        door->setStartingTile();
-        dynamic_cast<ObstacleDoor*>(door)->setAngle(true);
-        entityList.push_back(door);
-        
-        Entity *console = Console::CreateConsole(150,150);
+        int X = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
+        int Y = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
+        X -= X%Variables::tileSize;
+        Y -= Y%Variables::tileSize;        
+        Entity *console = Console::CreateConsole(X,Y);
         console->setStartingTile();
         entityList.push_back(console);
-    }
-    recreateSpawners();
-}
-AllEntities::~AllEntities()
-{
-    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
-    {
-        Entity *temp = *i;
-        delete temp;
-    }
-    player = NULL;
+    } 
 }
 
 
@@ -197,8 +201,8 @@ void AllEntities::deleteDead()
 
 void AllEntities::createObstacles()
 {
-    for(int i = 0; i < Variables::tilesPerRoom; i++)
-        for(int j = 0; j < Variables::tilesPerRoom; j++)
+    for(int i = 3; i < Variables::tilesPerRoom - 3; i++)
+        for(int j = 3; j < Variables::tilesPerRoom - 3; j++)
         {
             bool isObstacle = (rand()%Variables::tileSize == 0);
             if(isObstacle && Variables::session->getMap()->getCurrentModule()->getModuleTileAt(i * Variables::tileSize, j * Variables::tileSize)->getObstacle() == NULL)

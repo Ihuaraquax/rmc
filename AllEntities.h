@@ -45,6 +45,9 @@ private:
     void createObstacles();
     void createDoors();
     void collisions();
+    void createChests();
+    void createTurrets();
+    void createConsoles();
     
     void getMonstersFromAdjacentModules();
     void spawnMonstersFromSpawners();
