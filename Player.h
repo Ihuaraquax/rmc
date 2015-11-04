@@ -14,6 +14,7 @@
 #include "Inventory.h"
 #include "Animation.h"
 #include "Skills.h"
+#include "PlayerBaseValues.h"
 
 class Player : public Entity{
     friend class Helmet;
@@ -69,10 +70,13 @@ public:
     void setWeapon(int weaponId, int newWeaponNo);
     void setEquipment(int equipmentType, int newEquipmentNo);
     void reloadUIImages();
+    void adaptToModificators();
 private:
-    void setTransferCoords(int side);
+    void changeModules(int side);
     void setTestValues();
     void displayIsInBuffRange();
+    void createBaseValues();
+    void setIntoBaseValues();
     int selecetedWeaponSet;
     Equipment *chestplate;
     Equipment *helmet;
@@ -87,6 +91,7 @@ private:
     Attributes *attributes;
     int keyValue;
     Animation *animation;
+    PlayerBaseValues baseValues;
 };
 
 #endif	/* PLAYER_H */

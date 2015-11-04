@@ -94,6 +94,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Plan.o \
 	${OBJECTDIR}/PlanStep.o \
 	${OBJECTDIR}/Player.o \
+	${OBJECTDIR}/PlayerBaseValues.o \
 	${OBJECTDIR}/Projectile.o \
 	${OBJECTDIR}/ProjectileFactory.o \
 	${OBJECTDIR}/ProjectileModificator.o \
@@ -439,6 +440,11 @@ ${OBJECTDIR}/Player.o: Player.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
+
+${OBJECTDIR}/PlayerBaseValues.o: PlayerBaseValues.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PlayerBaseValues.o PlayerBaseValues.cpp
 
 ${OBJECTDIR}/Projectile.o: Projectile.cpp 
 	${MKDIR} -p ${OBJECTDIR}

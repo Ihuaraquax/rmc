@@ -50,7 +50,7 @@ public:
     void virtual setCoords(double X, double Y);
     EntityShape getShape() const;
     
-    void adaptToModificators();
+    void virtual adaptToModificators();
     void virtual save(std::fstream &savefile);
     void virtual load(std::fstream &savefile);
     void saveGeneric(std::fstream &file);

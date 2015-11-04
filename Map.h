@@ -28,7 +28,6 @@ public:
     Module* getCurrentModule() const;
     void switchModule(int side);
     AllEntities* getCurrentAllEntities() const;
-    void applyModificators();
     
     void save(std::fstream &file);
     void load(std::fstream &file);

@@ -8,7 +8,8 @@ build/Debug/MinGW-Windows/Monster.o: Monster.cpp Monster.h Entity.h \
  AllLightSources.h LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
  AllAllowanceObjects.h AllowanceObject.h GameSubstateEnum.h LogLevels.h \
  GlobalImages.h ValueReader.h CollisionDetector.h Player.h Attributes.h \
- Animation.h Skills.h WeaponLoader.h PickUp.h Explosion.h
+ Animation.h Skills.h PlayerBaseValues.h WeaponLoader.h PickUp.h \
+ Explosion.h
 
 Monster.h:
 
@@ -115,6 +116,8 @@ Attributes.h:
 Animation.h:
 
 Skills.h:
+
+PlayerBaseValues.h:
 
 WeaponLoader.h:
 

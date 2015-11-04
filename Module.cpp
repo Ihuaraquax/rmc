@@ -18,6 +18,7 @@ Module::Module() {
     allDecals = new AllDecals;
     modificatorsTable = new double[100];
     for(int i = 0; i < 100; i++)modificatorsTable[i] = 0;
+    for(int i = 0; i < 4; i++)modificatorsTable[rand()%100] = 1;
     floorImage = Variables::images->getByName("stoneFloor3");
     floorImage->state = REPEATING;
     coords = new Coordinates();

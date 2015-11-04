@@ -8,7 +8,7 @@ build/Debug/MinGW-Windows/WeaponUI.o: WeaponUI.cpp WeaponUI.h Weapon.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
  AllAllowanceObjects.h AllowanceObject.h GameSubstateEnum.h LogLevels.h \
  GlobalImages.h ValueReader.h Player.h Attributes.h Animation.h Skills.h \
- TextDisplayer.h CollisionDetector.h
+ PlayerBaseValues.h TextDisplayer.h CollisionDetector.h
 
 WeaponUI.h:
 
@@ -111,6 +111,8 @@ Attributes.h:
 Animation.h:
 
 Skills.h:
+
+PlayerBaseValues.h:
 
 TextDisplayer.h:
 

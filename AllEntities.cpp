@@ -151,6 +151,7 @@ void AllEntities::addEntity(Entity* newEntity)
 {
     entityList.push_back(newEntity);
     threatLevel += newEntity->getModuleThreatLevel();
+    this->applyModifiers(newEntity);
 }
 
 void AllEntities::deleteEntity(Entity* toDelete)
@@ -245,13 +246,9 @@ bool AllEntities::deleteRemoteCharge(int signalId)
     return result;
 }
 
-void AllEntities::applyModifiers()
+void AllEntities::applyModifiers(Entity* newEntity)
 {
-    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
-    {
-        Entity *temp = *i;
-        temp->adaptToModificators();
-    }
+    newEntity->adaptToModificators();
 }
 
 void AllEntities::setPlayer(Entity* player) {
@@ -342,7 +339,7 @@ void AllEntities::createAllowanceObjects(int X, int Y)
     {
         Entity *object = AllowanceObject::createObject(400, 400, rand()%Variables::allowancObjectMaxCount);
         dynamic_cast<AllowanceObject*>(object)->setModuleCoords(X,Y);
-        this->addEntity(object);
+        entityList.push_back(object);
     }
 }
 

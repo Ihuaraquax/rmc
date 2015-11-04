@@ -28,7 +28,7 @@ public:
     
     void addRemoteCharge(Entity *toAdd);
     bool deleteRemoteCharge(int signalId);
-    void applyModifiers();
+    void applyModifiers(Entity *newEntity);
     void setPlayer(Entity* player);
     
     void save(std::fstream &file);

@@ -9,7 +9,7 @@ build/Debug/MinGW-Windows/UsableItem.o: UsableItem.cpp UsableItem.h \
  AllAllowanceObjects.h AllowanceObject.h GameSubstateEnum.h LogLevels.h \
  GlobalImages.h ValueReader.h Turret.h DistanceBuffer.h BuffRod.h \
  Explosives.h UsableItemLoader.h RemoteCharges.h Player.h Attributes.h \
- Animation.h Skills.h
+ Animation.h Skills.h PlayerBaseValues.h
 
 UsableItem.h:
 
@@ -124,3 +124,5 @@ Attributes.h:
 Animation.h:
 
 Skills.h:
+
+PlayerBaseValues.h:

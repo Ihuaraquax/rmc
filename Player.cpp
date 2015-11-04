@@ -17,6 +17,7 @@
 #include "UsableItemLoader.h"
 #include "TimedBuffer.h"
 #include "CollisionDetector.h"
+#include "PlayerBaseValues.h"
 
 Player::Player() {
     keyValue = -1;
@@ -42,6 +43,7 @@ Player::Player() {
     animation->setAnimation("images/walking2.png", 88, 98);
     this->animation->setDuration(1);
     skills = new Skills();
+    this->createBaseValues();
 }
 
 Player::Player(bool isLoad)
@@ -69,6 +71,7 @@ Player::Player(bool isLoad)
     this->animation = new Animation();
     animation->setAnimation("images/walking2.png", 88, 98);
     this->animation->setDuration(1);
+    this->createBaseValues();
 }
 
 
@@ -129,8 +132,9 @@ void Player::playerMove(double X, double Y)
     int side = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y)->getTransferDirection();
     if(side != -1)
     {
-        this->setTransferCoords(side);
+        this->changeModules(side);
         Variables::session->getMap()->switchModule(side);
+        Variables::session->getMap()->getCurrentAllEntities()->applyModifiers(this);
     }
 }
 
@@ -394,7 +398,7 @@ Skills* Player::getSkills() const {
     return skills;
 }
 
-void Player::setTransferCoords(int side)
+void Player::changeModules(int side)
 {
     double totalSize = Variables::tileSize * Variables::tilesPerRoom;
     switch(side)
@@ -408,6 +412,7 @@ void Player::setTransferCoords(int side)
         case 3: coords->X = totalSize - Variables::tileSize - coords->X;
             break;
     }
+    this->setIntoBaseValues();
 }
 
 void Player::updatePickUps()
@@ -442,4 +447,44 @@ void Player::setEquipment(int equipmentType, int newEquipmentNo)
             changeItem(newEquipmentNo);
             break;
     }
+}
+
+void Player::adaptToModificators()
+{
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[3] != 0)
+    {
+        this->health = baseValues.health * 0.5;
+        this->maximumHealth = baseValues.maxHealth * 0.5;
+    }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[4] != 0)
+    {
+        this->health = baseValues.health * 2;
+        this->maximumHealth = baseValues.maxHealth * 2;
+    }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[5] != 0)
+    {
+        this->coords->speedX = baseValues.speed * 1.5;
+        this->coords->speedY = baseValues.speed * 1.5;
+    }
+    if(Variables::session->getMap()->getCurrentModule()->getModificatorsTable()[6] != 0)
+    {
+        this->coords->speedX = baseValues.speed * 0.65;
+        this->coords->speedY = baseValues.speed * 0.65;
+    }
+}
+
+void Player::createBaseValues()
+{    
+    this->baseValues.speed = coords->speedX;
+    this->baseValues.health = health;
+    this->baseValues.maxHealth = maximumHealth;
+}
+
+void Player::setIntoBaseValues()
+{
+    this->health = (baseValues.maxHealth * health)/maximumHealth;
+    if(health < 1)health++;
+    this->maximumHealth = baseValues.maxHealth;
+    this->coords->speedX = baseValues.speed;
+    this->coords->speedY = baseValues.speed;
 }

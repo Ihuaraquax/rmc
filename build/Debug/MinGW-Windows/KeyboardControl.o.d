@@ -8,7 +8,7 @@ build/Debug/MinGW-Windows/KeyboardControl.o: KeyboardControl.cpp \
  AllLightSources.h LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
  AllAllowanceObjects.h AllowanceObject.h GameSubstateEnum.h LogLevels.h \
  GlobalImages.h ValueReader.h Player.h Attributes.h Animation.h Skills.h \
- AttributeEnum.h Console.h
+ PlayerBaseValues.h AttributeEnum.h Console.h
 
 KeyboardControl.h:
 
@@ -111,6 +111,8 @@ Attributes.h:
 Animation.h:
 
 Skills.h:
+
+PlayerBaseValues.h:
 
 AttributeEnum.h:
 

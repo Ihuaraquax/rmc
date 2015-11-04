@@ -83,7 +83,6 @@ void Map::createLevels()
             currentModule = modules[i][j];
             allEntities[i][j]->init();
             allEntities[i][j]->createModuleDoor(j,i);
-//            allEntities[i][j]->applyModifiers();
             if(i == keyX && j == keyY)
             {
                 Entity *keyHolder = KeyHolder::CreateKeyHolder(Variables::tileSize, Variables::tileSize);
@@ -309,17 +308,4 @@ AllEntities* Map::getAllEntities(int X, int Y) const {
 
 AllEntities*** Map::getAllEntities() const {
     return allEntities;
-}
-
-void Map::applyModificators()
-{
-    for(int i = 0 ; i < this->modulesTableSize; i++)
-    {
-        for(int j = 0; j < this->modulesTableSize; j++)
-        {
-            currentModule = this->modules[i][j];
-            this->allEntities[i][j]->applyModifiers();
-        }
-    }
-    currentModule = modules[0][0];
 }

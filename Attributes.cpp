@@ -9,6 +9,7 @@
 #include "Session.h"
 #include "Player.h"
 #include "globalVariables.h"
+#include "PlayerBaseValues.h"
 
 Attributes::Attributes() {
     this->accuracy = 1;
@@ -64,11 +65,13 @@ void Attributes::addSpeed(int toAdd)
 {
     if(toAdd > 0 && this->attributePointsLeft > toAdd)
     {
+        Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
         this->speed += toAdd;
         double temp = toAdd;
         temp /= 100;
-        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedX += temp;
-        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->coords->speedY += temp;
+        player->coords->speedX += temp;
+        player->coords->speedY += temp;
+        player->baseValues.speed += temp;
         attributePointsLeft -= toAdd;
         if(speed%10 == 0)dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->addSkillPoints(3, 1);
     }
@@ -78,9 +81,12 @@ void Attributes::addStrength(int toAdd)
 {
     if(toAdd > 0 && this->attributePointsLeft > toAdd)
     {
+        Player *player = dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer());
         this->strength += toAdd;
-        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->health += toAdd;
-        dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->maximumHealth += toAdd;
+        player->health += toAdd;
+        player->maximumHealth += toAdd;
+        player->baseValues.health += toAdd;
+        player->baseValues.maxHealth += toAdd;
         attributePointsLeft -= toAdd;
         if(strength%10 == 0)dynamic_cast<Player*>(Variables::session->getAllEntities()->getPlayer())->getSkills()->addSkillPoints(0, 1);
     }

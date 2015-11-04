@@ -8,7 +8,7 @@ build/Debug/MinGW-Windows/Button.o: Button.cpp Button.h Coordinates.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
  AllAllowanceObjects.h AllowanceObject.h GameSubstateEnum.h LogLevels.h \
  GlobalImages.h ValueReader.h CollisionDetector.h Player.h Attributes.h \
- Animation.h Skills.h
+ Animation.h Skills.h PlayerBaseValues.h
 
 Button.h:
 
@@ -113,3 +113,5 @@ Attributes.h:
 Animation.h:
 
 Skills.h:
+
+PlayerBaseValues.h:

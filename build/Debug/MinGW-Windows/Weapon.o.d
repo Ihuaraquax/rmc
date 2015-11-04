@@ -8,7 +8,8 @@ build/Debug/MinGW-Windows/Weapon.o: Weapon.cpp Weapon.h Coordinates.h \
  LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
  AllAllowanceObjects.h AllowanceObject.h GameSubstateEnum.h LogLevels.h \
  GlobalImages.h ValueReader.h Projectile.h WeaponLoader.h Player.h \
- Attributes.h Animation.h Skills.h ProjectileFactory.h Grenade.h
+ Attributes.h Animation.h Skills.h PlayerBaseValues.h ProjectileFactory.h \
+ Grenade.h
 
 Weapon.h:
 
@@ -115,6 +116,8 @@ Attributes.h:
 Animation.h:
 
 Skills.h:
+
+PlayerBaseValues.h:
 
 ProjectileFactory.h:
 
