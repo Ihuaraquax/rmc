@@ -35,6 +35,7 @@ void Map::init(int size)
             allEntities[i][j] = new AllEntities();
         }
     }
+    setDifficultyLevel();
 }
 
 Map::~Map()
@@ -56,7 +57,7 @@ Map::~Map()
 
 void Map::createLevels()
 {    
-    init(3);
+    init(6);
     ModuleFactory factory;
     int keyX = rand()%modulesTableSize, keyY = rand()%modulesTableSize;
     int lockX, lockY;
@@ -308,4 +309,15 @@ AllEntities* Map::getAllEntities(int X, int Y) const {
 
 AllEntities*** Map::getAllEntities() const {
     return allEntities;
+}
+
+void Map::setDifficultyLevel()
+{
+    for(int i = 0; i < this->modulesTableSize/2; i++)
+    {
+        for(int x = i; x < this->modulesTableSize - i; x++)
+            for(int y = i; y < this->modulesTableSize - i; y++){
+                allEntities[x][y]->increaseDifficultyLevel();
+            }
+    }
 }

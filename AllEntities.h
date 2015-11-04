@@ -41,6 +41,9 @@ public:
     void updateVirtualThreatLevel(bool currentModule);
     void recreateSpawners();
     void spawnMonstersFromSpawners();
+    void setDifficultyLevel(int difficultyLevel);
+    int getDifficultyLevel() const;
+    void increaseDifficultyLevel();
 private:
     void deleteDead();
     void createObstacles();
@@ -63,6 +66,7 @@ private:
     std::vector<int> possibleMonsterTypes;
     int threatLevelIncrement;
     std::vector<Entity*> spawnerList;
+    int difficultyLevel;
 };
 
 #endif	/* ALLENTITIES_H */

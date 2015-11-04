@@ -36,6 +36,7 @@ AllEntities::AllEntities() {
     possibleMonsterTypes.push_back(rand()%3);
     possibleMonsterTypes.push_back(rand()%3);
     threatLevelIncrement = 0;
+    difficultyLevel = 0;
 }
 
 void AllEntities::init()
@@ -462,6 +463,14 @@ void AllEntities::spawnMonstersFromSpawners()
     }
 }
 
+void AllEntities::setDifficultyLevel(int difficultyLevel) {
+    this->difficultyLevel = difficultyLevel;
+}
+
+int AllEntities::getDifficultyLevel() const {
+    return difficultyLevel;
+}
+
 Entity* AllEntities::getMonsterFromModule(double X, double Y)
 {
     Entity *result;
@@ -471,7 +480,7 @@ Entity* AllEntities::getMonsterFromModule(double X, double Y)
 
 void AllEntities::recreateSpawners()
 {
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 5 + difficultyLevel*2; i++)
     {
         Entity *spawner = Spawner::CreateSpawner(0,0);
         spawner->setStartingTile();
@@ -480,4 +489,9 @@ void AllEntities::recreateSpawners()
         this->spawnerList.push_back(spawner);
         this->virtualThreatLevel += dynamic_cast<Spawner*>(spawner)->getThreatLevel();
     }
+}
+
+void AllEntities::increaseDifficultyLevel()
+{
+    difficultyLevel++;
 }

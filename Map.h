@@ -41,6 +41,7 @@ public:
     AllEntities*** getAllEntities() const;
     AllEntities* getAllEntities(int X, int Y) const;
 private:
+    void setDifficultyLevel();
     Module ***modules;
     AllEntities ***allEntities;
     Module *currentModule;
