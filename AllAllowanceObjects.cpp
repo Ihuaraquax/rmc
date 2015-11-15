@@ -39,7 +39,7 @@ void AllAllowanceObjects::addObject(AllowanceObject* object)
     templateList<AllowanceObject> *newTypedObject= new templateList<AllowanceObject>();
     newTypedObject->data = object;
     newTypedObject->next = typedAllowanceObjects[type];
-    typedAllowanceObjects[type] = newObject;
+    typedAllowanceObjects[type] = newTypedObject;
     typedListSize[type]++;
 }
 
@@ -68,7 +68,11 @@ void AllAllowanceObjects::deleteObject(AllowanceObject* object)
     else
     {
         templateList<AllowanceObject> *prev = typedAllowanceObjects[type]->findPrevious(object);
-        prev->next = typedToDelete->next;
+        if(prev == NULL){
+            typedAllowanceObjects[type] = NULL;
+        } else {
+            prev->next = typedToDelete->next;
+        }
     }
     delete typedToDelete;
     typedListSize[type]--;

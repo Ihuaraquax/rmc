@@ -41,7 +41,7 @@ Module::~Module()
     for(std::list<Door*>::iterator i = doors.begin(); i != doors.end(); ++i)
     {
         Door *temp = *i;
-//        delete temp;  Dziwny błąd - delete powoduje wyrzucenie błędu podczas wychodzenia z debug w netbeans
+        delete temp;
     }
     for(std::list<Chest*>::iterator i = chests.begin(); i != chests.end(); ++i)
     {

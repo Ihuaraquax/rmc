@@ -46,11 +46,11 @@ void AllEntities::init()
         Entity *temp = *i;
         temp->setStartingTile();
     }
-    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
-    {
-        Entity *temp = *i;
-        dynamic_cast<AllowanceObject*>(temp)->setUsableTiles();
-    }
+//    for(std::list<Entity*>::iterator i = entityList.begin(); i != entityList.end(); ++i)
+//    {
+//        Entity *temp = *i;
+//        dynamic_cast<AllowanceObject*>(temp)->setUsableTiles();
+//    }
     player = NULL;
     DoorFactory::createDoors();
     createChests();
@@ -72,7 +72,7 @@ AllEntities::~AllEntities()
 
 void AllEntities::createChests()
 {
-    for(int i = 0; i < 0; i++)
+    for(int i = 0; i < 5; i++)
     {
         Entity *chest = Chest::CreateChest(0,0);
         chest->setStartingTile();
@@ -249,7 +249,7 @@ bool AllEntities::deleteRemoteCharge(int signalId)
 
 void AllEntities::applyModifiers(Entity* newEntity)
 {
-    newEntity->adaptToModificators();
+//    newEntity->adaptToModificators();
 }
 
 void AllEntities::setPlayer(Entity* player) {
@@ -406,8 +406,11 @@ void AllEntities::getMonstersFromAdjacentModules()
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetLeftDoor())->isClosed() == false)
             {
                 Entity *monster = temp->getMonsterFromModule(Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2));
-                monster->setStartingTile();
-                this->addEntity(monster);
+                if(monster != NULL)
+                {
+                    monster->setStartingTile();
+                    this->addEntity(monster);
+                }
             }
         }
     }
@@ -419,8 +422,11 @@ void AllEntities::getMonstersFromAdjacentModules()
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetRightDoor())->isClosed() == false)
             {
                 Entity *monster = temp->getMonsterFromModule((Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2, Variables::tileSize * (Variables::tilesPerRoom/2));
-                monster->setStartingTile();
-                this->addEntity(monster);
+                if(monster != NULL)
+                {
+                    monster->setStartingTile();
+                    this->addEntity(monster);
+                }
             }
         }
     }
@@ -432,8 +438,11 @@ void AllEntities::getMonstersFromAdjacentModules()
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetUpDoor())->isClosed() == false)
             {
                 Entity *monster = temp->getMonsterFromModule(Variables::tileSize * (Variables::tilesPerRoom/2),Variables::tileSize*2);
-                monster->setStartingTile();
-                this->addEntity(monster);
+                if(monster != NULL)
+                {
+                    monster->setStartingTile();
+                    this->addEntity(monster);
+                }
             }
         }
     }
@@ -445,8 +454,11 @@ void AllEntities::getMonstersFromAdjacentModules()
             if(dynamic_cast<ModuleDoor*>(moduleDoors->GetDownDoor())->isClosed() == false)
             {
                 Entity *monster = temp->getMonsterFromModule(Variables::tileSize * (Variables::tilesPerRoom/2),(Variables::tileSize * Variables::tilesPerRoom) - Variables::tileSize*2);
-                monster->setStartingTile();
-                this->addEntity(monster);
+                if(monster != NULL)
+                {
+                    monster->setStartingTile();
+                    this->addEntity(monster);
+                }
             }
         }
     }
@@ -473,9 +485,13 @@ int AllEntities::getDifficultyLevel() const {
 
 Entity* AllEntities::getMonsterFromModule(double X, double Y)
 {
-    Entity *result;
+    Entity *result = NULL;
     int index = rand()%spawnerList.size();
-    result = dynamic_cast<Spawner*>(spawnerList[index])->getMonster(X, Y);
+    if(spawnerList[index] != NULL)
+    {
+        result = dynamic_cast<Spawner*>(spawnerList[index])->getMonster(X, Y);
+    }
+    return result;
 }
 
 void AllEntities::recreateSpawners()

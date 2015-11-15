@@ -61,7 +61,14 @@ void Entity::move(double X, double Y){
     this->coords->X += X * speedX;
     ModuleTile *newTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
-    if(CollisionDetector::isAnyCollision(newTile, this))
+    if(newTile != NULL)
+    {
+        if(CollisionDetector::isAnyCollision(newTile, this))
+        {
+            this->coords->X -= X * speedX;
+        }
+    }
+    else
     {
         this->coords->X -= X * speedX;
     }
@@ -70,7 +77,14 @@ void Entity::move(double X, double Y){
     this->coords->Y += Y * speedY;
     newTile = Variables::session->getMap()
             ->getCurrentModule()->getModuleTileAt(coords->X,coords->Y);
+    if(newTile != NULL)
+    {
     if(CollisionDetector::isAnyCollision(newTile, this))
+    {
+        this->coords->Y -= Y * speedY;
+    }
+    }
+    else
     {
         this->coords->Y -= Y * speedY;
     }
