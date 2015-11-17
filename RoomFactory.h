@@ -15,9 +15,12 @@ public:
     static Room **createRooms(int roomCount, int **tiles, int roomId);
 private:
     static void getRoomSeedCoords(int &X, int &Y, int **tileTable, int roomBaseTile);
-    static bool roomsAreMaxed(Room **rooms, int roomCount);
+    static bool roomsAreMaxed(int **tiles, int roomId);
     static void addZeroToRooms(int **tileTable, Room **rooms);
     static int zerosCount(int **tileTable);
+    static void growRooms(int roomCount, int **tiles, Room **rooms, int **residualTiles);
+    static int isTileAdjacentToRoom(int **tiles, int X, int Y);
+    static void translateArrays(int **tiles, int **residualTiles);
 };
 
 #endif	/* ROOMFACTORY_H */

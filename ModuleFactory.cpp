@@ -56,24 +56,15 @@ void ModuleFactory::setModuleRooms(Module* module)
     wallFactory->setModuleBasicWalls(module);
     for(int i = 0; i < 10; i++)
     {
-        wallFactory->setObstacleWalls(module, roomCount[i], rooms[i], tiles);
+        wallFactory->setObstacleWalls(tiles);
     }
+    wallFactory->deleteThickWalls();
     wallFactory->deleteSingleWalls();
     wallFactory->addHoleWalls();
     wallFactory->generateCorners();
     wallFactory->generateWalls();
     delete wallFactory;
-//    
     TileFactory::createModuleTiles(module, tiles);
-//    for(int j = 0; j < 10; j++)
-//    {
-//        for(int i = 0; i < roomCount[i]; i++)
-//        {
-//            delete rooms[j][i];
-//        }
-//        delete []rooms[j];
-//    }
-//    delete []rooms;
 }
 
 int **ModuleFactory::createTiles()

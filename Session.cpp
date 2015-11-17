@@ -138,7 +138,7 @@ void Session::display()
         tooltip->display();
         al_flip_display();
         }
-    if(Variables::status == WIN)
+    else if(Variables::status == WIN)
     {
         winImage->display(coords);
         al_flip_display();

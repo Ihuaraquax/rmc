@@ -120,3 +120,7 @@ void Room::display()
         al_draw_filled_rectangle(X, Y, X+50, Y + 50, al_map_rgb(color,color,color));
     }
 }
+
+int Room::getRoomTile() const {
+    return roomTile;
+}

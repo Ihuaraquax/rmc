@@ -53,12 +53,12 @@ void AllEntities::init()
 //    }
     player = NULL;
     DoorFactory::createDoors();
-    createChests();
-    createTurrets();
-    createConsoles();
+//    createChests();
+//    createTurrets();
+//    createConsoles();
     recreateSpawners();
-    createObstacles();
-    spawnMonstersFromSpawners();
+//    createObstacles();
+//    spawnMonstersFromSpawners();
 }
 AllEntities::~AllEntities()
 {
@@ -72,7 +72,7 @@ AllEntities::~AllEntities()
 
 void AllEntities::createChests()
 {
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 0; i++)
     {
         Entity *chest = Chest::CreateChest(0,0);
         chest->setStartingTile();
@@ -96,7 +96,7 @@ void AllEntities::createTurrets()
 
 void AllEntities::createConsoles()
 {
-    for(int i = 0; i < 1; i++)
+    for(int i = 0; i < 0; i++)
     {
         int X = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));
         int Y = Variables::tileSize + rand()%(Variables::tileSize * (Variables::tilesPerRoom - 2));

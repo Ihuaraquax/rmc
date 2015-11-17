@@ -6,6 +6,14 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/ModuleFactory.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/RoomFactory.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/Room.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/RoomFactory.h</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/WallFactory.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/Room.h</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/AllEntities.cpp</file>
+        </group>
     </open-files>
 </project-private>

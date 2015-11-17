@@ -29,6 +29,7 @@ public:
     void addToTiles(int X, int Y);
     bool tryToGrow(int X, int Y, int **tileTable);
     void display();
+    int getRoomTile() const;
 private:
     int baseTile;
     int *tilesX;

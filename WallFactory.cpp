@@ -21,20 +21,6 @@ WallFactory::WallFactory() {
     }
 }
 
-
-bool WallFactory::isValidTile(int X, int Y, int **fieldTable, int roomTileID)
-{
-    int const MAX_FIELD_SIZE = Variables::tilesPerRoom-1;    
-    bool result = false;
-    
-    if(X >= 0 && X <= MAX_FIELD_SIZE && Y >= 0 && Y <= MAX_FIELD_SIZE)
-    {
-        if(fieldTable[X][Y] != roomTileID)result = true;
-    }
-    
-    return result;
-}
-
 void WallFactory::setModuleBasicWalls(Module* module)
 {
     for(int i = 0; i < Variables::tilesPerRoom; i++)
@@ -78,23 +64,16 @@ void WallFactory::setModuleBasicWalls(Module* module)
     }
 }
 
-void WallFactory::setObstacleWalls(Module* module, int roomCount, Room** rooms, int** tiles)
+void WallFactory::setObstacleWalls(int** tiles)
 {
-    for(int j = 0; j < roomCount; j++)
+    for(int i = 0; i < Variables::tilesPerRoom; i++)
     {
-        Room *room = rooms[j];
-        for(int i = 0; i < room->tileTableSize; i++)
-        {
-            int x = room->tilesX[i];
-            int y = room->tilesY[i];
-
-            if(WallFactory::isValidTile(x-1,y,tiles, room->roomTile) ||
-               WallFactory::isValidTile(x+1,y,tiles, room->roomTile) ||
-               WallFactory::isValidTile(x,y-1,tiles, room->roomTile) ||
-               WallFactory::isValidTile(x,y+1,tiles, room->roomTile))
-            {
-                temp[x][y] = 1;
-            }
+        for(int j = 0; j < Variables::tilesPerRoom; j++){
+            int tileValue = tiles[i][j];
+            if(i > 0 && tiles[i-1][j] != tileValue)temp[i][j] = 1;
+            if(i < Variables::tilesPerRoom-1 && tiles[i+1][j] != tileValue)temp[i][j] = 1;
+            if(j > 0 && tiles[i][j-1] != tileValue)temp[i][j] = 1;
+            if(j < Variables::tilesPerRoom-1 && tiles[i][j+1] != tileValue)temp[i][j] = 1;
         }
     }
 }
@@ -186,4 +165,85 @@ void WallFactory::generateWalls()
             }
         }
     }
+}
+
+void WallFactory::deleteThickWalls()
+{
+    // TO DO BETTER 
+//    for(int i = 0; i < Variables::tilesPerRoom; i++)
+//    {
+//        for(int j = 0; j < Variables::tilesPerRoom; j++)
+//        {
+//            if(temp[i][j] == 1)
+//            {
+//                int neighboursCount = 0;
+//                int straightNeighboursCount = 0;
+//                if(i > 0)
+//                {
+//                    if(temp[i-1][j] > 0)
+//                    {
+//                        neighboursCount++;
+//                        straightNeighboursCount++;
+//                    }
+//                    if(j > 0 && temp[i-1][j-1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                    if(j < Variables::tilesPerRoom-1 && temp[i-1][j+1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                }
+//                if(i < Variables::tilesPerRoom -1)
+//                {
+//                    if(temp[i+1][j] > 0)
+//                    {
+//                        neighboursCount++;
+//                        straightNeighboursCount++;
+//                    }
+//                    if(j > 0 && temp[i+1][j-1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                    if(j < Variables::tilesPerRoom-1 && temp[i+1][j+1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                }
+//                if(j > 0)
+//                {
+//                    if(temp[i][j-1] > 0)
+//                    {
+//                        neighboursCount++;
+//                        straightNeighboursCount++;
+//                    }
+//                    if(i > 0 && temp[i-1][j-1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                    if(i < Variables::tilesPerRoom-1&& temp[i+1][j-1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                }
+//                if(j < Variables::tilesPerRoom -1)
+//                {
+//                    if(temp[i][j+1] > 0)
+//                    {
+//                        neighboursCount++;
+//                        straightNeighboursCount++;
+//                    }
+//                    if(i > 0 && temp[i-1][j+1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                    if(i < Variables::tilesPerRoom-1 && temp[i+1][j+1] > 0)
+//                    {
+//                        neighboursCount++;
+//                    }
+//                }
+//                if(straightNeighboursCount == 3 && neighboursCount == 7)temp[i][j] = 0;
+//            }
+//        }
+//    }
 }
