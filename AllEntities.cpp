@@ -157,6 +157,7 @@ void AllEntities::addEntity(Entity* newEntity)
 
 void AllEntities::deleteEntity(Entity* toDelete)
 {
+    if(toDelete == NULL)return;
     this->threatLevel -= toDelete->getModuleThreatLevel();
     if(toDelete->getEntityType() == "SPAWNER"){
         for(std::vector<Entity*>::iterator i = spawnerList.begin(); i != spawnerList.end(); ++i)
