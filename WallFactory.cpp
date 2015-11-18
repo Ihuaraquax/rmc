@@ -169,81 +169,64 @@ void WallFactory::generateWalls()
 
 void WallFactory::deleteThickWalls()
 {
-    // TO DO BETTER 
-//    for(int i = 0; i < Variables::tilesPerRoom; i++)
-//    {
-//        for(int j = 0; j < Variables::tilesPerRoom; j++)
-//        {
-//            if(temp[i][j] == 1)
-//            {
-//                int neighboursCount = 0;
-//                int straightNeighboursCount = 0;
-//                if(i > 0)
-//                {
-//                    if(temp[i-1][j] > 0)
-//                    {
-//                        neighboursCount++;
-//                        straightNeighboursCount++;
-//                    }
-//                    if(j > 0 && temp[i-1][j-1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                    if(j < Variables::tilesPerRoom-1 && temp[i-1][j+1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                }
-//                if(i < Variables::tilesPerRoom -1)
-//                {
-//                    if(temp[i+1][j] > 0)
-//                    {
-//                        neighboursCount++;
-//                        straightNeighboursCount++;
-//                    }
-//                    if(j > 0 && temp[i+1][j-1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                    if(j < Variables::tilesPerRoom-1 && temp[i+1][j+1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                }
-//                if(j > 0)
-//                {
-//                    if(temp[i][j-1] > 0)
-//                    {
-//                        neighboursCount++;
-//                        straightNeighboursCount++;
-//                    }
-//                    if(i > 0 && temp[i-1][j-1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                    if(i < Variables::tilesPerRoom-1&& temp[i+1][j-1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                }
-//                if(j < Variables::tilesPerRoom -1)
-//                {
-//                    if(temp[i][j+1] > 0)
-//                    {
-//                        neighboursCount++;
-//                        straightNeighboursCount++;
-//                    }
-//                    if(i > 0 && temp[i-1][j+1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                    if(i < Variables::tilesPerRoom-1 && temp[i+1][j+1] > 0)
-//                    {
-//                        neighboursCount++;
-//                    }
-//                }
-//                if(straightNeighboursCount == 3 && neighboursCount == 7)temp[i][j] = 0;
-//            }
-//        }
-//    }
+    for(int i = 1; i < Variables::tilesPerRoom; i++)
+    {
+        for(int j = 1; j < Variables::tilesPerRoom; j++)
+        {
+            if(isToThickWall(i,j))temp[i][j] = 0;
+        }
+    }
+}
+
+//-1: cokolwiek
+// 0: nic
+// 1: ściana
+bool WallFactory::isToThickWall(int x, int y)
+{
+    bool result = false;
+    int verticalRuleArray[5][5] = {
+        {-1,-1,-1,-1,-1},
+        {-1, 0,-1, 1,-1},
+        {-1, 0, 1, 1, 0},
+        {-1, 0,-1, 1,-1},
+        {-1,-1,-1,-1,-1}
+    };
+    int horizontalRuleArray[5][5] = {
+        {-1,-1,-1,-1,-1},
+        {-1, 0, 0, 0,-1},
+        {-1,-1, 1,-1,-1},
+        {-1, 1, 1, 1,-1},
+        {-1,-1, 0,-1,-1}
+    };
+    bool verticalResult = isRuleApplicable(x,y, verticalRuleArray);
+    bool horizontalResult = isRuleApplicable(x,y, horizontalRuleArray);
+    if(horizontalResult || verticalResult)result = true;
+    return result;
+}
+
+bool WallFactory::isRuleApplicable(int x, int y, int rule[5][5])
+{
+    bool horizontalResult = true;
+    for(int i = 0; i < 5; i++)
+    {
+        for(int j = 0; j < 5; j++)
+        {
+            int X = x+i-2, Y = y+j-2;
+            if(X >= 0 && X < Variables::tilesPerRoom && Y >= 0 && Y < Variables::tilesPerRoom)
+            {
+                if(rule[i][j] == 0 && temp[X][Y] != 0)
+                {
+                    horizontalResult = false;
+                    break;
+                }
+                if(rule[i][j] == 1 && temp[X][Y] != 1)
+                {
+                    horizontalResult = false;
+                    break;
+                }
+            }
+            if(horizontalResult == false)break;
+        }
+    }
+    return horizontalResult;
 }

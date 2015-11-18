@@ -25,6 +25,8 @@ public:
 private:
     std::list<Wall*>  getRoomWall(Room *room, int **fieldTable);
     std::list<Door*>  getDoors();
+    bool isToThickWall(int x, int y);
+    bool isRuleApplicable(int x, int y, int rule[5][5]);
     int **temp;
 };
 

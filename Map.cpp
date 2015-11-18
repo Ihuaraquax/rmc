@@ -57,7 +57,7 @@ Map::~Map()
 
 void Map::createLevels()
 {    
-    init(13);
+    init(3);
     ModuleFactory factory;
     int keyX = rand()%modulesTableSize, keyY = rand()%modulesTableSize;
     int lockX, lockY;
