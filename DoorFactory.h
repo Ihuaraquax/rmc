@@ -12,7 +12,6 @@ class DoorFactory {
 public:
     void static createDoors();
 private:
-    bool static isRuleApplicable(int x, int y, int rule[5][5]);
 };
 
 #endif	/* DOORFACTORY_H */

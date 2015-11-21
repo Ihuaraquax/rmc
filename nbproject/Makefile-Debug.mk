@@ -78,6 +78,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/LightSource.o \
 	${OBJECTDIR}/Lock.o \
 	${OBJECTDIR}/Map.o \
+	${OBJECTDIR}/MapRuleChecker.o \
 	${OBJECTDIR}/Menu.o \
 	${OBJECTDIR}/Missle.o \
 	${OBJECTDIR}/Module.o \
@@ -360,6 +361,11 @@ ${OBJECTDIR}/Map.o: Map.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Map.o Map.cpp
+
+${OBJECTDIR}/MapRuleChecker.o: MapRuleChecker.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MapRuleChecker.o MapRuleChecker.cpp
 
 ${OBJECTDIR}/Menu.o: Menu.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -7,7 +7,7 @@ build/Debug/MinGW-Windows/DoorFactory.o: DoorFactory.cpp DoorFactory.h \
  Map.h Module.h Floor.h Room.h ModuleTile.h AiTile.h AllDecals.h Decal.h \
  AllLightSources.h LightSource.h AllPlans.h Plan.h PlanStep.h Tooltip.h \
  AllAllowanceObjects.h AllowanceObject.h GameSubstateEnum.h LogLevels.h \
- GlobalImages.h ValueReader.h ObstacleDoor.h
+ GlobalImages.h ValueReader.h ObstacleDoor.h MapRuleChecker.h
 
 DoorFactory.h:
 
@@ -106,3 +106,5 @@ GlobalImages.h:
 ValueReader.h:
 
 ObstacleDoor.h:
+
+MapRuleChecker.h:

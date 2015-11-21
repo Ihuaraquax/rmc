@@ -27,7 +27,7 @@ ObstacleDoor::ObstacleDoor()
     closed = true;
     this->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
-    this->setRequirements();
+//    this->setRequirements();
 }
 
 void ObstacleDoor::setCoords(double X, double Y) {
