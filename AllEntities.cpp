@@ -25,6 +25,7 @@
 #include "Console.h"
 #include "ModuleDoor.h"
 #include "ModuleDoorEntities.h"
+#include "FlamingPipe.h"
 #include <iostream>
   
 AllEntities::AllEntities() {
@@ -59,6 +60,7 @@ void AllEntities::init()
     recreateSpawners();
 //    createObstacles();
 //    spawnMonstersFromSpawners();
+    createFlamingPipes();
 }
 AllEntities::~AllEntities()
 {
@@ -70,6 +72,21 @@ AllEntities::~AllEntities()
     player = NULL;
 }
 
+
+void AllEntities::createFlamingPipes()
+{
+    Entity *pipe1 = FlamingPipe::getFlamingPipe(200, 500);
+    this->addEntity(pipe1);
+    Entity *pipe2 = FlamingPipe::getFlamingPipe(300, 500);
+    pipe2->getCoords()->angle = 180;
+    this->addEntity(pipe2);
+    Entity *pipe3 = FlamingPipe::getFlamingPipe(600, 500);
+    pipe3->getCoords()->angle = 90;
+    this->addEntity(pipe3);
+    Entity *pipe4 = FlamingPipe::getFlamingPipe(600, 400);
+    pipe4->getCoords()->angle = 270;
+    this->addEntity(pipe4);
+}
 void AllEntities::createChests()
 {
     for(int i = 0; i < 0; i++)

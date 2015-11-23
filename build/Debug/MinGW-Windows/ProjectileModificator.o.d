@@ -1,7 +1,7 @@
 build/Debug/MinGW-Windows/ProjectileModificator.o: \
  ProjectileModificator.cpp ProjectileModificator.h Entity.h Image.h \
  Coordinates.h Wall.h Door.h UsableObject.h Weapon.h DamageTypeEnum.h \
- templateList.h GenericBuffer.h EntityShape.h Projectile.h \
+ templateList.h GenericBuffer.h EntityShape.h Animation.h Projectile.h \
  globalVariables.h Session.h Menu.h HUD.h WeaponUI.h EquipmentUI.h \
  Equipment.h UsableItem.h Inventory.h Button.h Chest.h Obstacle.h \
  AllEntities.h ModuleDoorEntities.h MouseControl.h KeyboardControl.h \
@@ -33,6 +33,8 @@ templateList.h:
 GenericBuffer.h:
 
 EntityShape.h:
+
+Animation.h:
 
 Projectile.h:
 

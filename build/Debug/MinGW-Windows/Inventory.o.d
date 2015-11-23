@@ -1,7 +1,7 @@
 build/Debug/MinGW-Windows/Inventory.o: Inventory.cpp Inventory.h Image.h \
  Coordinates.h Button.h Player.h Entity.h Wall.h Door.h UsableObject.h \
  Weapon.h DamageTypeEnum.h templateList.h GenericBuffer.h EntityShape.h \
- Equipment.h Attributes.h UsableItem.h Animation.h Skills.h \
+ Animation.h Equipment.h Attributes.h UsableItem.h Skills.h \
  PlayerBaseValues.h globalVariables.h Session.h Menu.h HUD.h WeaponUI.h \
  EquipmentUI.h Chest.h Obstacle.h AllEntities.h ModuleDoorEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
@@ -39,13 +39,13 @@ GenericBuffer.h:
 
 EntityShape.h:
 
+Animation.h:
+
 Equipment.h:
 
 Attributes.h:
 
 UsableItem.h:
-
-Animation.h:
 
 Skills.h:
 

@@ -64,6 +64,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Explosion.o \
 	${OBJECTDIR}/ExplosiveBarrel.o \
 	${OBJECTDIR}/Explosives.o \
+	${OBJECTDIR}/FlamingPipe.o \
 	${OBJECTDIR}/Floor.o \
 	${OBJECTDIR}/GenericBuffer.o \
 	${OBJECTDIR}/GlobalImages.o \
@@ -291,6 +292,11 @@ ${OBJECTDIR}/Explosives.o: Explosives.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Explosives.o Explosives.cpp
+
+${OBJECTDIR}/FlamingPipe.o: FlamingPipe.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FlamingPipe.o FlamingPipe.cpp
 
 ${OBJECTDIR}/Floor.o: Floor.cpp 
 	${MKDIR} -p ${OBJECTDIR}

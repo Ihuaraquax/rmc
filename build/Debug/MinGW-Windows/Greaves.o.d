@@ -1,7 +1,7 @@
 build/Debug/MinGW-Windows/Greaves.o: Greaves.cpp Greaves.h Equipment.h \
  Player.h Entity.h Image.h Coordinates.h Wall.h Door.h UsableObject.h \
  Weapon.h DamageTypeEnum.h templateList.h GenericBuffer.h EntityShape.h \
- Attributes.h UsableItem.h Inventory.h Button.h Animation.h Skills.h \
+ Animation.h Attributes.h UsableItem.h Inventory.h Button.h Skills.h \
  PlayerBaseValues.h globalVariables.h Session.h Menu.h HUD.h WeaponUI.h \
  EquipmentUI.h Chest.h Obstacle.h AllEntities.h ModuleDoorEntities.h \
  MouseControl.h KeyboardControl.h Map.h Module.h Floor.h Room.h \
@@ -38,6 +38,8 @@ GenericBuffer.h:
 
 EntityShape.h:
 
+Animation.h:
+
 Attributes.h:
 
 UsableItem.h:
@@ -45,8 +47,6 @@ UsableItem.h:
 Inventory.h:
 
 Button.h:
-
-Animation.h:
 
 Skills.h:
 

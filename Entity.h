@@ -17,6 +17,7 @@
 #include "DamageTypeEnum.h"
 #include "GenericBuffer.h"
 #include "EntityShape.h"
+#include "Animation.h"
 #include <fstream>
 
 class Entity {
@@ -91,6 +92,7 @@ protected:
     EntityShape shape;
     Entity *ignoreCollisionEntity;
     int moduleThreatLevel = 0;
+    Animation *animation;
 };
 
 #endif	/* ENTITY_H */

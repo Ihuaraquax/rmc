@@ -52,6 +52,7 @@ private:
     void createChests();
     void createTurrets();
     void createConsoles();
+    void createFlamingPipes();
     
     void getMonstersFromAdjacentModules();
     Entity* getMonsterFromModule(double X, double Y);

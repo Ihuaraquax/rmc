@@ -90,7 +90,6 @@ private:
     
     Attributes *attributes;
     int keyValue;
-    Animation *animation;
     PlayerBaseValues baseValues;
 };
 

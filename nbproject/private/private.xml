@@ -10,8 +10,11 @@
             <file>file:/G:/lothar/c++/gitRepo/rmc/Entity.h</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/WallFactory.h</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/ModuleFactory.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/MapRuleChecker.h</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/Spawner.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/RoomFactory.h</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Module.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/Spawner.h</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/WallFactory.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/ObstacleDoor.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Explosion.cpp</file>
@@ -22,10 +25,13 @@
             <file>file:/G:/lothar/c++/gitRepo/rmc/DoorFactory.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/AllEntities.h</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Entity.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/MonsterLoader.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/RoomFactory.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Room.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/Monster.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Session.cpp</file>
             <file>file:/G:/lothar/c++/gitRepo/rmc/Helmet.cpp</file>
+            <file>file:/G:/lothar/c++/gitRepo/rmc/MapRuleChecker.cpp</file>
         </group>
     </open-files>
 </project-private>
