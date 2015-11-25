@@ -9,6 +9,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "globalVariables.h"
+#include "CollisionDetector.h"
 
 FlamingPipe::FlamingPipe() {
     this->animation = new Animation();
@@ -46,47 +47,74 @@ Entity *FlamingPipe::getFlamingPipe(double X, double Y)
 
 void FlamingPipe::update()
 {
-//    if(Variables::currentFrame == 0)
-//    {
-        ModuleTile *firstTile, *secondTile;
+    if(Variables::currentFrame%20 == 0)
+    {
+        ModuleTile *firstTile;
         double tileSize = Variables::tileSize;
+        Coordinates *attackCoords = new Coordinates();
         if(this->coords->angle == 0)
         {
-            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y - tileSize);
-            secondTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y - tileSize * 2);
+            attackCoords->X = coords->X;
+            attackCoords->Y = coords->Y;
+            attackCoords->width = tileSize;
+            attackCoords->height = tileSize*2;
+            
+            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y);
         } 
         else if(coords->angle == 90) 
         {
-            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X - tileSize, coords->Y);
-            secondTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X - tileSize * 2, coords->Y);
+            attackCoords->X = coords->X;
+            attackCoords->Y = coords->Y + tileSize;
+            attackCoords->width = tileSize*2;
+            attackCoords->height = tileSize;
+            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + tileSize, coords->Y + tileSize);
         }
         else if(coords->angle == 180) 
-        {
-            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y + tileSize);
-            secondTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y + tileSize * 2);
+        {            
+            attackCoords->X = coords->X;
+            attackCoords->Y = coords->Y + tileSize;
+            attackCoords->width = tileSize;
+            attackCoords->height = tileSize*2;
+            
+            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y + tileSize*2);
         }
         else
         {
-            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + tileSize, coords->Y);
-            secondTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X + tileSize * 2, coords->Y);
+            attackCoords->X = coords->X - tileSize;
+            attackCoords->Y = coords->Y + tileSize;
+            attackCoords->width = tileSize*2;
+            attackCoords->height = tileSize;
+            firstTile = Variables::session->getMap()->getCurrentModule()->getModuleTileAt(coords->X, coords->Y + tileSize);
         }
         if(firstTile != NULL)
         {
             templateList<Entity> *entityList = firstTile->getEntityList();
             while(entityList != NULL)
             {
-                entityList->data->getHit(153, 1);
+                if(CollisionDetector::isBasicCollision(entityList->data->getCoords(), attackCoords))
+                {
+                    entityList->data->getHit(153, 1);
+                }
                 entityList = entityList->next;
             }
-        }
-        if(secondTile != NULL)
-        {
-            templateList<Entity> *entityList = secondTile->getEntityList();
-            while(entityList != NULL)
+            for(int i = 0; i < 8; i++)
             {
-                entityList->data->getHit(153, 1);
-                entityList = entityList->next;
+                ModuleTile *adjacentTile = firstTile->getAdjacentTiles()[i];
+                if(adjacentTile != NULL)
+                {
+                    entityList = adjacentTile->getEntityList();
+                    while(entityList != NULL)
+                    {
+                        if(CollisionDetector::isBasicCollision(entityList->data->getCoords(), attackCoords))
+                        {
+                            entityList->data->getHit(153, 1);
+                        }
+                        entityList = entityList->next;
+                    }
+                }
             }
+            
         }
-//    }
+        delete attackCoords;
+    }
 }
