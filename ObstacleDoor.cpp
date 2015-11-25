@@ -27,7 +27,7 @@ ObstacleDoor::ObstacleDoor()
     closed = true;
     this->armor = 1;
     for(int i = 0; i < Variables::damageTypeCount; i++)elementalResists[i] = 0.5;
-//    this->setRequirements();
+    this->setRequirements();
 }
 
 void ObstacleDoor::setCoords(double X, double Y) {
@@ -184,19 +184,19 @@ bool ObstacleDoor::canBeUsed()
 
 void ObstacleDoor::displayConnections()
 {
-//    for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
-//    {
-//        if(this->requiredAllowanceObjectTypes[i] && allowanceObjects[i] != NULL)
-//        {
-//            AllowanceObject *temp = allowanceObjects[i];
-//            double X = (this->planCoords->X - Variables::offsetX) * Variables::scale;
-//            double Y = (this->planCoords->Y - Variables::offsetY) * Variables::scale;
-//            double deltaX = (temp->getPlanCoords()->X - Variables::offsetX) * Variables::scale;
-//            double deltaY = (temp->getPlanCoords()->Y - Variables::offsetY) * Variables::scale;
-//            if(temp->isAllow())al_draw_line(X, Y, deltaX, deltaY, al_map_rgb(0,255,0), 5);
-//            else al_draw_line(X, Y, deltaX, deltaY, al_map_rgb(0,0,255), 5);
-//        }
-//    }
+    for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
+    {
+        if(this->requiredAllowanceObjectTypes[i] && allowanceObjects[i] != NULL)
+        {
+            AllowanceObject *temp = allowanceObjects[i];
+            double X = (this->planCoords->X - Variables::offsetX) * Variables::scale;
+            double Y = (this->planCoords->Y - Variables::offsetY) * Variables::scale;
+            double deltaX = (temp->getPlanCoords()->X - Variables::offsetX) * Variables::scale;
+            double deltaY = (temp->getPlanCoords()->Y - Variables::offsetY) * Variables::scale;
+            if(temp->isAllow())al_draw_line(X, Y, deltaX, deltaY, al_map_rgb(0,255,0), 5);
+            else al_draw_line(X, Y, deltaX, deltaY, al_map_rgb(0,0,255), 5);
+        }
+    }
 }
 
 void ObstacleDoor::setRandomAllowanceObjects()
@@ -236,8 +236,9 @@ void ObstacleDoor::setRequirements()
     for(int i = 0; i < Variables::allowancObjectMaxCount; i++)
     {
         allowanceObjects[i] = NULL;
-        if(rand()%2 == 0)requiredAllowanceObjectTypes[i] = true;
-        else requiredAllowanceObjectTypes[i] = false;
+        requiredAllowanceObjectTypes[i] = false;
+//        if(rand()%2 == 0)requiredAllowanceObjectTypes[i] = true;
+//        else requiredAllowanceObjectTypes[i] = false;
     }
-    setRandomAllowanceObjects();
+//    setRandomAllowanceObjects();
 }
